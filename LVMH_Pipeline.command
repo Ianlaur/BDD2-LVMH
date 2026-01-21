@@ -1,22 +1,25 @@
-#!/bin/bash
+#!/bin/zsh
 # LVMH Voice-to-Tag Pipeline - macOS Double-Click Launcher
 # Double-click this file in Finder to run the pipeline
 
 # Change to the script's directory
 cd "$(dirname "$0")"
 
+clear
+
 echo "============================================================"
 echo "LVMH Voice-to-Tag Pipeline"
 echo "============================================================"
-echo
+echo ""
 echo "Select an option:"
 echo "  1) Full setup + run (first time)"
 echo "  2) Run pipeline only (already set up)"
 echo "  3) View 3D visualization"
 echo "  4) Clean outputs and re-run"
 echo "  5) Exit"
-echo
-read -p "Enter choice [1-5]: " choice
+echo ""
+printf "Enter choice [1-5]: "
+read choice
 
 case $choice in
     1)
@@ -45,20 +48,22 @@ case $choice in
         echo "Running pipeline..."
         python -m src.run_all
         
-        echo
-        read -p "Open 3D visualization? [y/n]: " open_viz
+        echo ""
+        printf "Open 3D visualization? [y/n]: "
+        read open_viz
         if [ "$open_viz" = "y" ]; then
             open demo/embedding_space_3d.html
         fi
         ;;
     2)
-        echo
+        echo ""
         source .venv/bin/activate
         echo "Running pipeline..."
         python -m src.run_all
         
-        echo
-        read -p "Open 3D visualization? [y/n]: " open_viz
+        echo ""
+        printf "Open 3D visualization? [y/n]: "
+        read open_viz
         if [ "$open_viz" = "y" ]; then
             open demo/embedding_space_3d.html
         fi
@@ -75,8 +80,9 @@ case $choice in
         echo "Running pipeline..."
         python -m src.run_all
         
-        echo
-        read -p "Open 3D visualization? [y/n]: " open_viz
+        echo ""
+        printf "Open 3D visualization? [y/n]: "
+        read open_viz
         if [ "$open_viz" = "y" ]; then
             open demo/embedding_space_3d.html
         fi
@@ -90,6 +96,6 @@ case $choice in
         ;;
 esac
 
-echo
-echo "Done! Press any key to close..."
-read -n 1
+echo ""
+echo "Done! Press Enter to close..."
+read
