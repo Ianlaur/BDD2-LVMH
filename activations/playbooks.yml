@@ -1,0 +1,213 @@
+# LVMH Voice-to-Tag Playbooks
+# Action recommendations based on client profiles and detected concepts
+
+version: "1.0"
+
+actions:
+  - action_id: ACT_001
+    title: VIP Event Invitation
+    channel: Event
+    priority: High
+    kpi: Event attendance, subsequent purchase
+    triggers:
+      buckets:
+        - lifestyle
+        - preferences
+      keywords:
+        - vip
+        - excellent
+        - art
+        - collection
+        - travel
+        - collectionne
+        - colleziona
+      min_confidence: 0.5
+    description: Invite high-value clients to exclusive boutique events
+
+  - action_id: ACT_002
+    title: New Collection Preview
+    channel: CRM
+    priority: High
+    kpi: Preview attendance, conversion rate
+    triggers:
+      buckets:
+        - intent
+        - preferences
+      keywords:
+        - new
+        - collection
+        - looking
+        - interested
+        - preview
+        - cherche
+        - cerca
+        - busca
+      min_confidence: 0.4
+    description: Personal invitation to preview new seasonal collections
+
+  - action_id: ACT_003
+    title: Gift Occasion Follow-up
+    channel: Email
+    priority: High
+    kpi: Response rate, gift purchase
+    triggers:
+      buckets:
+        - occasion
+      keywords:
+        - birthday
+        - anniversary
+        - gift
+        - cadeau
+        - regalo
+        - geschenk
+        - anniversaire
+        - compleanno
+        - cumpleaños
+        - geburtstag
+      min_confidence: 0.3
+    description: Proactive outreach before known gift occasions
+
+  - action_id: ACT_004
+    title: Dietary Preference Note
+    channel: Client Service
+    priority: Medium
+    kpi: Client satisfaction, event attendance
+    triggers:
+      buckets:
+        - constraints
+      keywords:
+        - vegan
+        - vegetarian
+        - allergy
+        - allergic
+        - intolerant
+        - diet
+        - végétarien
+        - vegetariano
+        - allergie
+      min_confidence: 0.3
+    description: Flag dietary preferences for upcoming event invitations
+
+  - action_id: ACT_005
+    title: Travel Collection Recommendation
+    channel: CRM
+    priority: Medium
+    kpi: Travel accessory sales
+    triggers:
+      buckets:
+        - lifestyle
+      keywords:
+        - travel
+        - voyage
+        - viaggio
+        - viaje
+        - trip
+        - safari
+        - asia
+        - europe
+        - maldives
+        - dubai
+      min_confidence: 0.4
+    description: Recommend travel-friendly pieces based on travel mentions
+
+  - action_id: ACT_006
+    title: Sport/Hobby Personalization
+    channel: Email
+    priority: Medium
+    kpi: Engagement rate, personalization score
+    triggers:
+      buckets:
+        - lifestyle
+      keywords:
+        - golf
+        - tennis
+        - yoga
+        - sailing
+        - equestrian
+        - ski
+        - voile
+        - kitesurf
+        - dressage
+      min_confidence: 0.4
+    description: Personalized recommendations based on sports/hobbies
+
+  - action_id: ACT_007
+    title: Follow-up Appointment
+    channel: CRM
+    priority: High
+    kpi: Appointment conversion, purchase rate
+    triggers:
+      buckets:
+        - next_action
+        - intent
+      keywords:
+        - follow up
+        - rappeler
+        - call
+        - appointment
+        - rendez-vous
+        - richiamare
+        - llamar
+        - nachfassen
+      min_confidence: 0.3
+    description: Schedule follow-up based on noted next actions
+
+  - action_id: ACT_008
+    title: Multi-generational Opportunity
+    channel: Event
+    priority: Medium
+    kpi: Family engagement, cross-generational sales
+    triggers:
+      buckets:
+        - lifestyle
+        - occasion
+      keywords:
+        - family
+        - daughter
+        - son
+        - mother
+        - father
+        - figlia
+        - hijo
+        - fille
+        - fils
+        - famille
+        - famiglia
+      min_confidence: 0.4
+    description: Family-focused event invitations for multi-generational clients
+
+  - action_id: ACT_009
+    title: Budget-Sensitive Presentation
+    channel: Client Service
+    priority: Low
+    kpi: Conversion within budget, satisfaction
+    triggers:
+      buckets:
+        - constraints
+      keywords:
+        - budget
+        - price
+        - prix
+        - prezzo
+        - precio
+        - flexible
+      min_confidence: 0.3
+    description: Prepare curated selection within noted budget range
+
+  - action_id: ACT_010
+    title: Referral Program Outreach
+    channel: Email
+    priority: Low
+    kpi: Referral rate, new client acquisition
+    triggers:
+      buckets:
+        - lifestyle
+      keywords:
+        - referred
+        - network
+        - friend
+        - colleague
+        - potential
+        - excellent
+      min_confidence: 0.5
+    description: Engage high-network clients for referral opportunities

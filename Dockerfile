@@ -7,7 +7,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     APP_HOME=/app \
     HF_HOME=/app/models/hf \
     TRANSFORMERS_CACHE=/app/models/hf \
-    SENTENCE_TRANSFORMERS_HOME=/app/models/sentence_transformers
+    SENTENCE_TRANSFORMERS_HOME=/app/models/sentence_transformers \
+    TOKENIZERS_PARALLELISM=false
 
 WORKDIR ${APP_HOME}
 
@@ -27,6 +28,7 @@ RUN python - <<'PY'
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('punkt_tab')
 PY
 
 COPY . ${APP_HOME}

@@ -102,4 +102,4 @@ setup-models-local:
 
 .PHONY: clean
 clean:
-	rm -rf data/processed/* data/outputs/* demo/*
+	rm -rf data/processed/* data/outputs/* taxonomy/* demo/*
