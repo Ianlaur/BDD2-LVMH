@@ -1,0 +1,21 @@
+# Core
+pandas==2.2.2
+numpy==2.0.1
+pyarrow==17.0.0
+
+# ML
+scikit-learn==1.5.1
+
+# Keyphrase extraction
+yake==0.4.8
+rake-nltk==1.0.6
+nltk==3.9.1
+
+# Embeddings (multilingual)
+sentence-transformers==3.0.1
+transformers==4.43.3
+torch==2.3.1
+
+# 3D projection + visualization
+umap-learn==0.5.6
+plotly==5.23.0

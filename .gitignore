@@ -1,0 +1,43 @@
+# -----------------------
+# Python
+# -----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+.env
+
+# -----------------------
+# Data (do not commit raw client data)
+# -----------------------
+data/raw/*
+!data/raw/.gitkeep
+
+# Generated / intermediate artifacts
+data/processed/*
+data/outputs/*
+
+# Demo outputs (HTML/figures)
+demo/*
+!demo/.gitkeep
+
+# -----------------------
+# Model caches (can be large)
+# Keep directory structure, not contents
+# -----------------------
+models/*
+!models/.gitkeep
+!models/sentence_transformers/.gitkeep
+!models/hf/.gitkeep
+
+# -----------------------
+# OS / Editor
+# -----------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
