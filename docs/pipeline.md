@@ -6,48 +6,54 @@ This repository implements a **deterministic (non-LLM)** multilingual pipeline t
 
 **Key constraint:** No generative LLMs (GPT/Claude/OpenAI) are used. Only deterministic NLP methods and pre-trained embeddings (SentenceTransformers) are allowed.
 
+### New Features (v2.0)
+- **Trainable Vocabulary**: 384+ concepts with multilingual aliases (12+ languages)
+- **Adaptive Pipeline**: Works with any CSV file structure
+- **Server/Client Architecture**: Separation of training and processing concerns
+- **CLI Training Interface**: Easy vocabulary management via command line
+
 ## Pipeline Stages
 
-### 1. Ingest (`src/ingest/run_ingest.py`)
-- Loads CSV from `data/raw/` (or `data/` fallback)
+### 1. Ingest (`src/client/ingest/run_ingest.py`)
+- Loads CSV from `data/input/` (or `data/` fallback)
 - Validates required columns: `ID`, `Date`, `Duration`, `Language`, `Length`, `Transcription`
 - Normalizes dates, languages, and text
 - **Output:** `data/processed/notes_clean.parquet`
 
-### 2. Candidate Extraction (`src/extract/run_candidates.py`)
+### 2. Candidate Extraction (`src/client/extract/run_candidates.py`)
 - Extracts keyphrases using YAKE, RAKE-NLTK, and TF-IDF n-grams
 - Per-language and global extraction
 - Normalizes candidates (lowercase, strip punctuation, collapse whitespace)
 - **Output:** `data/processed/candidates.csv`
 
-### 3. Lexicon Building (`src/lexicon/build_lexicon.py`)
+### 3. Lexicon Building (`src/client/lexicon/build_lexicon.py`)
 - Embeds candidates using SentenceTransformer (multilingual MiniLM)
 - Clusters candidates into concepts using Agglomerative Clustering (cosine distance)
 - Selects concept labels (most frequent alias or nearest to centroid)
 - Assigns taxonomy buckets via keyword rules
 - **Outputs:**
-  - `taxonomy/lexicon_v1.csv`
+  - `taxonomy/lexicon_v1.json`
   - `taxonomy/taxonomy_v1.json`
 
-### 4. Concept Detection (`src/extract/detect_concepts.py`)
+### 4. Concept Detection (`src/client/extract/detect_concepts.py`)
 - Matches lexicon aliases case-insensitively in transcriptions
 - Records evidence spans (start/end indices)
 - Limits overlapping matches (max 3 per alias per note)
 - **Output:** `data/outputs/note_concepts.csv`
 
-### 5. Vector Building (`src/embeddings/build_vectors.py`)
+### 5. Vector Building (`src/client/embeddings/build_vectors.py`)
 - Computes embeddings for each note using SentenceTransformer
 - L2 normalized for cosine similarity
 - **Output:** `data/outputs/note_vectors.parquet`
 
-### 6. Client Segmentation (`src/profiling/segment_clients.py`)
+### 6. Client Segmentation (`src/client/profiling/segment_clients.py`)
 - Aggregates note vectors to client level (mean for multiple notes)
 - Clusters using KMeans with fixed random_state
 - K determined by heuristic: `min(8, max(3, sqrt(n/2)))` or `CLUSTERS_K` env var
 - Labels profiles with top concepts per cluster
 - **Output:** `data/outputs/client_profiles.csv`
 
-### 7. Action Recommendation (`src/actions/recommend_actions.py`)
+### 7. Action Recommendation (`src/client/actions/recommend_actions.py`)
 - Loads playbooks from `activations/playbooks.yml`
 - Matches clients to actions based on:
   - Profile type keywords
@@ -56,7 +62,7 @@ This repository implements a **deterministic (non-LLM)** multilingual pipeline t
 - Ranks by priority (High > Medium > Low) and evidence strength
 - **Output:** `data/outputs/recommended_actions.csv`
 
-### 8. 3D Projection (Optional) (`src/embeddings/projection_3d.py`)
+### 8. 3D Projection (Optional) (`src/client/embeddings/projection_3d.py`)
 - Reduces embeddings to 3D using UMAP (or PCA fallback)
 - Creates interactive Plotly visualization
 - **Output:** `demo/embedding_space_3d.html`
@@ -102,20 +108,77 @@ source .venv/bin/activate
 # Run full pipeline
 python -m src.run_all
 
+# Run with any CSV file (adaptive mode)
+python -m src.run_all --csv data/input/any_file.csv
+python -m src.run_all --csv data/input/any_file.csv --text-column "notes" --id-column "client_id"
+
+# Analyze CSV structure only
+python -m src.run_all --csv data/input/any_file.csv --analyze-only
+
 # Or run individual stages:
-python -m src.ingest.run_ingest
-python -m src.extract.run_candidates
-python -m src.lexicon.build_lexicon
-python -m src.extract.detect_concepts
-python -m src.embeddings.build_vectors
-python -m src.profiling.segment_clients
-python -m src.actions.recommend_actions
-python -m src.embeddings.projection_3d
+python -m src.client.ingest.run_ingest
+python -m src.client.extract.run_candidates
+python -m src.client.lexicon.build_lexicon
+python -m src.client.extract.detect_concepts
+python -m src.client.embeddings.build_vectors
+python -m src.client.profiling.segment_clients
+python -m src.client.actions.recommend_actions
+python -m src.client.embeddings.projection_3d
 ```
+
+## Vocabulary Training
+
+### CLI Commands
+
+```bash
+# View vocabulary statistics
+python -m src.server.train_vocabulary stats
+
+# Add a single keyword
+python -m src.server.train_vocabulary add "hermès" "Hermès" "preferences" --aliases "hermes,エルメス,爱马仕"
+
+# Import keywords from JSON file
+python -m src.server.train_vocabulary import taxonomy/training_keywords.json
+
+# Load predefined luxury keywords
+python -m src.server.train_vocabulary load-predefined
+
+# List concepts by bucket
+python -m src.server.train_vocabulary list --bucket preferences
+
+# Search for a concept
+python -m src.server.train_vocabulary search "anniversary"
+```
+
+### Training Keywords JSON Format
+
+```json
+[
+  {
+    "term": "hermès",
+    "label": "Hermès",
+    "bucket": "preferences",
+    "aliases": ["hermes", "エルメス", "爱马仕", "에르메스", "愛馬仕"]
+  }
+]
+```
+
+### Current Vocabulary (384 concepts)
+
+| Bucket | Count | Examples |
+|--------|-------|----------|
+| preferences | 167 | Hermès, Birkin, diamond, cashmere, tourbillon |
+| intent | 71 | love, curious, frustrated, impulse buy |
+| lifestyle | 71 | mother, father, collector, connoisseur |
+| occasion | 36 | anniversary, wedding, Christmas, Fashion Week |
+| constraints | 20 | budget, urgent, WeChat, tax free |
+| next_action | 19 | appointment, repair, delivery |
 
 ## Input Data
 
-Place your CSV file in `data/raw/`. The file must have these columns:
+### Standard Format (LVMH)
+
+Place your CSV file in `data/input/`. The file must have these columns:
 
 | Column | Description |
 |--------|-------------|
@@ -126,13 +189,36 @@ Place your CSV file in `data/raw/`. The file must have these columns:
 | `Length` | Length category: short, medium, long |
 | `Transcription` | Free text transcription content |
 
+### Adaptive Mode (Any CSV)
+
+The pipeline can work with any CSV structure:
+
+```bash
+# Analyze CSV to see detected columns
+python -m src.run_all --csv data/input/custom.csv --analyze-only
+
+# Output:
+# Detected columns:
+#   Text column: description (avg 245 chars)
+#   ID column: client_id
+#   Language column: lang
+#   Date column: created_at
+
+# Run with auto-detection
+python -m src.run_all --csv data/input/custom.csv
+
+# Override detected columns
+python -m src.run_all --csv data/input/custom.csv --text-column "notes" --id-column "customer_id"
+```
+
 ## Outputs
 
 | File | Description |
 |------|-------------|
 | `data/processed/notes_clean.parquet` | Cleaned and normalized notes |
 | `data/processed/candidates.csv` | Extracted candidate keyphrases |
-| `taxonomy/lexicon_v1.csv` | Lexicon with concepts, aliases, and rules |
+| `taxonomy/vocabulary.json` | Trained vocabulary (384 concepts) |
+| `taxonomy/lexicon_v1.json` | Lexicon with concepts, aliases, and rules |
 | `taxonomy/taxonomy_v1.json` | Taxonomy grouping concepts into buckets |
 | `data/outputs/note_concepts.csv` | Concept matches per note with evidence spans |
 | `data/outputs/note_vectors.parquet` | Note embeddings |
@@ -154,7 +240,7 @@ Concepts are automatically assigned to one of these buckets:
 
 ## Configuration
 
-Key parameters in `src/config.py`:
+Key parameters in `src/shared/config.py`:
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -198,6 +284,30 @@ The default playbooks include 10 actions across all channels.
 ## Architecture
 
 ```
+src/
+├── run_all.py                    # Main orchestrator
+├── shared/                       # Shared modules
+│   ├── config.py                 # Global configuration
+│   └── utils.py                  # Utility functions
+├── server/                       # Training & vocabulary management
+│   ├── train_vocabulary.py       # CLI for vocabulary training
+│   ├── vocabulary_manager.py     # Vocabulary CRUD operations
+│   ├── vocabulary_learner.py     # Auto-learning from data
+│   ├── adaptive_pipeline.py      # Pipeline for any CSV
+│   └── flexible_extraction.py    # Extraction using trained vocab
+└── client/                       # Processing pipeline
+    ├── ingest/                   # Stage 1: CSV ingestion
+    ├── extract/                  # Stages 2 & 4: Extraction
+    ├── lexicon/                  # Stage 3: Lexicon building
+    ├── embeddings/               # Stages 5 & 8: Vectors & 3D
+    ├── profiling/                # Stage 6: Client segmentation
+    ├── actions/                  # Stage 7: Action recommendations
+    └── visualization/            # Dashboard generation
+```
+
+### Data Flow
+
+```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
 │   CSV       │───>│   Ingest    │───>│   Notes     │
 │   Input     │    │             │    │   Parquet   │
@@ -213,14 +323,14 @@ The default playbooks include 10 actions across all channels.
                   │                                                │
                   v                                                │
            ┌──────────────┐                                        │
-           │   Lexicon    │                                        │
-           │   Building   │                                        │
-           └──────┬───────┘                                        │
-                  │                                                │
-                  v                                                │
-           ┌──────────────┐                                        │
-           │   Concept    │                                        │
-           │   Detection  │                                        │
+           │   Lexicon    │◄────────┐                              │
+           │   Building   │         │                              │
+           └──────┬───────┘         │                              │
+                  │           ┌─────┴──────┐                       │
+                  v           │ Vocabulary │                       │
+           ┌──────────────┐   │  Training  │                       │
+           │   Concept    │   │  (Server)  │                       │
+           │   Detection  │   └────────────┘                       │
            └──────┬───────┘                                        │
                   │                                                │
                   └─────────────────────┬──────────────────────────┘

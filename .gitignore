@@ -5,21 +5,35 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.so
 
 # Virtual environment
 .venv/
 venv/
+env/
 .env
+*.env
 
 # -----------------------
 # Data (do not commit raw client data)
 # -----------------------
 data/raw/*
+data/input/*
 !data/raw/.gitkeep
+!data/input/.gitkeep
 
 # Generated / intermediate artifacts
 data/processed/*
 data/outputs/*
+!data/processed/.gitkeep
+!data/outputs/.gitkeep
+
+# Large data files
+*.csv
+*.parquet
+*.arrow
+*.feather
+!taxonomy/*.csv
 
 # Demo outputs (HTML/figures)
 demo/*
@@ -27,12 +41,24 @@ demo/*
 
 # -----------------------
 # Model caches (can be large)
-# Keep directory structure, not contents
 # -----------------------
 models/*
 !models/.gitkeep
-!models/sentence_transformers/.gitkeep
-!models/hf/.gitkeep
+*.safetensors
+*.bin
+*.onnx
+*.pt
+*.pth
+
+# Sentence transformers cache
+models/sentence_transformers/
+
+# -----------------------
+# Node.js
+# -----------------------
+node_modules/
+package-lock.json
+yarn.lock
 
 # -----------------------
 # OS / Editor
@@ -41,14 +67,40 @@ models/*
 Thumbs.db
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
+# -----------------------
+# Logs & temp files
+# -----------------------
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# -----------------------
+# Jupyter
+# -----------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# -----------------------
 # Keep taxonomy deliverables
+# -----------------------
 !taxonomy/
 !taxonomy/*.csv
 !taxonomy/*.json
 
-# If you ever generate large temporary files inside taxonomy
+# Large taxonomy temps
 taxonomy/tmp/
 taxonomy/*.parquet
 taxonomy/*.npy
 taxonomy/*.npz
+
+# -----------------------
+# Client app (keep HTML, ignore generated)
+# -----------------------
+client/app/*.json
+!client/app/*.html

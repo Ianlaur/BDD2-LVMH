@@ -1,94 +1,66 @@
 @echo off
-REM LVMH Voice-to-Tag Pipeline - Windows Launcher
-REM Double-click this file to run
+REM LVMH Voice-to-Tag Pipeline - Windows Double-Click Launcher
+REM Double-click this file to run the full pipeline and open dashboard
 
 cd /d "%~dp0"
 
-echo ============================================================
-echo LVMH Voice-to-Tag Pipeline
-echo ============================================================
 echo.
-echo Select an option:
-echo   1) Full setup + run (first time)
-echo   2) Run pipeline only (already set up)
-echo   3) View 3D visualization
-echo   4) Clean outputs and re-run
-echo   5) Exit
+echo ════════════════════════════════════════════════════════════
+echo    LVMH Client Intelligence Pipeline
+echo ════════════════════════════════════════════════════════════
 echo.
-set /p choice="Enter choice [1-5]: "
 
-if "%choice%"=="1" goto fullsetup
-if "%choice%"=="2" goto runonly
-if "%choice%"=="3" goto viewviz
-if "%choice%"=="4" goto cleanrun
-if "%choice%"=="5" goto end
-echo Invalid choice
-goto end
-
-:fullsetup
-echo.
-echo Running full setup...
-
+REM Check/create virtual environment
 if not exist ".venv" (
     echo Creating virtual environment...
     python -m venv .venv
+    call .venv\Scripts\activate.bat
+    pip install --upgrade pip -q
+    pip install -r requirements.txt -q
+    echo [OK] Environment ready
+) else (
+    call .venv\Scripts\activate.bat
+    echo [OK] Virtual environment activated
 )
 
-call .venv\Scripts\activate.bat
-
-echo Installing requirements...
-pip install --upgrade pip
-pip install -r requirements.txt
-
-echo Downloading NLTK data...
-python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt'); nltk.download('punkt_tab')"
-
-echo Downloading embedding model...
-python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', cache_folder='models/sentence_transformers')"
-
+REM Run the pipeline
 echo.
 echo Running pipeline...
-python -m src.run_all
+echo ------------------------------------------------------------
+python -m server.run_all
+echo ------------------------------------------------------------
+echo [OK] Pipeline complete
+
+REM Kill any existing server on port 9000
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr :9000 ^| findstr LISTENING') do (
+    taskkill /F /PID %%a >nul 2>&1
+)
+
+REM Start local server in background
+echo.
+echo Starting local server on port 9000...
+start /b python -m http.server 9000 >nul 2>&1
+timeout /t 1 >nul
+echo [OK] Server running
+
+REM Open dashboard
+echo.
+echo Opening dashboard...
+start http://localhost:9000/client/app/dashboard.html
+echo [OK] Dashboard opened in browser
 
 echo.
-set /p openviz="Open 3D visualization? [y/n]: "
-if "%openviz%"=="y" start demo\embedding_space_3d.html
-goto end
-
-:runonly
+echo ════════════════════════════════════════════════════════════
+echo Pipeline complete! Dashboard is now running.
 echo.
-call .venv\Scripts\activate.bat
-echo Running pipeline...
-python -m src.run_all
-
+echo Dashboard URL: http://localhost:9000/client/app/dashboard.html
 echo.
-set /p openviz="Open 3D visualization? [y/n]: "
-if "%openviz%"=="y" start demo\embedding_space_3d.html
-goto end
+echo Press any key to stop the server and exit.
+echo ════════════════════════════════════════════════════════════
 
-:viewviz
-echo Opening 3D visualization...
-start demo\embedding_space_3d.html
-goto end
+pause >nul
 
-:cleanrun
-echo Cleaning outputs...
-if exist data\processed rd /s /q data\processed
-if exist data\outputs rd /s /q data\outputs
-if exist taxonomy rd /s /q taxonomy
-if exist demo rd /s /q demo
-mkdir data\processed data\outputs taxonomy demo
-
-call .venv\Scripts\activate.bat
-echo Running pipeline...
-python -m src.run_all
-
-echo.
-set /p openviz="Open 3D visualization? [y/n]: "
-if "%openviz%"=="y" start demo\embedding_space_3d.html
-goto end
-
-:end
-echo.
-echo Done!
-pause
+REM Kill server on exit
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr :9000 ^| findstr LISTENING') do (
+    taskkill /F /PID %%a >nul 2>&1
+)
