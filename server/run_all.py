@@ -138,18 +138,18 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
             log_stage("projection", f"Skipped: {e}")
             timings["projection"] = 0
         
-        # Stage 10: Dashboard Generation
+        # Stage 10: Dashboard Data Generation (JSON for React)
         print("\n" + "=" * 40)
-        print("STAGE 10: DASHBOARD GENERATION")
+        print("STAGE 10: DASHBOARD DATA GENERATION")
         print("=" * 40)
         stage_start = time.time()
         try:
-            from server.shared.generate_dashboard import generate_dashboard
-            generate_dashboard()
-            timings["dashboard"] = time.time() - stage_start
+            from server.shared.generate_dashboard_data import generate_dashboard_data
+            generate_dashboard_data()
+            timings["dashboard_data"] = time.time() - stage_start
         except Exception as e:
             log_stage("dashboard", f"Warning: {e}")
-            timings["dashboard"] = 0
+            timings["dashboard_data"] = 0
     
     except Exception as e:
         log_stage("pipeline", f"PIPELINE FAILED: {e}")
@@ -170,7 +170,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
     
     # List outputs
     print("\nOutputs generated:")
-    from server.shared.config import DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, DEMO_DIR
+    from server.shared.config import DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, BASE_DIR
     
     outputs = [
         DATA_PROCESSED / "notes_clean.parquet",
@@ -182,8 +182,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         DATA_OUTPUTS / "client_profiles.csv",
         DATA_OUTPUTS / "recommended_actions.csv",
         DATA_OUTPUTS / "knowledge_graph_cytoscape.json",
-        DEMO_DIR / "embedding_space_3d.html",
-        DEMO_DIR / "dashboard.html"
+        BASE_DIR / "dashboard" / "src" / "data.json"
     ]
     
     for output in outputs:

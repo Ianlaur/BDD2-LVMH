@@ -24,7 +24,7 @@ DATA_PROCESSED = DATA_DIR / "processed"
 DATA_OUTPUTS = DATA_DIR / "outputs"
 TAXONOMY_DIR = BASE_DIR / "taxonomy"
 ACTIVATIONS_DIR = BASE_DIR / "activations"
-DEMO_DIR = BASE_DIR / "client" / "app"  # Frontend dashboard location
+DASHBOARD_DIR = BASE_DIR / "dashboard"  # React dashboard location
 MODELS_DIR = BASE_DIR / "models"
 SENTENCE_TRANSFORMERS_CACHE = MODELS_DIR / "sentence_transformers"
 

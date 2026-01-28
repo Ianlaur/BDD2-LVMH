@@ -38,31 +38,62 @@ python -m server.run_all
 echo "------------------------------------------------------------"
 echo -e "${GREEN}✓ Pipeline complete${NC}"
 
-# Kill any existing server on port 9000
-lsof -ti:9000 | xargs kill -9 2>/dev/null
-
-# Start local server in background
-echo
-echo -e "${BLUE}Starting local server on port 9000...${NC}"
-python3 -m http.server 9000 &>/dev/null &
-SERVER_PID=$!
-sleep 1
-echo -e "${GREEN}✓ Server running (PID: $SERVER_PID)${NC}"
-
-# Open dashboard
-echo
-echo -e "${BLUE}Opening dashboard...${NC}"
-open "http://localhost:9000/client/app/dashboard.html"
-echo -e "${GREEN}✓ Dashboard opened in browser${NC}"
-
-echo
-echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}Pipeline complete! Dashboard is now running.${NC}"
-echo
-echo "Dashboard URL: http://localhost:9000/client/app/dashboard.html"
-echo
-echo "Press Ctrl+C to stop the server, or close this window."
-echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
-
-# Keep server running until user closes
-wait $SERVER_PID
+# Check if npm is installed and dashboard has dependencies
+if command -v npm &> /dev/null && [ -d "dashboard" ]; then
+    echo
+    echo -e "${BLUE}Starting React dashboard...${NC}"
+    
+    # Install dependencies if needed
+    if [ ! -d "dashboard/node_modules" ]; then
+        echo "Installing dashboard dependencies..."
+        cd dashboard && npm install -q && cd ..
+    fi
+    
+    # Start the React dev server
+    cd dashboard
+    npm run dev &
+    DASHBOARD_PID=$!
+    cd ..
+    
+    sleep 3
+    echo -e "${GREEN}✓ Dashboard running${NC}"
+    
+    # Open dashboard
+    open "http://localhost:5173"
+    echo -e "${GREEN}✓ Dashboard opened in browser${NC}"
+    
+    echo
+    echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}Pipeline complete! Dashboard is running.${NC}"
+    echo
+    echo "Dashboard URL: http://localhost:5173"
+    echo
+    echo "Press Ctrl+C to stop, or close this window."
+    echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
+    
+    wait $DASHBOARD_PID
+else
+    # Fallback to simple HTTP server if no npm
+    lsof -ti:9000 | xargs kill -9 2>/dev/null
+    
+    echo
+    echo -e "${BLUE}Starting local server on port 9000...${NC}"
+    python3 -m http.server 9000 &>/dev/null &
+    SERVER_PID=$!
+    sleep 1
+    echo -e "${GREEN}✓ Server running (PID: $SERVER_PID)${NC}"
+    
+    open "http://localhost:9000/dashboard/"
+    echo -e "${GREEN}✓ Dashboard opened in browser${NC}"
+    
+    echo
+    echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}Pipeline complete!${NC}"
+    echo
+    echo "Dashboard URL: http://localhost:9000/dashboard/"
+    echo
+    echo "Press Ctrl+C to stop the server, or close this window."
+    echo -e "${GOLD}════════════════════════════════════════════════════════════${NC}"
+    
+    wait $SERVER_PID
+fi

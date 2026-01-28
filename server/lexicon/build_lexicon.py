@@ -294,6 +294,23 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
     lexicon_df.to_csv(lexicon_path, index=False)
     log_stage("lexicon", f"Wrote {len(lexicon_df)} concepts to {lexicon_path}")
     
+    # Also write JSON version for knowledge graph
+    lexicon_json = {}
+    for row in lexicon_rows:
+        lexicon_json[row["concept_id"]] = {
+            "label": row["label"],
+            "aliases": row["aliases"].split("|") if row["aliases"] else [],
+            "languages": row["languages"],
+            "freq_notes": row["freq_notes"],
+            "examples": row["examples"].split("|") if row["examples"] else [],
+            "rule": row["rule"]
+        }
+    
+    lexicon_json_path = TAXONOMY_DIR / "lexicon_v1.json"
+    with open(lexicon_json_path, "w", encoding="utf-8") as f:
+        json.dump(lexicon_json, f, indent=2, ensure_ascii=False)
+    log_stage("lexicon", f"Wrote {len(lexicon_json)} concepts to {lexicon_json_path}")
+    
     taxonomy_path = TAXONOMY_DIR / "taxonomy_v1.json"
     with open(taxonomy_path, "w", encoding="utf-8") as f:
         json.dump(taxonomy, f, indent=2, ensure_ascii=False)
