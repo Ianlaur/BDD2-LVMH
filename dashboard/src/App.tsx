@@ -351,26 +351,36 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
   )
 }
 
-// Clients Page
+// Clients Page - layout cartes segments comme la maquette
+const segmentColors: Record<number, string> = {
+  0: "#1d4ed8",
+  1: "#16a34a",
+  2: "#f97316",
+  3: "#dc2626",
+  4: "#7c3aed",
+  5: "#0891b2",
+  6: "#eab308",
+  7: "#db2777",
+}
+
 const ClientsPage = ({ data }: { data: DashboardData | null }) => {
-  const [search, setSearch] = useState('')
-  const [segmentFilter, setSegmentFilter] = useState('all')
-  const [selectedClient, setSelectedClient] = useState<Client | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [filterType, setFilterType] = useState<"all" | "segment">("all")
+
   const clients = data?.clients || []
-  
+
   const filteredClients = useMemo(() => {
-    return clients.filter(client => {
-      const matchesSearch = search === '' || 
-        client.id.toLowerCase().includes(search.toLowerCase()) ||
-        client.topConcepts?.some(c => c.toLowerCase().includes(search.toLowerCase()))
-      const matchesSegment = segmentFilter === 'all' || client.segment === parseInt(segmentFilter)
-      return matchesSearch && matchesSegment
-    })
-  }, [clients, search, segmentFilter])
+    return clients.filter((client) =>
+      client.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      client.topConcepts?.some((c) =>
+        c.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    )
+  }, [clients, searchQuery])
 
   return (
     <div className="page">
-      <div className="page-header">
+      <header className="page-header">
         <div>
           <h1>Base Clients</h1>
           <p>{clients.length} clients analysés</p>
@@ -378,344 +388,59 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
         <div className="search-group">
           <div className="search-input-wrapper">
             <span className="search-icon">{Icons.search}</span>
-            <input type="text" placeholder="Rechercher..." value={search} onChange={e => setSearch(e.target.value)} className="search-input" />
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
           </div>
-          <select className="segment-select" value={segmentFilter} onChange={e => setSegmentFilter(e.target.value)}>
+          <select
+            className="segment-select"
+            value={filterType}
+            onChange={(e) =>
+              setFilterType(e.target.value as "all" | "segment")
+            }
+          >
             <option value="all">Tous</option>
-            {data.segments?.map((s, i) => (<option key={i} value={i}>Seg {i}</option>))}
+            <option value="segment">Par segment</option>
           </select>
         </div>
-      </div>
+      </header>
 
       <div className="clients-grid">
-        {filteredClients.slice(0, 48).map(client => (
-          <div key={client.id} className="client-card" onClick={() => setSelectedClient(client)}>
-            <div className="client-header">
-              <div className="client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>{client.id.slice(-3)}</div>
-              <div className="client-info">
-                <div className="client-id">{client.id}</div>
-                <div className="client-segment">Segment {client.segment}</div>
-              </div>
-              <div className="client-confidence">
-                <div className="confidence-ring" style={{ '--confidence': client.confidence }}><span>{(client.confidence * 100).toFixed(0)}%</span></div>
-              </div>
-            </div>
-            <div className="client-concepts">
-              {client.topConcepts?.slice(0, 3).map((concept, i) => (<span key={i} className="client-concept">{concept}</span>))}
-            </div>
-          </div>
-        ))}
-      </div>
+        {filteredClients.map((client) => {
+          const similarity = Math.round((client as any).confidence ? (client as any).confidence * 100 : 0)
+          const color = segmentColors[client.segment] ?? "#18181b"
 
-      {selectedClient && <ClientModal client={selectedClient} onClose={() => setSelectedClient(null)} />}
-    </div>
-  )
-}
-
-// Client Modal - Enhanced with full details
-const ClientModal = ({ client, onClose }) => {
-  const [activeTab, setActiveTab] = useState('overview')
-  const coords = data.scatter3d?.find(p => p.client === client.id)
-  
-  // Get segment info
-  const segmentInfo = data.segmentDetails?.find(s => s.id === client.segment)
-  
-  // Get recommended actions for this client
-  const clientActions = useMemo(() => {
-    const actionTypes = {
-      'cadeau': { icon: '🎁', action: 'Préparer sélection cadeaux', priority: 'high' },
-      'anniversaire': { icon: '🎂', action: 'Planifier attention anniversaire', priority: 'high' },
-      'voyage': { icon: '✈️', action: 'Présenter collection voyage', priority: 'medium' },
-      'vip': { icon: '⭐', action: 'Invitation événement VIP', priority: 'high' },
-      'mariage': { icon: '💍', action: 'Consultation joaillerie mariage', priority: 'high' },
-      'cuir': { icon: '👜', action: 'Présenter maroquinerie', priority: 'medium' },
-      'style': { icon: '👔', action: 'Consultation style personnalisée', priority: 'medium' },
-      'famille': { icon: '👨‍👩‍👧', action: 'Offres famille', priority: 'medium' },
-      'budget': { icon: '💰', action: 'Options dans budget', priority: 'low' },
-      'allergie': { icon: '⚠️', action: 'Vérifier contraintes matériaux', priority: 'high' },
-    }
-    
-    const actions = []
-    client.topConcepts?.forEach(concept => {
-      const key = Object.keys(actionTypes).find(k => concept.toLowerCase().includes(k))
-      if (key && !actions.find(a => a.action === actionTypes[key].action)) {
-        actions.push(actionTypes[key])
-      }
-    })
-    return actions.slice(0, 4)
-  }, [client])
-
-  // Highlight matched text in transcript
-  const highlightedNote = useMemo(() => {
-    if (!client.originalNote || !client.conceptEvidence?.length) {
-      return client.originalNote || 'Transcription non disponible'
-    }
-    
-    const sorted = [...client.conceptEvidence].sort((a, b) => (a.spanStart || 0) - (b.spanStart || 0))
-    const segments = []
-    let lastEnd = 0
-    
-    sorted.forEach(ev => {
-      const start = ev.spanStart || 0
-      const end = ev.spanEnd || start + (ev.alias?.length || 5)
-      
-      if (start > lastEnd) {
-        segments.push({ type: 'text', content: client.originalNote.slice(lastEnd, start) })
-      }
-      if (start < client.originalNote.length) {
-        segments.push({
-          type: 'highlight',
-          content: client.originalNote.slice(start, end),
-          concept: ev.concept,
-          alias: ev.alias
-        })
-        lastEnd = Math.max(lastEnd, end)
-      }
-    })
-    
-    if (lastEnd < client.originalNote.length) {
-      segments.push({ type: 'text', content: client.originalNote.slice(lastEnd) })
-    }
-    
-    return segments
-  }, [client])
-
-  const languageNames = {
-    'FR': 'Français', 'EN': 'English', 'IT': 'Italiano', 'ES': 'Español',
-    'DE': 'Deutsch', 'PT': 'Português', 'ZH': '中文', 'JA': '日本語', 'KO': '한국어'
-  }
-
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal modal-large" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>{Icons.close}</button>
-        
-        {/* Header */}
-        <div className="modal-header-large">
-          <div className="modal-avatar-large" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
-            {client.id.slice(-3)}
-          </div>
-          <div className="modal-header-info">
-            <h2>{client.id}</h2>
-            <div className="modal-header-meta">
-              <span className="modal-segment-badge" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
-                Segment {client.segment}
-              </span>
-              <span className="modal-confidence">
-                <span className={`confidence-dot ${client.confidence > 0.7 ? 'high' : client.confidence > 0.4 ? 'medium' : 'low'}`}></span>
-                {(client.confidence * 100).toFixed(0)}% confiance
-              </span>
-              {client.noteLanguage && (
-                <span className="modal-lang">{Icons.globe} {languageNames[client.noteLanguage] || client.noteLanguage}</span>
-              )}
-              {client.noteDate && (
-                <span className="modal-date">{Icons.calendar} {client.noteDate}</span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <div className="modal-tabs">
-          <button className={`modal-tab ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => setActiveTab('overview')}>Vue d'ensemble</button>
-          <button className={`modal-tab ${activeTab === 'transcript' ? 'active' : ''}`} onClick={() => setActiveTab('transcript')}>Transcription</button>
-          <button className={`modal-tab ${activeTab === 'concepts' ? 'active' : ''}`} onClick={() => setActiveTab('concepts')}>Concepts ({client.conceptEvidence?.length || 0})</button>
-          <button className={`modal-tab ${activeTab === 'actions' ? 'active' : ''}`} onClick={() => setActiveTab('actions')}>Actions</button>
-        </div>
-
-        {/* Tab Content */}
-        <div className="modal-content">
-          {activeTab === 'overview' && (
-            <div className="modal-overview">
-              {/* Key Metrics */}
-              <div className="modal-metrics-grid">
-                <div className="modal-metric-card">
-                  <div className="metric-icon">📊</div>
-                  <div className="metric-info">
-                    <span className="metric-value-large">{(client.confidence * 100).toFixed(0)}%</span>
-                    <span className="metric-label">Score de confiance</span>
-                  </div>
+          return (
+            <div
+              key={client.id}
+              className="client-card"
+            >
+              <div className="client-header">
+                <div
+                  className="client-avatar"
+                  style={{ backgroundColor: color }}
+                >
+                  {client.segment}
                 </div>
-                <div className="modal-metric-card">
-                  <div className="metric-icon">🏷️</div>
-                  <div className="metric-info">
-                    <span className="metric-value-large">{client.conceptEvidence?.length || 0}</span>
-                    <span className="metric-label">Concepts détectés</span>
-                  </div>
-                </div>
-                <div className="modal-metric-card">
-                  <div className="metric-icon">👥</div>
-                  <div className="metric-info">
-                    <span className="metric-value-large">{segmentInfo?.clients || '?'}</span>
-                    <span className="metric-label">Clients similaires</span>
-                  </div>
-                </div>
-                <div className="modal-metric-card">
-                  <div className="metric-icon">🎯</div>
-                  <div className="metric-info">
-                    <span className="metric-value-large">{clientActions.length}</span>
-                    <span className="metric-label">Actions suggérées</span>
-                  </div>
-                </div>
-              </div>
 
-              {/* Profile Type */}
-              <div className="modal-profile-section">
-                <h4>Profil Client</h4>
-                <div className="profile-type-display">
-                  <span className="profile-badge" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
-                    {client.profileType || segmentInfo?.profile || 'Non défini'}
-                  </span>
+                <div className="client-info">
+                  <div className="client-id">{client.id}</div>
+                  <div className="client-segment">Segment {client.segment}</div>
                 </div>
-              </div>
 
-              {/* Top Concepts */}
-              <div className="modal-concepts-section">
-                <h4>Concepts Clés</h4>
-                <div className="concepts-grid">
-                  {client.topConcepts?.map((concept, i) => (
-                    <div key={i} className="concept-card">
-                      <span className="concept-name">{concept}</span>
-                    </div>
-                  ))}
-                  {(!client.topConcepts || client.topConcepts.length === 0) && (
-                    <p className="no-data">Aucun concept détecté</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              {clientActions.length > 0 && (
-                <div className="modal-actions-section">
-                  <h4>Actions Prioritaires</h4>
-                  <div className="actions-list-mini">
-                    {clientActions.map((action, i) => (
-                      <div key={i} className={`action-item-mini priority-${action.priority}`}>
-                        <span className="action-icon">{action.icon}</span>
-                        <span className="action-text">{action.action}</span>
-                        <span className={`priority-badge ${action.priority}`}>{action.priority}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* 3D Position */}
-              {coords && (
-                <div className="modal-position-section">
-                  <h4>Position dans l'espace 3D</h4>
-                  <div className="position-coords">
-                    <div className="coord"><span className="coord-label">X</span><span className="coord-value">{coords.x.toFixed(3)}</span></div>
-                    <div className="coord"><span className="coord-label">Y</span><span className="coord-value">{coords.y.toFixed(3)}</span></div>
-                    <div className="coord"><span className="coord-label">Z</span><span className="coord-value">{coords.z.toFixed(3)}</span></div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {activeTab === 'transcript' && (
-            <div className="modal-transcript">
-              <div className="transcript-header">
-                <div className="transcript-meta">
-                  {client.noteLanguage && <span className="meta-item">{Icons.globe} {languageNames[client.noteLanguage] || client.noteLanguage}</span>}
-                  {client.noteDate && <span className="meta-item">{Icons.calendar} {client.noteDate}</span>}
-                  {client.noteDuration && <span className="meta-item">⏱️ {client.noteDuration}</span>}
-                </div>
-              </div>
-              <div className="transcript-content">
-                {typeof highlightedNote === 'string' ? (
-                  <p>{highlightedNote}</p>
-                ) : (
-                  <p>
-                    {highlightedNote.map((seg, i) => 
-                      seg.type === 'highlight' ? (
-                        <mark key={i} className="highlight-match" title={`Concept: ${seg.concept}\nAlias: ${seg.alias}`}>
-                          {seg.content}
-                        </mark>
-                      ) : (
-                        <span key={i}>{seg.content}</span>
-                      )
-                    )}
-                  </p>
-                )}
-              </div>
-              <div className="transcript-legend">
-                <span className="legend-item"><mark className="highlight-match">texte surligné</mark> = concept détecté</span>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'concepts' && (
-            <div className="modal-concepts-full">
-              <div className="concepts-header">
-                <span>{client.conceptEvidence?.length || 0} concepts détectés dans la transcription</span>
-              </div>
-              <div className="concepts-list">
-                {client.conceptEvidence?.map((ev, i) => (
-                  <div key={i} className="concept-detail-card">
-                    <div className="concept-main">
-                      <span className="concept-label">{ev.concept}</span>
-                      {ev.alias && <span className="concept-alias">"{ev.alias}"</span>}
-                    </div>
-                    <div className="concept-position">
-                      Position: {ev.spanStart || 0} - {ev.spanEnd || '?'}
-                    </div>
-                  </div>
-                ))}
-                {(!client.conceptEvidence || client.conceptEvidence.length === 0) && (
-                  <div className="no-concepts">
-                    <p>Aucun concept extrait par correspondance textuelle.</p>
-                    <p className="note">La classification reste valide via l'embedding sémantique multilingue.</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'actions' && (
-            <div className="modal-actions-full">
-              <div className="actions-header">
-                <h4>Actions Recommandées</h4>
-                <p>Basées sur les concepts détectés et le profil client</p>
-              </div>
-              <div className="actions-list-full">
-                {clientActions.length > 0 ? (
-                  clientActions.map((action, i) => (
-                    <div key={i} className={`action-card priority-${action.priority}`}>
-                      <div className="action-card-icon">{action.icon}</div>
-                      <div className="action-card-content">
-                        <span className="action-card-title">{action.action}</span>
-                        <span className={`action-priority-badge ${action.priority}`}>
-                          {action.priority === 'high' ? 'Haute priorité' : action.priority === 'medium' ? 'Priorité moyenne' : 'Priorité basse'}
-                        </span>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="no-actions">
-                    <p>Aucune action spécifique recommandée.</p>
-                    <p>Consultez le profil segment pour des recommandations générales.</p>
-                  </div>
-                )}
-              </div>
-              
-              {/* Segment Recommendations */}
-              <div className="segment-recommendations">
-                <h4>Recommandations du Segment {client.segment}</h4>
-                <p>Ce client appartient au segment avec {segmentInfo?.clients || '?'} clients similaires.</p>
-                <div className="segment-concepts">
-                  <span className="label">Concepts dominants du segment:</span>
-                  <div className="segment-concept-list">
-                    {segmentInfo?.topConcepts?.map((c, i) => (
-                      <span key={i} className="segment-concept-tag">{c}</span>
-                    ))}
+                <div className="client-confidence">
+                  <div className="confidence-ring" style={{ "--confidence": similarity / 100 } as any}>
+                    <span>{similarity}%</span>
                   </div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
+          )
+        })}
       </div>
     </div>
   )

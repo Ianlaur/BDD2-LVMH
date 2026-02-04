@@ -19,6 +19,13 @@ body {
   min-height: 100vh;
 }
 
+.main {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  background: var(--background);
+  overflow-y: auto;
+}
+
 .main-content {
   flex: 1;
   padding: 2rem;
@@ -128,7 +135,9 @@ body {
 
 /* Page Container */
 .page {
-  max-width: 1400px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 .page-title {
@@ -141,6 +150,56 @@ body {
 .page-description {
   color: var(--muted-foreground);
   margin-bottom: 2rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.page-header p {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.filter-group {
+  display: inline-flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: var(--secondary);
+}
+
+.filter-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted-foreground);
+  transition: all 0.15s ease-out;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.filter-btn.high.active {
+  background: #dc2626;
+}
+
+.filter-btn.medium.active {
+  background: #ea580c;
 }
 
 /* Filter Tabs */
@@ -175,37 +234,149 @@ body {
 }
 
 /* Actions Grid */
-.actions-grid {
+/* Stats + liste d’actions de la page Actions */
+.stats-row {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.action-card {
+.stat-card {
   background: var(--card);
+  border-radius: 0.75rem;
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 1.25rem;
-  transition: all 0.2s;
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
 }
 
-.action-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.card {
+  background: var(--card);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+}
+
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.action-item {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.6rem;
+  background: var(--secondary);
+}
+
+.action-priority {
+  display: flex;
+  align-items: center;
+}
+
+.priority-dot {
+  width: 8px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.priority-dot.high {
+  background: #dc2626;
+}
+
+.priority-dot.medium {
+  background: #eab308;
+}
+
+.action-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .action-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.action-title {
-  font-size: 1rem;
-  font-weight: 600;
+.action-client {
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--foreground);
-  margin: 0;
+}
+
+.action-segment {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+.action-label {
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.action-meta {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.action-btn {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--muted-foreground);
+  cursor: pointer;
+}
+
+.action-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .action-priority {
