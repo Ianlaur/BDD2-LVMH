@@ -157,9 +157,8 @@ def run_ingest(input_path: Optional[str] = None) -> pd.DataFrame:
     log_stage("ingest", "Column validation passed")
     
     # Create normalized dataframe
-    notes_df = pd.D and anonymization
-    log_stage("ingest", f"Anonymization: {'ENABLED' if ENABLE_ANONYMIZATION else 'DISABLED'}")
-    notes_df["text"] = df["Transcription"].apply(clean_text).apply(anonymize_transcription
+    notes_df = pd.DataFrame()
+    
     # note_id and client_id (MVP: both = ID)
     notes_df["note_id"] = df["ID"].astype(str)
     notes_df["client_id"] = df["ID"].astype(str)  # MVP: treat ID as client_id
@@ -180,8 +179,9 @@ def run_ingest(input_path: Optional[str] = None) -> pd.DataFrame:
     notes_df["duration"] = df["Duration"].astype(str)
     notes_df["length"] = df["Length"].astype(str)
     
-    # Text cleaning
-    notes_df["text"] = df["Transcription"].apply(clean_text)
+    # Text cleaning and anonymization
+    log_stage("ingest", f"Anonymization: {'ENABLED' if ENABLE_ANONYMIZATION else 'DISABLED'}")
+    notes_df["text"] = df["Transcription"].apply(clean_text).apply(anonymize_transcription)
     empty_texts = (notes_df["text"] == "").sum()
     if empty_texts > 0:
         log_stage("ingest", f"Warning: {empty_texts} rows with empty transcription")
