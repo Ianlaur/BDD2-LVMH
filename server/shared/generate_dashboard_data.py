@@ -5,14 +5,21 @@ Single source of truth - outputs to dashboard/src/data.json
 import json
 import pandas as pd
 import numpy as np
+import time
 from pathlib import Path
+from datetime import datetime
 
 from server.shared.config import DATA_OUTPUTS, TAXONOMY_DIR, BASE_DIR, DATA_INPUT
 from server.shared.utils import log_stage
 
 
-def generate_dashboard_data():
-    """Generate JSON data file for the React dashboard."""
+def generate_dashboard_data(pipeline_timings: dict = None):
+    """Generate JSON data file for the React dashboard.
+    
+    Args:
+        pipeline_timings: Optional dict with stage timings from the pipeline
+    """
+    start_time = time.time()
     log_stage("dashboard", "Generating dashboard data...")
     
     output_path = BASE_DIR / "dashboard" / "src" / "data.json"
@@ -206,6 +213,8 @@ def generate_dashboard_data():
         })
     
     # Assemble final data
+    processing_time = time.time() - start_time
+    
     data = {
         'segments': segments,
         'concepts': concepts_bar,
@@ -215,7 +224,15 @@ def generate_dashboard_data():
         'radar': radar,
         'segmentDetails': details,
         'scatter3d': scatter3d,
-        'clients': clients
+        'clients': clients,
+        'processingInfo': {
+            'timestamp': datetime.now().isoformat(),
+            'totalRecords': len(clients),
+            'totalConcepts': len(concepts_bar),
+            'totalSegments': len(segments),
+            'dashboardGenTime': round(processing_time, 2),
+            'pipelineTimings': pipeline_timings or {}
+        }
     }
     
     # Write output
@@ -225,6 +242,7 @@ def generate_dashboard_data():
     
     log_stage("dashboard", f"  Output: {output_path}")
     log_stage("dashboard", f"  {len(clients)} clients, {len(segments)} segments, {len(scatter3d)} 3D points")
+    log_stage("dashboard", f"  Generated in {processing_time:.2f}s")
     
 
 if __name__ == "__main__":

@@ -2013,3 +2013,104 @@ body {
     display: none;
   }
 }
+
+/* ============================================================
+   PROCESSING TIMER STYLES
+   ============================================================ */
+
+.nav-metric.processing-time {
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+}
+
+.nav-metric.processing-time .nav-metric-value {
+  color: white;
+}
+
+.nav-metric.processing-time .nav-metric-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.stat-card.processing-timer {
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-violet));
+  color: white;
+}
+
+.stat-card.processing-timer .stat-icon {
+  font-size: 1.5rem;
+}
+
+.stat-card.processing-timer .stat-value {
+  color: white;
+}
+
+.stat-card.processing-timer .stat-label {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.processing-details {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--border-light);
+}
+
+.processing-details h4 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.timing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.timing-item {
+  display: grid;
+  grid-template-columns: 120px 1fr 60px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.timing-stage {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.timing-bar-container {
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timing-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.timing-value {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  text-align: right;
+}
+
+.processing-timestamp {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+}

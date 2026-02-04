@@ -145,7 +145,12 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         stage_start = time.time()
         try:
             from server.shared.generate_dashboard_data import generate_dashboard_data
-            generate_dashboard_data()
+            # Pass pipeline timings so dashboard can display them
+            pipeline_total = time.time() - start_time
+            generate_dashboard_data(pipeline_timings={
+                **timings,
+                'total': round(pipeline_total, 2)
+            })
             timings["dashboard_data"] = time.time() - stage_start
         except Exception as e:
             log_stage("dashboard", f"Warning: {e}")
@@ -161,12 +166,19 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
     total_time = time.time() - start_time
     
     print("\n" + "=" * 60)
-    print("PIPELINE COMPLETE")
+    print("⏱️  PIPELINE TIMING SUMMARY")
     print("=" * 60)
-    print(f"\nTotal time: {total_time:.1f}s")
-    print("\nStage timings:")
+    
+    # Visual timing bar
+    max_time = max(timings.values()) if timings else 1
     for stage, duration in timings.items():
-        print(f"  {stage}: {duration:.1f}s")
+        bar_len = int(40 * duration / max_time)
+        bar = "█" * bar_len + "░" * (40 - bar_len)
+        print(f"  {stage:<15} {bar} {duration:>6.1f}s")
+    
+    print("  " + "─" * 58)
+    print(f"  {'TOTAL':<15} {'':>40} {total_time:>6.1f}s")
+    print("=" * 60)
     
     # List outputs
     print("\nOutputs generated:")

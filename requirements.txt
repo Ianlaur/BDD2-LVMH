@@ -16,10 +16,6 @@ sentence-transformers>=2.2.0
 transformers>=4.30.0
 torch>=2.0.0
 
-# TensorFlow for multi-task supervised learning
-tensorflow>=2.15.0
-tensorflow-metal>=1.1.0; sys_platform == 'darwin' and platform_machine == 'arm64'
-
 # Dimensionality reduction & visualization
 umap-learn>=0.5.0
 plotly>=5.15.0

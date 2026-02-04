@@ -10,6 +10,15 @@ import FileUpload from './FileUpload'
 import './App.css'
 
 // Type Definitions
+interface ProcessingInfo {
+  timestamp?: string;
+  totalRecords?: number;
+  totalConcepts?: number;
+  totalSegments?: number;
+  dashboardGenTime?: number;
+  pipelineTimings?: Record<string, number>;
+}
+
 interface DashboardData {
   segments?: Segment[];
   radar?: RadarData[];
@@ -18,6 +27,7 @@ interface DashboardData {
   concepts?: Concept[];
   heatmap?: HeatmapData[];
   metrics?: { clients: number; segments: number };
+  processingInfo?: ProcessingInfo;
 }
 
 interface Segment {
@@ -132,6 +142,12 @@ const Navigation = ({ activePage, setActivePage, data }: {
           <span className="nav-metric-value">{data?.metrics?.segments || 0}</span>
           <span className="nav-metric-label">Segments</span>
         </div>
+        {data?.processingInfo?.pipelineTimings?.total && (
+          <div className="nav-metric processing-time">
+            <span className="nav-metric-value">{data.processingInfo.pipelineTimings.total}s</span>
+            <span className="nav-metric-label">⏱️ Pipeline</span>
+          </div>
+        )}
       </div>
     </nav>
   )
@@ -1195,7 +1211,46 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
             <div className="stat-label">Points 3D</div>
           </div>
         </div>
+        {data?.processingInfo?.pipelineTimings?.total && (
+          <div className="stat-card processing-timer">
+            <div className="stat-icon">⏱️</div>
+            <div className="stat-content">
+              <div className="stat-value">{data.processingInfo.pipelineTimings.total}s</div>
+              <div className="stat-label">Temps de traitement</div>
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* Processing Details */}
+      {data?.processingInfo?.pipelineTimings && Object.keys(data.processingInfo.pipelineTimings).length > 1 && (
+        <div className="processing-details">
+          <h4>⏱️ Détails du traitement</h4>
+          <div className="timing-grid">
+            {Object.entries(data.processingInfo.pipelineTimings)
+              .filter(([key]) => key !== 'total')
+              .map(([stage, time]) => (
+                <div key={stage} className="timing-item">
+                  <span className="timing-stage">{stage}</span>
+                  <div className="timing-bar-container">
+                    <div 
+                      className="timing-bar" 
+                      style={{ 
+                        width: `${Math.min(100, (Number(time) / Number(data.processingInfo?.pipelineTimings?.total || 1)) * 100)}%` 
+                      }}
+                    />
+                  </div>
+                  <span className="timing-value">{Number(time).toFixed(1)}s</span>
+                </div>
+              ))}
+          </div>
+          {data.processingInfo.timestamp && (
+            <div className="processing-timestamp">
+              Dernière mise à jour: {new Date(data.processingInfo.timestamp).toLocaleString('fr-FR')}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }

@@ -13,6 +13,7 @@ Usage:
 """
 import pandas as pd
 import argparse
+import time
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 from collections import Counter
@@ -244,11 +245,18 @@ def run_adaptive_pipeline(csv_path: str, text_column: str = None,
         id_column: Override for ID column name
         analyze_only: If True, only analyze without processing
     """
+    total_start = time.time()
+    timings = {}
+    
+    # Load and analyze CSV
+    load_start = time.time()
     analyzer = CSVAnalyzer(csv_path)
     analysis = analyzer.analyze()
+    timings['load_and_analyze'] = time.time() - load_start
     
     if analyze_only:
         analyzer.print_report()
+        print(f"\n⏱️  Analysis time: {timings['load_and_analyze']:.2f}s")
         return analysis
     
     # Get column mappings
@@ -301,10 +309,25 @@ def run_adaptive_pipeline(csv_path: str, text_column: str = None,
     log_stage("adaptive", f"Standardized {len(standardized)} rows")
     
     # Save to processed folder
+    save_start = time.time()
     from server.shared.config import DATA_PROCESSED
     output_path = DATA_PROCESSED / "notes_clean.parquet"
     standardized.to_parquet(output_path)
+    timings['save'] = time.time() - save_start
     log_stage("adaptive", f"Saved to {output_path}")
+    
+    # Print timing summary
+    total_time = time.time() - total_start
+    print("\n" + "=" * 50)
+    print("⏱️  CSV PROCESSING TIMING")
+    print("=" * 50)
+    print(f"  Load & Analyze: {timings['load_and_analyze']:.2f}s")
+    print(f"  Save Output:    {timings['save']:.2f}s")
+    print(f"  ─────────────────────────")
+    print(f"  Total:          {total_time:.2f}s")
+    print(f"  Rows processed: {len(standardized)}")
+    print(f"  Rate:           {len(standardized)/total_time:.0f} rows/sec")
+    print("=" * 50 + "\n")
     
     return standardized
 
