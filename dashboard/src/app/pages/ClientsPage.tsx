@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 
+// Même palette segment que dans SegmentsPage (couleurs vives, UI en noir & blanc)
 const segmentColors: Record<number, string> = {
-  0: "#18181b",
-  1: "#3f3f46",
-  2: "#71717a",
-  3: "#a1a1aa",
-  4: "#525252",
-  5: "#57534e",
-  6: "#44403c",
-  7: "#292524",
+  0: "#1d4ed8", // bleu
+  1: "#16a34a", // vert
+  2: "#f97316", // orange
+  3: "#dc2626", // rouge
+  4: "#7c3aed", // violet
+  5: "#0891b2", // cyan
+  6: "#eab308", // jaune
+  7: "#db2777", // rose
 };
 
 // Generate mock client data

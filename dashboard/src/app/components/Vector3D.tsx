@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { ZoomIn, ZoomOut } from "lucide-react";
 
+// Palette segment cohérente avec SegmentsPage / ClientsPage
 const segments = [
-  { id: 0, name: "Segment 0", color: "#18181b", points: 63 }, // Noir
-  { id: 1, name: "Segment 1", color: "#3f3f46", points: 48 }, // Gris foncé
-  { id: 2, name: "Segment 2", color: "#71717a", points: 39 }, // Gris moyen
-  { id: 3, name: "Segment 3", color: "#a1a1aa", points: 58 }, // Gris clair
-  { id: 4, name: "Segment 4", color: "#525252", points: 34 }, // Gris neutre
-  { id: 5, name: "Segment 5", color: "#57534e", points: 45 }, // Gris chaud
-  { id: 6, name: "Segment 6", color: "#44403c", points: 41 }, // Gris pierre
-  { id: 7, name: "Segment 7", color: "#292524", points: 74 }, // Noir chaud
+  { id: 0, name: "Segment 0", color: "#1d4ed8", points: 63 }, // bleu
+  { id: 1, name: "Segment 1", color: "#16a34a", points: 48 }, // vert
+  { id: 2, name: "Segment 2", color: "#f97316", points: 39 }, // orange
+  { id: 3, name: "Segment 3", color: "#dc2626", points: 58 }, // rouge
+  { id: 4, name: "Segment 4", color: "#7c3aed", points: 34 }, // violet
+  { id: 5, name: "Segment 5", color: "#0891b2", points: 45 }, // cyan
+  { id: 6, name: "Segment 6", color: "#eab308", points: 41 }, // jaune
+  { id: 7, name: "Segment 7", color: "#db2777", points: 74 }, // rose
 ];
 
 // Generate mock 3D data points

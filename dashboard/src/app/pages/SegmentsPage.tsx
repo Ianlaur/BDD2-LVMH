@@ -1,60 +1,61 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar, Legend } from "recharts";
 
+// Palette de 8 couleurs vives, une par segment (UI principale reste en noir & blanc)
 const segmentsData = [
   {
     id: 0,
     name: "Segment 0",
     clients: 63,
-    color: "#18181b",
+    color: "#1d4ed8", // bleu
     description: "Collectionneur d'Art | Philanthrope | Sac Cuir Exotique",
   },
   {
     id: 1,
     name: "Segment 1",
     clients: 48,
-    color: "#3f3f46",
+    color: "#16a34a", // vert
     description: "PDG | Visite Privée Demandée | Haute Joaillerie",
   },
   {
     id: 2,
     name: "Segment 2",
     clients: 39,
-    color: "#71717a",
+    color: "#f97316", // orange
     description: "Champagne Millésimé Rare | Prêt à Acheter | Visite Privée Demandée",
   },
   {
     id: 3,
     name: "Segment 3",
     clients: 58,
-    color: "#a1a1aa",
+    color: "#dc2626", // rouge
     description: "Visite Privée Demandée | Client VIP | Haute Couture",
   },
   {
     id: 4,
     name: "Segment 4",
     clients: 34,
-    color: "#525252",
+    color: "#7c3aed", // violet
     description: "Mécénat Immobilier | Sac Cuir Exotique | Visite Privée Demandée",
   },
   {
     id: 5,
     name: "Segment 5",
     clients: 45,
-    color: "#57534e",
+    color: "#0891b2", // cyan
     description: "Édition Limitée | Client VIP | Capital-risqueur",
   },
   {
     id: 6,
     name: "Segment 6",
     clients: 41,
-    color: "#44403c",
+    color: "#eab308", // jaune
     description: "Fondateur Tech | Malle Sur Mesure | Visite Privée Demandée",
   },
   {
     id: 7,
     name: "Segment 7",
     clients: 74,
-    color: "#292524",
+    color: "#db2777", // rose
     description: "Client VIP | Capital-risqueur | Sac Cuir Exotique",
   },
 ];
@@ -166,40 +167,35 @@ export function SegmentsPage() {
                   <Radar
                     name="Seg 0"
                     dataKey="Seg 0"
-                    stroke="#18181b"
-                    fill="#18181b"
-                    fillOpacity={0.3}
+                    stroke={segmentsData[0].color}
+                    fill={segmentsData[0].color}
+                    fillOpacity={0.2}
                   />
                   <Radar
                     name="Seg 1"
                     dataKey="Seg 1"
-                    stroke="#3f3f46"
-                    fill="#3f3f46"
-                    fillOpacity={0.3}
+                    stroke={segmentsData[1].color}
+                    fill={segmentsData[1].color}
+                    fillOpacity={0.2}
                   />
                   <Radar
                     name="Seg 2"
                     dataKey="Seg 2"
-                    stroke="#71717a"
-                    fill="#71717a"
-                    fillOpacity={0.3}
+                    stroke={segmentsData[2].color}
+                    fill={segmentsData[2].color}
+                    fillOpacity={0.2}
                   />
                   <Radar
                     name="Seg 3"
                     dataKey="Seg 3"
-                    stroke="#a1a1aa"
-                    fill="#a1a1aa"
-                    fillOpacity={0.3}
+                    stroke={segmentsData[3].color}
+                    fill={segmentsData[3].color}
+                    fillOpacity={0.2}
                   />
                 </RadarChart>
               </ResponsiveContainer>
               <div className="flex flex-wrap gap-x-4 gap-y-2 mt-4 justify-center">
-                {[
-                  { name: "Seg 0", color: "#18181b" },
-                  { name: "Seg 1", color: "#3f3f46" },
-                  { name: "Seg 2", color: "#71717a" },
-                  { name: "Seg 3", color: "#a1a1aa" },
-                ].map((seg) => (
+                {segmentsData.slice(0, 4).map((seg) => (
                   <div key={seg.name} className="flex items-center gap-1.5">
                     <div
                       className="w-3 h-3 rounded-sm"
