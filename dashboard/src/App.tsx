@@ -1405,16 +1405,29 @@ export default function App() {
   const fetchData = async () => {
     try {
       setLoading(true)
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
+      console.log('Fetching from:', `${API_CONFIG.BASE_URL}/api/data`)
+      
+      // Add timeout to fetch
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+      
+      const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`, {
+        signal: controller.signal
+      })
+      clearTimeout(timeoutId)
+      
+      console.log('Response status:', response.status)
+      
       if (!response.ok) {
         throw new Error(`Failed to fetch data: ${response.statusText}`)
       }
       const jsonData = await response.json()
+      console.log('Data received:', Object.keys(jsonData))
       setData(jsonData)
       setError(null)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error fetching data:', err)
-      setError(err.message)
+      setError(err.name === 'AbortError' ? 'Connection timeout - server not responding' : err.message)
       // Try to load local fallback data if API fails
       try {
         const localData = await import('./data.json')
