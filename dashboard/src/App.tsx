@@ -5,7 +5,66 @@ import {
   ResponsiveContainer, Tooltip, Legend
 } from 'recharts'
 import Plot from 'react-plotly.js'
-import API_CONFIG from './config.js'
+import API_CONFIG from './config'
+import FileUpload from './FileUpload'
+import './App.css'
+
+// Type Definitions
+interface DashboardData {
+  segments?: Segment[];
+  radar?: RadarData[];
+  clients?: Client[];
+  scatter3d?: Scatter3DPoint[];
+  concepts?: Concept[];
+  heatmap?: HeatmapData[];
+  metrics?: { clients: number; segments: number };
+}
+
+interface Segment {
+  name: string;
+  value: number;
+  profile: string;
+  fullProfile: string;
+}
+
+interface RadarData {
+  subject: string;
+  [key: string]: string | number;
+}
+
+interface Client {
+  id: string;
+  segment: number;
+  topConcepts?: string[];
+  fullText?: string;
+  language?: string;
+  date?: string;
+}
+
+interface Scatter3DPoint {
+  x: number;
+  y: number;
+  z: number;
+  client: string;
+  segment: number;
+  text: string;
+}
+
+interface Concept {
+  concept: string;
+  count: number;
+  clients: string[];
+}
+
+interface HeatmapData {
+  segment: number;
+  concept: string;
+  value: number;
+}
+
+interface UploadResult {
+  status: string;
+}
 
 // Color palette
 const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#3b82f6', '#06b6d4', '#10b981', '#84cc16']
@@ -30,8 +89,13 @@ const Icons = {
 }
 
 // Navigation Component
-const Navigation = ({ activePage, setActivePage, data }) => {
+const Navigation = ({ activePage, setActivePage, data }: { 
+  activePage: string; 
+  setActivePage: (page: string) => void; 
+  data: DashboardData | null;
+}) => {
   const pages = [
+    { id: 'upload', label: 'Upload', icon: Icons.actions },
     { id: 'actions', label: 'Actions', icon: Icons.actions },
     { id: 'segments', label: 'Segments', icon: Icons.segments },
     { id: 'clients', label: 'Clients', icon: Icons.clients },
@@ -71,7 +135,7 @@ const Navigation = ({ activePage, setActivePage, data }) => {
 }
 
 // Actions Page
-const ActionsPage = ({ data }) => {
+const ActionsPage = ({ data }: { data: DashboardData | null }) => {
   const [filter, setFilter] = useState('all')
   
   const actions = useMemo(() => {
@@ -194,8 +258,8 @@ const ActionsPage = ({ data }) => {
 }
 
 // Segments Page
-const SegmentsPage = ({ data }) => {
-  const [selectedSegment, setSelectedSegment] = useState(null)
+const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
+  const [selectedSegment, setSelectedSegment] = useState<number | null>(null)
   const segmentData = data?.segments || []
   const radarData = data?.radar || []
 
@@ -288,10 +352,10 @@ const SegmentsPage = ({ data }) => {
 }
 
 // Clients Page
-const ClientsPage = ({ data }) => {
+const ClientsPage = ({ data }: { data: DashboardData | null }) => {
   const [search, setSearch] = useState('')
   const [segmentFilter, setSegmentFilter] = useState('all')
-  const [selectedClient, setSelectedClient] = useState(null)
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null)
   const clients = data?.clients || []
   
   const filteredClients = useMemo(() => {
@@ -658,14 +722,14 @@ const ClientModal = ({ client, onClose }) => {
 }
 
 // Data Page - Interactive
-const DataPage = ({ data }) => {
+const DataPage = ({ data }: { data: DashboardData | null }) => {
   const [view, setView] = useState('3d')
-  const [selectedPoint, setSelectedPoint] = useState(null)
-  const [selectedConcept, setSelectedConcept] = useState(null)
-  const [selectedHeatmapCell, setSelectedHeatmapCell] = useState(null)
-  const [highlightSegment, setHighlightSegment] = useState(null)
+  const [selectedPoint, setSelectedPoint] = useState<Scatter3DPoint | null>(null)
+  const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null)
+  const [selectedHeatmapCell, setSelectedHeatmapCell] = useState<HeatmapData | null>(null)
+  const [highlightSegment, setHighlightSegment] = useState<number | null>(null)
   const [zoomLevel, setZoomLevel] = useState(1)
-  const [selectedKGClient, setSelectedKGClient] = useState(null)
+  const [selectedKGClient, setSelectedKGClient] = useState<string | null>(null)
   const [kgDepth, setKgDepth] = useState(2)
   
   const scatter3d = data?.scatter3d || []
@@ -1332,41 +1396,48 @@ const DataPage = ({ data }) => {
 
 // Main App
 export default function App() {
-  const [activePage, setActivePage] = useState('actions')
-  const [data, setData] = useState(null)
+  const [activePage, setActivePage] = useState('upload')
+  const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
   // Fetch data from API on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
-        if (!response.ok) {
-          throw new Error(`Failed to fetch data: ${response.statusText}`)
-        }
-        const jsonData = await response.json()
-        setData(jsonData)
-        setError(null)
-      } catch (err) {
-        console.error('Error fetching data:', err)
-        setError(err.message)
-        // Try to load local fallback data if API fails
-        try {
-          const localData = await import('./data.json')
-          setData(localData.default)
-          setError('Using local data (API unavailable)')
-        } catch {
-          setError('Failed to load data from API and no local fallback available')
-        }
-      } finally {
-        setLoading(false)
+  const fetchData = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.statusText}`)
       }
+      const jsonData = await response.json()
+      setData(jsonData)
+      setError(null)
+    } catch (err) {
+      console.error('Error fetching data:', err)
+      setError(err.message)
+      // Try to load local fallback data if API fails
+      try {
+        const localData = await import('./data.json')
+        setData(localData.default)
+        setError('Using local data (API unavailable)')
+      } catch {
+        setError('Failed to load data from API and no local fallback available')
+      }
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchData()
   }, [])
+
+  const handleUploadSuccess = (result) => {
+    // Refresh data after successful upload and processing
+    if (result.status === 'completed') {
+      fetchData()
+    }
+  }
 
   if (loading) {
     return (
@@ -1408,6 +1479,17 @@ export default function App() {
       )}
       <Navigation activePage={activePage} setActivePage={setActivePage} data={data} />
       <main className="main">
+        {activePage === 'upload' && (
+          <div className="page">
+            <div className="page-header">
+              <div>
+                <h1>Upload New Data</h1>
+                <p>Upload a CSV file to process and analyze</p>
+              </div>
+            </div>
+            <FileUpload onUploadSuccess={handleUploadSuccess} />
+          </div>
+        )}
         {activePage === 'actions' && <ActionsPage data={data} />}
         {activePage === 'segments' && <SegmentsPage data={data} />}
         {activePage === 'clients' && <ClientsPage data={data} />}

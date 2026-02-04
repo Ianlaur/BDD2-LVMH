@@ -7,7 +7,7 @@ Usage:
     Or with custom host/port:
     python -m server.api_server --host 0.0.0.0 --port 8000
 """
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -16,8 +16,10 @@ import argparse
 import uvicorn
 from typing import Optional
 import logging
+import shutil
+from datetime import datetime
 
-from server.shared.config import BASE_DIR, DATA_OUTPUTS, TAXONOMY_DIR
+from server.shared.config import BASE_DIR, DATA_OUTPUTS, TAXONOMY_DIR, DATA_INPUT
 from server.run_all import run_pipeline
 
 # Configure logging
@@ -150,6 +152,89 @@ async def run_pipeline_endpoint(
         "status": "started",
         "message": "Pipeline execution started in background"
     }
+
+
+@app.post("/api/upload-csv")
+async def upload_csv(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    run_pipeline_after: bool = True
+):
+    """
+    Upload a CSV file and optionally run the pipeline.
+    
+    Parameters:
+    - file: CSV file to upload
+    - run_pipeline_after: If true, automatically run pipeline after upload
+    """
+    # Validate file type
+    if not file.filename.endswith('.csv'):
+        raise HTTPException(
+            status_code=400,
+            detail="Only CSV files are accepted"
+        )
+    
+    # Create unique filename with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    original_name = Path(file.filename).stem
+    new_filename = f"{original_name}_{timestamp}.csv"
+    file_path = DATA_INPUT / new_filename
+    
+    # Save uploaded file
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        logger.info(f"Uploaded file saved to: {file_path}")
+    except Exception as e:
+        logger.error(f"Failed to save file: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+    
+    # Optionally run pipeline
+    if run_pipeline_after:
+        if pipeline_status["running"]:
+            return {
+                "status": "uploaded",
+                "filename": new_filename,
+                "path": str(file_path),
+                "message": "File uploaded but pipeline is already running. Please try running it manually later.",
+                "pipeline_status": "busy"
+            }
+        
+        # Run pipeline with the uploaded file
+        pipeline_status["running"] = True
+        pipeline_status["last_error"] = None
+        
+        def run_pipeline_task():
+            """Background task to run the pipeline."""
+            try:
+                logger.info(f"Running pipeline with uploaded file: {file_path}")
+                run_pipeline(csv_path=str(file_path))
+                pipeline_status["running"] = False
+                pipeline_status["last_run"] = "success"
+                logger.info("Pipeline completed successfully")
+            except Exception as e:
+                logger.error(f"Pipeline failed: {e}")
+                pipeline_status["running"] = False
+                pipeline_status["last_error"] = str(e)
+                pipeline_status["last_run"] = "error"
+        
+        background_tasks.add_task(run_pipeline_task)
+        
+        return {
+            "status": "uploaded_and_running",
+            "filename": new_filename,
+            "path": str(file_path),
+            "message": "File uploaded and pipeline started",
+            "pipeline_status": "running"
+        }
+    else:
+        return {
+            "status": "uploaded",
+            "filename": new_filename,
+            "path": str(file_path),
+            "message": "File uploaded successfully. Run pipeline manually when ready.",
+            "pipeline_status": "idle"
+        }
 
 
 @app.get("/api/lexicon")
