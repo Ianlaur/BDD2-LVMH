@@ -11,8 +11,4 @@ services:
       - key: PORT
         value: 8000
       - key: SENTENCE_TRANSFORMERS_HOME
-        value: /opt/render/project/src/models/sentence_transformers
-    disk:
-      name: models-cache
-      mountPath: /opt/render/project/src/models
-      sizeGB: 2
+        value: /tmp/models/sentence_transformers
