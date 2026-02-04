@@ -1,11 +1,11 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid,
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   ResponsiveContainer, Tooltip, Legend
 } from 'recharts'
 import Plot from 'react-plotly.js'
-import data from './data.json'
+import API_CONFIG from './config.js'
 
 // Color palette
 const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#3b82f6', '#06b6d4', '#10b981', '#84cc16']
@@ -30,7 +30,7 @@ const Icons = {
 }
 
 // Navigation Component
-const Navigation = ({ activePage, setActivePage }) => {
+const Navigation = ({ activePage, setActivePage, data }) => {
   const pages = [
     { id: 'actions', label: 'Actions', icon: Icons.actions },
     { id: 'segments', label: 'Segments', icon: Icons.segments },
@@ -58,11 +58,11 @@ const Navigation = ({ activePage, setActivePage }) => {
       </div>
       <div className="nav-metrics">
         <div className="nav-metric">
-          <span className="nav-metric-value">{data.metrics?.clients || 0}</span>
+          <span className="nav-metric-value">{data?.metrics?.clients || 0}</span>
           <span className="nav-metric-label">Clients</span>
         </div>
         <div className="nav-metric">
-          <span className="nav-metric-value">{data.metrics?.segments || 0}</span>
+          <span className="nav-metric-value">{data?.metrics?.segments || 0}</span>
           <span className="nav-metric-label">Segments</span>
         </div>
       </div>
@@ -71,11 +71,11 @@ const Navigation = ({ activePage, setActivePage }) => {
 }
 
 // Actions Page
-const ActionsPage = () => {
+const ActionsPage = ({ data }) => {
   const [filter, setFilter] = useState('all')
   
   const actions = useMemo(() => {
-    if (!data.clients) return []
+    if (!data?.clients) return []
     
     const actionList = []
     const actionTypes = {
@@ -194,10 +194,10 @@ const ActionsPage = () => {
 }
 
 // Segments Page
-const SegmentsPage = () => {
+const SegmentsPage = ({ data }) => {
   const [selectedSegment, setSelectedSegment] = useState(null)
-  const segmentData = data.segments || []
-  const radarData = data.radar || []
+  const segmentData = data?.segments || []
+  const radarData = data?.radar || []
 
   return (
     <div className="page">
@@ -288,11 +288,11 @@ const SegmentsPage = () => {
 }
 
 // Clients Page
-const ClientsPage = () => {
+const ClientsPage = ({ data }) => {
   const [search, setSearch] = useState('')
   const [segmentFilter, setSegmentFilter] = useState('all')
   const [selectedClient, setSelectedClient] = useState(null)
-  const clients = data.clients || []
+  const clients = data?.clients || []
   
   const filteredClients = useMemo(() => {
     return clients.filter(client => {
@@ -658,7 +658,7 @@ const ClientModal = ({ client, onClose }) => {
 }
 
 // Data Page - Interactive
-const DataPage = () => {
+const DataPage = ({ data }) => {
   const [view, setView] = useState('3d')
   const [selectedPoint, setSelectedPoint] = useState(null)
   const [selectedConcept, setSelectedConcept] = useState(null)
@@ -668,10 +668,10 @@ const DataPage = () => {
   const [selectedKGClient, setSelectedKGClient] = useState(null)
   const [kgDepth, setKgDepth] = useState(2)
   
-  const scatter3d = data.scatter3d || []
-  const concepts = data.concepts || []
-  const heatmap = data.heatmap || []
-  const clients = data.clients || []
+  const scatter3d = data?.scatter3d || []
+  const concepts = data?.concepts || []
+  const heatmap = data?.heatmap || []
+  const clients = data?.clients || []
 
   // Build Knowledge Graph data for selected client
   const knowledgeGraphData = useMemo(() => {
@@ -1333,15 +1333,85 @@ const DataPage = () => {
 // Main App
 export default function App() {
   const [activePage, setActivePage] = useState('actions')
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  // Fetch data from API on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data: ${response.statusText}`)
+        }
+        const jsonData = await response.json()
+        setData(jsonData)
+        setError(null)
+      } catch (err) {
+        console.error('Error fetching data:', err)
+        setError(err.message)
+        // Try to load local fallback data if API fails
+        try {
+          const localData = await import('./data.json')
+          setData(localData.default)
+          setError('Using local data (API unavailable)')
+        } catch {
+          setError('Failed to load data from API and no local fallback available')
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="app" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div style={{ textAlign: 'center' }}>
+          <h2>Loading dashboard...</h2>
+          <p>Connecting to {API_CONFIG.BASE_URL}</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error && !data) {
+    return (
+      <div className="app" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div style={{ textAlign: 'center', color: '#f43f5e' }}>
+          <h2>Error loading data</h2>
+          <p>{error}</p>
+          <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#666' }}>
+            Make sure the server is running at {API_CONFIG.BASE_URL}
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="app">
-      <Navigation activePage={activePage} setActivePage={setActivePage} />
+      {error && (
+        <div style={{ 
+          background: '#fef3c7', 
+          color: '#92400e', 
+          padding: '0.75rem', 
+          textAlign: 'center',
+          borderBottom: '1px solid #fbbf24'
+        }}>
+          {error}
+        </div>
+      )}
+      <Navigation activePage={activePage} setActivePage={setActivePage} data={data} />
       <main className="main">
-        {activePage === 'actions' && <ActionsPage />}
-        {activePage === 'segments' && <SegmentsPage />}
-        {activePage === 'clients' && <ClientsPage />}
-        {activePage === 'data' && <DataPage />}
+        {activePage === 'actions' && <ActionsPage data={data} />}
+        {activePage === 'segments' && <SegmentsPage data={data} />}
+        {activePage === 'clients' && <ClientsPage data={data} />}
+        {activePage === 'data' && <DataPage data={data} />}
       </main>
     </div>
   )

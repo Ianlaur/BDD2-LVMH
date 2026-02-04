@@ -22,3 +22,7 @@ plotly>=5.15.0
 
 # YAML parsing for playbooks
 pyyaml>=6.0
+
+# API server for remote access
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0

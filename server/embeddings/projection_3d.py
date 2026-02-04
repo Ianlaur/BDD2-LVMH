@@ -15,7 +15,7 @@ import pandas as pd
 import numpy as np
 
 from server.shared.config import (
-    DATA_OUTPUTS, TAXONOMY_DIR, DEMO_DIR,
+    DATA_OUTPUTS, TAXONOMY_DIR, DASHBOARD_DIR,
     UMAP_RANDOM_STATE, NUMPY_SEED
 )
 from server.shared.utils import log_stage, set_all_seeds
@@ -317,15 +317,10 @@ def project_3d() -> Optional[str]:
         concept_labels
     )
     
-    # Write output
-    output_path = DEMO_DIR / "embedding_space_3d.html"
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html_content)
+    # Skip writing HTML file - React dashboard handles visualization
+    log_stage("projection", "3D projection complete (data in dashboard/src/data.json)")
     
-    log_stage("projection", f"Wrote visualization to {output_path}")
-    log_stage("projection", "3D projection complete!")
-    
-    return str(output_path)
+    return None
 
 
 def main():

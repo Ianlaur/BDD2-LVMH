@@ -10,7 +10,10 @@
 
 Pipeline **déterministe (sans LLM)** et multilingue qui transforme les transcriptions des Conseillers de Vente en profils clients actionnables et recommandations personnalisées.
 
-**✨ Nouveau:** Support de n'importe quel fichier CSV + système d'entraînement de vocabulaire.
+**✨ Nouveau:** 
+- Support de n'importe quel fichier CSV
+- Système d'entraînement de vocabulaire
+- **Anonymisation RGPD/GDPR automatique** 🔒
 
 ---
 
@@ -21,6 +24,27 @@ Transformer automatiquement les notes vocales des conseillers en :
 - **Profils clients** segmentés par similarité
 - **Actions recommandées** personnalisées
 - **Visualisation 3D** interactive de l'espace client
+
+## 🔒 Conformité RGPD/GDPR
+
+Le pipeline inclut un **module d'anonymisation automatique** qui détecte et supprime les informations personnelles sensibles :
+- Noms, emails, téléphones
+- Adresses postales
+- Cartes bancaires, IBAN
+- Numéros d'identité
+- Dates de naissance
+
+Les insights métier (préférences produits, intentions, contextes) sont **préservés** pour l'analyse.
+
+📖 **Documentation complète:** [docs/ANONYMIZATION.md](docs/ANONYMIZATION.md)
+
+```bash
+# Activer/désactiver l'anonymisation (activée par défaut)
+ENABLE_ANONYMIZATION=true python -m server.run_all
+
+# Mode agressif (détecte plus de noms, plus de faux positifs)
+ANONYMIZATION_AGGRESSIVE=true python -m server.run_all
+```
 
 ---
 

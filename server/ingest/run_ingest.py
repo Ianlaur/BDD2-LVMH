@@ -14,7 +14,8 @@ from typing import Optional, List
 import pandas as pd
 
 from server.shared.config import (
-    DATA_RAW, DATA_PROCESSED, REQUIRED_COLUMNS, SUPPORTED_LANGUAGES
+    DATA_RAW, DATA_PROCESSED, REQUIRED_COLUMNS, SUPPORTED_LANGUAGES,
+    ENABLE_ANONYMIZATION, ANONYMIZATION_AGGRESSIVE, DATA_INPUT
 )
 from server.shared.utils import log_stage, ensure_directories, set_all_seeds
 
@@ -97,6 +98,28 @@ def clean_text(text: str) -> str:
     return text
 
 
+def anonymize_transcription(text: str) -> str:
+    """
+    Anonymize sensitive personal information in transcription text.
+    Only runs if ENABLE_ANONYMIZATION is True in config.
+    """
+    if not ENABLE_ANONYMIZATION:
+        return text
+    
+    try:
+        from server.privacy import anonymize_text, AnonymizationConfig
+        
+        config = AnonymizationConfig(
+            aggressive=ANONYMIZATION_AGGRESSIVE,
+            placeholder_style="[TYPE]"  # Use descriptive placeholders
+        )
+        
+        return anonymize_text(text, config)
+    except Exception as e:
+        log_stage("ingest", f"Warning: Anonymization failed: {e}")
+        return text  # Return original text if anonymization fails
+
+
 def run_ingest(input_path: Optional[str] = None) -> pd.DataFrame:
     """
     Main ingest function.
@@ -134,8 +157,9 @@ def run_ingest(input_path: Optional[str] = None) -> pd.DataFrame:
     log_stage("ingest", "Column validation passed")
     
     # Create normalized dataframe
-    notes_df = pd.DataFrame()
-    
+    notes_df = pd.D and anonymization
+    log_stage("ingest", f"Anonymization: {'ENABLED' if ENABLE_ANONYMIZATION else 'DISABLED'}")
+    notes_df["text"] = df["Transcription"].apply(clean_text).apply(anonymize_transcription
     # note_id and client_id (MVP: both = ID)
     notes_df["note_id"] = df["ID"].astype(str)
     notes_df["client_id"] = df["ID"].astype(str)  # MVP: treat ID as client_id

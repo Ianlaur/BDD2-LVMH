@@ -18,10 +18,13 @@ def set_all_seeds(seed: Optional[int] = None) -> None:
 
 def ensure_directories() -> None:
     """Create all required output directories if they don't exist."""
-    from server.shared.config import DATA_RAW, DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, ACTIVATIONS_DIR, DEMO_DIR
+    from server.shared.config import DATA_RAW, DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, ACTIVATIONS_DIR, DASHBOARD_DIR
     
-    for d in [DATA_RAW, DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, ACTIVATIONS_DIR, DEMO_DIR]:
+    for d in [DATA_RAW, DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR, ACTIVATIONS_DIR]:
         d.mkdir(parents=True, exist_ok=True)
+    
+    # Dashboard directory (React app)
+    (DASHBOARD_DIR / "src").mkdir(parents=True, exist_ok=True)
 
 
 def log_stage(stage: str, message: str) -> None:

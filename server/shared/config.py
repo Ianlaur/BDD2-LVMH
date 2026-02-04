@@ -70,6 +70,15 @@ MAX_ALIAS_MATCHES_PER_NOTE = 3  # max times same alias can be recorded per note
 SUPPORTED_LANGUAGES = {"FR", "EN", "IT", "ES", "DE"}
 
 # ============================================================
+# PRIVACY & RGPD/GDPR COMPLIANCE
+# ============================================================
+# Enable anonymization of sensitive data in transcriptions
+ENABLE_ANONYMIZATION = os.environ.get("ENABLE_ANONYMIZATION", "true").lower() == "true"
+
+# Anonymization aggressiveness (false = conservative, true = aggressive)
+ANONYMIZATION_AGGRESSIVE = os.environ.get("ANONYMIZATION_AGGRESSIVE", "false").lower() == "true"
+
+# ============================================================
 # TAXONOMY BUCKET KEYWORDS (multilingual)
 # ============================================================
 TAXONOMY_RULES = {
