@@ -55,7 +55,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         print("=" * 40)
         stage_start = time.time()
         from server.ingest.run_ingest import run_ingest
-        run_ingest()
+        run_ingest(input_path=csv_path)
         timings["ingest"] = time.time() - stage_start
         
         # Stage 2: Candidate Extraction
