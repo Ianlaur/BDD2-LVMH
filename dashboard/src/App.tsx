@@ -39,6 +39,7 @@ interface Client {
   fullText?: string;
   language?: string;
   date?: string;
+  confidence?: number;
 }
 
 interface Scatter3DPoint {
@@ -48,6 +49,12 @@ interface Scatter3DPoint {
   client: string;
   segment: number;
   text: string;
+  cluster?: number;
+  profile?: string;
+  id?: string;
+  confidence?: number;
+  topConcepts?: string[];
+  originalNote?: string;
 }
 
 interface Concept {
@@ -60,10 +67,6 @@ interface HeatmapData {
   segment: number;
   concept: string;
   value: number;
-}
-
-interface UploadResult {
-  status: string;
 }
 
 // Color palette
@@ -141,7 +144,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
   const actions = useMemo(() => {
     if (!data?.clients) return []
     
-    const actionList = []
+    const actionList: any[] = []
     const actionTypes = {
       'Visite Privée': { priority: 'high', type: 'appointment', label: 'Planifier visite privée' },
       'Prêt à Acheter': { priority: 'high', type: 'sale', label: 'Finaliser vente' },
@@ -239,7 +242,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
               <div className="action-content">
                 <div className="action-header">
                   <span className="action-client">{action.clientId}</span>
-                  <span className="action-segment" style={{ backgroundColor: SEGMENT_COLORS[action.segment] }}>
+                  <span className="action-segment" style={{ backgroundColor: SEGMENT_COLORS[action.segment as keyof typeof SEGMENT_COLORS] }}>
                     Seg {action.segment}
                   </span>
                 </div>
@@ -297,32 +300,73 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
 
       <div className="charts-row">
         <div className="card">
-          <h3 className="card-title">Distribution</h3>
+          <h3 className="card-title">Distribution des Segments</h3>
           <ResponsiveContainer width="100%" height={320}>
             <PieChart>
-              <Pie data={segmentData} cx="50%" cy="50%" innerRadius={50} outerRadius={100} paddingAngle={2} dataKey="value">
+              <Pie 
+                data={segmentData} 
+                cx="50%" 
+                cy="50%" 
+                innerRadius={70} 
+                outerRadius={120} 
+                paddingAngle={3} 
+                dataKey="value"
+                label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                labelLine={false}
+              >
                 {segmentData.map((entry, index) => (
                   <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(value, name, props) => [`${value} clients`, props.payload.profile]} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }} />
-              <Legend />
+              <Tooltip 
+                formatter={(value, _name, props) => [`${value} clients`, props.payload.profile]} 
+                contentStyle={{ borderRadius: '8px', border: '1px solid #e6ebf1', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }} 
+              />
+              <Legend 
+                layout="vertical" 
+                verticalAlign="middle" 
+                align="right"
+                wrapperStyle={{ paddingLeft: '20px', fontSize: '13px' }}
+                formatter={(value, entry: any) => <span style={{ color: '#525f7f' }}>{`Segment ${entry.payload?.name?.replace('Segment ', '')}`}</span>}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
         <div className="card">
-          <h3 className="card-title">Profil Radar</h3>
+          <h3 className="card-title">Profil Radar par Segment</h3>
           <ResponsiveContainer width="100%" height={320}>
-            <RadarChart data={radarData}>
-              <PolarGrid stroke="#e2e8f0" />
-              <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 10, fill: '#64748b' }} />
-              <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9 }} />
+            <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
+              <PolarGrid stroke="#e6ebf1" strokeDasharray="3 3" />
+              <PolarAngleAxis 
+                dataKey="dimension" 
+                tick={{ fontSize: 11, fill: '#525f7f' }} 
+                tickLine={false}
+              />
+              <PolarRadiusAxis 
+                angle={30} 
+                domain={[0, 100]} 
+                tick={{ fontSize: 9, fill: '#8898aa' }}
+                tickCount={4}
+              />
               {[0, 1, 2, 3].map(i => (
-                <Radar key={i} name={`Seg ${i}`} dataKey={`seg${i}`} stroke={COLORS[i]} fill={COLORS[i]} fillOpacity={0.1} />
+                <Radar 
+                  key={i} 
+                  name={`Segment ${i}`} 
+                  dataKey={`seg${i}`} 
+                  stroke={COLORS[i]} 
+                  fill={COLORS[i]} 
+                  fillOpacity={0.15}
+                  strokeWidth={2}
+                />
               ))}
-              <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }} />
-              <Legend />
+              <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e6ebf1', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }} />
+              <Legend 
+                layout="horizontal" 
+                verticalAlign="bottom" 
+                align="center"
+                wrapperStyle={{ paddingTop: '16px', fontSize: '12px' }}
+              />
             </RadarChart>
           </ResponsiveContainer>
         </div>
@@ -438,6 +482,35 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
                   </div>
                 </div>
               </div>
+
+              <div className="client-concepts">
+                {client.topConcepts?.slice(0, 5).map((concept, idx) => (
+                  <span key={idx} className="concept-badge" style={{ backgroundColor: color + '20', color: color }}>
+                    {concept}
+                  </span>
+                ))}
+              </div>
+
+              {client.fullText && (
+                <div className="client-text">
+                  <p>{client.fullText.substring(0, 150)}...</p>
+                </div>
+              )}
+
+              <div className="client-footer">
+                {client.language && (
+                  <span className="client-meta">
+                    <span className="meta-icon">🌐</span>
+                    {client.language}
+                  </span>
+                )}
+                {client.date && (
+                  <span className="client-meta">
+                    <span className="meta-icon">📅</span>
+                    {client.date}
+                  </span>
+                )}
+              </div>
             </div>
           )
         })}
@@ -449,9 +522,9 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
 // Data Page - Interactive
 const DataPage = ({ data }: { data: DashboardData | null }) => {
   const [view, setView] = useState('3d')
-  const [selectedPoint, setSelectedPoint] = useState<Scatter3DPoint | null>(null)
-  const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null)
-  const [selectedHeatmapCell, setSelectedHeatmapCell] = useState<HeatmapData | null>(null)
+  const [selectedPoint, setSelectedPoint] = useState<any>(null)
+  const [selectedConcept, setSelectedConcept] = useState<string | null>(null)
+  const [selectedHeatmapCell, setSelectedHeatmapCell] = useState<any>(null)
   const [highlightSegment, setHighlightSegment] = useState<number | null>(null)
   const [zoomLevel, setZoomLevel] = useState(1)
   const [selectedKGClient, setSelectedKGClient] = useState<string | null>(null)
@@ -469,7 +542,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     const client = clients.find(c => c.id === selectedKGClient)
     if (!client) return null
     
-    const nodes = []
+    const nodes: any[] = []
     const links = []
     
     // Central client node
@@ -483,7 +556,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     
     // Add concept nodes
     const clientConcepts = client.topConcepts || []
-    clientConcepts.forEach((concept, i) => {
+    clientConcepts.forEach((concept) => {
       const conceptId = `concept-${concept}`
       nodes.push({
         id: conceptId,
@@ -545,7 +618,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
   const conceptClients = useMemo(() => {
     if (!selectedConcept) return []
     return clients.filter(c => 
-      c.topConcepts?.some(tc => tc.toLowerCase().includes(selectedConcept.toLowerCase()))
+      c.topConcepts?.some((tc: any) => typeof tc === 'string' && tc.toLowerCase().includes(selectedConcept.toLowerCase()))
     ).slice(0, 10)
   }, [selectedConcept, clients])
 
@@ -553,15 +626,15 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
   const heatmapClients = useMemo(() => {
     if (!selectedHeatmapCell) return []
     const { segment, concept } = selectedHeatmapCell
-    const segNum = parseInt(segment.replace('Seg ', ''))
+    const segNum = typeof segment === 'string' ? parseInt(segment.replace('Seg ', '')) : segment
     return clients.filter(c => 
       c.segment === segNum && 
-      c.topConcepts?.some(tc => tc.toLowerCase().includes(concept.toLowerCase()))
+      c.topConcepts?.some((tc: any) => String(tc).toLowerCase().includes(String(concept).toLowerCase()))
     ).slice(0, 8)
   }, [selectedHeatmapCell, clients])
 
   // Handle 3D plot click
-  const handle3DClick = (eventData) => {
+  const handle3DClick = (eventData: any) => {
     if (eventData.points && eventData.points[0]) {
       const point = eventData.points[0]
       const clientId = point.text
@@ -573,14 +646,14 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
   }
 
   // Handle concept bar click
-  const handleConceptClick = (data) => {
+  const handleConceptClick = (data: any) => {
     if (data && data.activePayload && data.activePayload[0]) {
       setSelectedConcept(data.activePayload[0].payload.concept)
     }
   }
 
   // Handle heatmap cell click
-  const handleHeatmapClick = (segment, concept, value) => {
+  const handleHeatmapClick = (segment: any, concept: any, value: any) => {
     if (value > 0) {
       setSelectedHeatmapCell({ segment, concept, value })
     }
@@ -630,7 +703,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
               <div className="card-controls">
                 <span className="hint">💡 Cliquez sur un point pour voir le détail</span>
                 <div className="segment-filters">
-                  {[0, 1, 2, 3, 4, 5, 6, 7].filter(i => scatter3d.some(p => p.cluster === i)).map(i => (
+                  {[0, 1, 2, 3, 4, 5, 6, 7].filter(i => scatter3d.some(p => (p.cluster ?? p.segment) === i)).map(i => (
                     <button
                       key={i}
                       className={`segment-filter-btn ${highlightSegment === i ? 'active' : ''}`}
@@ -645,19 +718,19 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
             </div>
             <Plot
               data={Object.entries(
-                scatter3d.reduce((acc, point) => {
-                  const key = `Segment ${point.cluster}`
+                scatter3d.reduce((acc: Record<string, { x: number[], y: number[], z: number[], text: string[], ids: string[] }>, point) => {
+                  const key = `Segment ${point.cluster ?? point.segment}`
                   if (!acc[key]) acc[key] = { x: [], y: [], z: [], text: [], ids: [] }
                   acc[key].x.push(point.x)
                   acc[key].y.push(point.y)
                   acc[key].z.push(point.z)
-                  acc[key].text.push(`${point.client}<br>Profile: ${point.profile}`)
+                  acc[key].text.push(`${point.client}<br>Profile: ${point.profile ?? 'Unknown'}`)
                   acc[key].ids.push(point.client)
                   return acc
                 }, {})
               ).map(([name, points], idx) => ({
-                type: 'scatter3d',
-                mode: 'markers',
+                type: 'scatter3d' as const,
+                mode: 'markers' as const,
                 name,
                 x: points.x,
                 y: points.y,
@@ -705,20 +778,20 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                 <button className="close-btn" onClick={() => setSelectedPoint(null)}>{Icons.close}</button>
               </div>
               <div className="detail-content">
-                <div className="detail-avatar" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment] }}>
-                  {selectedPoint.id.slice(-3)}
+                <div className="detail-avatar" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment as keyof typeof SEGMENT_COLORS] }}>
+                  {(selectedPoint.id || selectedPoint.client).slice(-3)}
                 </div>
-                <h4>{selectedPoint.id}</h4>
-                <span className="detail-segment" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment] }}>
+                <h4>{selectedPoint.id || selectedPoint.client}</h4>
+                <span className="detail-segment" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment as keyof typeof SEGMENT_COLORS] }}>
                   Segment {selectedPoint.segment}
                 </span>
                 <div className="detail-confidence">
-                  <div className="confidence-bar" style={{ '--conf': selectedPoint.confidence }}/>
-                  <span>{(selectedPoint.confidence * 100).toFixed(0)}% confiance</span>
+                  <div className="confidence-bar" style={{ '--conf': selectedPoint.confidence ?? 0 } as React.CSSProperties}/>
+                  <span>{((selectedPoint.confidence ?? 0) * 100).toFixed(0)}% confiance</span>
                 </div>
                 <div className="detail-concepts">
                   <h5>Concepts</h5>
-                  {selectedPoint.topConcepts?.map((c, i) => (
+                  {selectedPoint.topConcepts?.map((c: string, i: number) => (
                     <span key={i} className="detail-chip">{c}</span>
                   ))}
                 </div>
@@ -749,7 +822,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                   className={`kg-client-btn ${selectedKGClient === client.id ? 'active' : ''}`}
                   onClick={() => setSelectedKGClient(client.id)}
                 >
-                  <div className="kg-client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
+                  <div className="kg-client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
                     {client.id.slice(-2)}
                   </div>
                   <div className="kg-client-info">
@@ -898,28 +971,28 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                     <div className="kg-detail-grid">
                       <div className="kg-detail-item">
                         <span className="kg-detail-label">Segment</span>
-                        <span className="kg-detail-value" style={{ color: SEGMENT_COLORS[knowledgeGraphData?.client.segment] }}>
-                          {knowledgeGraphData?.client.segment}
+                        <span className="kg-detail-value" style={{ color: SEGMENT_COLORS[knowledgeGraphData?.client?.segment as keyof typeof SEGMENT_COLORS] }}>
+                          {knowledgeGraphData?.client?.segment}
                         </span>
                       </div>
                       <div className="kg-detail-item">
                         <span className="kg-detail-label">Confiance</span>
-                        <span className="kg-detail-value">{(knowledgeGraphData?.client.confidence * 100).toFixed(0)}%</span>
+                        <span className="kg-detail-value">{((knowledgeGraphData?.client?.confidence || 0) * 100).toFixed(0)}%</span>
                       </div>
                       <div className="kg-detail-item">
                         <span className="kg-detail-label">Concepts</span>
-                        <span className="kg-detail-value">{knowledgeGraphData?.client.topConcepts?.length || 0}</span>
+                        <span className="kg-detail-value">{knowledgeGraphData?.client?.topConcepts?.length || 0}</span>
                       </div>
                       <div className="kg-detail-item">
                         <span className="kg-detail-label">Connexions</span>
-                        <span className="kg-detail-value">{knowledgeGraphData?.links.length || 0}</span>
+                        <span className="kg-detail-value">{knowledgeGraphData?.links?.length || 0}</span>
                       </div>
                     </div>
                   </div>
                   <div className="kg-detail-card">
                     <h4>Concepts</h4>
                     <div className="kg-concepts-list">
-                      {knowledgeGraphData?.client.topConcepts?.map((c, i) => (
+                      {knowledgeGraphData?.client?.topConcepts?.map((c: any, i: number) => (
                         <span key={i} className="kg-concept-tag">{c}</span>
                       ))}
                     </div>
@@ -999,7 +1072,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
         </div>
       )}
 
-      {view === 'heatmap' && (
+      {view === 'heatmap' && heatmap.length > 0 && (
         <div className="data-layout">
           <div className="card viz-card">
             <div className="card-header">
@@ -1007,45 +1080,53 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
               <span className="hint">💡 Cliquez sur une cellule pour voir les détails</span>
             </div>
             <div className="heatmap-container">
-              <table className="heatmap-table">
-                <thead>
-                  <tr>
-                    <th className="heatmap-corner"></th>
-                    {data.heatmapConcepts?.map(c => (
-                      <th key={c} className="heatmap-header">{c}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {heatmap.map((row, i) => (
-                    <tr key={row.segment}>
-                      <td className="heatmap-label">
-                        <span className="segment-dot" style={{ backgroundColor: COLORS[i] }}></span>
-                        {row.segment}
-                      </td>
-                      {data.heatmapConcepts?.map(c => {
-                        const val = row[c] || 0
-                        const max = Math.max(...heatmap.map(r => r[c] || 0))
-                        const intensity = max > 0 ? val / max : 0
-                        const isSelected = selectedHeatmapCell?.segment === row.segment && selectedHeatmapCell?.concept === c
-                        return (
-                          <td 
-                            key={c} 
-                            className={`heatmap-cell ${val > 0 ? 'clickable' : ''} ${isSelected ? 'selected' : ''}`}
-                            style={{ 
-                              backgroundColor: `rgba(99, 102, 241, ${intensity * 0.85})`,
-                              color: intensity > 0.5 ? '#fff' : '#334155'
-                            }}
-                            onClick={() => handleHeatmapClick(row.segment, c, val)}
-                          >
-                            {val > 0 && val}
+              {(() => {
+                // Extract concept keys from heatmap data (all keys except 'segment')
+                const heatmapConcepts = heatmap.length > 0 
+                  ? Object.keys(heatmap[0]).filter(k => k !== 'segment')
+                  : []
+                return (
+                  <table className="heatmap-table">
+                    <thead>
+                      <tr>
+                        <th className="heatmap-corner"></th>
+                        {heatmapConcepts.map(c => (
+                          <th key={c} className="heatmap-header">{c}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {heatmap.map((row: any, i) => (
+                        <tr key={row.segment}>
+                          <td className="heatmap-label">
+                            <span className="segment-dot" style={{ backgroundColor: COLORS[i] }}></span>
+                            {row.segment}
                           </td>
-                        )
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          {heatmapConcepts.map(c => {
+                            const val = row[c] || 0
+                            const max = Math.max(...heatmap.map((r: any) => r[c] || 0))
+                            const intensity = max > 0 ? val / max : 0
+                            const isSelected = selectedHeatmapCell?.segment === row.segment && selectedHeatmapCell?.concept === c
+                            return (
+                              <td 
+                                key={c} 
+                                className={`heatmap-cell ${val > 0 ? 'clickable' : ''} ${isSelected ? 'selected' : ''}`}
+                                style={{ 
+                                  backgroundColor: `rgba(99, 102, 241, ${intensity * 0.85})`,
+                                  color: intensity > 0.5 ? '#fff' : '#334155'
+                                }}
+                                onClick={() => handleHeatmapClick(row.segment, c, val)}
+                              >
+                                {val > 0 && val}
+                              </td>
+                            )
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )
+              })()}
             </div>
             <div className="heatmap-legend">
               <span>Faible</span>
@@ -1089,29 +1170,29 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
         <div className="stat-card">
           <div className="stat-icon">{Icons.user}</div>
           <div className="stat-content">
-            <div className="stat-value">{data.metrics?.clients}</div>
+            <div className="stat-value">{data?.metrics?.clients || clients.length}</div>
             <div className="stat-label">Clients</div>
           </div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">{Icons.segments}</div>
           <div className="stat-content">
-            <div className="stat-value">{data.metrics?.segments}</div>
+            <div className="stat-value">{data?.metrics?.segments || 0}</div>
             <div className="stat-label">Segments</div>
           </div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">{Icons.tag}</div>
           <div className="stat-content">
-            <div className="stat-value">{data.metrics?.concepts}</div>
+            <div className="stat-value">{concepts.length}</div>
             <div className="stat-label">Concepts</div>
           </div>
         </div>
         <div className="stat-card">
           <div className="stat-icon">{Icons.chart}</div>
           <div className="stat-content">
-            <div className="stat-value">{data.metrics?.avgConceptsPerClient}</div>
-            <div className="stat-label">Moy/client</div>
+            <div className="stat-value">{scatter3d.length}</div>
+            <div className="stat-label">Points 3D</div>
           </div>
         </div>
       </div>
