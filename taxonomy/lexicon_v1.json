@@ -294,11 +294,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 4834,
     "examples": [
-      "CA_182",
-      "CA_137",
-      "CA_234",
-      "CA_128",
-      "CA_223"
+      "CA_270",
+      "CA_309",
+      "CA_261",
+      "CA_150",
+      "CA_304"
     ],
     "rule": "bucket=intent"
   },
@@ -337,11 +337,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 586,
     "examples": [
-      "CA_162",
-      "CA_144",
-      "CA_145",
-      "CA_128",
-      "CA_135"
+      "CA_150",
+      "CA_127",
+      "CA_112",
+      "CA_123",
+      "CA_225"
     ],
     "rule": "bucket=other"
   },
@@ -378,11 +378,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 536,
     "examples": [
-      "CA_162",
-      "CA_175",
-      "CA_182",
-      "CA_169",
-      "CA_137"
+      "CA_127",
+      "CA_112",
+      "CA_202",
+      "CA_117",
+      "CA_120"
     ],
     "rule": "bucket=intent"
   },
@@ -402,11 +402,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 233,
     "examples": [
-      "CA_162",
+      "CA_392",
       "CA_169",
-      "CA_103",
-      "CA_347",
-      "CA_307"
+      "CA_375",
+      "CA_106",
+      "CA_142"
     ],
     "rule": "bucket=constraints"
   },
@@ -430,11 +430,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 212,
     "examples": [
-      "CA_162",
-      "CA_175",
       "CA_308",
-      "CA_353",
-      "CA_347"
+      "CA_112",
+      "CA_117",
+      "CA_119",
+      "CA_375"
     ],
     "rule": "bucket=other"
   },
@@ -479,11 +479,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 203,
     "examples": [
-      "CA_137",
-      "CA_234",
-      "CA_128",
-      "CA_209",
-      "CA_229"
+      "CA_309",
+      "CA_261",
+      "CA_150",
+      "CA_304",
+      "CA_106"
     ],
     "rule": "bucket=intent"
   },
@@ -510,11 +510,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 133,
     "examples": [
-      "CA_144",
-      "CA_344",
+      "CA_357",
+      "CA_119",
       "CA_169",
-      "CA_326",
-      "CA_135"
+      "CA_144",
+      "CA_353"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -534,11 +534,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 128,
     "examples": [
-      "CA_390",
-      "CA_218",
-      "CA_145",
-      "CA_238",
-      "CA_124"
+      "CA_120",
+      "CA_119",
+      "CA_272",
+      "CA_129",
+      "CA_113"
     ],
     "rule": "bucket=preferences"
   },
@@ -558,11 +558,11 @@
     "languages": "DE|ES|FR|IT",
     "freq_notes": 108,
     "examples": [
-      "CA_359",
-      "CA_175",
-      "CA_390",
-      "CA_128",
-      "CA_209"
+      "CA_101",
+      "CA_150",
+      "CA_159",
+      "CA_123",
+      "CA_128"
     ],
     "rule": "bucket=preferences"
   },
@@ -599,11 +599,11 @@
     "languages": "ES|FR|IT",
     "freq_notes": 102,
     "examples": [
-      "CA_156",
+      "CA_101",
+      "CA_309",
+      "CA_261",
       "CA_193",
-      "CA_381",
-      "CA_234",
-      "CA_223"
+      "CA_341"
     ],
     "rule": "bucket=intent"
   },
@@ -637,11 +637,11 @@
     "languages": "DE|EN|FR|IT",
     "freq_notes": 97,
     "examples": [
-      "CA_162",
-      "CA_193",
-      "CA_381",
-      "CA_156",
-      "CA_166"
+      "CA_101",
+      "CA_217",
+      "CA_127",
+      "CA_341",
+      "CA_112"
     ],
     "rule": "bucket=constraints"
   },
@@ -656,11 +656,11 @@
     "languages": "EN|ES",
     "freq_notes": 72,
     "examples": [
-      "CA_124",
-      "CA_132",
-      "CA_162",
-      "CA_144",
-      "CA_122"
+      "CA_189",
+      "CA_197",
+      "CA_109",
+      "CA_154",
+      "CA_207"
     ],
     "rule": "bucket=other"
   },
@@ -673,11 +673,11 @@
     "languages": "DE|EN",
     "freq_notes": 71,
     "examples": [
-      "CA_122",
-      "CA_112",
-      "CA_137",
-      "CA_127",
-      "CA_152"
+      "CA_147",
+      "CA_195",
+      "CA_335",
+      "CA_400",
+      "CA_127"
     ],
     "rule": "bucket=other"
   },
@@ -705,10 +705,10 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 63,
     "examples": [
-      "CA_162",
-      "CA_182",
-      "CA_279",
-      "CA_209",
+      "CA_392",
+      "CA_217",
+      "CA_309",
+      "CA_159",
       "CA_123"
     ],
     "rule": "bucket=other"
@@ -736,11 +736,11 @@
     "languages": "DE",
     "freq_notes": 62,
     "examples": [
-      "CA_230",
-      "CA_390",
-      "CA_305",
-      "CA_160",
-      "CA_290"
+      "CA_270",
+      "CA_240",
+      "CA_150",
+      "CA_320",
+      "CA_230"
     ],
     "rule": "bucket=intent"
   },
@@ -753,11 +753,11 @@
     "languages": "EN",
     "freq_notes": 58,
     "examples": [
-      "CA_162",
-      "CA_132",
-      "CA_182",
       "CA_172",
-      "CA_112"
+      "CA_112",
+      "CA_167",
+      "CA_182",
+      "CA_177"
     ],
     "rule": "bucket=other"
   },
@@ -793,11 +793,11 @@
     "languages": "DE|ES|FR|IT",
     "freq_notes": 56,
     "examples": [
-      "CA_156",
+      "CA_310",
+      "CA_309",
       "CA_193",
-      "CA_384",
-      "CA_166",
-      "CA_144"
+      "CA_393",
+      "CA_123"
     ],
     "rule": "bucket=occasion"
   },
@@ -809,11 +809,11 @@
     "languages": "DE",
     "freq_notes": 55,
     "examples": [
-      "CA_155",
-      "CA_150",
       "CA_160",
+      "CA_150",
       "CA_110",
-      "CA_130"
+      "CA_155",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
@@ -826,11 +826,11 @@
     "languages": "EN",
     "freq_notes": 55,
     "examples": [
-      "CA_132",
       "CA_172",
+      "CA_197",
       "CA_157",
-      "CA_277",
-      "CA_127"
+      "CA_207",
+      "CA_212"
     ],
     "rule": "bucket=other"
   },
@@ -847,11 +847,11 @@
     "languages": "EN",
     "freq_notes": 54,
     "examples": [
-      "CA_162",
-      "CA_132",
-      "CA_202",
-      "CA_357",
-      "CA_122"
+      "CA_297",
+      "CA_157",
+      "CA_257",
+      "CA_347",
+      "CA_357"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -880,11 +880,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 53,
     "examples": [
-      "CA_103",
-      "CA_135",
-      "CA_278",
-      "CA_355",
-      "CA_335"
+      "CA_293",
+      "CA_399",
+      "CA_365",
+      "CA_272",
+      "CA_325"
     ],
     "rule": "bucket=other"
   },
@@ -903,11 +903,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 49,
     "examples": [
-      "CA_384",
-      "CA_116",
-      "CA_145",
+      "CA_261",
+      "CA_383",
+      "CA_316",
       "CA_387",
-      "CA_196"
+      "CA_121"
     ],
     "rule": "bucket=intent"
   },
@@ -917,11 +917,11 @@
     "languages": "EN|ES|FR|IT",
     "freq_notes": 48,
     "examples": [
+      "CA_147",
+      "CA_146",
       "CA_156",
       "CA_117",
-      "CA_116",
-      "CA_146",
-      "CA_147"
+      "CA_116"
     ],
     "rule": "bucket=constraints"
   },
@@ -933,11 +933,11 @@
     "languages": "ES",
     "freq_notes": 47,
     "examples": [
-      "CA_124",
+      "CA_134",
+      "CA_159",
       "CA_144",
       "CA_139",
-      "CA_103",
-      "CA_134"
+      "CA_124"
     ],
     "rule": "bucket=other"
   },
@@ -956,11 +956,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 45,
     "examples": [
-      "CA_182",
-      "CA_144",
-      "CA_344",
-      "CA_231",
-      "CA_167"
+      "CA_310",
+      "CA_127",
+      "CA_327",
+      "CA_272",
+      "CA_144"
     ],
     "rule": "bucket=other"
   },
@@ -977,11 +977,11 @@
     "languages": "DE|EN|ES|IT",
     "freq_notes": 45,
     "examples": [
-      "CA_145",
-      "CA_103",
-      "CA_168",
+      "CA_357",
       "CA_123",
-      "CA_255"
+      "CA_320",
+      "CA_177",
+      "CA_303"
     ],
     "rule": "bucket=other"
   },
@@ -998,11 +998,11 @@
     "languages": "EN|ES|FR|IT",
     "freq_notes": 42,
     "examples": [
-      "CA_106",
-      "CA_293",
       "CA_131",
-      "CA_199",
-      "CA_137"
+      "CA_293",
+      "CA_331",
+      "CA_196",
+      "CA_111"
     ],
     "rule": "bucket=other"
   },
@@ -1015,10 +1015,10 @@
     "languages": "DE|ES",
     "freq_notes": 38,
     "examples": [
-      "CA_190",
-      "CA_139",
       "CA_215",
-      "CA_103",
+      "CA_160",
+      "CA_154",
+      "CA_134",
       "CA_195"
     ],
     "rule": "bucket=other"
@@ -1033,10 +1033,10 @@
     "languages": "EN|ES|FR",
     "freq_notes": 38,
     "examples": [
-      "CA_126",
       "CA_101",
-      "CA_279",
-      "CA_121",
+      "CA_131",
+      "CA_126",
+      "CA_111",
       "CA_127"
     ],
     "rule": "bucket=lifestyle"
@@ -1055,11 +1055,11 @@
     "languages": "DE|EN|ES|FR",
     "freq_notes": 38,
     "examples": [
+      "CA_302",
+      "CA_149",
+      "CA_216",
       "CA_135",
-      "CA_229",
-      "CA_335",
-      "CA_214",
-      "CA_102"
+      "CA_351"
     ],
     "rule": "bucket=other"
   },
@@ -1075,11 +1075,11 @@
     "languages": "EN|ES|FR|IT",
     "freq_notes": 37,
     "examples": [
+      "CA_202",
+      "CA_159",
       "CA_193",
-      "CA_128",
-      "CA_151",
-      "CA_343",
-      "CA_346"
+      "CA_393",
+      "CA_128"
     ],
     "rule": "bucket=other"
   },
@@ -1098,11 +1098,11 @@
     "languages": "DE|EN|ES|IT",
     "freq_notes": 36,
     "examples": [
-      "CA_175",
       "CA_262",
-      "CA_282",
-      "CA_222",
-      "CA_375"
+      "CA_375",
+      "CA_173",
+      "CA_142",
+      "CA_192"
     ],
     "rule": "bucket=other"
   },
@@ -1118,11 +1118,11 @@
     "languages": "EN|ES|FR|IT",
     "freq_notes": 34,
     "examples": [
-      "CA_106",
-      "CA_306",
+      "CA_134",
+      "CA_111",
+      "CA_148",
       "CA_228",
-      "CA_218",
-      "CA_121"
+      "CA_248"
     ],
     "rule": "bucket=intent"
   },
@@ -1135,11 +1135,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 33,
     "examples": [
-      "CA_156",
-      "CA_112",
-      "CA_291",
       "CA_135",
-      "CA_104"
+      "CA_154",
+      "CA_246",
+      "CA_291",
+      "CA_112"
     ],
     "rule": "bucket=other"
   },
@@ -1154,11 +1154,11 @@
     "languages": "DE|ES|IT",
     "freq_notes": 32,
     "examples": [
+      "CA_123",
+      "CA_320",
       "CA_230",
-      "CA_218",
-      "CA_103",
-      "CA_168",
-      "CA_123"
+      "CA_120",
+      "CA_173"
     ],
     "rule": "bucket=other"
   },
@@ -1173,11 +1173,11 @@
     "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 30,
     "examples": [
-      "CA_218",
-      "CA_394",
-      "CA_289",
-      "CA_268",
-      "CA_142"
+      "CA_310",
+      "CA_309",
+      "CA_341",
+      "CA_371",
+      "CA_306"
     ],
     "rule": "bucket=occasion"
   },
@@ -1189,10 +1189,10 @@
     "languages": "EN",
     "freq_notes": 29,
     "examples": [
-      "CA_122",
       "CA_172",
       "CA_157",
       "CA_137",
+      "CA_122",
       "CA_152"
     ],
     "rule": "bucket=other"
@@ -1203,11 +1203,11 @@
     "languages": "DE",
     "freq_notes": 29,
     "examples": [
-      "CA_155",
       "CA_135",
-      "CA_115",
       "CA_105",
-      "CA_130"
+      "CA_155",
+      "CA_130",
+      "CA_115"
     ],
     "rule": "bucket=other"
   },
@@ -1220,11 +1220,11 @@
     "languages": "EN",
     "freq_notes": 28,
     "examples": [
-      "CA_102",
-      "CA_137",
+      "CA_237",
       "CA_207",
-      "CA_312",
-      "CA_117"
+      "CA_117",
+      "CA_102",
+      "CA_137"
     ],
     "rule": "bucket=intent"
   },
@@ -1236,11 +1236,11 @@
     "languages": "DE|EN|ES|IT",
     "freq_notes": 27,
     "examples": [
-      "CA_190",
       "CA_157",
-      "CA_167",
       "CA_180",
-      "CA_314"
+      "CA_114",
+      "CA_167",
+      "CA_177"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1254,11 +1254,11 @@
     "languages": "DE|EN|ES|IT",
     "freq_notes": 26,
     "examples": [
-      "CA_389",
-      "CA_199",
-      "CA_240",
+      "CA_189",
       "CA_157",
-      "CA_218"
+      "CA_240",
+      "CA_218",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
@@ -1274,11 +1274,11 @@
     "languages": "DE",
     "freq_notes": 26,
     "examples": [
-      "CA_380",
-      "CA_245",
-      "CA_190",
-      "CA_150",
-      "CA_235"
+      "CA_235",
+      "CA_180",
+      "CA_195",
+      "CA_170",
+      "CA_150"
     ],
     "rule": "bucket=intent"
   },
@@ -1296,11 +1296,11 @@
     "languages": "EN|ES|IT",
     "freq_notes": 25,
     "examples": [
+      "CA_113",
       "CA_202",
-      "CA_313",
-      "CA_339",
-      "CA_139",
-      "CA_208"
+      "CA_167",
+      "CA_242",
+      "CA_148"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1310,11 +1310,11 @@
     "languages": "FR",
     "freq_notes": 22,
     "examples": [
-      "CA_106",
+      "CA_111",
+      "CA_146",
       "CA_156",
       "CA_161",
-      "CA_146",
-      "CA_111"
+      "CA_106"
     ],
     "rule": "bucket=other"
   },
@@ -1326,11 +1326,11 @@
     "languages": "DE|FR",
     "freq_notes": 22,
     "examples": [
-      "CA_126",
+      "CA_131",
       "CA_215",
-      "CA_121",
-      "CA_151",
-      "CA_295"
+      "CA_295",
+      "CA_126",
+      "CA_121"
     ],
     "rule": "bucket=other"
   },
@@ -1340,11 +1340,11 @@
     "languages": "IT",
     "freq_notes": 22,
     "examples": [
-      "CA_153",
-      "CA_104",
       "CA_123",
+      "CA_104",
+      "CA_143",
       "CA_138",
-      "CA_143"
+      "CA_153"
     ],
     "rule": "bucket=other"
   },
@@ -1363,11 +1363,11 @@
     "languages": "DE|EN|FR|IT",
     "freq_notes": 22,
     "examples": [
-      "CA_102",
-      "CA_301",
+      "CA_343",
       "CA_101",
-      "CA_336",
-      "CA_343"
+      "CA_365",
+      "CA_123",
+      "CA_301"
     ],
     "rule": "bucket=preferences"
   },
@@ -1380,11 +1380,11 @@
     "languages": "ES|FR",
     "freq_notes": 22,
     "examples": [
-      "CA_124",
+      "CA_111",
+      "CA_209",
+      "CA_349",
       "CA_184",
-      "CA_129",
-      "CA_311",
-      "CA_349"
+      "CA_174"
     ],
     "rule": "bucket=intent"
   },
@@ -1404,11 +1404,11 @@
     "languages": "DE|EN|FR|IT",
     "freq_notes": 21,
     "examples": [
-      "CA_193",
+      "CA_351",
+      "CA_273",
       "CA_292",
-      "CA_262",
-      "CA_211",
-      "CA_163"
+      "CA_321",
+      "CA_243"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1426,11 +1426,11 @@
     "languages": "DE|EN|FR|IT",
     "freq_notes": 21,
     "examples": [
-      "CA_380",
-      "CA_202",
-      "CA_122",
+      "CA_347",
+      "CA_257",
+      "CA_237",
       "CA_126",
-      "CA_326"
+      "CA_202"
     ],
     "rule": "bucket=intent"
   },
@@ -1440,11 +1440,11 @@
     "languages": "DE",
     "freq_notes": 21,
     "examples": [
-      "CA_165",
+      "CA_105",
+      "CA_110",
       "CA_200",
       "CA_145",
-      "CA_110",
-      "CA_105"
+      "CA_165"
     ],
     "rule": "bucket=intent"
   },
@@ -1462,11 +1462,11 @@
     "languages": "DE|IT",
     "freq_notes": 20,
     "examples": [
-      "CA_380",
-      "CA_245",
-      "CA_265",
-      "CA_215",
-      "CA_168"
+      "CA_168",
+      "CA_180",
+      "CA_295",
+      "CA_368",
+      "CA_105"
     ],
     "rule": "bucket=other"
   },
@@ -1485,11 +1485,11 @@
     "languages": "DE|ES|IT",
     "freq_notes": 19,
     "examples": [
+      "CA_274",
+      "CA_254",
       "CA_155",
-      "CA_164",
       "CA_133",
-      "CA_333",
-      "CA_364"
+      "CA_333"
     ],
     "rule": "bucket=intent"
   },
@@ -1506,11 +1506,11 @@
     "languages": "EN|IT",
     "freq_notes": 18,
     "examples": [
+      "CA_343",
+      "CA_293",
       "CA_162",
-      "CA_153",
-      "CA_143",
-      "CA_223",
-      "CA_183"
+      "CA_368",
+      "CA_153"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1520,11 +1520,11 @@
     "languages": "EN",
     "freq_notes": 18,
     "examples": [
-      "CA_162",
-      "CA_132",
       "CA_157",
+      "CA_147",
       "CA_127",
-      "CA_147"
+      "CA_162",
+      "CA_132"
     ],
     "rule": "bucket=other"
   },
@@ -1543,11 +1543,11 @@
     "languages": "EN|ES|IT",
     "freq_notes": 18,
     "examples": [
-      "CA_303",
-      "CA_338",
+      "CA_293",
+      "CA_304",
+      "CA_104",
       "CA_252",
-      "CA_103",
-      "CA_104"
+      "CA_138"
     ],
     "rule": "bucket=other"
   },
@@ -1559,11 +1559,11 @@
     "languages": "DE|IT",
     "freq_notes": 17,
     "examples": [
-      "CA_233",
-      "CA_190",
-      "CA_175",
       "CA_150",
-      "CA_255"
+      "CA_125",
+      "CA_143",
+      "CA_175",
+      "CA_233"
     ],
     "rule": "bucket=other"
   },
@@ -1573,11 +1573,11 @@
     "languages": "FR",
     "freq_notes": 16,
     "examples": [
-      "CA_136",
-      "CA_116",
+      "CA_101",
       "CA_191",
       "CA_146",
-      "CA_101"
+      "CA_116",
+      "CA_136"
     ],
     "rule": "bucket=other"
   },
@@ -1591,11 +1591,11 @@
     "languages": "EN|ES|IT",
     "freq_notes": 16,
     "examples": [
-      "CA_324",
-      "CA_218",
-      "CA_209",
-      "CA_174",
-      "CA_197"
+      "CA_197",
+      "CA_398",
+      "CA_134",
+      "CA_368",
+      "CA_267"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1605,11 +1605,11 @@
     "languages": "ES",
     "freq_notes": 16,
     "examples": [
-      "CA_194",
       "CA_189",
-      "CA_204",
       "CA_114",
-      "CA_224"
+      "CA_224",
+      "CA_204",
+      "CA_194"
     ],
     "rule": "bucket=other"
   },
@@ -1625,10 +1625,10 @@
     "languages": "DE|EN|FR",
     "freq_notes": 16,
     "examples": [
-      "CA_112",
       "CA_135",
-      "CA_377",
-      "CA_312",
+      "CA_335",
+      "CA_112",
+      "CA_276",
       "CA_242"
     ],
     "rule": "bucket=other"
@@ -1647,10 +1647,10 @@
     "freq_notes": 16,
     "examples": [
       "CA_172",
-      "CA_336",
-      "CA_277",
+      "CA_217",
       "CA_372",
-      "CA_297"
+      "CA_297",
+      "CA_267"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1666,11 +1666,11 @@
     "languages": "DE",
     "freq_notes": 15,
     "examples": [
-      "CA_380",
-      "CA_190",
-      "CA_280",
+      "CA_180",
+      "CA_160",
       "CA_150",
-      "CA_120"
+      "CA_350",
+      "CA_320"
     ],
     "rule": "bucket=intent"
   },
@@ -1687,11 +1687,11 @@
     "languages": "FR|IT",
     "freq_notes": 15,
     "examples": [
-      "CA_193",
-      "CA_241",
       "CA_231",
-      "CA_358",
-      "CA_158"
+      "CA_241",
+      "CA_193",
+      "CA_393",
+      "CA_316"
     ],
     "rule": "bucket=other"
   },
@@ -1707,10 +1707,10 @@
     "freq_notes": 15,
     "examples": [
       "CA_315",
-      "CA_176",
-      "CA_165",
-      "CA_385",
-      "CA_115"
+      "CA_376",
+      "CA_365",
+      "CA_125",
+      "CA_176"
     ],
     "rule": "bucket=other"
   },
@@ -1727,11 +1727,11 @@
     "languages": "ES|FR|IT",
     "freq_notes": 15,
     "examples": [
-      "CA_381",
-      "CA_194",
-      "CA_394",
-      "CA_118",
-      "CA_318"
+      "CA_181",
+      "CA_361",
+      "CA_341",
+      "CA_318",
+      "CA_381"
     ],
     "rule": "bucket=other"
   },
@@ -1747,11 +1747,11 @@
     "languages": "ES|IT",
     "freq_notes": 14,
     "examples": [
-      "CA_313",
-      "CA_339",
-      "CA_169",
       "CA_113",
-      "CA_174"
+      "CA_319",
+      "CA_119",
+      "CA_374",
+      "CA_313"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1770,8 +1770,8 @@
     "examples": [
       "CA_178",
       "CA_345",
-      "CA_145",
       "CA_378",
+      "CA_145",
       "CA_260"
     ],
     "rule": "bucket=other"
@@ -1786,11 +1786,11 @@
     "languages": "ES|IT",
     "freq_notes": 14,
     "examples": [
-      "CA_124",
-      "CA_194",
-      "CA_338",
-      "CA_324",
-      "CA_299"
+      "CA_134",
+      "CA_308",
+      "CA_209",
+      "CA_318",
+      "CA_334"
     ],
     "rule": "bucket=other"
   },
@@ -1806,11 +1806,11 @@
     "languages": "DE|IT",
     "freq_notes": 14,
     "examples": [
+      "CA_123",
       "CA_143",
       "CA_323",
-      "CA_263",
-      "CA_123",
-      "CA_185"
+      "CA_385",
+      "CA_283"
     ],
     "rule": "bucket=other"
   },
@@ -1823,11 +1823,11 @@
     "languages": "DE|EN|ES|FR",
     "freq_notes": 13,
     "examples": [
-      "CA_205",
+      "CA_154",
       "CA_251",
+      "CA_246",
       "CA_354",
-      "CA_377",
-      "CA_246"
+      "CA_377"
     ],
     "rule": "bucket=other"
   },
@@ -1840,11 +1840,11 @@
     "languages": "DE|EN",
     "freq_notes": 13,
     "examples": [
-      "CA_162",
       "CA_392",
-      "CA_192",
-      "CA_277",
-      "CA_195"
+      "CA_287",
+      "CA_217",
+      "CA_195",
+      "CA_277"
     ],
     "rule": "bucket=intent"
   },
@@ -1858,11 +1858,11 @@
     "languages": "DE|FR",
     "freq_notes": 12,
     "examples": [
-      "CA_345",
-      "CA_145",
-      "CA_205",
       "CA_195",
-      "CA_346"
+      "CA_346",
+      "CA_146",
+      "CA_345",
+      "CA_275"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -1872,11 +1872,11 @@
     "languages": "DE|FR",
     "freq_notes": 12,
     "examples": [
-      "CA_176",
+      "CA_131",
       "CA_146",
       "CA_110",
-      "CA_131",
-      "CA_125"
+      "CA_125",
+      "CA_176"
     ],
     "rule": "bucket=other"
   },
@@ -1891,11 +1891,11 @@
     "languages": "DE|EN|ES|FR",
     "freq_notes": 12,
     "examples": [
-      "CA_220",
-      "CA_167",
       "CA_246",
-      "CA_367",
-      "CA_325"
+      "CA_167",
+      "CA_319",
+      "CA_125",
+      "CA_119"
     ],
     "rule": "bucket=other"
   },
@@ -1911,11 +1911,11 @@
     "languages": "DE|IT",
     "freq_notes": 12,
     "examples": [
-      "CA_175",
-      "CA_375",
-      "CA_308",
       "CA_168",
-      "CA_108"
+      "CA_368",
+      "CA_308",
+      "CA_175",
+      "CA_375"
     ],
     "rule": "bucket=other"
   },
@@ -1930,11 +1930,11 @@
     "languages": "DE|ES|FR",
     "freq_notes": 11,
     "examples": [
-      "CA_156",
-      "CA_356",
       "CA_315",
+      "CA_179",
+      "CA_156",
       "CA_214",
-      "CA_179"
+      "CA_115"
     ],
     "rule": "bucket=intent"
   },
@@ -1966,11 +1966,11 @@
     "languages": "EN|IT",
     "freq_notes": 10,
     "examples": [
-      "CA_192",
-      "CA_142",
-      "CA_198",
+      "CA_398",
       "CA_342",
-      "CA_398"
+      "CA_198",
+      "CA_142",
+      "CA_192"
     ],
     "rule": "bucket=other"
   },
@@ -1984,8 +1984,8 @@
     "languages": "IT",
     "freq_notes": 10,
     "examples": [
-      "CA_188",
       "CA_243",
+      "CA_188",
       "CA_273",
       "CA_388"
     ],
@@ -2002,8 +2002,8 @@
     "languages": "ES|IT",
     "freq_notes": 10,
     "examples": [
-      "CA_189",
       "CA_313",
+      "CA_189",
       "CA_113",
       "CA_389"
     ],
@@ -2018,11 +2018,11 @@
     "languages": "ES|FR",
     "freq_notes": 10,
     "examples": [
-      "CA_184",
+      "CA_189",
       "CA_384",
-      "CA_226",
-      "CA_286",
-      "CA_284"
+      "CA_224",
+      "CA_166",
+      "CA_226"
     ],
     "rule": "bucket=other"
   },
@@ -2037,11 +2037,11 @@
     "languages": "DE|ES",
     "freq_notes": 10,
     "examples": [
-      "CA_184",
-      "CA_129",
-      "CA_384",
       "CA_310",
-      "CA_340"
+      "CA_384",
+      "CA_110",
+      "CA_184",
+      "CA_129"
     ],
     "rule": "bucket=other"
   },
@@ -2055,10 +2055,10 @@
     "languages": "DE|ES|IT",
     "freq_notes": 10,
     "examples": [
-      "CA_154",
-      "CA_110",
+      "CA_304",
       "CA_310",
-      "CA_304"
+      "CA_110",
+      "CA_154"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2071,10 +2071,10 @@
     "freq_notes": 10,
     "examples": [
       "CA_235",
-      "CA_145",
+      "CA_123",
       "CA_285",
-      "CA_185",
-      "CA_123"
+      "CA_143",
+      "CA_185"
     ],
     "rule": "bucket=intent"
   },
@@ -2086,11 +2086,11 @@
     "languages": "DE",
     "freq_notes": 10,
     "examples": [
-      "CA_245",
-      "CA_265",
-      "CA_215",
+      "CA_195",
       "CA_225",
-      "CA_195"
+      "CA_385",
+      "CA_185",
+      "CA_215"
     ],
     "rule": "bucket=other"
   },
@@ -2105,9 +2105,9 @@
     "languages": "DE",
     "freq_notes": 10,
     "examples": [
-      "CA_330",
       "CA_365",
       "CA_130",
+      "CA_330",
       "CA_165"
     ],
     "rule": "bucket=intent"
@@ -2123,8 +2123,8 @@
     "freq_notes": 9,
     "examples": [
       "CA_188",
-      "CA_268",
-      "CA_388"
+      "CA_388",
+      "CA_268"
     ],
     "rule": "bucket=other"
   },
@@ -2138,11 +2138,11 @@
     "languages": "EN|IT",
     "freq_notes": 9,
     "examples": [
-      "CA_288",
+      "CA_398",
       "CA_167",
       "CA_367",
-      "CA_198",
-      "CA_398"
+      "CA_288",
+      "CA_198"
     ],
     "rule": "bucket=other"
   },
@@ -2156,11 +2156,11 @@
     "languages": "IT",
     "freq_notes": 9,
     "examples": [
-      "CA_313",
-      "CA_338",
       "CA_113",
+      "CA_293",
+      "CA_313",
       "CA_138",
-      "CA_293"
+      "CA_338"
     ],
     "rule": "bucket=other"
   },
@@ -2174,8 +2174,8 @@
     "languages": "ES",
     "freq_notes": 9,
     "examples": [
-      "CA_279",
       "CA_214",
+      "CA_279",
       "CA_179",
       "CA_379"
     ],
@@ -2191,11 +2191,11 @@
     "languages": "DE|IT",
     "freq_notes": 9,
     "examples": [
-      "CA_193",
       "CA_235",
+      "CA_193",
+      "CA_393",
       "CA_285",
-      "CA_255",
-      "CA_393"
+      "CA_255"
     ],
     "rule": "bucket=intent"
   },
@@ -2209,11 +2209,11 @@
     "languages": "ES|FR|IT",
     "freq_notes": 9,
     "examples": [
+      "CA_361",
+      "CA_314",
       "CA_194",
       "CA_394",
-      "CA_161",
-      "CA_183",
-      "CA_314"
+      "CA_161"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2240,11 +2240,11 @@
     "languages": "EN|ES|FR|IT",
     "freq_notes": 8,
     "examples": [
-      "CA_176",
-      "CA_194",
-      "CA_338",
       "CA_172",
-      "CA_138"
+      "CA_107",
+      "CA_176",
+      "CA_138",
+      "CA_194"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2258,8 +2258,8 @@
     "languages": "EN",
     "freq_notes": 8,
     "examples": [
-      "CA_132",
-      "CA_332"
+      "CA_332",
+      "CA_132"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2273,11 +2273,11 @@
     "languages": "DE|EN",
     "freq_notes": 8,
     "examples": [
-      "CA_132",
       "CA_202",
-      "CA_120",
       "CA_320",
-      "CA_332"
+      "CA_120",
+      "CA_332",
+      "CA_132"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2290,9 +2290,9 @@
     "languages": "DE",
     "freq_notes": 8,
     "examples": [
+      "CA_365",
       "CA_325",
       "CA_165",
-      "CA_365",
       "CA_125"
     ],
     "rule": "bucket=other"
@@ -2305,11 +2305,11 @@
     "languages": "EN",
     "freq_notes": 8,
     "examples": [
-      "CA_222",
       "CA_392",
-      "CA_232",
+      "CA_222",
+      "CA_212",
       "CA_122",
-      "CA_192"
+      "CA_232"
     ],
     "rule": "bucket=other"
   },
@@ -2322,11 +2322,11 @@
     "languages": "ES|IT",
     "freq_notes": 8,
     "examples": [
-      "CA_324",
-      "CA_369",
-      "CA_223",
+      "CA_398",
+      "CA_293",
       "CA_198",
-      "CA_398"
+      "CA_369",
+      "CA_324"
     ],
     "rule": "bucket=other"
   },
@@ -2339,10 +2339,10 @@
     "languages": "DE",
     "freq_notes": 8,
     "examples": [
-      "CA_155",
+      "CA_305",
       "CA_355",
-      "CA_105",
-      "CA_305"
+      "CA_155",
+      "CA_105"
     ],
     "rule": "bucket=intent"
   },
@@ -2355,10 +2355,10 @@
     "languages": "DE",
     "freq_notes": 8,
     "examples": [
+      "CA_265",
       "CA_110",
-      "CA_310",
       "CA_205",
-      "CA_265"
+      "CA_310"
     ],
     "rule": "bucket=other"
   },
@@ -2371,11 +2371,11 @@
     "languages": "FR|IT",
     "freq_notes": 8,
     "examples": [
-      "CA_176",
-      "CA_338",
-      "CA_138",
       "CA_376",
-      "CA_258"
+      "CA_176",
+      "CA_138",
+      "CA_258",
+      "CA_338"
     ],
     "rule": "bucket=other"
   },
@@ -2389,8 +2389,8 @@
     "languages": "ES",
     "freq_notes": 8,
     "examples": [
-      "CA_154",
-      "CA_354"
+      "CA_354",
+      "CA_154"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2403,10 +2403,10 @@
     "freq_notes": 8,
     "examples": [
       "CA_222",
-      "CA_375",
-      "CA_366",
       "CA_250",
-      "CA_385"
+      "CA_166",
+      "CA_385",
+      "CA_375"
     ],
     "rule": "bucket=other"
   },
@@ -2420,10 +2420,10 @@
     "languages": "DE|ES|FR|IT",
     "freq_notes": 8,
     "examples": [
-      "CA_144",
+      "CA_131",
       "CA_310",
-      "CA_344",
       "CA_331",
+      "CA_304",
       "CA_104"
     ],
     "rule": "bucket=other"
@@ -2437,11 +2437,11 @@
     "languages": "DE|FR",
     "freq_notes": 7,
     "examples": [
-      "CA_311",
       "CA_240",
-      "CA_340",
+      "CA_111",
       "CA_140",
-      "CA_111"
+      "CA_340",
+      "CA_311"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2453,11 +2453,11 @@
     "languages": "DE|EN",
     "freq_notes": 7,
     "examples": [
-      "CA_230",
-      "CA_132",
+      "CA_290",
       "CA_315",
-      "CA_182",
-      "CA_115"
+      "CA_242",
+      "CA_230",
+      "CA_182"
     ],
     "rule": "bucket=other"
   },
@@ -2470,8 +2470,8 @@
     "languages": "IT",
     "freq_notes": 7,
     "examples": [
-      "CA_158",
       "CA_148",
+      "CA_158",
       "CA_348",
       "CA_208"
     ],
@@ -2485,11 +2485,11 @@
     "languages": "ES|FR",
     "freq_notes": 7,
     "examples": [
+      "CA_191",
       "CA_231",
-      "CA_279",
       "CA_244",
-      "CA_219",
-      "CA_291"
+      "CA_291",
+      "CA_219"
     ],
     "rule": "bucket=other"
   },
@@ -2502,11 +2502,11 @@
     "languages": "DE|EN",
     "freq_notes": 7,
     "examples": [
-      "CA_352",
-      "CA_242",
       "CA_135",
+      "CA_335",
+      "CA_242",
       "CA_110",
-      "CA_335"
+      "CA_352"
     ],
     "rule": "bucket=intent"
   },
@@ -2519,9 +2519,9 @@
     "freq_notes": 7,
     "examples": [
       "CA_215",
+      "CA_355",
       "CA_155",
-      "CA_275",
-      "CA_355"
+      "CA_275"
     ],
     "rule": "bucket=other"
   },
@@ -2533,11 +2533,11 @@
     "languages": "DE|IT",
     "freq_notes": 6,
     "examples": [
-      "CA_345",
-      "CA_145",
-      "CA_378",
+      "CA_178",
+      "CA_304",
       "CA_104",
-      "CA_178"
+      "CA_345",
+      "CA_378"
     ],
     "rule": "bucket=constraints"
   },
@@ -2550,8 +2550,8 @@
     "freq_notes": 6,
     "examples": [
       "CA_387",
-      "CA_187",
-      "CA_297"
+      "CA_297",
+      "CA_187"
     ],
     "rule": "bucket=other"
   },
@@ -2564,8 +2564,8 @@
     "languages": "EN|ES",
     "freq_notes": 6,
     "examples": [
-      "CA_352",
       "CA_303",
+      "CA_352",
       "CA_103",
       "CA_152"
     ],
@@ -2580,10 +2580,10 @@
     "languages": "DE",
     "freq_notes": 6,
     "examples": [
-      "CA_325",
-      "CA_125",
       "CA_365",
-      "CA_165"
+      "CA_325",
+      "CA_165",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
@@ -2596,8 +2596,8 @@
     "languages": "EN",
     "freq_notes": 6,
     "examples": [
-      "CA_132",
-      "CA_332"
+      "CA_332",
+      "CA_132"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2610,8 +2610,8 @@
     "languages": "IT",
     "freq_notes": 6,
     "examples": [
-      "CA_378",
-      "CA_178"
+      "CA_178",
+      "CA_378"
     ],
     "rule": "bucket=other"
   },
@@ -2624,11 +2624,11 @@
     "languages": "ES",
     "freq_notes": 6,
     "examples": [
-      "CA_303",
-      "CA_103",
-      "CA_174",
+      "CA_319",
+      "CA_119",
       "CA_374",
-      "CA_119"
+      "CA_174",
+      "CA_303"
     ],
     "rule": "bucket=other"
   },
@@ -2640,9 +2640,9 @@
     "languages": "DE",
     "freq_notes": 6,
     "examples": [
+      "CA_130",
       "CA_330",
-      "CA_280",
-      "CA_130"
+      "CA_280"
     ],
     "rule": "bucket=other"
   },
@@ -2656,9 +2656,9 @@
     "freq_notes": 6,
     "examples": [
       "CA_304",
+      "CA_135",
       "CA_104",
-      "CA_335",
-      "CA_135"
+      "CA_335"
     ],
     "rule": "bucket=other"
   },
@@ -2670,10 +2670,10 @@
     "languages": "EN",
     "freq_notes": 6,
     "examples": [
-      "CA_312",
+      "CA_112",
       "CA_102",
       "CA_302",
-      "CA_112"
+      "CA_312"
     ],
     "rule": "bucket=other"
   },
@@ -2686,8 +2686,8 @@
     "languages": "ES",
     "freq_notes": 6,
     "examples": [
-      "CA_269",
       "CA_339",
+      "CA_269",
       "CA_139"
     ],
     "rule": "bucket=lifestyle"
@@ -2701,10 +2701,10 @@
     "languages": "FR|IT",
     "freq_notes": 6,
     "examples": [
-      "CA_146",
-      "CA_346",
       "CA_123",
-      "CA_173"
+      "CA_146",
+      "CA_173",
+      "CA_346"
     ],
     "rule": "bucket=intent"
   },
@@ -2730,11 +2730,11 @@
     "languages": "ES|IT",
     "freq_notes": 5,
     "examples": [
-      "CA_129",
-      "CA_128",
       "CA_328",
-      "CA_294",
-      "CA_329"
+      "CA_128",
+      "CA_129",
+      "CA_329",
+      "CA_294"
     ],
     "rule": "bucket=other"
   },
@@ -2746,9 +2746,9 @@
     "languages": "IT",
     "freq_notes": 5,
     "examples": [
-      "CA_353",
+      "CA_153",
       "CA_263",
-      "CA_153"
+      "CA_353"
     ],
     "rule": "bucket=other"
   },
@@ -2761,10 +2761,10 @@
     "freq_notes": 5,
     "examples": [
       "CA_315",
-      "CA_144",
-      "CA_344",
       "CA_115",
-      "CA_274"
+      "CA_274",
+      "CA_344",
+      "CA_144"
     ],
     "rule": "bucket=other"
   },
@@ -2774,11 +2774,11 @@
     "languages": "EN",
     "freq_notes": 5,
     "examples": [
-      "CA_352",
       "CA_127",
-      "CA_152",
+      "CA_327",
       "CA_142",
-      "CA_327"
+      "CA_352",
+      "CA_152"
     ],
     "rule": "bucket=other"
   },
@@ -2790,10 +2790,10 @@
     "languages": "EN|ES",
     "freq_notes": 5,
     "examples": [
-      "CA_137",
-      "CA_234",
       "CA_337",
       "CA_204",
+      "CA_137",
+      "CA_234",
       "CA_227"
     ],
     "rule": "bucket=other"
@@ -2832,8 +2832,8 @@
     "languages": "ES",
     "freq_notes": 4,
     "examples": [
-      "CA_119",
-      "CA_319"
+      "CA_319",
+      "CA_119"
     ],
     "rule": "bucket=other"
   },
@@ -2858,10 +2858,10 @@
     "languages": "DE|EN",
     "freq_notes": 4,
     "examples": [
-      "CA_367",
-      "CA_110",
       "CA_167",
-      "CA_310"
+      "CA_310",
+      "CA_110",
+      "CA_367"
     ],
     "rule": "bucket=other"
   },
@@ -2886,8 +2886,8 @@
     "languages": "EN",
     "freq_notes": 4,
     "examples": [
-      "CA_102",
-      "CA_302"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=other"
   },
@@ -2897,10 +2897,10 @@
     "languages": "DE",
     "freq_notes": 4,
     "examples": [
-      "CA_275",
       "CA_145",
+      "CA_345",
       "CA_205",
-      "CA_345"
+      "CA_275"
     ],
     "rule": "bucket=other"
   },
@@ -2913,9 +2913,9 @@
     "freq_notes": 4,
     "examples": [
       "CA_315",
-      "CA_115",
+      "CA_157",
       "CA_357",
-      "CA_157"
+      "CA_115"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2938,10 +2938,10 @@
     "languages": "IT",
     "freq_notes": 4,
     "examples": [
+      "CA_128",
       "CA_208",
-      "CA_328",
       "CA_268",
-      "CA_128"
+      "CA_328"
     ],
     "rule": "bucket=other"
   },
@@ -2953,10 +2953,10 @@
     "languages": "DE|EN",
     "freq_notes": 4,
     "examples": [
-      "CA_340",
-      "CA_357",
+      "CA_157",
       "CA_140",
-      "CA_157"
+      "CA_357",
+      "CA_340"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2968,10 +2968,10 @@
     "languages": "ES|FR",
     "freq_notes": 4,
     "examples": [
-      "CA_254",
+      "CA_274",
       "CA_146",
-      "CA_346",
-      "CA_274"
+      "CA_254",
+      "CA_346"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -2983,8 +2983,8 @@
     "languages": "ES",
     "freq_notes": 4,
     "examples": [
-      "CA_364",
-      "CA_164"
+      "CA_164",
+      "CA_364"
     ],
     "rule": "bucket=preferences"
   },
@@ -2996,8 +2996,8 @@
     "languages": "DE",
     "freq_notes": 4,
     "examples": [
-      "CA_340",
-      "CA_140"
+      "CA_140",
+      "CA_340"
     ],
     "rule": "bucket=other"
   },
@@ -3009,8 +3009,8 @@
     "languages": "EN|ES",
     "freq_notes": 4,
     "examples": [
-      "CA_124",
       "CA_377",
+      "CA_124",
       "CA_177",
       "CA_324"
     ],
@@ -3037,8 +3037,8 @@
     "languages": "DE",
     "freq_notes": 4,
     "examples": [
-      "CA_195",
-      "CA_395"
+      "CA_395",
+      "CA_195"
     ],
     "rule": "bucket=other"
   },
@@ -3076,8 +3076,8 @@
     "languages": "EN",
     "freq_notes": 4,
     "examples": [
-      "CA_102",
-      "CA_302"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -3089,8 +3089,8 @@
     "languages": "DE",
     "freq_notes": 4,
     "examples": [
-      "CA_330",
-      "CA_130"
+      "CA_130",
+      "CA_330"
     ],
     "rule": "bucket=other"
   },
@@ -3102,8 +3102,8 @@
     "languages": "EN",
     "freq_notes": 4,
     "examples": [
-      "CA_102",
-      "CA_302"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=other"
   },
@@ -3141,8 +3141,8 @@
     "languages": "ES",
     "freq_notes": 4,
     "examples": [
-      "CA_144",
-      "CA_344"
+      "CA_344",
+      "CA_144"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -3152,9 +3152,9 @@
     "languages": "EN|ES",
     "freq_notes": 4,
     "examples": [
-      "CA_287",
-      "CA_372",
       "CA_172",
+      "CA_372",
+      "CA_287",
       "CA_209"
     ],
     "rule": "bucket=other"
@@ -3191,8 +3191,8 @@
     "freq_notes": 3,
     "examples": [
       "CA_193",
-      "CA_393",
-      "CA_253"
+      "CA_253",
+      "CA_393"
     ],
     "rule": "bucket=other"
   },
@@ -3203,8 +3203,8 @@
     "freq_notes": 3,
     "examples": [
       "CA_269",
-      "CA_369",
-      "CA_289"
+      "CA_289",
+      "CA_369"
     ],
     "rule": "bucket=other"
   },
@@ -3214,9 +3214,9 @@
     "languages": "EN",
     "freq_notes": 3,
     "examples": [
-      "CA_312",
       "CA_322",
-      "CA_112"
+      "CA_112",
+      "CA_312"
     ],
     "rule": "bucket=other"
   },
@@ -3226,9 +3226,9 @@
     "languages": "EN|FR",
     "freq_notes": 3,
     "examples": [
+      "CA_396",
       "CA_222",
-      "CA_196",
-      "CA_396"
+      "CA_196"
     ],
     "rule": "bucket=other"
   },
@@ -3239,8 +3239,8 @@
     "freq_notes": 3,
     "examples": [
       "CA_193",
-      "CA_393",
-      "CA_253"
+      "CA_253",
+      "CA_393"
     ],
     "rule": "bucket=other"
   },
@@ -3250,8 +3250,8 @@
     "languages": "EN",
     "freq_notes": 3,
     "examples": [
-      "CA_252",
       "CA_267",
+      "CA_252",
       "CA_207"
     ],
     "rule": "bucket=lifestyle"
@@ -3306,8 +3306,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_201",
-      "CA_301"
+      "CA_301",
+      "CA_201"
     ],
     "rule": "bucket=other"
   },
@@ -3317,8 +3317,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_197",
-      "CA_397"
+      "CA_397",
+      "CA_197"
     ],
     "rule": "bucket=other"
   },
@@ -3339,8 +3339,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_129",
-      "CA_224"
+      "CA_224",
+      "CA_129"
     ],
     "rule": "bucket=other"
   },
@@ -3350,8 +3350,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_309",
-      "CA_109"
+      "CA_109",
+      "CA_309"
     ],
     "rule": "bucket=other"
   },
@@ -3361,8 +3361,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_377",
-      "CA_177"
+      "CA_177",
+      "CA_377"
     ],
     "rule": "bucket=other"
   },
@@ -3383,8 +3383,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_137",
-      "CA_337"
+      "CA_337",
+      "CA_137"
     ],
     "rule": "bucket=other"
   },
@@ -3405,8 +3405,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_301",
-      "CA_101"
+      "CA_101",
+      "CA_301"
     ],
     "rule": "bucket=other"
   },
@@ -3438,8 +3438,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_377",
-      "CA_177"
+      "CA_177",
+      "CA_377"
     ],
     "rule": "bucket=other"
   },
@@ -3449,8 +3449,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_129",
-      "CA_329"
+      "CA_329",
+      "CA_129"
     ],
     "rule": "bucket=other"
   },
@@ -3471,8 +3471,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_120",
-      "CA_320"
+      "CA_320",
+      "CA_120"
     ],
     "rule": "bucket=other"
   },
@@ -3493,8 +3493,8 @@
     "languages": "IT",
     "freq_notes": 2,
     "examples": [
-      "CA_308",
-      "CA_108"
+      "CA_108",
+      "CA_308"
     ],
     "rule": "bucket=occasion"
   },
@@ -3526,8 +3526,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_335",
-      "CA_135"
+      "CA_135",
+      "CA_335"
     ],
     "rule": "bucket=other"
   },
@@ -3548,8 +3548,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_244",
-      "CA_284"
+      "CA_284",
+      "CA_244"
     ],
     "rule": "bucket=other"
   },
@@ -3559,8 +3559,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_197",
-      "CA_397"
+      "CA_397",
+      "CA_197"
     ],
     "rule": "bucket=other"
   },
@@ -3570,8 +3570,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_390",
-      "CA_190"
+      "CA_190",
+      "CA_390"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -3581,8 +3581,8 @@
     "languages": "IT",
     "freq_notes": 2,
     "examples": [
-      "CA_308",
-      "CA_108"
+      "CA_108",
+      "CA_308"
     ],
     "rule": "bucket=other"
   },
@@ -3592,8 +3592,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_195",
-      "CA_395"
+      "CA_395",
+      "CA_195"
     ],
     "rule": "bucket=other"
   },
@@ -3614,8 +3614,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_196",
-      "CA_396"
+      "CA_396",
+      "CA_196"
     ],
     "rule": "bucket=other"
   },
@@ -3625,8 +3625,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_390",
-      "CA_190"
+      "CA_190",
+      "CA_390"
     ],
     "rule": "bucket=other"
   },
@@ -3647,8 +3647,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_335",
-      "CA_135"
+      "CA_135",
+      "CA_335"
     ],
     "rule": "bucket=other"
   },
@@ -3669,8 +3669,8 @@
     "languages": "IT",
     "freq_notes": 2,
     "examples": [
-      "CA_383",
-      "CA_183"
+      "CA_183",
+      "CA_383"
     ],
     "rule": "bucket=other"
   },
@@ -3691,8 +3691,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_156",
-      "CA_356"
+      "CA_356",
+      "CA_156"
     ],
     "rule": "bucket=other"
   },
@@ -3724,8 +3724,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_367",
-      "CA_167"
+      "CA_167",
+      "CA_367"
     ],
     "rule": "bucket=other"
   },
@@ -3735,8 +3735,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_102",
-      "CA_302"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=other"
   },
@@ -3746,8 +3746,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_380",
-      "CA_180"
+      "CA_180",
+      "CA_380"
     ],
     "rule": "bucket=other"
   },
@@ -3757,8 +3757,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_230",
-      "CA_270"
+      "CA_270",
+      "CA_230"
     ],
     "rule": "bucket=other"
   },
@@ -3790,8 +3790,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_102",
-      "CA_302"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=other"
   },
@@ -3812,8 +3812,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_377",
-      "CA_177"
+      "CA_177",
+      "CA_377"
     ],
     "rule": "bucket=other"
   },
@@ -3856,8 +3856,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_185",
-      "CA_385"
+      "CA_385",
+      "CA_185"
     ],
     "rule": "bucket=other"
   },
@@ -3867,8 +3867,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_331",
-      "CA_131"
+      "CA_131",
+      "CA_331"
     ],
     "rule": "bucket=intent"
   },
@@ -3900,8 +3900,8 @@
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "CA_357",
-      "CA_157"
+      "CA_157",
+      "CA_357"
     ],
     "rule": "bucket=other"
   },
@@ -3922,8 +3922,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_386",
-      "CA_186"
+      "CA_186",
+      "CA_386"
     ],
     "rule": "bucket=other"
   },
@@ -3944,8 +3944,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_171",
-      "CA_371"
+      "CA_371",
+      "CA_171"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -3977,8 +3977,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_154",
-      "CA_354"
+      "CA_354",
+      "CA_154"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -4043,8 +4043,8 @@
     "languages": "IT",
     "freq_notes": 2,
     "examples": [
-      "CA_163",
-      "CA_363"
+      "CA_363",
+      "CA_163"
     ],
     "rule": "bucket=other"
   },
@@ -4054,8 +4054,8 @@
     "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "CA_171",
-      "CA_371"
+      "CA_371",
+      "CA_171"
     ],
     "rule": "bucket=other"
   },
@@ -4065,8 +4065,8 @@
     "languages": "EN|FR",
     "freq_notes": 2,
     "examples": [
-      "CA_242",
-      "CA_276"
+      "CA_276",
+      "CA_242"
     ],
     "rule": "bucket=other"
   },
@@ -4076,8 +4076,8 @@
     "languages": "ES",
     "freq_notes": 2,
     "examples": [
-      "CA_119",
-      "CA_319"
+      "CA_319",
+      "CA_119"
     ],
     "rule": "bucket=other"
   },
@@ -4087,8 +4087,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_390",
-      "CA_190"
+      "CA_190",
+      "CA_390"
     ],
     "rule": "bucket=lifestyle"
   },
@@ -4098,8 +4098,8 @@
     "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "CA_105",
-      "CA_305"
+      "CA_305",
+      "CA_105"
     ],
     "rule": "bucket=other"
   }
