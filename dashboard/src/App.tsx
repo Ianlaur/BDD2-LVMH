@@ -1,10 +1,12 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, Key } from 'react'
 import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid,
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   ResponsiveContainer, Tooltip, Legend
 } from 'recharts'
 import Plot from 'react-plotly.js'
+import Graph from "react-graph-vis";
+import { HeatMapGrid } from "react-heatmap-grid";
 import API_CONFIG from './config'
 import FileUpload from './FileUpload'
 import './App.css'
@@ -99,14 +101,20 @@ const Icons = {
   tag: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>,
   calendar: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>,
   globe: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>,
+  cube: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>,
+  share: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>,
+  barchart: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>,
+  grid: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>,
 }
 
-// Navigation Component
+// Navigation Component - Modern Top Navigation
 const Navigation = ({ activePage, setActivePage, data }: { 
   activePage: string; 
   setActivePage: (page: string) => void; 
   data: DashboardData | null;
 }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
   const pages = [
     { id: 'upload', label: 'Upload', icon: Icons.actions },
     { id: 'actions', label: 'Actions', icon: Icons.actions },
@@ -115,60 +123,85 @@ const Navigation = ({ activePage, setActivePage, data }: {
     { id: 'data', label: 'Data', icon: Icons.chart },
   ]
 
+  const handleNavClick = (pageId: string) => {
+    setActivePage(pageId)
+    setMobileMenuOpen(false)
+  }
+
   return (
-    <nav className="nav">
-      <div className="nav-brand">
-        <span className="nav-logo">LVMH</span>
-        <span className="nav-subtitle">Client Intelligence</span>
-      </div>
-      <div className="nav-links">
-        {pages.map(page => (
-          <button
-            key={page.id}
-            className={`nav-link ${activePage === page.id ? 'active' : ''}`}
-            onClick={() => setActivePage(page.id)}
-          >
-            <span className="nav-icon">{page.icon}</span>
-            <span>{page.label}</span>
-          </button>
-        ))}
-      </div>
-      <div className="nav-metrics">
-        <div className="nav-metric">
-          <span className="nav-metric-value">{data?.metrics?.clients || 0}</span>
-          <span className="nav-metric-label">Clients</span>
+    <header className="topnav">
+      <div className="topnav-container">
+        <div className="topnav-brand">
+          <span className="topnav-logo">LVMH</span>
+          <span className="topnav-divider"></span>
+          <span className="topnav-subtitle">Client Intelligence</span>
         </div>
-        <div className="nav-metric">
-          <span className="nav-metric-value">{data?.metrics?.segments || 0}</span>
-          <span className="nav-metric-label">Segments</span>
-        </div>
-        {data?.processingInfo?.pipelineTimings?.total && (
-          <div className="nav-metric processing-time">
-            <span className="nav-metric-value">{data.processingInfo.pipelineTimings.total}s</span>
-            <span className="nav-metric-label">⏱️ Pipeline</span>
+        
+        <button 
+          className="mobile-menu-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? Icons.close : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          )}
+        </button>
+
+        <nav className={`topnav-links ${mobileMenuOpen ? 'open' : ''}`}>
+          {pages.map(page => (
+            <button
+              key={page.id}
+              className={`topnav-link ${activePage === page.id ? 'active' : ''}`}
+              onClick={() => handleNavClick(page.id)}
+            >
+              <span className="topnav-icon">{page.icon}</span>
+              <span>{page.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className="topnav-metrics">
+          <div className="topnav-metric">
+            <span className="topnav-metric-value">{data?.metrics?.clients || 0}</span>
+            <span className="topnav-metric-label">Clients</span>
           </div>
-        )}
+          <div className="topnav-metric">
+            <span className="topnav-metric-value">{data?.metrics?.segments || 0}</span>
+            <span className="topnav-metric-label">Segments</span>
+          </div>
+          {data?.processingInfo?.pipelineTimings?.total && (
+            <div className="topnav-metric accent">
+              <span className="topnav-metric-value">{data.processingInfo.pipelineTimings.total}s</span>
+              <span className="topnav-metric-label">⏱️ Pipeline</span>
+            </div>
+          )}
+        </div>
       </div>
-    </nav>
+    </header>
   )
 }
 
-// Actions Page
+// Actions Page - Redesigned for clarity
 const ActionsPage = ({ data }: { data: DashboardData | null }) => {
   const [filter, setFilter] = useState('all')
-  
+  const [selectedAction, setSelectedAction] = useState<any>(null)
+
   const actions = useMemo(() => {
     if (!data?.clients) return []
     
     const actionList: any[] = []
     const actionTypes = {
-      'Visite Privée': { priority: 'high', type: 'appointment', label: 'Planifier visite privée' },
-      'Prêt à Acheter': { priority: 'high', type: 'sale', label: 'Finaliser vente' },
-      'Virement': { priority: 'high', type: 'payment', label: 'Confirmer paiement' },
-      'VIP': { priority: 'medium', type: 'vip', label: 'Attention VIP' },
-      'Joaillerie': { priority: 'medium', type: 'product', label: 'Présenter joaillerie' },
-      'Couture': { priority: 'medium', type: 'product', label: 'Présenter couture' },
-      'Corporate': { priority: 'medium', type: 'corporate', label: 'Solutions corporate' },
+      'Visite Privée': { priority: 'high', type: 'appointment', label: 'Planifier visite privée', icon: Icons.calendar },
+      'Prêt à Acheter': { priority: 'high', type: 'sale', label: 'Finaliser vente', icon: Icons.tag },
+      'Virement': { priority: 'high', type: 'payment', label: 'Confirmer paiement', icon: Icons.globe },
+      'VIP': { priority: 'medium', type: 'vip', label: 'Attention VIP', icon: Icons.user },
+      'Joaillerie': { priority: 'medium', type: 'product', label: 'Présenter joaillerie', icon: Icons.tag },
+      'Couture': { priority: 'medium', type: 'product', label: 'Présenter couture', icon: Icons.tag },
+      'Corporate': { priority: 'medium', type: 'corporate', label: 'Solutions corporate', icon: Icons.clients },
     }
     
     data.clients.forEach(client => {
@@ -180,29 +213,31 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
         if (actionInfo) {
           actionList.push({
             id: `${client.id}-${actionInfo[0]}`,
-            clientId: client.id,
-            segment: client.segment,
+            client: client,
             ...actionInfo[1],
             concept: actionInfo[0],
-            confidence: client.confidence
           })
         }
       })
     })
     
-    return actionList.slice(0, 50)
-  }, [])
+    return actionList.sort((a, b) => (b.client.confidence || 0) - (a.client.confidence || 0)).slice(0, 50)
+  }, [data])
 
   const filteredActions = filter === 'all' ? actions : actions.filter(a => a.priority === filter)
-  const highCount = actions.filter(a => a.priority === 'high').length
-  const mediumCount = actions.filter(a => a.priority === 'medium').length
+  const highCount = useMemo(() => actions.filter(a => a.priority === 'high').length, [actions])
+  const mediumCount = useMemo(() => actions.filter(a => a.priority === 'medium').length, [actions])
+
+  const handleActionClick = (action: any) => {
+    setSelectedAction(action)
+  }
 
   return (
     <div className="page">
       <div className="page-header">
         <div>
           <h1>Actions Recommandées</h1>
-          <p>Priorisez vos interactions client</p>
+          <p>Priorisez vos interactions client pour maximiser l'impact.</p>
         </div>
         <div className="filter-group">
           <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
@@ -222,191 +257,268 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
           <div className="stat-icon">{Icons.actions}</div>
           <div className="stat-content">
             <div className="stat-value">{highCount}</div>
-            <div className="stat-label">Urgentes</div>
+            <div className="stat-label">Actions Urgentes</div>
           </div>
         </div>
         <div className="stat-card accent-blue">
           <div className="stat-icon">{Icons.calendar}</div>
           <div className="stat-content">
             <div className="stat-value">{actions.filter(a => a.type === 'appointment').length}</div>
-            <div className="stat-label">Visites</div>
+            <div className="stat-label">Visites à Planifier</div>
           </div>
         </div>
         <div className="stat-card accent-green">
           <div className="stat-icon">{Icons.tag}</div>
           <div className="stat-content">
             <div className="stat-value">{actions.filter(a => a.type === 'sale').length}</div>
-            <div className="stat-label">Ventes</div>
+            <div className="stat-label">Ventes Potentielles</div>
           </div>
         </div>
         <div className="stat-card accent-purple">
           <div className="stat-icon">{Icons.user}</div>
           <div className="stat-content">
             <div className="stat-value">{actions.filter(a => a.type === 'vip').length}</div>
-            <div className="stat-label">VIP</div>
+            <div className="stat-label">Clients VIP</div>
           </div>
         </div>
       </div>
 
-      <div className="card">
-        <div className="action-list">
-          {filteredActions.map(action => (
-            <div key={action.id} className={`action-item priority-${action.priority}`}>
-              <div className="action-priority">
-                <span className={`priority-dot ${action.priority}`}></span>
-              </div>
-              <div className="action-content">
-                <div className="action-header">
-                  <span className="action-client">{action.clientId}</span>
-                  <span className="action-segment" style={{ backgroundColor: SEGMENT_COLORS[action.segment as keyof typeof SEGMENT_COLORS] }}>
-                    Seg {action.segment}
-                  </span>
+      <div className="actions-layout">
+        <div className="card action-list-card">
+          <div className="action-list">
+            {filteredActions.map(action => (
+              <div 
+                key={action.id} 
+                className={`action-item ${selectedAction?.id === action.id ? 'selected' : ''}`}
+                onClick={() => handleActionClick(action)}
+              >
+                <div className="action-priority">
+                  <span className={`priority-dot ${action.priority}`}></span>
                 </div>
-                <div className="action-label">{action.label}</div>
-                <div className="action-meta">
-                  <span className="action-confidence">{(action.confidence * 100).toFixed(0)}%</span>
+                <div className="action-icon">{action.icon}</div>
+                <div className="action-content">
+                  <div className="action-header">
+                    <span className="action-client">{action.client.id}</span>
+                    <span className="action-segment" style={{ backgroundColor: SEGMENT_COLORS[action.client.segment as keyof typeof SEGMENT_COLORS] }}>
+                      Seg {action.client.segment}
+                    </span>
+                  </div>
+                  <div className="action-label">{action.label}</div>
                 </div>
+                <div className="action-confidence">
+                  <span>{((action.client.confidence || 0) * 100).toFixed(0)}%</span>
+                </div>
+                <div className="action-chevron">{Icons.chevron}</div>
               </div>
-              <button className="action-btn">{Icons.chevron}</button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        
+        {selectedAction ? (
+          <div className="card action-detail-card">
+            <div className="action-detail-header">
+              <h3>Détail de l'Action</h3>
+              <button className="close-btn" onClick={() => setSelectedAction(null)}>{Icons.close}</button>
+            </div>
+            <div className="action-detail-content">
+              <div className="client-summary">
+                <div className="client-avatar" style={{ backgroundColor: SEGMENT_COLORS[selectedAction.client.segment as keyof typeof SEGMENT_COLORS] }}>
+                  {selectedAction.client.id.slice(-2)}
+                </div>
+                <div className="client-info">
+                  <div className="client-id">{selectedAction.client.id}</div>
+                  <div className="client-segment">Segment {selectedAction.client.segment}</div>
+                </div>
+              </div>
+              
+              <div className="detail-item">
+                <span className="detail-label">Action</span>
+                <span className="detail-value">{selectedAction.label}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Priorité</span>
+                <span className={`detail-value priority-tag ${selectedAction.priority}`}>{selectedAction.priority}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Confiance</span>
+                <span className="detail-value">{((selectedAction.client.confidence || 0) * 100).toFixed(0)}%</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Concept Déclencheur</span>
+                <span className="detail-value concept-tag">{selectedAction.concept}</span>
+              </div>
+
+              <div className="client-concepts">
+                <h4>Top Concepts du Client</h4>
+                {selectedAction.client.topConcepts?.map((c: string, i: number) => (
+                  <span key={i} className="concept-badge" style={{ backgroundColor: SEGMENT_COLORS[selectedAction.client.segment as keyof typeof SEGMENT_COLORS] + '20', color: SEGMENT_COLORS[selectedAction.client.segment as keyof typeof SEGMENT_COLORS] }}>{c}</span>
+                ))}
+              </div>
+
+              {selectedAction.client.fullText && (
+                <div className="client-note">
+                  <h4>Note Originale</h4>
+                  <p>{selectedAction.client.fullText}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="card action-detail-placeholder">
+            <div className="placeholder-content">
+              {Icons.actions}
+              <h4>Sélectionnez une action</h4>
+              <p>Cliquez sur une action dans la liste pour voir les détails du client et de la recommandation.</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
-// Segments Page
+// Segments Page - Redesigned for clarity
 const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
-  const [selectedSegment, setSelectedSegment] = useState<number | null>(null)
+  const [selectedSegment, setSelectedSegment] = useState<number | null>(0) // Select first segment by default
   const segmentData = data?.segments || []
   const radarData = data?.radar || []
+  const clients = data?.clients || []
+
+  const selectedSegmentData = useMemo(() => {
+    if (selectedSegment === null) return null
+    return segmentData[selectedSegment]
+  }, [selectedSegment, segmentData])
+
+  const clientsInSegment = useMemo(() => {
+    if (selectedSegment === null) return []
+    return clients.filter(c => c.segment === selectedSegment).slice(0, 10)
+  }, [selectedSegment, clients])
 
   return (
     <div className="page">
       <div className="page-header">
         <div>
           <h1>Analyse des Segments</h1>
-          <p>{segmentData.length} segments par clustering sémantique</p>
+          <p>Explorez les {segmentData.length} profils clients identifiés par l'IA.</p>
         </div>
       </div>
 
-      <div className="segments-grid">
-        {segmentData.map((segment, idx) => (
-          <div 
-            key={segment.name}
-            className={`segment-card ${selectedSegment === idx ? 'selected' : ''}`}
-            onClick={() => setSelectedSegment(selectedSegment === idx ? null : idx)}
-            style={{ '--segment-color': COLORS[idx % COLORS.length] }}
-          >
-            <div className="segment-header">
-              <div className="segment-number">{idx}</div>
-              <div className="segment-count">{segment.value} clients</div>
-            </div>
-            <div className="segment-profile">{segment.profile}</div>
-            <div className="segment-bar">
+      <div className="segments-layout">
+        {/* Left Column: Segment List */}
+        <div className="card segments-list-card">
+          <h3 className="card-title">Profils Clients</h3>
+          <div className="segments-list">
+            {segmentData.map((segment, idx) => (
               <div 
-                className="segment-bar-fill" 
-                style={{ width: `${(segment.value / Math.max(...segmentData.map(s => s.value))) * 100}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="charts-row">
-        <div className="card">
-          <h3 className="card-title">Distribution des Segments</h3>
-          <ResponsiveContainer width="100%" height={320}>
-            <PieChart>
-              <Pie 
-                data={segmentData} 
-                cx="50%" 
-                cy="50%" 
-                innerRadius={70} 
-                outerRadius={120} 
-                paddingAngle={3} 
-                dataKey="value"
-                label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
-                labelLine={false}
+                key={segment.name}
+                className={`segment-list-item ${selectedSegment === idx ? 'selected' : ''}`}
+                onClick={() => setSelectedSegment(idx)}
+                style={{ '--segment-color': COLORS[idx % COLORS.length] }}
               >
-                {segmentData.map((entry, index) => (
-                  <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+                <div className="segment-item-header">
+                  <div className="segment-item-number">{idx}</div>
+                  <div className="segment-item-profile">{segment.profile}</div>
+                </div>
+                <div className="segment-item-footer">
+                  <div className="segment-item-count">{segment.value} clients</div>
+                  <div className="segment-item-bar">
+                    <div 
+                      className="segment-item-bar-fill" 
+                      style={{ width: `${(segment.value / Math.max(...segmentData.map(s => s.value))) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column: Details and Charts */}
+        <div className="segments-detail-column">
+          {selectedSegmentData ? (
+            <div className="card segment-detail-card">
+              <div className="segment-detail-header">
+                <h3 className="card-title">Segment {selectedSegment}</h3>
+                <div className="segment-detail-pills">
+                  <span className="pill">{selectedSegmentData.value} clients</span>
+                  <span className="pill">{selectedSegmentData.fullProfile.split(' | ').length} concepts clés</span>
+                </div>
+              </div>
+              <p className="segment-full-profile">{selectedSegmentData.fullProfile}</p>
+              
+              <h4>Clients représentatifs</h4>
+              <div className="representative-clients">
+                {clientsInSegment.map(client => (
+                  <div key={client.id} className="client-chip">
+                    <div className="client-chip-avatar" style={{ backgroundColor: COLORS[client.segment % COLORS.length] }}>
+                      {client.id.slice(-2)}
+                    </div>
+                    <span>{client.id}</span>
+                  </div>
                 ))}
-              </Pie>
-              <Tooltip 
-                formatter={(value, _name, props) => [`${value} clients`, props.payload.profile]} 
-                contentStyle={{ borderRadius: '8px', border: '1px solid #e6ebf1', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }} 
-              />
-              <Legend 
-                layout="vertical" 
-                verticalAlign="middle" 
-                align="right"
-                wrapperStyle={{ paddingLeft: '20px', fontSize: '13px' }}
-                formatter={(value, entry: any) => <span style={{ color: '#525f7f' }}>{`Segment ${entry.payload?.name?.replace('Segment ', '')}`}</span>}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+              </div>
+            </div>
+          ) : (
+            <div className="card placeholder-card">
+              <p>Sélectionnez un segment pour voir les détails.</p>
+            </div>
+          )}
 
-        <div className="card">
-          <h3 className="card-title">Profil Radar par Segment</h3>
-          <ResponsiveContainer width="100%" height={320}>
-            <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
-              <PolarGrid stroke="#e6ebf1" strokeDasharray="3 3" />
-              <PolarAngleAxis 
-                dataKey="dimension" 
-                tick={{ fontSize: 11, fill: '#525f7f' }} 
-                tickLine={false}
-              />
-              <PolarRadiusAxis 
-                angle={30} 
-                domain={[0, 100]} 
-                tick={{ fontSize: 9, fill: '#8898aa' }}
-                tickCount={4}
-              />
-              {[0, 1, 2, 3].map(i => (
-                <Radar 
-                  key={i} 
-                  name={`Segment ${i}`} 
-                  dataKey={`seg${i}`} 
-                  stroke={COLORS[i]} 
-                  fill={COLORS[i]} 
-                  fillOpacity={0.15}
-                  strokeWidth={2}
-                />
-              ))}
-              <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e6ebf1', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }} />
-              <Legend 
-                layout="horizontal" 
-                verticalAlign="bottom" 
-                align="center"
-                wrapperStyle={{ paddingTop: '16px', fontSize: '12px' }}
-              />
-            </RadarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+          <div className="charts-row">
+            <div className="card">
+              <h3 className="card-title">Distribution des Segments</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie 
+                    data={segmentData} 
+                    cx="50%" 
+                    cy="50%" 
+                    innerRadius={60} 
+                    outerRadius={100} 
+                    paddingAngle={3} 
+                    dataKey="value"
+                    label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
+                    labelLine={false}
+                  >
+                    {segmentData.map((entry, index) => (
+                      <Cell 
+                        key={entry.name} 
+                        fill={COLORS[index % COLORS.length]} 
+                        opacity={selectedSegment === null || selectedSegment === index ? 1 : 0.3}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip contentStyle={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-lg)' }} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
 
-      {selectedSegment !== null && (
-        <div className="card segment-detail">
-          <h3 className="card-title">
-            Segment {selectedSegment}
-            <button className="close-btn" onClick={() => setSelectedSegment(null)}>{Icons.close}</button>
-          </h3>
-          <div className="segment-detail-content">
-            <p><strong>Clients:</strong> {segmentData[selectedSegment]?.value}</p>
-            <p><strong>Profil:</strong> {segmentData[selectedSegment]?.fullProfile}</p>
-            <div className="segment-concepts">
-              {segmentData[selectedSegment]?.fullProfile?.split(' | ').map((concept, i) => (
-                <span key={i} className="concept-chip" style={{ backgroundColor: COLORS[selectedSegment % COLORS.length] + '20', color: COLORS[selectedSegment % COLORS.length] }}>
-                  {concept}
-                </span>
-              ))}
+            <div className="card">
+              <h3 className="card-title">Profil Radar</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="75%">
+                  <PolarGrid stroke="var(--border-light)" />
+                  <PolarAngleAxis dataKey="subject" tick={{ fontSize: 11, fill: 'var(--text-secondary)' }} />
+                  <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fontSize: 9, fill: 'var(--text-muted)' }} tickCount={4} />
+                  {segmentData.map((seg, i) => (
+                    <Radar 
+                      key={i} 
+                      name={`Segment ${i}`} 
+                      dataKey={`seg${i}`} 
+                      stroke={COLORS[i]} 
+                      fill={COLORS[i]} 
+                      fillOpacity={selectedSegment === i ? 0.3 : (selectedSegment === null ? 0.15 : 0.05)}
+                      strokeWidth={selectedSegment === i ? 2.5 : 1.5}
+                      strokeOpacity={selectedSegment === null || selectedSegment === i ? 1 : 0.4}
+                    />
+                  ))}
+                  <Tooltip contentStyle={{ borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-lg)' }} />
+                </RadarChart>
+              </ResponsiveContainer>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -425,32 +537,54 @@ const segmentColors: Record<number, string> = {
 
 const ClientsPage = ({ data }: { data: DashboardData | null }) => {
   const [searchQuery, setSearchQuery] = useState("")
-  const [filterType, setFilterType] = useState<"all" | "segment">("all")
+  const [filterSegment, setFilterSegment] = useState<string>("all")
+  const [sortOrder, setSortOrder] = useState<string>("confidence_desc")
 
   const clients = data?.clients || []
+  const segments = data?.segments || []
 
-  const filteredClients = useMemo(() => {
-    return clients.filter((client) =>
-      client.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      client.topConcepts?.some((c) =>
-        c.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredAndSortedClients = useMemo(() => {
+    let filtered = clients
+    
+    if (filterSegment !== "all") {
+      filtered = filtered.filter(c => c.segment === parseInt(filterSegment))
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter((client) =>
+        client.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        client.topConcepts?.some((c) =>
+          c.toLowerCase().includes(searchQuery.toLowerCase())
+        ) ||
+        client.fullText?.toLowerCase().includes(searchQuery.toLowerCase())
       )
-    )
-  }, [clients, searchQuery])
+    }
+
+    return filtered.sort((a, b) => {
+      const aConf = (a.confidence || 0)
+      const bConf = (b.confidence || 0)
+      switch (sortOrder) {
+        case 'confidence_asc': return aConf - bConf
+        case 'id_asc': return a.id.localeCompare(b.id)
+        case 'id_desc': return b.id.localeCompare(a.id)
+        default: return bConf - aConf
+      }
+    })
+  }, [clients, searchQuery, filterSegment, sortOrder])
 
   return (
     <div className="page">
       <header className="page-header">
         <div>
-          <h1>Base Clients</h1>
-          <p>{clients.length} clients analysés</p>
+          <h1>Exploration des Clients</h1>
+          <p>{filteredAndSortedClients.length} sur {clients.length} clients affichés</p>
         </div>
         <div className="search-group">
           <div className="search-input-wrapper">
             <span className="search-icon">{Icons.search}</span>
             <input
               type="text"
-              placeholder="Rechercher..."
+              placeholder="Rechercher par ID, concept, note..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-input"
@@ -458,49 +592,60 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
           </div>
           <select
             className="segment-select"
-            value={filterType}
-            onChange={(e) =>
-              setFilterType(e.target.value as "all" | "segment")
-            }
+            value={filterSegment}
+            onChange={(e) => setFilterSegment(e.target.value)}
           >
-            <option value="all">Tous</option>
-            <option value="segment">Par segment</option>
+            <option value="all">Tous les segments</option>
+            {segments.map(s => (
+              <option key={s.name} value={s.name}>{s.profile} ({s.value})</option>
+            ))}
+          </select>
+          <select
+            className="segment-select"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="confidence_desc">Confiance (décroissant)</option>
+            <option value="confidence_asc">Confiance (croissant)</option>
+            <option value="id_asc">ID (A-Z)</option>
+            <option value="id_desc">ID (Z-A)</option>
           </select>
         </div>
       </header>
 
       <div className="clients-grid">
-        {filteredClients.map((client) => {
+        {filteredAndSortedClients.map((client) => {
           const similarity = Math.round((client as any).confidence ? (client as any).confidence * 100 : 0)
-          const color = segmentColors[client.segment] ?? "#18181b"
+          const color = SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] ?? "#18181b"
 
           return (
             <div
               key={client.id}
               className="client-card"
+              style={{ '--segment-color': color } as any}
             >
               <div className="client-header">
                 <div
                   className="client-avatar"
                   style={{ backgroundColor: color }}
                 >
-                  {client.segment}
+                  {client.id.slice(-2)}
                 </div>
 
                 <div className="client-info">
                   <div className="client-id">{client.id}</div>
-                  <div className="client-segment">Segment {client.segment}</div>
+                  <div className="client-segment">Segment {client.segment} - {segments[client.segment]?.profile}</div>
                 </div>
 
                 <div className="client-confidence">
-                  <div className="confidence-ring" style={{ "--confidence": similarity / 100 } as any}>
+                  <div className="confidence-ring" style={{ "--confidence": similarity / 100, '--ring-color': color } as any}>
                     <span>{similarity}%</span>
                   </div>
                 </div>
               </div>
 
               <div className="client-concepts">
-                {client.topConcepts?.slice(0, 5).map((concept, idx) => (
+                {client.topConcepts?.slice(0, 4).map((concept, idx) => (
                   <span key={idx} className="concept-badge" style={{ backgroundColor: color + '20', color: color }}>
                     {concept}
                   </span>
@@ -509,21 +654,21 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
 
               {client.fullText && (
                 <div className="client-text">
-                  <p>{client.fullText.substring(0, 150)}...</p>
+                  <p>{client.fullText.substring(0, 140)}{client.fullText.length > 140 ? '...' : ''}</p>
                 </div>
               )}
 
               <div className="client-footer">
                 {client.language && (
                   <span className="client-meta">
-                    <span className="meta-icon">🌐</span>
-                    {client.language}
+                    {Icons.globe}
+                    {client.language.toUpperCase()}
                   </span>
                 )}
                 {client.date && (
                   <span className="client-meta">
-                    <span className="meta-icon">📅</span>
-                    {client.date}
+                    {Icons.calendar}
+                    {new Date(client.date).toLocaleDateString()}
                   </span>
                 )}
               </div>
@@ -535,7 +680,7 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
   )
 }
 
-// Data Page - Interactive
+// Data Page - Redesigned for clarity and better UX
 const DataPage = ({ data }: { data: DashboardData | null }) => {
   const [view, setView] = useState('3d')
   const [selectedPoint, setSelectedPoint] = useState<any>(null)
@@ -543,7 +688,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
   const [selectedHeatmapCell, setSelectedHeatmapCell] = useState<any>(null)
   const [highlightSegment, setHighlightSegment] = useState<number | null>(null)
   const [zoomLevel, setZoomLevel] = useState(1)
-  const [selectedKGClient, setSelectedKGClient] = useState<string | null>(null)
+  const [selectedKGClient, setSelectedKGClient] = useState<string | null>(data?.clients[0]?.id || null)
   const [kgDepth, setKgDepth] = useState(2)
   
   const scatter3d = data?.scatter3d || []
@@ -559,7 +704,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     if (!client) return null
     
     const nodes: any[] = []
-    const links = []
+    const links: any[] = []
     
     // Central client node
     nodes.push({
@@ -567,19 +712,23 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
       type: 'client',
       label: client.id,
       segment: client.segment,
-      size: 30
+      size: 30,
+      color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS]
     })
     
     // Add concept nodes
     const clientConcepts = client.topConcepts || []
     clientConcepts.forEach((concept) => {
       const conceptId = `concept-${concept}`
-      nodes.push({
-        id: conceptId,
-        type: 'concept',
-        label: concept,
-        size: 20
-      })
+      if (!nodes.find(n => n.id === conceptId)) {
+        nodes.push({
+          id: conceptId,
+          type: 'concept',
+          label: concept,
+          size: 20,
+          color: '#64748b'
+        })
+      }
       links.push({
         source: client.id,
         target: conceptId,
@@ -600,27 +749,33 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
               type: 'related-client',
               label: rc.id,
               segment: rc.segment,
-              size: 18
+              size: 18,
+              color: SEGMENT_COLORS[rc.segment as keyof typeof SEGMENT_COLORS]
             })
           }
-          links.push({
-            source: conceptId,
-            target: rc.id,
-            type: 'shared_by'
-          })
+          if (!links.find(l => l.source === conceptId && l.target === rc.id)) {
+            links.push({
+              source: conceptId,
+              target: rc.id,
+              type: 'shared_by'
+            })
+          }
         })
       }
     })
     
     // Add segment node
     const segmentId = `segment-${client.segment}`
-    nodes.push({
-      id: segmentId,
-      type: 'segment',
-      label: `Segment ${client.segment}`,
-      segment: client.segment,
-      size: 25
-    })
+    if (!nodes.find(n => n.id === segmentId)) {
+      nodes.push({
+        id: segmentId,
+        type: 'segment',
+        label: `Segment ${client.segment}`,
+        segment: client.segment,
+        size: 25,
+        color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS]
+      })
+    }
     links.push({
       source: client.id,
       target: segmentId,
@@ -675,700 +830,435 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     }
   }
 
+  const renderView = () => {
+    switch(view) {
+      case '3d':
+        return <ThreeDView 
+                  scatter3d={scatter3d} 
+                  handle3DClick={handle3DClick} 
+                  selectedPoint={selectedPoint} 
+                  setSelectedPoint={setSelectedPoint}
+                  highlightSegment={highlightSegment}
+                  setHighlightSegment={setHighlightSegment}
+                  zoomLevel={zoomLevel}
+                  setZoomLevel={setZoomLevel}
+                />
+      case 'knowledge':
+        return <KnowledgeGraphView 
+                  knowledgeGraphData={knowledgeGraphData}
+                  clients={clients}
+                  selectedKGClient={selectedKGClient}
+                  setSelectedKGClient={setSelectedKGClient}
+                  kgDepth={kgDepth}
+                  setKgDepth={setKgDepth}
+                />
+      case 'concepts':
+        return <ConceptsView 
+                  concepts={concepts}
+                  handleConceptClick={handleConceptClick}
+                  selectedConcept={selectedConcept}
+                  setSelectedConcept={setSelectedConcept}
+                  conceptClients={conceptClients}
+                />
+      case 'heatmap':
+        return <HeatmapView 
+                  heatmap={heatmap}
+                  handleHeatmapClick={handleHeatmapClick}
+                  selectedHeatmapCell={selectedHeatmapCell}
+                  setSelectedHeatmapCell={setSelectedHeatmapCell}
+                  heatmapClients={heatmapClients}
+                />
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="page">
       <div className="page-header">
         <div>
-          <h1>Visualisation Interactive</h1>
-          <p>Cliquez sur les éléments pour explorer les données</p>
+          <h1>Visualisation des Données</h1>
+          <p>Explorez les relations complexes entre clients, concepts et segments.</p>
         </div>
-        <div className="view-toggle">
-          <button className={`toggle-btn ${view === '3d' ? 'active' : ''}`} onClick={() => { setView('3d'); setSelectedPoint(null); }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="toggle-icon">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            3D Space
+        <div className="filter-group">
+          <button className={`filter-btn ${view === '3d' ? 'active' : ''}`} onClick={() => setView('3d')}>
+            {Icons.cube} Espace 3D
           </button>
-          <button className={`toggle-btn ${view === 'knowledge' ? 'active' : ''}`} onClick={() => { setView('knowledge'); setSelectedKGClient(null); }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="toggle-icon">
-              <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>
-              <line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/>
-            </svg>
-            Knowledge Graph
+          <button className={`filter-btn ${view === 'knowledge' ? 'active' : ''}`} onClick={() => setView('knowledge')}>
+            {Icons.share} Graphe de Connaissances
           </button>
-          <button className={`toggle-btn ${view === 'concepts' ? 'active' : ''}`} onClick={() => { setView('concepts'); setSelectedConcept(null); }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="toggle-icon">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-            Concepts
+          <button className={`filter-btn ${view === 'concepts' ? 'active' : ''}`} onClick={() => setView('concepts')}>
+            {Icons.barchart} Top Concepts
           </button>
-          <button className={`toggle-btn ${view === 'heatmap' ? 'active' : ''}`} onClick={() => { setView('heatmap'); setSelectedHeatmapCell(null); }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="toggle-icon">
-              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-            </svg>
-            Heatmap
+          <button className={`filter-btn ${view === 'heatmap' ? 'active' : ''}`} onClick={() => setView('heatmap')}>
+            {Icons.grid} Heatmap
           </button>
         </div>
       </div>
-
-      {view === '3d' && (
-        <div className="data-layout">
-          <div className="card viz-card">
-            <div className="card-header">
-              <h3 className="card-title">Espace Vectoriel 3D</h3>
-              <div className="card-controls">
-                <span className="hint">💡 Cliquez sur un point pour voir le détail</span>
-                <div className="segment-filters">
-                  {[0, 1, 2, 3, 4, 5, 6, 7].filter(i => scatter3d.some(p => (p.cluster ?? p.segment) === i)).map(i => (
-                    <button
-                      key={i}
-                      className={`segment-filter-btn ${highlightSegment === i ? 'active' : ''}`}
-                      style={{ '--seg-color': COLORS[i] }}
-                      onClick={() => setHighlightSegment(highlightSegment === i ? null : i)}
-                    >
-                      {i}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <Plot
-              data={Object.entries(
-                scatter3d.reduce((acc: Record<string, { x: number[], y: number[], z: number[], text: string[], ids: string[] }>, point) => {
-                  const key = `Segment ${point.cluster ?? point.segment}`
-                  if (!acc[key]) acc[key] = { x: [], y: [], z: [], text: [], ids: [] }
-                  acc[key].x.push(point.x)
-                  acc[key].y.push(point.y)
-                  acc[key].z.push(point.z)
-                  acc[key].text.push(`${point.client}<br>Profile: ${point.profile ?? 'Unknown'}`)
-                  acc[key].ids.push(point.client)
-                  return acc
-                }, {})
-              ).map(([name, points], idx) => ({
-                type: 'scatter3d' as const,
-                mode: 'markers' as const,
-                name,
-                x: points.x,
-                y: points.y,
-                z: points.z,
-                text: points.text,
-                customdata: points.ids,
-                hovertemplate: '<b>%{text}</b><extra></extra>',
-                marker: {
-                  size: highlightSegment !== null ? (idx === highlightSegment ? 8 : 3) : 5,
-                  color: COLORS[idx % COLORS.length],
-                  opacity: highlightSegment !== null ? (idx === highlightSegment ? 1 : 0.2) : 0.8,
-                  line: { width: highlightSegment === idx ? 1 : 0, color: '#fff' }
-                }
-              }))}
-              layout={{
-                autosize: true,
-                height: 500,
-                margin: { l: 0, r: 0, b: 0, t: 0 },
-                scene: {
-                  xaxis: { title: '', showticklabels: false, showgrid: true, gridcolor: '#e2e8f0', zerolinecolor: '#e2e8f0' },
-                  yaxis: { title: '', showticklabels: false, showgrid: true, gridcolor: '#e2e8f0', zerolinecolor: '#e2e8f0' },
-                  zaxis: { title: '', showticklabels: false, showgrid: true, gridcolor: '#e2e8f0', zerolinecolor: '#e2e8f0' },
-                  bgcolor: '#fafafa',
-                  camera: { eye: { x: 1.5 * zoomLevel, y: 1.5 * zoomLevel, z: 1.2 * zoomLevel } }
-                },
-                legend: { orientation: 'h', y: -0.02, font: { size: 11 } },
-                paper_bgcolor: 'transparent',
-                hoverlabel: { bgcolor: '#1e293b', font: { color: '#fff', size: 12 }, bordercolor: '#1e293b' }
-              }}
-              config={{ responsive: true, displayModeBar: true, modeBarButtonsToRemove: ['toImage', 'sendDataToCloud'] }}
-              style={{ width: '100%', height: '500px' }}
-              onClick={handle3DClick}
-            />
-            <div className="zoom-controls">
-              <button onClick={() => setZoomLevel(z => Math.max(0.5, z - 0.2))}>−</button>
-              <span>Zoom</span>
-              <button onClick={() => setZoomLevel(z => Math.min(2, z + 0.2))}>+</button>
-            </div>
-          </div>
-
-          {selectedPoint && (
-            <div className="detail-panel">
-              <div className="detail-header">
-                <h3>Client Sélectionné</h3>
-                <button className="close-btn" onClick={() => setSelectedPoint(null)}>{Icons.close}</button>
-              </div>
-              <div className="detail-content">
-                <div className="detail-avatar" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment as keyof typeof SEGMENT_COLORS] }}>
-                  {(selectedPoint.id || selectedPoint.client).slice(-3)}
-                </div>
-                <h4>{selectedPoint.id || selectedPoint.client}</h4>
-                <span className="detail-segment" style={{ backgroundColor: SEGMENT_COLORS[selectedPoint.segment as keyof typeof SEGMENT_COLORS] }}>
-                  Segment {selectedPoint.segment}
-                </span>
-                <div className="detail-confidence">
-                  <div className="confidence-bar" style={{ '--conf': selectedPoint.confidence ?? 0 } as React.CSSProperties}/>
-                  <span>{((selectedPoint.confidence ?? 0) * 100).toFixed(0)}% confiance</span>
-                </div>
-                <div className="detail-concepts">
-                  <h5>Concepts</h5>
-                  {selectedPoint.topConcepts?.map((c: string, i: number) => (
-                    <span key={i} className="detail-chip">{c}</span>
-                  ))}
-                </div>
-                {selectedPoint.originalNote && (
-                  <div className="detail-note">
-                    <h5>Note</h5>
-                    <p>{selectedPoint.originalNote.substring(0, 200)}...</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {view === 'knowledge' && (
-        <div className="data-layout kg-layout">
-          {/* Client Selector */}
-          <div className="kg-sidebar">
-            <div className="kg-sidebar-header">
-              <h3>Sélectionner un Client</h3>
-              <p>Choisissez un client pour voir son réseau</p>
-            </div>
-            <div className="kg-client-list">
-              {clients.slice(0, 30).map(client => (
-                <button
-                  key={client.id}
-                  className={`kg-client-btn ${selectedKGClient === client.id ? 'active' : ''}`}
-                  onClick={() => setSelectedKGClient(client.id)}
-                >
-                  <div className="kg-client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
-                    {client.id.slice(-2)}
-                  </div>
-                  <div className="kg-client-info">
-                    <span className="kg-client-id">{client.id}</span>
-                    <span className="kg-client-meta">Seg {client.segment} • {client.topConcepts?.length || 0} concepts</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Knowledge Graph Visualization */}
-          <div className="card viz-card kg-main">
-            {!selectedKGClient ? (
-              <div className="kg-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="kg-placeholder-icon">
-                  <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>
-                  <line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/>
-                </svg>
-                <h3>Graphe de Connaissances</h3>
-                <p>Sélectionnez un client dans la liste pour visualiser ses connexions</p>
-              </div>
-            ) : (
-              <>
-                <div className="card-header">
-                  <h3 className="card-title">Réseau de {selectedKGClient}</h3>
-                  <div className="kg-controls">
-                    <label>Profondeur:</label>
-                    <select value={kgDepth} onChange={e => setKgDepth(Number(e.target.value))}>
-                      <option value={1}>1 (Concepts seulement)</option>
-                      <option value={2}>2 (+ Clients liés)</option>
-                    </select>
-                  </div>
-                </div>
-                
-                {/* Force-directed graph using Plotly */}
-                {knowledgeGraphData && (
-                  <div className="kg-graph">
-                    <Plot
-                      data={[
-                        // Links
-                        ...knowledgeGraphData.links.map(link => {
-                          const source = knowledgeGraphData.nodes.find(n => n.id === link.source)
-                          const target = knowledgeGraphData.nodes.find(n => n.id === link.target)
-                          if (!source || !target) return null
-                          
-                          // Calculate positions in a circle/radial layout
-                          const nodeIndex = knowledgeGraphData.nodes.findIndex(n => n.id === source.id)
-                          const targetIndex = knowledgeGraphData.nodes.findIndex(n => n.id === target.id)
-                          
-                          return {
-                            type: 'scatter',
-                            mode: 'lines',
-                            x: [nodeIndex, targetIndex],
-                            y: [Math.sin(nodeIndex * 0.5) * 2, Math.sin(targetIndex * 0.5) * 2],
-                            line: { color: '#cbd5e1', width: 1 },
-                            hoverinfo: 'none',
-                            showlegend: false
-                          }
-                        }).filter(Boolean),
-                        // Nodes by type
-                        {
-                          type: 'scatter',
-                          mode: 'markers+text',
-                          name: 'Client Principal',
-                          x: [0],
-                          y: [0],
-                          text: [knowledgeGraphData.client.id],
-                          textposition: 'bottom center',
-                          marker: {
-                            size: 40,
-                            color: SEGMENT_COLORS[knowledgeGraphData.client.segment],
-                            line: { width: 3, color: '#fff' }
-                          },
-                          hovertemplate: '<b>%{text}</b><br>Client Principal<extra></extra>'
-                        },
-                        {
-                          type: 'scatter',
-                          mode: 'markers+text',
-                          name: 'Concepts',
-                          x: knowledgeGraphData.nodes.filter(n => n.type === 'concept').map((_, i) => Math.cos(i * Math.PI / 3) * 3),
-                          y: knowledgeGraphData.nodes.filter(n => n.type === 'concept').map((_, i) => Math.sin(i * Math.PI / 3) * 3),
-                          text: knowledgeGraphData.nodes.filter(n => n.type === 'concept').map(n => n.label),
-                          textposition: 'top center',
-                          marker: {
-                            size: 25,
-                            color: '#6366f1',
-                            symbol: 'diamond'
-                          },
-                          hovertemplate: '<b>%{text}</b><br>Concept<extra></extra>'
-                        },
-                        {
-                          type: 'scatter',
-                          mode: 'markers+text',
-                          name: 'Clients Liés',
-                          x: knowledgeGraphData.nodes.filter(n => n.type === 'related-client').map((_, i) => Math.cos((i + 0.5) * Math.PI / 4) * 5),
-                          y: knowledgeGraphData.nodes.filter(n => n.type === 'related-client').map((_, i) => Math.sin((i + 0.5) * Math.PI / 4) * 5),
-                          text: knowledgeGraphData.nodes.filter(n => n.type === 'related-client').map(n => n.label),
-                          textposition: 'bottom center',
-                          marker: {
-                            size: 20,
-                            color: knowledgeGraphData.nodes.filter(n => n.type === 'related-client').map(n => SEGMENT_COLORS[n.segment] || '#94a3b8'),
-                            line: { width: 1, color: '#fff' }
-                          },
-                          hovertemplate: '<b>%{text}</b><br>Client Lié<extra></extra>'
-                        },
-                        {
-                          type: 'scatter',
-                          mode: 'markers+text',
-                          name: 'Segment',
-                          x: [0],
-                          y: [-4],
-                          text: [`Segment ${knowledgeGraphData.client.segment}`],
-                          textposition: 'bottom center',
-                          marker: {
-                            size: 30,
-                            color: SEGMENT_COLORS[knowledgeGraphData.client.segment],
-                            symbol: 'square',
-                            opacity: 0.7
-                          },
-                          hovertemplate: '<b>%{text}</b><br>Cluster<extra></extra>'
-                        }
-                      ]}
-                      layout={{
-                        autosize: true,
-                        height: 500,
-                        margin: { l: 20, r: 20, b: 20, t: 20 },
-                        xaxis: { visible: false, range: [-7, 7] },
-                        yaxis: { visible: false, range: [-6, 6], scaleanchor: 'x' },
-                        showlegend: true,
-                        legend: { orientation: 'h', y: -0.05, font: { size: 11 } },
-                        paper_bgcolor: 'transparent',
-                        plot_bgcolor: 'transparent',
-                        hoverlabel: { bgcolor: '#1e293b', font: { color: '#fff' } }
-                      }}
-                      config={{ responsive: true, displayModeBar: false }}
-                      style={{ width: '100%', height: '500px' }}
-                    />
-                  </div>
-                )}
-
-                {/* Client Details */}
-                <div className="kg-client-details">
-                  <div className="kg-detail-card">
-                    <h4>Informations Client</h4>
-                    <div className="kg-detail-grid">
-                      <div className="kg-detail-item">
-                        <span className="kg-detail-label">Segment</span>
-                        <span className="kg-detail-value" style={{ color: SEGMENT_COLORS[knowledgeGraphData?.client?.segment as keyof typeof SEGMENT_COLORS] }}>
-                          {knowledgeGraphData?.client?.segment}
-                        </span>
-                      </div>
-                      <div className="kg-detail-item">
-                        <span className="kg-detail-label">Confiance</span>
-                        <span className="kg-detail-value">{((knowledgeGraphData?.client?.confidence || 0) * 100).toFixed(0)}%</span>
-                      </div>
-                      <div className="kg-detail-item">
-                        <span className="kg-detail-label">Concepts</span>
-                        <span className="kg-detail-value">{knowledgeGraphData?.client?.topConcepts?.length || 0}</span>
-                      </div>
-                      <div className="kg-detail-item">
-                        <span className="kg-detail-label">Connexions</span>
-                        <span className="kg-detail-value">{knowledgeGraphData?.links?.length || 0}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="kg-detail-card">
-                    <h4>Concepts</h4>
-                    <div className="kg-concepts-list">
-                      {knowledgeGraphData?.client?.topConcepts?.map((c: any, i: number) => (
-                        <span key={i} className="kg-concept-tag">{c}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-
-      {view === 'concepts' && (
-        <div className="data-layout">
-          <div className="card viz-card">
-            <div className="card-header">
-              <h3 className="card-title">Top Concepts</h3>
-              <span className="hint">💡 Cliquez sur une barre pour voir les clients</span>
-            </div>
-            <ResponsiveContainer width="100%" height={450}>
-              <BarChart data={concepts} layout="vertical" margin={{ left: 100, right: 20 }} onClick={handleConceptClick}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={true} vertical={false} />
-                <XAxis type="number" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={{ stroke: '#e2e8f0' }} />
-                <YAxis 
-                  dataKey="concept" 
-                  type="category" 
-                  tick={{ fontSize: 12, fill: '#334155', fontWeight: 500 }} 
-                  width={95} 
-                  axisLine={{ stroke: '#e2e8f0' }}
-                />
-                <Tooltip 
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.15)', padding: '12px' }}
-                  formatter={(value) => [`${value} occurrences`, 'Fréquence']}
-                  cursor={{ fill: 'rgba(99, 102, 241, 0.1)' }}
-                />
-                <Bar dataKey="count" radius={[0, 6, 6, 0]} cursor="pointer">
-                  {concepts.map((entry, index) => (
-                    <Cell 
-                      key={entry.concept} 
-                      fill={selectedConcept === entry.concept ? '#1e293b' : COLORS[index % COLORS.length]}
-                      style={{ transition: 'all 0.2s' }}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {selectedConcept && (
-            <div className="detail-panel">
-              <div className="detail-header">
-                <h3>Concept: {selectedConcept}</h3>
-                <button className="close-btn" onClick={() => setSelectedConcept(null)}>{Icons.close}</button>
-              </div>
-              <div className="detail-content">
-                <div className="detail-stat">
-                  <span className="stat-number">{conceptClients.length}+</span>
-                  <span className="stat-text">clients avec ce concept</span>
-                </div>
-                <h5>Clients associés</h5>
-                <div className="detail-client-list">
-                  {conceptClients.map(client => (
-                    <div key={client.id} className="detail-client-item">
-                      <div className="client-mini-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
-                        {client.id.slice(-2)}
-                      </div>
-                      <div className="client-mini-info">
-                        <span className="client-mini-id">{client.id}</span>
-                        <span className="client-mini-segment">Seg {client.segment}</span>
-                      </div>
-                      <span className="client-mini-conf">{(client.confidence * 100).toFixed(0)}%</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {view === 'heatmap' && heatmap.length > 0 && (
-        <div className="data-layout">
-          <div className="card viz-card">
-            <div className="card-header">
-              <h3 className="card-title">Segments × Concepts</h3>
-              <span className="hint">💡 Cliquez sur une cellule pour voir les détails</span>
-            </div>
-            <div className="heatmap-container">
-              {(() => {
-                // Extract concept keys from heatmap data (all keys except 'segment')
-                const heatmapConcepts = heatmap.length > 0 
-                  ? Object.keys(heatmap[0]).filter(k => k !== 'segment')
-                  : []
-                return (
-                  <table className="heatmap-table">
-                    <thead>
-                      <tr>
-                        <th className="heatmap-corner"></th>
-                        {heatmapConcepts.map(c => (
-                          <th key={c} className="heatmap-header">{c}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {heatmap.map((row: any, i) => (
-                        <tr key={row.segment}>
-                          <td className="heatmap-label">
-                            <span className="segment-dot" style={{ backgroundColor: COLORS[i] }}></span>
-                            {row.segment}
-                          </td>
-                          {heatmapConcepts.map(c => {
-                            const val = row[c] || 0
-                            const max = Math.max(...heatmap.map((r: any) => r[c] || 0))
-                            const intensity = max > 0 ? val / max : 0
-                            const isSelected = selectedHeatmapCell?.segment === row.segment && selectedHeatmapCell?.concept === c
-                            return (
-                              <td 
-                                key={c} 
-                                className={`heatmap-cell ${val > 0 ? 'clickable' : ''} ${isSelected ? 'selected' : ''}`}
-                                style={{ 
-                                  backgroundColor: `rgba(99, 102, 241, ${intensity * 0.85})`,
-                                  color: intensity > 0.5 ? '#fff' : '#334155'
-                                }}
-                                onClick={() => handleHeatmapClick(row.segment, c, val)}
-                              >
-                                {val > 0 && val}
-                              </td>
-                            )
-                          })}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )
-              })()}
-            </div>
-            <div className="heatmap-legend">
-              <span>Faible</span>
-              <div className="legend-gradient"></div>
-              <span>Élevé</span>
-            </div>
-          </div>
-
-          {selectedHeatmapCell && (
-            <div className="detail-panel">
-              <div className="detail-header">
-                <h3>{selectedHeatmapCell.segment} × {selectedHeatmapCell.concept}</h3>
-                <button className="close-btn" onClick={() => setSelectedHeatmapCell(null)}>{Icons.close}</button>
-              </div>
-              <div className="detail-content">
-                <div className="detail-stat">
-                  <span className="stat-number">{selectedHeatmapCell.value}</span>
-                  <span className="stat-text">correspondances</span>
-                </div>
-                <h5>Clients dans cette intersection</h5>
-                <div className="detail-client-list">
-                  {heatmapClients.map(client => (
-                    <div key={client.id} className="detail-client-item">
-                      <div className="client-mini-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment] }}>
-                        {client.id.slice(-2)}
-                      </div>
-                      <div className="client-mini-info">
-                        <span className="client-mini-id">{client.id}</span>
-                        <span className="client-mini-concepts">{client.topConcepts?.slice(0, 2).join(', ')}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="stats-row">
-        <div className="stat-card">
-          <div className="stat-icon">{Icons.user}</div>
-          <div className="stat-content">
-            <div className="stat-value">{data?.metrics?.clients || clients.length}</div>
-            <div className="stat-label">Clients</div>
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon">{Icons.segments}</div>
-          <div className="stat-content">
-            <div className="stat-value">{data?.metrics?.segments || 0}</div>
-            <div className="stat-label">Segments</div>
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon">{Icons.tag}</div>
-          <div className="stat-content">
-            <div className="stat-value">{concepts.length}</div>
-            <div className="stat-label">Concepts</div>
-          </div>
-        </div>
-        <div className="stat-card">
-          <div className="stat-icon">{Icons.chart}</div>
-          <div className="stat-content">
-            <div className="stat-value">{scatter3d.length}</div>
-            <div className="stat-label">Points 3D</div>
-          </div>
-        </div>
-        {data?.processingInfo?.pipelineTimings?.total && (
-          <div className="stat-card processing-timer">
-            <div className="stat-icon">⏱️</div>
-            <div className="stat-content">
-              <div className="stat-value">{data.processingInfo.pipelineTimings.total}s</div>
-              <div className="stat-label">Temps de traitement</div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Processing Details */}
-      {data?.processingInfo?.pipelineTimings && Object.keys(data.processingInfo.pipelineTimings).length > 1 && (
-        <div className="processing-details">
-          <h4>⏱️ Détails du traitement</h4>
-          <div className="timing-grid">
-            {Object.entries(data.processingInfo.pipelineTimings)
-              .filter(([key]) => key !== 'total')
-              .map(([stage, time]) => (
-                <div key={stage} className="timing-item">
-                  <span className="timing-stage">{stage}</span>
-                  <div className="timing-bar-container">
-                    <div 
-                      className="timing-bar" 
-                      style={{ 
-                        width: `${Math.min(100, (Number(time) / Number(data.processingInfo?.pipelineTimings?.total || 1)) * 100)}%` 
-                      }}
-                    />
-                  </div>
-                  <span className="timing-value">{Number(time).toFixed(1)}s</span>
-                </div>
-              ))}
-          </div>
-          {data.processingInfo.timestamp && (
-            <div className="processing-timestamp">
-              Dernière mise à jour: {new Date(data.processingInfo.timestamp).toLocaleString('fr-FR')}
-            </div>
-          )}
-        </div>
-      )}
+      {renderView()}
     </div>
   )
 }
 
-// Main App
-export default function App() {
-  const [activePage, setActivePage] = useState('upload')
-  const [data, setData] = useState<DashboardData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+// Individual View Components for DataPage
 
-  // Fetch data from API on mount
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      console.log('Fetching from:', `${API_CONFIG.BASE_URL}/api/data`)
-      
-      // Add timeout to fetch
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
-      
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`, {
-        signal: controller.signal
-      })
-      clearTimeout(timeoutId)
-      
-      console.log('Response status:', response.status)
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch data: ${response.statusText}`)
-      }
-      const jsonData = await response.json()
-      console.log('Data received:', Object.keys(jsonData))
-      setData(jsonData)
-      setError(null)
-    } catch (err: any) {
-      console.error('Error fetching data:', err)
-      setError(err.name === 'AbortError' ? 'Connection timeout - server not responding' : err.message)
-      // Try to load local fallback data if API fails
-      try {
-        const localData = await import('./data.json')
-        setData(localData.default)
-        setError('Using local data (API unavailable)')
-      } catch {
-        setError('Failed to load data from API and no local fallback available')
-      }
-    } finally {
-      setLoading(false)
-    }
-  }
+const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint, highlightSegment, setHighlightSegment, zoomLevel, setZoomLevel }: any) => (
+  <div className="data-view-layout">
+    <div className="card main-chart-card">
+      <div className="chart-controls">
+        <div className="control-group">
+          <label>Segment à Surligner</label>
+          <select value={highlightSegment ?? 'all'} onChange={e => setHighlightSegment(e.target.value === 'all' ? null : Number(e.target.value))}>
+            <option value="all">Aucun</option>
+            {[...new Set(scatter3d.map((p:any) => p.segment))].map((s: Key | null | undefined) => <option key={s} value={s as any}>Segment {s}</option>)}
+          </select>
+        </div>
+        <div className="control-group">
+          <label>Zoom</label>
+          <input 
+            type="range" 
+            min="0.5" 
+            max="2.5" 
+            step="0.1" 
+            value={zoomLevel} 
+            onChange={e => setZoomLevel(parseFloat(e.target.value))}
+          />
+        </div>
+      </div>
+      <div className="chart-container">
+        <Plot
+          data={[{
+            x: scatter3d.map((p: any) => p.x),
+            y: scatter3d.map((p: any) => p.y),
+            z: scatter3d.map((p: any) => p.z),
+            text: scatter3d.map((p: any) => p.id),
+            mode: 'markers',
+            type: 'scatter3d',
+            marker: {
+              size: 5,
+              color: scatter3d.map((p: any) => SEGMENT_COLORS[p.segment as keyof typeof SEGMENT_COLORS]),
+              opacity: scatter3d.map((p: any) => highlightSegment === null || p.segment === highlightSegment ? 0.8 : 0.1),
+            },
+          }]}
+          layout={{
+            autosize: true,
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            scene: {
+              camera: {
+                eye: { x: 1.25 * zoomLevel, y: 1.25 * zoomLevel, z: 1.25 * zoomLevel }
+              }
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)'
+          }}
+          config={{ responsive: true, displayModeBar: false }}
+          onClick={handle3DClick}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
+    </div>
+    {selectedPoint && (
+      <div className="card info-sidebar">
+        <div className="sidebar-header">
+          <h3>Client Sélectionné</h3>
+          <button className="close-btn" onClick={() => setSelectedPoint(null)}>{Icons.close}</button>
+        </div>
+        <ClientDetailCard client={selectedPoint} />
+      </div>
+    )}
+  </div>
+)
+
+const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, setSelectedKGClient, kgDepth, setKgDepth }: any) => (
+  <div className="data-view-layout">
+    <div className="card main-chart-card">
+      <div className="chart-controls">
+        <div className="control-group">
+          <label>Client Central</label>
+          <select value={selectedKGClient ?? ''} onChange={e => setSelectedKGClient(e.target.value)}>
+            {clients.slice(0, 100).map((c:any) => <option key={c.id} value={c.id}>{c.id}</option>)}
+          </select>
+        </div>
+        <div className="control-group">
+          <label>Profondeur</label>
+          <select value={kgDepth} onChange={e => setKgDepth(Number(e.target.value))}>
+            <option value={1}>1 (Concepts)</option>
+            <option value={2}>2 (Clients liés)</option>
+          </select>
+        </div>
+      </div>
+      <div className="chart-container">
+        {knowledgeGraphData && (
+          <Graph
+            graph={knowledgeGraphData}
+            options={{
+              height: '600px',
+              nodes: {
+                shape: 'dot',
+                font: {
+                  color: '#fff',
+                  strokeWidth: 3,
+                  strokeColor: '#222'
+                }
+              },
+              edges: {
+                color: '#e2e8f0',
+                arrows: {
+                  to: { enabled: false }
+                }
+              },
+              physics: {
+                enabled: true,
+                barnesHut: {
+                  gravitationalConstant: -3000,
+                  springConstant: 0.02,
+                  springLength: 150
+                }
+              }
+            }}
+          />
+        )}
+      </div>
+    </div>
+    {knowledgeGraphData?.client && (
+      <div className="card info-sidebar">
+        <div className="sidebar-header">
+          <h3>Client Central</h3>
+        </div>
+        <ClientDetailCard client={knowledgeGraphData.client} />
+      </div>
+    )}
+  </div>
+)
+
+const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelectedConcept, conceptClients }: any) => (
+  <div className="data-view-layout">
+    <div className="card main-chart-card">
+      <h3 className="card-title">Top 20 Concepts Clients</h3>
+      <div className="chart-container">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart layout="vertical" data={concepts} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <XAxis type="number" hide />
+            <YAxis type="category" dataKey="concept" width={150} tick={{ fontSize: 12 }} />
+            <Tooltip cursor={{ fill: 'var(--bg-tertiary)' }} contentStyle={{ borderRadius: 'var(--radius-md)' }} />
+            <Bar dataKey="count" fill="var(--accent-primary)" barSize={20} onClick={handleConceptClick}>
+              {concepts.map((entry: any, index: number) => (
+                <Cell key={`cell-${index}`} fill={entry.concept === selectedConcept ? 'var(--accent-primary-dark)' : 'var(--accent-primary)'} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+    {selectedConcept && (
+      <div className="card info-sidebar">
+        <div className="sidebar-header">
+          <h3>Clients pour "{selectedConcept}"</h3>
+          <button className="close-btn" onClick={() => setSelectedConcept(null)}>{Icons.close}</button>
+        </div>
+        <div className="sidebar-client-list">
+          {conceptClients.map((c: any) => <ClientChip key={c.id} client={c} />)}
+        </div>
+      </div>
+    )}
+  </div>
+)
+
+const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSelectedHeatmapCell, heatmapClients }: any) => (
+  <div className="data-view-layout">
+    <div className="card main-chart-card" style={{ overflowX: 'auto' }}>
+      <h3 className="card-title">Heatmap Segment vs. Concept</h3>
+      <div className="chart-container" style={{ minWidth: '800px' }}>
+        <ResponsiveContainer width="100%" height={600}>
+          <HeatMapGrid
+            data={heatmap.data}
+            xLabels={heatmap.xLabels}
+            yLabels={heatmap.yLabels}
+            cellRender={(x: number, y: number, value: number) => (
+              <div title={`Count: ${value}`} style={{ background: `rgba(99, 102, 241, ${value / heatmap.max})`, width: '100%', height: '100%' }} />
+            )}
+            xLabelWidth={100}
+            yLabelWidth={150}
+            cellStyle={(_x: any, _y: any, value: any) => ({
+              background: `rgba(99, 102, 241, ${value / heatmap.max})`,
+              fontSize: "11px",
+              color: "#444"
+            })}
+            cellHeight="2rem"
+            onClick={(x: number, y: number) => handleHeatmapClick(heatmap.yLabels[y], heatmap.xLabels[x], heatmap.data[y][x])}
+          />
+        </ResponsiveContainer>
+      </div>
+    </div>
+    {selectedHeatmapCell && (
+      <div className="card info-sidebar">
+        <div className="sidebar-header">
+          <h3>Clients à l'intersection</h3>
+          <button className="close-btn" onClick={() => setSelectedHeatmapCell(null)}>{Icons.close}</button>
+        </div>
+        <div className="sidebar-info">
+          <p><strong>Segment:</strong> {selectedHeatmapCell.segment}</p>
+          <p><strong>Concept:</strong> {selectedHeatmapCell.concept}</p>
+          <p><strong>Nombre:</strong> {selectedHeatmapCell.value}</p>
+        </div>
+        <div className="sidebar-client-list">
+          {heatmapClients.map((c: any) => <ClientChip key={c.id} client={c} />)}
+        </div>
+      </div>
+    )}
+  </div>
+)
+
+const ClientDetailCard = ({ client }: { client: any }) => (
+  <div className="client-detail-content">
+    <div className="client-summary">
+      <div className="client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
+        {client.id.slice(-2)}
+      </div>
+      <div className="client-info">
+        <div className="client-id">{client.id}</div>
+        <div className="client-segment">Segment {client.segment}</div>
+      </div>
+    </div>
+    <div className="detail-item">
+      <span className="detail-label">Confiance</span>
+      <span className="detail-value">{((client.confidence || 0) * 100).toFixed(0)}%</span>
+    </div>
+    <div className="client-concepts">
+      <h4>Top Concepts</h4>
+      {client.topConcepts?.map((c: string, i: number) => (
+        <span key={i} className="concept-badge" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] + '20', color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>{c}</span>
+      ))}
+    </div>
+    {client.fullText && (
+      <div className="client-note">
+        <h4>Note Originale</h4>
+        <p>{client.fullText}</p>
+      </div>
+    )}
+  </div>
+)
+
+const ClientChip = ({ client }: { client: any }) => (
+  <div className="client-chip">
+    <div className="client-chip-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
+      {client.id.slice(-2)}
+    </div>
+    <span>{client.id}</span>
+  </div>
+)
+// ... existing code ...
+// Main App Component
+function App() {
+  const [activePage, setActivePage] = useState('clients')
+  const [data, setData] = useState<DashboardData | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        // Using a relative path for API requests, assuming proxy is set up in vite.config.js
+        const response = await fetch('/api/data')
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const result = await response.json()
+        
+        // Data validation and cleaning
+        if (!result.clients || !Array.isArray(result.clients)) {
+          throw new Error("Invalid or missing 'clients' data")
+        }
+        
+        const cleanedClients = result.clients.map((c: any) => ({
+          ...c,
+          confidence: typeof c.confidence === 'number' ? c.confidence : 0,
+          segment: typeof c.segment === 'number' ? c.segment : 0,
+        }))
+
+        // Remap radar data to ensure 'subject' key exists
+        const cleanedRadar = result.radar?.map((item: any) => ({
+          subject: item.subject || item.dimension, // Use dimension as fallback
+          ...item
+        })) || []
+
+        setData({ ...result, clients: cleanedClients, radar: cleanedRadar })
+        setError(null)
+      } catch (e: any) {
+        console.error("Failed to fetch or process dashboard data:", e)
+        setError(`Failed to load data: ${e.message}. Is the backend server running?`)
+        
+        // Fallback to local data on API error
+        try {
+          const localData = await import('./data.json')
+          const localRadar = localData.default.radar.map((item: any) => ({
+            subject: item.subject || item.dimension,
+            ...item
+          }))
+          // Make sure to cast to DashboardData to avoid type errors
+          setData({...localData.default, radar: localRadar } as unknown as DashboardData)
+          setError("API failed. Displaying local fallback data.")
+        } catch (localErr) {
+          console.error("Failed to load local fallback data:", localErr)
+          setError("API failed and local fallback data is also unavailable.")
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
     fetchData()
   }, [])
 
-  const handleUploadSuccess = (result) => {
-    // Refresh data after successful upload and processing
-    if (result.status === 'completed') {
-      fetchData()
+  const renderPage = () => {
+    if (loading) {
+      return <div className="loading-spinner"><div></div><div></div><div></div></div>
     }
-  }
+    // Show error banner but still try to render with potentially partial/fallback data
+    if (error && !data) {
+      return <div className="error-banner">{error}</div>
+    }
+    
+    let pageToRender;
+    switch (activePage) {
+      case 'actions':
+        pageToRender = <ActionsPage data={data} />;
+        break;
+      case 'segments':
+        pageToRender = <SegmentsPage data={data} />;
+        break;
+      case 'clients':
+        pageToRender = <ClientsPage data={data} />;
+        break;
+      case 'data':
+        pageToRender = <DataPage data={data} />;
+        break;
+      case 'upload':
+        pageToRender = (
+          <div className="page">
+            <div className="page-header">
+              <div><h1>Upload New Data</h1><p>Upload a CSV file to process and analyze</p></div>
+            </div>
+            <FileUpload onUploadSuccess={() => fetchData()} />
+          </div>
+        );
+        break;
+      default:
+        pageToRender = <ClientsPage data={data} />;
+    }
 
-  if (loading) {
-    return (
-      <div className="app" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div style={{ textAlign: 'center' }}>
-          <h2>Loading dashboard...</h2>
-          <p>Connecting to {API_CONFIG.BASE_URL}</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (error && !data) {
-    return (
-      <div className="app" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div style={{ textAlign: 'center', color: '#f43f5e' }}>
-          <h2>Error loading data</h2>
-          <p>{error}</p>
-          <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#666' }}>
-            Make sure the server is running at {API_CONFIG.BASE_URL}
-          </p>
-        </div>
-      </div>
-    )
+    return pageToRender;
   }
 
   return (
     <div className="app">
-      {error && (
-        <div style={{ 
-          background: '#fef3c7', 
-          color: '#92400e', 
-          padding: '0.75rem', 
-          textAlign: 'center',
-          borderBottom: '1px solid #fbbf24'
-        }}>
-          {error}
-        </div>
-      )}
       <Navigation activePage={activePage} setActivePage={setActivePage} data={data} />
-      <main className="main">
-        {activePage === 'upload' && (
-          <div className="page">
-            <div className="page-header">
-              <div>
-                <h1>Upload New Data</h1>
-                <p>Upload a CSV file to process and analyze</p>
-              </div>
-            </div>
-            <FileUpload onUploadSuccess={handleUploadSuccess} />
-          </div>
-        )}
-        {activePage === 'actions' && <ActionsPage data={data} />}
-        {activePage === 'segments' && <SegmentsPage data={data} />}
-        {activePage === 'clients' && <ClientsPage data={data} />}
-        {activePage === 'data' && <DataPage data={data} />}
+      {error && <div className="error-banner">{error}</div>}
+      <main className="main-content">
+        {renderPage()}
       </main>
     </div>
   )
 }
+
+export default App

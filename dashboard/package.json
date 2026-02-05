@@ -53,6 +53,8 @@
     "react-day-picker": "8.10.1",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
+    "react-graph-vis": "^1.0.7",
+    "react-heatmap-grid": "^0.9.1",
     "react-hook-form": "7.55.0",
     "react-plotly.js": "^2.6.0",
     "react-popper": "2.3.0",
