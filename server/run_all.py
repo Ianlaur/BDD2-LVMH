@@ -200,10 +200,26 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
     print("\n" + "=" * 60)
     print("PIPELINE COMPLETE")
     print("=" * 60)
-    print(f"\nTotal time: {total_time:.1f}s")
-    print("\nStage timings:")
+    
+    # Formatted total time
+    minutes, seconds = divmod(total_time, 60)
+    if minutes >= 1:
+        print(f"\n⏱️  Total time: {int(minutes)}m {seconds:.1f}s ({total_time:.2f}s)")
+    else:
+        print(f"\n⏱️  Total time: {total_time:.2f}s")
+    
+    # Stage timing breakdown with percentage bars
+    print("\n📊 Stage timing breakdown:")
+    print(f"  {'Stage':<22} {'Time':>8}  {'%':>5}  Bar")
+    print(f"  {'─' * 22} {'─' * 8}  {'─' * 5}  {'─' * 20}")
     for stage, duration in timings.items():
-        print(f"  {stage}: {duration:.1f}s")
+        pct = (duration / total_time * 100) if total_time > 0 else 0
+        bar_len = int(pct / 5)  # 1 char per 5%
+        bar = "█" * bar_len + "░" * (20 - bar_len)
+        print(f"  {stage:<22} {duration:>7.2f}s  {pct:>4.1f}%  {bar}")
+    
+    print(f"  {'─' * 22} {'─' * 8}  {'─' * 5}")
+    print(f"  {'TOTAL':<22} {total_time:>7.2f}s  100.0%")
     
     # List outputs
     print("\nOutputs generated:")
