@@ -32,7 +32,8 @@ from server.shared.config import (
     MAX_ALIAS_MATCHES_PER_NOTE
 )
 from server.extract.detect_concepts import (
-    load_lexicon, build_alias_to_concept_map, find_matches_in_text
+    load_lexicon, build_alias_to_concept_map, find_matches_in_text,
+    build_aho_automaton
 )
 
 
@@ -87,7 +88,9 @@ class MLConceptDetector:
         self,
         notes_df: pd.DataFrame,
         alias_map: Dict[str, str],
-        use_ml_enhancement: bool = True
+        use_ml_enhancement: bool = True,
+        automaton=None,
+        patterns=None
     ) -> pd.DataFrame:
         """
         Detect concepts in notes using rule-based + optional ML enhancement.
@@ -110,7 +113,10 @@ class MLConceptDetector:
             text = row['text']
             
             # 1. Rule-based matching (fast, high precision)
-            rule_matches = find_matches_in_text(text, alias_map, MAX_ALIAS_MATCHES_PER_NOTE)
+            rule_matches = find_matches_in_text(
+                text, alias_map, MAX_ALIAS_MATCHES_PER_NOTE,
+                automaton=automaton, patterns=patterns
+            )
             
             # Add note_id to each match
             for match in rule_matches:
@@ -231,6 +237,10 @@ def detect_concepts_with_ml(model_name: Optional[str] = None, use_ml: bool = Tru
     lexicon_df = load_lexicon()
     alias_map = build_alias_to_concept_map(lexicon_df)
     logger.info(f"Loaded {len(lexicon_df)} concepts with {len(alias_map)} aliases")
+
+    # Build Aho-Corasick automaton for O(N+M) matching
+    automaton, patterns = build_aho_automaton(alias_map)
+    logger.info(f"Built Aho-Corasick automaton with {len(patterns)} patterns")
     
     # Load model if requested
     model_path = None
@@ -254,7 +264,10 @@ def detect_concepts_with_ml(model_name: Optional[str] = None, use_ml: bool = Tru
     detector = MLConceptDetector(model_path)
     
     # Detect concepts
-    matches_df = detector.detect_concepts(notes_df, alias_map, use_ml_enhancement=use_ml)
+    matches_df = detector.detect_concepts(
+        notes_df, alias_map, use_ml_enhancement=use_ml,
+        automaton=automaton, patterns=patterns
+    )
     
     # Save results
     output_path = DATA_OUTPUTS / "note_concepts.csv"

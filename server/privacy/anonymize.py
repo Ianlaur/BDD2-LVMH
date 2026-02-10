@@ -16,6 +16,17 @@ Detects and redacts:
 - Social security numbers
 - IP addresses
 - Dates of birth
+- GDPR Article 9 special-category data:
+    - Health / medical mentions
+    - Sexual orientation
+    - Religious / philosophical beliefs
+    - Political opinions
+    - Ethnic / racial origin
+    - Trade-union membership
+    - Criminal / judicial history
+    - Financial difficulties (over-indebtedness, debt collection)
+    - Conflictual family situations (divorce, custody disputes)
+    - Physical appearance comments
 
 Usage:
     from server.privacy import anonymize_text, AnonymizationConfig
@@ -35,15 +46,103 @@ Usage:
     clean_text = anonymize_text(text, config)
 """
 import re
-from typing import Dict, List, Tuple, Optional
-from dataclasses import dataclass
+from typing import Dict, List, Tuple, Optional, Set
+from dataclasses import dataclass, field
+
+
+# ---------------------------------------------------------------------------
+# GDPR Article 9 — sensitive-category keyword dictionaries (FR + EN)
+# Each key maps to a list of regex patterns (case-insensitive) that identify
+# mentions of special-category personal data.
+# ---------------------------------------------------------------------------
+ARTICLE9_PATTERNS: Dict[str, List[str]] = {
+    # --- Health / Medical -----------------------------------------------
+    "HEALTH_DATA": [
+        # diseases, conditions, symptoms
+        r"\b(?:diab[eè]t\w*|cancer\w*|tumeur\w*|tumor\w*|asthm\w*|épileps\w*|epileps\w*|VIH|HIV|sida|aids)\b",
+        r"\b(?:maladie\w*|disease\w*|illness\w*|patholog\w*|symptôm\w*|symptom\w*|diagnostic\w*|diagnosis)\b",
+        r"\b(?:allergi\w*|allergy|intol[eé]ran\w*|handicap\w*|disabilit\w*|infirmit\w*)\b",
+        r"\b(?:m[eé]dicament\w*|medication\w*|medicine\w*|traitement\s+médical\w*|ordonnance\w*|prescription\w*)\b",
+        r"\b(?:hospitalis\w*|chirurgi\w*|surgery|opéra[tion]+\s+(?:médical|chirurgical)\w*)\b",
+        r"\b(?:dépression\w*|depression\w*|anxi[eé]t\w*|anxiety|psychiatr\w*|psycholog\w*|th[eé]rapi\w*)\b",
+        r"\b(?:grossesse\w*|pregnancy|enceinte\w*|pregnant|fausse\s+couche|miscarriage)\b",
+        r"\b(?:troubles?\s+(?:alimentaire|eating)|anorexi\w*|boulimi\w*|bulimi\w*)\b",
+    ],
+    # --- Sexual orientation / sex life -----------------------------------
+    "SEXUAL_ORIENTATION": [
+        r"\b(?:homosexu|hétérosexu|heterosexu|bisexu|pansexu|asexu)\w*\b",
+        r"\b(?:orientation\s+sexuelle|sexual\s+orientation|identit[eé]\s+(?:de\s+genre|sexuelle))\b",
+        r"\b(?:LGBT|LGBTQ|queer|transgenre|transgender|non[- ]binaire|non[- ]binary)\b",
+        r"\b(?:gay|lesbien\w*|lesbian)\b",
+        r"\b(?:vie\s+sexuelle|sex\s+life|partner\s+sexuel)\b",
+    ],
+    # --- Religious / philosophical beliefs --------------------------------
+    "RELIGIOUS_BELIEF": [
+        r"\b(?:musulman\w*|muslim\w*|islam\w*|chrétien\w*|christian\w*|catholi\w*|protestant\w*|évangéli\w*|evangelical\w*)\b",
+        r"\b(?:juif|juive|jewish|judaï\w*|bouddhist\w*|buddhist\w*|hindou\w*|hindu\w*|sikh\w*|athé\w*|atheist\w*|agnosti\w*)\b",
+        r"\b(?:religion\w*|religieu\w*|religious|croyance\w*|belief\w*|culte\w*|worship\w*|pratiquant\w*|practicing)\b",
+        r"\b(?:ramadan|shabbat|carême|lent|halal|casher|kosher|prière\w*|prayer\w*|mosquée\w*|mosque\w*|synagogue\w*|temple\w*|église\w*|church\w*)\b",
+    ],
+    # --- Political opinions -----------------------------------------------
+    "POLITICAL_OPINION": [
+        r"\b(?:opinion\s+politique|political\s+opinion|convictions?\s+politiques?)\b",
+        r"\b(?:parti\s+politique|political\s+party|militant\w*|activism\w*|activiste\w*|activist\w*)\b",
+        r"\b(?:extrême\s+(?:droite|gauche)|far[- ](?:right|left)|syndical\w*|trade\s+union)\b",
+        r"\b(?:adhérent\w*|member\s+of\s+party|vote\s+pour|voted\s+for|sympathisant\w*|supporter\w*)\b",
+        r"\b(?:grève\w*|strike\w*|manifesta[tion]+\s+politique|political\s+protest)\b",
+    ],
+    # --- Ethnic / racial origin -------------------------------------------
+    "ETHNIC_ORIGIN": [
+        r"\b(?:origine\s+(?:ethnique|raciale)|ethnic\s+(?:origin|background)|racial\s+origin)\b",
+        r"\b(?:couleur\s+de\s+peau|skin\s+colo[u]?r)\b",
+    ],
+    # --- Trade-union membership -------------------------------------------
+    "TRADE_UNION": [
+        r"\b(?:syndicat\w*|trade\s+union|union\s+member|adhésion\s+syndicale|syndiqué\w*)\b",
+        r"\b(?:CGT|CFDT|UNSA|comité\s+d'entreprise|works\s+council)\b",
+    ],
+    # --- Criminal / judicial history -------------------------------------
+    "CRIMINAL_RECORD": [
+        r"\b(?:casier\s+judiciaire|criminal\s+record|condamna[tion]+\w*)\b",
+        r"\b(?:infraction\w*|offense\w*|délit\w*|misdemeanor\w*|felony|crime\b|criminel\w*)\b",
+        r"\b(?:garde\s+à\s+vue|détention\w*|detention\w*|prison\w*|emprisonnem\w*|incarcér\w*)\b",
+        r"\b(?:procès|jugement\w*|judgment\w*|court\s+(?:case|hearing))\b",
+    ],
+    # --- Financial difficulties ------------------------------------------
+    "FINANCIAL_DIFFICULTY": [
+        r"\b(?:surendett\w*|over[- ]indebt\w*|dette[s]?|debt[s]?\b|insolvab\w*|insolven\w*)\b",
+        r"\b(?:faillite\w*|bankruptcy|redressement\s+judiciaire|liquidation\s+judiciaire)\b",
+        r"\b(?:interdit\s+bancaire|banking\s+ban|fichier?\s+(?:Banque\s+de\s+France|FICP))\b",
+        r"\b(?:saisie\w*|seizure\w*|huissier\w*|bailiff\w*|recouvrement\s+de\s+(?:dette|créance))\b",
+    ],
+    # --- Conflictual family situations ------------------------------------
+    "FAMILY_CONFLICT": [
+        r"\b(?:divorce\w*|séparation\s+(?:judiciaire|conjugale)|legal\s+separation)\b",
+        r"\b(?:garde\s+(?:des?\s+enfants?|alternée|exclusive)|child\s+custody)\b",
+        r"\b(?:pension\s+alimentaire|alimony|child\s+support)\b",
+        r"\b(?:violence\s+(?:conjugale|domestique|familiale)|domestic\s+(?:violence|abuse))\b",
+        r"\b(?:ordonnance\s+de\s+protection|restraining\s+order|harcèlement\s+(?:conjugal|familial))\b",
+    ],
+    # --- Physical appearance comments ------------------------------------
+    "PHYSICAL_APPEARANCE": [
+        r"\b(?:physique\s+(?:disgracieu\w*|ingrat\w*|repoussant\w*)|ugly|unattractive)\b",
+        r"\b(?:ob[eè]se\w*|obesity|surpoids\w*|overweight|anorexique\w*|maigre\s+(?:excessif|extreme))\b",
+        r"\b(?:cicatrice\w*|scarr(?:ed|ing)\b|difformit\w*|deformit\w*|infirmit[eé]\s+(?:visible|physique))\b",
+        r"\b(?:commentaire\s+sur\s+(?:le\s+)?physique|body\s+shaming)\b",
+    ],
+}
+
+# Pre-compile all Article 9 patterns for performance
+_COMPILED_ARTICLE9: Dict[str, List[re.Pattern]] = {}
+for _cat, _patterns in ARTICLE9_PATTERNS.items():
+    _COMPILED_ARTICLE9[_cat] = [re.compile(p, re.IGNORECASE) for p in _patterns]
 
 
 @dataclass
 class AnonymizationConfig:
     """Configuration for anonymization behavior."""
     
-    # What to anonymize
+    # What to anonymize — PII
     redact_names: bool = True
     redact_emails: bool = True
     redact_phones: bool = True
@@ -53,6 +152,10 @@ class AnonymizationConfig:
     redact_id_numbers: bool = True
     redact_dates_of_birth: bool = True
     redact_ip_addresses: bool = True
+    
+    # GDPR Article 9 — special-category data
+    redact_article9: bool = True  # Flag/redact sensitive-category mentions
+    article9_mode: str = "flag"   # "flag" = [SENSITIVE:TYPE], "redact" = remove, "log" = detect only
     
     # How to anonymize
     placeholder_style: str = "[TYPE]"  # "[TYPE]", "[***]", "" (remove), or custom
@@ -238,7 +341,80 @@ class TextAnonymizer:
             text = name_pattern.sub(self._get_placeholder("PERSON"), text)
         
         return text
-    
+
+    # ------------------------------------------------------------------
+    # GDPR Article 9 — special-category sensitive data
+    # ------------------------------------------------------------------
+
+    # Context words that neutralise a match (product / geographic context)
+    _ART9_FALSE_POS = re.compile(
+        r"\b(?:tissu|motif|bijou|style|imprimé|fabric|print|pattern|"
+        r"Amérique|America|hémisphère|hemisphere|du\s+Sud|d'Asie|"
+        r"tribunal\s+(?:supérieur|administratif|de\s+commerce)|"
+        r"juge[za]?\s+tribunal|"
+        r"convictions?\s+(?:éthique|morale|religieu|personnelle|ethical|moral|personal))\b",
+        re.IGNORECASE,
+    )
+
+    def detect_article9(self, text: str) -> List[Dict]:
+        """
+        Detect GDPR Article 9 sensitive-category data in text.
+
+        Returns a list of dicts:
+          [{"category": "HEALTH_DATA", "matched": "allergie", "span": (12, 20)}, ...]
+        """
+        findings: List[Dict] = []
+        for category, patterns in _COMPILED_ARTICLE9.items():
+            for pat in patterns:
+                for m in pat.finditer(text):
+                    # Grab surrounding context (40 chars each side) for FP check
+                    ctx_start = max(0, m.start() - 40)
+                    ctx_end = min(len(text), m.end() + 40)
+                    context = text[ctx_start:ctx_end]
+                    if self._ART9_FALSE_POS.search(context):
+                        continue  # skip false positive
+                    findings.append({
+                        "category": category,
+                        "matched": m.group(),
+                        "span": m.span(),
+                    })
+        return findings
+
+    def _anonymize_article9(self, text: str) -> str:
+        """Apply Article 9 handling based on config.article9_mode."""
+        if not self.config.redact_article9:
+            return text
+
+        findings = self.detect_article9(text)
+        if not findings:
+            return text
+
+        mode = self.config.article9_mode
+
+        if mode == "log":
+            # Detection only — no text modification
+            return text
+
+        # Sort by position descending so replacements don't shift offsets
+        findings.sort(key=lambda f: f["span"][0], reverse=True)
+
+        # De-duplicate overlapping spans
+        seen_spans: set = set()
+        for f in findings:
+            span = f["span"]
+            if any(span[0] < e and span[1] > s for (s, e) in seen_spans):
+                continue
+            seen_spans.add(span)
+
+            if mode == "flag":
+                placeholder = f"[SENSITIVE:{f['category']}]"
+            else:  # "redact"
+                placeholder = self._get_placeholder(f"SENSITIVE_{f['category']}")
+
+            text = text[:span[0]] + placeholder + text[span[1]:]
+
+        return text
+
     def anonymize(self, text: str) -> str:
         """
         Main anonymization method. Applies all configured anonymizations.
@@ -263,6 +439,7 @@ class TextAnonymizer:
         text = self._anonymize_ip_addresses(text)
         text = self._anonymize_addresses(text)
         text = self._anonymize_names(text)
+        text = self._anonymize_article9(text)
         
         # Clean up excessive whitespace
         text = re.sub(r'\s+', ' ', text).strip()

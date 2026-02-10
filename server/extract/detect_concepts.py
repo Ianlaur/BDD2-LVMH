@@ -3,7 +3,7 @@ Concept detection stage: Match lexicon concepts/aliases in notes.
 
 This module:
 - Loads the lexicon
-- For each note, matches aliases case-insensitively
+- For each note, matches aliases using Aho-Corasick (single-pass, O(N+M))
 - Records evidence spans (start/end indices)
 - Limits overlapping matches
 
@@ -11,8 +11,10 @@ Output: data/outputs/note_concepts.csv
 """
 import sys
 import re
-from typing import List, Dict, Tuple, Set
+from typing import List, Dict, Tuple, Set, Optional
 import pandas as pd
+
+from ahocorasick_rs import AhoCorasick, MatchKind
 
 from server.shared.config import (
     DATA_PROCESSED, DATA_OUTPUTS, TAXONOMY_DIR,
@@ -54,68 +56,106 @@ def build_alias_to_concept_map(lexicon_df: pd.DataFrame) -> Dict[str, str]:
     return alias_map
 
 
+# ── Aho-Corasick automaton (built once, reused for all notes) ────
+
+_WORD_BOUNDARY = re.compile(r'\b', re.UNICODE)
+
+
+def build_aho_automaton(alias_map: Dict[str, str]):
+    """
+    Build an Aho-Corasick automaton from the alias map.
+
+    Returns (automaton, patterns_list) where patterns_list[i] is the alias
+    corresponding to pattern index i returned by the automaton.
+    """
+    # Filter out very short aliases, store in a list (index matters)
+    patterns = [alias for alias in alias_map if len(alias) >= 2]
+    # LeftmostLongest ensures longer matches take priority over shorter ones
+    automaton = AhoCorasick(patterns, matchkind=MatchKind.LeftmostLongest)
+    return automaton, patterns
+
+
 def find_matches_in_text(
     text: str,
     alias_map: Dict[str, str],
-    max_matches_per_alias: int = MAX_ALIAS_MATCHES_PER_NOTE
+    max_matches_per_alias: int = MAX_ALIAS_MATCHES_PER_NOTE,
+    automaton: Optional[AhoCorasick] = None,
+    patterns: Optional[List[str]] = None,
 ) -> List[Dict]:
     """
     Find all alias matches in text with evidence spans.
+
+    If *automaton* and *patterns* are provided they are used for O(N+M)
+    Aho-Corasick matching.  Otherwise falls back to per-alias regex
+    (kept for backward compatibility in tests).
+
     Returns list of match dicts with keys: concept_id, matched_alias, start, end
     """
     text_lower = text.lower()
+
+    # ── fast path: Aho-Corasick ──────────────────────────────────
+    if automaton is not None and patterns is not None:
+        matches = []
+        alias_counts: Dict[str, int] = {}
+
+        # Pre-compute word-boundary positions for the lowered text
+        boundary_set = {m.start() for m in _WORD_BOUNDARY.finditer(text_lower)}
+
+        for pat_idx, start, end in automaton.find_matches_as_indexes(text_lower):
+            # Word-boundary check: start and end must be at word boundaries
+            if start not in boundary_set or end not in boundary_set:
+                continue
+
+            alias = patterns[pat_idx]
+
+            if alias_counts.get(alias, 0) >= max_matches_per_alias:
+                continue
+
+            matches.append({
+                "concept_id": alias_map[alias],
+                "matched_alias": alias,
+                "start": start,
+                "end": end,
+            })
+            alias_counts[alias] = alias_counts.get(alias, 0) + 1
+
+        matches.sort(key=lambda m: m["start"])
+        return matches
+
+    # ── slow path: per-alias regex (backward compat / tests) ─────
     matches = []
-    
-    # Track match counts per alias
     alias_counts: Dict[str, int] = {}
-    
-    # Sort aliases by length (longer first) to prefer longer matches
     sorted_aliases = sorted(alias_map.keys(), key=len, reverse=True)
-    
-    # Track occupied spans to avoid overlapping matches
     occupied_spans: List[Tuple[int, int]] = []
-    
+
     for alias in sorted_aliases:
-        if len(alias) < 2:  # Skip very short aliases
+        if len(alias) < 2:
             continue
-        
-        # Build regex pattern for word boundary matching
-        # Escape special regex characters
-        pattern = re.escape(alias)
-        # Use word boundaries where possible
-        pattern = r'\b' + pattern + r'\b'
-        
+
+        pattern = r'\b' + re.escape(alias) + r'\b'
         try:
             for match in re.finditer(pattern, text_lower):
                 start, end = match.start(), match.end()
-                
-                # Check for overlap with existing matches
+
                 overlaps = False
                 for occ_start, occ_end in occupied_spans:
                     if not (end <= occ_start or start >= occ_end):
                         overlaps = True
                         break
-                
                 if overlaps:
                     continue
-                
-                # Check max matches per alias
                 if alias_counts.get(alias, 0) >= max_matches_per_alias:
                     continue
-                
-                # Record match
+
                 matches.append({
                     "concept_id": alias_map[alias],
                     "matched_alias": alias,
                     "start": start,
-                    "end": end
+                    "end": end,
                 })
-                
                 occupied_spans.append((start, end))
                 alias_counts[alias] = alias_counts.get(alias, 0) + 1
-                
         except re.error:
-            # Skip problematic patterns
             continue
     
     # Sort matches by position
@@ -161,6 +201,10 @@ def detect_concepts() -> pd.DataFrame:
         empty_df.to_csv(output_path, index=False)
         return empty_df
     
+    # Build Aho-Corasick automaton once for all notes
+    automaton, patterns = build_aho_automaton(alias_map)
+    log_stage("concepts", f"Built Aho-Corasick automaton ({len(patterns)} patterns)")
+    
     # Detect concepts in each note
     all_matches = []
     notes_with_concepts = 0
@@ -173,7 +217,10 @@ def detect_concepts() -> pd.DataFrame:
         if not text:
             continue
         
-        matches = find_matches_in_text(text, alias_map)
+        matches = find_matches_in_text(
+            text, alias_map,
+            automaton=automaton, patterns=patterns,
+        )
         
         if matches:
             notes_with_concepts += 1

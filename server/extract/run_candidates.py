@@ -30,7 +30,8 @@ from server.shared.utils import log_stage, set_all_seeds, normalize_text
 
 # Language code mapping for YAKE
 YAKE_LANG_MAP = {
-    "FR": "fr", "EN": "en", "IT": "it", "ES": "es", "DE": "de"
+    "FR": "fr", "EN": "en", "IT": "it", "ES": "es", "DE": "de",
+    "PT": "pt", "NL": "nl"
 }
 
 # Expanded stopwords - words that are NOT useful on their own
@@ -43,6 +44,8 @@ COMMON_STOPWORDS = {
     "qui", "que", "quoi", "dont", "où", "si", "mais", "ou", "donc",
     "ans", "année", "années", "mois", "jour", "jours", "fois", "peu",
     "fait", "faire", "dit", "bon", "bonne", "chez", "après", "avant",
+    "se", "ne", "pas", "sa", "ses", "mon", "ma", "mes", "ton", "ta", "tes",
+    "car", "ni", "au", "aux", "vers", "entre", "sous",
     # English
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of",
     "is", "are", "was", "were", "be", "been", "have", "has", "had",
@@ -50,34 +53,69 @@ COMMON_STOPWORDS = {
     "more", "very", "also", "just", "about", "would", "could", "should",
     "years", "year", "old", "time", "times", "around", "some", "will",
     "been", "being", "which", "their", "there", "then", "than", "when",
+    "from", "with", "not", "who", "what", "how", "where", "into",
+    "him", "her", "them", "his", "our", "your", "we", "you",
+    "up", "out", "so", "no", "do", "did", "does", "done", "can",
+    "may", "if", "each", "all", "any", "own", "other", "both",
+    "here", "now", "get", "got", "back", "only", "still", "too",
+    "mrs", "mr", "ms", "dr", "sr", "sra", "frau", "herr", "signor",
+    "signora", "señor", "señora",
     # Italian
     "il", "lo", "la", "i", "gli", "le", "un", "una", "e", "di", "da", "che",
     "anni", "anno", "circa", "sono", "con", "per", "non", "come", "anche",
     "suo", "sua", "suoi", "sue", "molto", "più", "già", "dopo", "prima",
+    "del", "della", "dei", "degli", "delle", "nel", "nella", "nei",
     # Spanish
     "el", "la", "los", "las", "un", "una", "y", "de", "en", "que", "con",
     "años", "año", "es", "son", "para", "por", "como", "más", "muy",
     "su", "sus", "todo", "todos", "esta", "este", "esto", "sin", "sobre",
+    "del", "al", "lo", "nos", "les",
     # German
     "der", "die", "das", "ein", "eine", "und", "in", "zu", "für", "mit",
     "jahre", "jahr", "ist", "sind", "hat", "haben", "auch", "auf", "bei",
     "von", "nach", "sich", "als", "noch", "oder", "wenn", "nur", "sein",
-    # Generic useless words
+    "dem", "den", "des", "einer", "einem", "einen",
+    # Portuguese
+    "anos", "sra", "senhor", "senhora", "procura", "gosta",
+    "orçamento", "em", "ou", "do", "da", "dos", "das", "no", "na",
+    # Dutch
+    "jaar", "zoekt", "passie", "voor", "het", "een", "van", "op",
+    # Generic useless words / filler
     "etc", "good", "great", "nice", "bien", "bueno", "gut", "bene",
     "new", "nouveau", "nueva", "nuovo", "neu", "neuen",
     "first", "premier", "primera", "primo", "erste",
     "next", "prochain", "próximo", "prossimo", "nächste",
     "both", "deux", "beide", "entrambi", "ambos",
+    # Pipeline-level fillers that are NOT concepts
+    "noted", "mentioned", "discussed", "looking", "looking for",
+    "coming up", "coming up in", "follow up", "end of month",
+    "prefers", "wants", "likes", "needs", "interested",
+    "important", "importante", "regular", "frequent", "potential",
+    "client", "cliente", "kunde", "kundin",
+    "petit", "petite", "small", "large", "grand", "grande",
+    "who", "per", "with", "from",
 }
 
 # Words that are useless WITHOUT additional context (like a number or qualifier)
 CONTEXT_REQUIRED_WORDS = {
     "budget", "prix", "price", "preis", "prezzo", "precio",  # Need amount
     "age", "âge", "edad", "età", "alter",  # Need number
-    "client", "cliente", "kunde", "kundin",  # Too generic alone
     "potential", "potentiel", "potenziale", "potencial",  # Need context
     "excellent", "excelente", "eccellente", "ausgezeichnet",  # Need what's excellent
 }
+
+# Latin-script regex (covers FR/EN/IT/ES/DE/PT/NL + diacritics)
+_LATIN_RE = re.compile(
+    r'^[a-zA-ZàâäéèêëïîôùûüçÀÂÄÉÈÊËÏÎÔÙÛÜÇ'
+    r'áéíóúñüÁÉÍÓÚÑÜàèìòùÀÈÌÒÙäöüßÄÖÜ'
+    r'ãõÃÕêôÊÔ'  # Portuguese
+    r"@\s\-\'\.\d]+$"
+)
+
+
+def _is_latin_only(text: str) -> bool:
+    """Return True if text contains only Latin-script characters (plus digits, spaces, punctuation)."""
+    return bool(_LATIN_RE.match(text))
 
 # Translation map to standardize to French
 FRENCH_STANDARDIZATION = {
@@ -192,6 +230,11 @@ def is_valid_candidate(candidate: str) -> bool:
     if len(candidate) < MIN_TOKEN_LENGTH:
         return False
     
+    # Reject mixed-script / non-Latin garbage
+    # (Non-Latin notes are template-based; useful tokens are already Latin)
+    if not _is_latin_only(candidate):
+        return False
+    
     # Filter out pure numbers
     if candidate.replace(' ', '').replace('.', '').replace(',', '').isdigit():
         return False
@@ -200,7 +243,7 @@ def is_valid_candidate(candidate: str) -> bool:
     if candidate in COMMON_STOPWORDS:
         return False
     
-    # Filter out candidates with only stopwords
+    # Filter out candidates where EVERY word is a stopword
     words = candidate.split()
     if all(w in COMMON_STOPWORDS for w in words):
         return False
@@ -217,7 +260,115 @@ def is_valid_candidate(candidate: str) -> bool:
     if re.match(r'^\d+[kK]$', candidate):
         return False
     
+    # Filter out single-character tokens left over
+    if len(candidate.replace(' ', '')) < 2:
+        return False
+    
+    # Filter out likely person names (single capitalized word, not a known concept word)
+    # These leak from "rendez-vous [PERSON]" patterns and multi-language templates
+    if len(words) == 1 and not _is_known_concept_word(candidate):
+        return False
+    
     return True
+
+
+# Words that we KNOW are valid single-word concepts for LVMH
+_KNOWN_CONCEPT_WORDS = {
+    # Products
+    "sac", "montre", "foulard", "portefeuille", "ceinture", "bijoux",
+    "bracelet", "collier", "bague", "pendentif", "broche", "brooch",
+    "cufflinks", "sunglasses", "fragrance", "parfum", "trunk",
+    "clutch", "briefcase", "wallet", "belt", "scarf", "watch",
+    "pen", "handbag", "boots", "shoes", "ring", "necklace",
+    "earrings", "charm", "keychain", "luggage", "backpack",
+    # Materials
+    "cuir", "soie", "cachemire", "toile", "canvas", "silk", "leather",
+    "cashmere", "linen", "velvet", "suede", "denim", "cotton", "wool",
+    "crocodile", "python", "ostrich", "alligator",
+    # Colors
+    "noir", "blanc", "bleu", "rouge", "vert", "marron", "cognac",
+    "bordeaux", "beige", "crème", "taupe", "ivory", "champagne",
+    "midnight", "navy", "slate", "emerald", "burgundy", "matte",
+    "gold", "rose", "silver", "platinum", "black", "white", "blue",
+    "red", "green", "brown", "grey", "gray", "pink", "purple",
+    "orange", "yellow", "coral", "turquoise", "teal",
+    # Lifestyle/hobbies
+    "golf", "tennis", "yoga", "pilates", "voile", "sailing",
+    "equitation", "ski", "skiing", "surfing", "kitesurf", "polo",
+    "opera", "ballet", "photography", "chess", "marathon", "cycling",
+    "running", "hiking", "diving", "fishing", "equestrian", "rowing",
+    "fencing", "boxing", "sailing", "cricket", "rugby", "football",
+    "swimming", "climbing", "bonsai", "gardening", "painting",
+    "sculpture", "calligraphy", "cooking", "wine", "art", "vin",
+    # Diet/constraints
+    "végan", "végétarien", "pescétarien", "allergie", "halal", "kosher",
+    "organic", "gluten", "lactose", "keto", "diabetic", "intolerant",
+    # Occasions
+    "anniversaire", "mariage", "cadeau", "birthday", "wedding",
+    "graduation", "retirement", "christmas", "valentine",
+    "engagement", "baptism", "communion",
+    # Actions/intent
+    "collection", "réparation", "échange", "retour", "rendez-vous",
+    "bespoke", "personalization", "monogram", "engraving",
+    # Luxury concepts
+    "luxury", "exclusive", "limited", "rare", "vintage", "designer",
+    "couture", "artisan", "sustainable", "heritage", "classic",
+    "classique", "elegant", "élégant", "raffiné", "sophisticated",
+    "modern", "moderne", "contemporary", "minimalist", "bohemian",
+    # Travel / places
+    "voyage", "safari", "cruise", "travel",
+    # Misc
+    "flexible", "renovating", "autumn", "spring", "summer", "winter",
+    "treffen", "meeting", "reunión", "incontro",
+    "vip", "fidèle", "loyal",
+    # Standardized French terms (from FRENCH_STANDARDIZATION values)
+    "sac à main", "attaché-case",
+}
+
+
+def _is_known_concept_word(word: str) -> bool:
+    """Check if a single word is a known LVMH-relevant concept."""
+    return word.lower() in _KNOWN_CONCEPT_WORDS
+
+
+def _build_domain_scan_patterns():
+    """
+    Build a list of (compiled_regex, french_form) for domain-specific keyword scanning.
+
+    Covers every key in FRENCH_STANDARDIZATION (the multilingual → French map)
+    plus every term in _KNOWN_CONCEPT_WORDS. Each is compiled into a word-boundary
+    regex so we get fast, reliable matching across all note languages.
+    """
+    seen: set = set()
+    patterns = []
+
+    # 1. From FRENCH_STANDARDIZATION: foreign term → French concept
+    for foreign_term, french_form in FRENCH_STANDARDIZATION.items():
+        key = foreign_term.lower()
+        if key in seen or key in COMMON_STOPWORDS or len(key) < 3:
+            continue
+        seen.add(key)
+        try:
+            pat = re.compile(r'\b' + re.escape(key) + r'\b', re.IGNORECASE)
+            patterns.append((pat, french_form))
+        except re.error:
+            continue
+
+    # 2. From _KNOWN_CONCEPT_WORDS: words that are valid concepts on their own
+    for word in _KNOWN_CONCEPT_WORDS:
+        key = word.lower()
+        if key in seen or key in COMMON_STOPWORDS or len(key) < 3:
+            continue
+        seen.add(key)
+        # The standardized form is the French version if it exists, else the word itself
+        french_form = FRENCH_STANDARDIZATION.get(key, key)
+        try:
+            pat = re.compile(r'\b' + re.escape(key) + r'\b', re.IGNORECASE)
+            patterns.append((pat, french_form))
+        except re.error:
+            continue
+
+    return patterns
 
 
 def extract_entities(text: str) -> List[Tuple[str, float]]:
@@ -394,6 +545,41 @@ def extract_tfidf_candidates(
         return {}
 
 
+# Regex to grab runs of Latin-script words from mixed-script text
+_LATIN_PHRASE_RE = re.compile(
+    r'[A-Za-zàâäéèêëïîôùûüçáéíóúñüàèìòùäöüßãõêô]'
+    r'[A-Za-zàâäéèêëïîôùûüçáéíóúñüàèìòùäöüßãõêô\s\-]{2,}',
+    re.UNICODE
+)
+
+
+def _extract_latin_phrases(text: str) -> List[str]:
+    """
+    Pull out contiguous Latin-script phrases from a mixed-script note.
+
+    These template-based notes (JA, ZH, AR, RU, KO, PT, NL) embed the
+    meaningful keywords in Latin script, e.g.
+      ``Girard様、39歳、Corporate Lawyer。NavyのFragrance Collection``
+
+    We grab each Latin run, split on obvious delimiters, and return
+    phrases of 2+ meaningful words.
+    """
+    raw_spans = _LATIN_PHRASE_RE.findall(text)
+    phrases: List[str] = []
+    for span in raw_spans:
+        # Split on delimiters that separate distinct concepts
+        for part in re.split(r'[\.。,،;:\|/]', span):
+            part = part.strip()
+            if len(part) < 3:
+                continue
+            # Keep multi-word or known single words
+            words = part.split()
+            meaningful = [w for w in words if w.lower() not in COMMON_STOPWORDS]
+            if meaningful:
+                phrases.append(' '.join(meaningful))
+    return phrases
+
+
 def run_candidates() -> pd.DataFrame:
     """
     Main candidate extraction function.
@@ -452,7 +638,21 @@ def run_candidates() -> pd.DataFrame:
         if not text or len(text.strip()) < 10:
             continue
         
-        # YAKE extraction
+        # For non-Latin-script languages, extract only the Latin-script
+        # phrases that appear (these notes are template-based with meaningful
+        # keywords already in Latin).
+        if lang not in SUPPORTED_LANGUAGES:
+            latin_phrases = _extract_latin_phrases(text)
+            for phrase in latin_phrases:
+                cleaned = clean_candidate(phrase)
+                if is_valid_candidate(cleaned):
+                    standardized = standardize_to_french(cleaned)
+                    candidate_stats[standardized]["languages"].add(lang)
+                    candidate_stats[standardized]["note_ids"].append(note_id)
+                    candidate_stats[standardized]["scores"].append(0.7)
+            continue
+        
+        # YAKE extraction (supported languages only)
         yake_results = extract_yake_candidates(text, lang)
         for kw, score in yake_results:
             cleaned = clean_candidate(kw)
@@ -488,6 +688,22 @@ def run_candidates() -> pd.DataFrame:
                 candidate_stats[standardized]["languages"].add(lang)
                 candidate_stats[standardized]["note_ids"].append(note_id)
                 candidate_stats[standardized]["scores"].append(score)
+    
+    # Fourth pass: Domain-specific keyword scan
+    # YAKE/RAKE miss common domain words (golf, tennis, black, classic, etc.)
+    # because they optimize for "specificity".  We do a direct scan for known
+    # LVMH-relevant terms using the standardization dictionary and known words.
+    log_stage("candidates", "Extracting domain-specific keywords...")
+    _domain_scan_terms = _build_domain_scan_patterns()
+    for idx, (text, note_id, lang) in enumerate(zip(texts, note_ids, languages)):
+        if not text or len(text.strip()) < 10:
+            continue
+        text_lower = text.lower()
+        for pattern, french_form in _domain_scan_terms:
+            if pattern.search(text_lower):
+                candidate_stats[french_form]["languages"].add(lang)
+                candidate_stats[french_form]["note_ids"].append(note_id)
+                candidate_stats[french_form]["scores"].append(0.8)
     
     # Filter candidates by minimum frequency
     log_stage("candidates", f"Total raw candidates: {len(candidate_stats)}")

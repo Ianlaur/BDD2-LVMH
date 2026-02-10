@@ -45,6 +45,14 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
     ensure_directories()
     set_all_seeds()
     
+    # Pre-warm: load SentenceTransformer in background while Stage 1-2 run
+    import threading
+    def _prewarm():
+        from server.shared.model_cache import get_sentence_transformer
+        get_sentence_transformer()
+    prewarm_thread = threading.Thread(target=_prewarm, name="model-prewarm", daemon=True)
+    prewarm_thread.start()
+    
     # Track stage timings
     timings = {}
     
@@ -71,6 +79,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         print("\n" + "=" * 40)
         print("STAGE 3: LEXICON BUILDING")
         print("=" * 40)
+        prewarm_thread.join()  # ensure model is ready
         stage_start = time.time()
         from server.lexicon.build_lexicon import build_lexicon
         build_lexicon()
@@ -162,22 +171,10 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
             log_stage("kg", f"Warning: {e}")
             timings["knowledge_graph"] = 0
         
-        # Stage 10: 3D Projection (Optional)
+        # Stage 10: Dashboard Data Generation (JSON for React)
+        # (3D projection is computed inside dashboard generation, no separate stage needed)
         print("\n" + "=" * 40)
-        print("STAGE 10: 3D PROJECTION")
-        print("=" * 40)
-        stage_start = time.time()
-        try:
-            from server.embeddings.projection_3d import project_3d
-            project_3d()
-            timings["projection"] = time.time() - stage_start
-        except Exception as e:
-            log_stage("projection", f"Skipped: {e}")
-            timings["projection"] = 0
-        
-        # Stage 11: Dashboard Data Generation (JSON for React)
-        print("\n" + "=" * 40)
-        print("STAGE 11: DASHBOARD DATA GENERATION")
+        print("STAGE 10: DASHBOARD DATA GENERATION")
         print("=" * 40)
         stage_start = time.time()
         try:

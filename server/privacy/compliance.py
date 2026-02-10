@@ -37,7 +37,7 @@ from collections import defaultdict
 logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
 logger = logging.getLogger(__name__)
 
-from server.privacy.anonymize import TextAnonymizer, AnonymizationConfig
+from server.privacy.anonymize import TextAnonymizer, AnonymizationConfig, _COMPILED_ARTICLE9
 from server.shared.config import (
     DATA_PROCESSED, DATA_OUTPUTS, DATA_INPUT, BASE_DIR,
     ENABLE_ANONYMIZATION, ANONYMIZATION_AGGRESSIVE
@@ -46,14 +46,6 @@ from server.shared.config import (
 
 class ComplianceAuditor:
     """Audits data for GDPR/RGPD compliance issues."""
-    
-    # Sensitive data categories according to GDPR Article 9
-    SENSITIVE_CATEGORIES = {
-        'health': ['allergie', 'allergy', 'allergies', 'medical', 'health', 'santé', 'medication', 'treatment'],
-        'financial': ['budget', 'prix', 'price', 'income', 'salary', 'revenue', 'bank', 'card'],
-        'personal_identifiers': ['email', 'phone', 'téléphone', 'adresse', 'address', 'iban'],
-        'special_categories': ['religion', 'politique', 'political', 'ethnicity', 'race', 'orientation'],
-    }
     
     def __init__(self):
         self.anonymizer = TextAnonymizer(AnonymizationConfig(aggressive=True))
@@ -121,17 +113,22 @@ class ComplianceAuditor:
                 'risk': 'critical'
             })
         
-        # Check for health data (GDPR Article 9 special category)
-        text_lower = text.lower()
-        for keyword in self.SENSITIVE_CATEGORIES['health']:
-            if keyword in text_lower:
+        # ---------------------------------------------------------------
+        # GDPR Article 9 — all special-category sensitive data
+        # Uses the compiled patterns from anonymize.py
+        # ---------------------------------------------------------------
+        art9_findings = self.anonymizer.detect_article9(text)
+        seen_categories: set = set()
+        for finding in art9_findings:
+            cat = finding["category"]
+            if cat not in seen_categories:
+                seen_categories.add(cat)
                 violations.append({
-                    'type': 'HEALTH_DATA',
-                    'text': keyword,
-                    'position': (0, 0),
-                    'risk': 'critical'
+                    'type': cat,
+                    'text': finding["matched"],
+                    'position': finding["span"],
+                    'risk': 'critical'  # All Article 9 data is critical
                 })
-                break  # Only report once per text
         
         # Determine overall risk level
         if not violations:

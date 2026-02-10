@@ -12,7 +12,7 @@ import joblib
 from typing import Dict, Tuple, Optional
 import time
 
-from server.shared.config import DATA_OUTPUTS, MODELS_DIR, BASE_DIR
+from server.shared.config import DATA_OUTPUTS, DATA_PROCESSED, MODELS_DIR, BASE_DIR
 from server.shared.utils import log_stage
 
 
@@ -314,6 +314,21 @@ def run_ml_predictions():
             
         concepts_df = pd.read_csv(concepts_path)
         profiles_df = pd.read_csv(profiles_path)
+        
+        # Join client_id from notes_clean if missing (note_concepts.csv has no client_id)
+        if 'client_id' not in concepts_df.columns and 'Client ID' not in concepts_df.columns:
+            notes_clean = pd.read_parquet(
+                DATA_PROCESSED / "notes_clean.parquet",
+                columns=["note_id", "client_id"]
+            )
+            if "note_id" in concepts_df.columns:
+                concepts_df["note_id"] = concepts_df["note_id"].astype(str)
+                notes_clean["note_id"] = notes_clean["note_id"].astype(str)
+                concepts_df = concepts_df.merge(
+                    notes_clean[["note_id", "client_id"]],
+                    on="note_id", how="left"
+                )
+                log_stage("ml_predict", "Joined client_id from notes_clean into concepts")
         
         log_stage("ml_predict", f"Loaded {len(concepts_df)} concept matches")
         log_stage("ml_predict", f"Loaded {len(profiles_df)} client profiles")

@@ -54,8 +54,8 @@ MIN_CANDIDATE_FREQ = 2  # minimum notes a candidate must appear in
 # ============================================================
 # CONCEPT GROUPING
 # ============================================================
-# Higher threshold = more merging (0.35 to merge "montre" with "édition limitée montre")
-CONCEPT_CLUSTER_DISTANCE_THRESHOLD = 0.35  # cosine distance for agglomerative clustering
+# Higher threshold = more merging
+CONCEPT_CLUSTER_DISTANCE_THRESHOLD = 0.20  # cosine distance for agglomerative clustering
 MIN_ALIASES_PER_CONCEPT = 1
 TOP_CONCEPTS_PER_CLUSTER = 5  # number of top concepts to show in profiles
 
@@ -67,7 +67,7 @@ MAX_ALIAS_MATCHES_PER_NOTE = 3  # max times same alias can be recorded per note
 # ============================================================
 # SUPPORTED LANGUAGES
 # ============================================================
-SUPPORTED_LANGUAGES = {"FR", "EN", "IT", "ES", "DE"}
+SUPPORTED_LANGUAGES = {"FR", "EN", "IT", "ES", "DE", "PT", "NL"}
 
 # ============================================================
 # PRIVACY & RGPD/GDPR COMPLIANCE

@@ -30,6 +30,157 @@ from server.shared.config import (
 from server.shared.utils import log_stage, set_all_seeds, slugify
 from server.shared.model_cache import get_sentence_transformer
 
+# ---------------------------------------------------------------------------
+# Known synonyms that the embedding model may or may not group correctly.
+# Each set contains words that are legitimate aliases of each other.
+# Used during post-clustering pruning to avoid ejecting real synonyms.
+# ---------------------------------------------------------------------------
+_KNOWN_SYNONYM_SETS: list[set[str]] = [
+    # Colors (FR/EN/DE/ES/IT/PT equivalents)
+    {"noir", "black", "schwarz", "negro", "nero", "preto"},
+    {"blanc", "white", "weiß", "weiss", "blanco", "bianco", "branco"},
+    {"rouge", "red", "rot", "rojo", "rosso", "vermelho"},
+    {"bleu", "blue", "blau", "azul", "blu"},
+    {"vert", "green", "grün", "gruen", "verde"},
+    {"rose", "pink", "rosa"},
+    {"marron", "brown", "braun", "marrón", "marrone", "castanho"},
+    {"gris", "grey", "gray", "grau"},
+    {"beige"},
+    {"taupe"},
+    {"bordeaux", "burgundy"},
+    {"navy", "marine"},
+    {"crème", "cream", "creme"},
+    {"ivoire", "ivory"},
+    {"doré", "gold", "golden", "or"},
+    {"argenté", "silver", "argent"},
+    # Materials
+    {"cuir", "leather", "leder", "cuero", "pelle", "couro"},
+    {"soie", "silk", "seide", "seda", "seta"},
+    {"cachemire", "cashmere", "kaschmir"},
+    {"lin", "linen", "leinen", "lino"},
+    {"coton", "cotton", "baumwolle", "algodón", "cotone"},
+    {"laine", "wool", "wolle", "lana"},
+    {"voile", "veil", "chiffon"},
+    # Diet / lifestyle
+    {"végan", "vegan", "vegano"},
+    {"végétarien", "vegetarian", "vegetarisch", "vegetariano"},
+    {"keto", "kéto", "cétogène"},
+    {"pilates"},
+    {"yoga"},
+    # Accessories
+    {"sac", "bag", "tasche", "bolso", "borsa"},
+    {"montre", "watch", "uhr", "reloj", "orologio"},
+    {"parfum", "perfume", "fragrance", "duft"},
+    {"écharpe", "scarf", "foulard"},
+    # Other
+    {"mari", "husband", "ehemann", "marido", "marito"},
+    {"femme", "wife", "woman"},
+    {"anniversaire", "birthday", "anniversary", "geburtstag", "cumpleaños"},
+    {"mariage", "wedding", "hochzeit", "boda", "matrimonio"},
+    {"voyage", "travel", "reise", "viaje", "viaggio"},
+    {"cadeau", "gift", "geschenk", "regalo"},
+]
+
+# Build a fast lookup: word → frozenset index
+_SYNONYM_INDEX: dict[str, int] = {}
+for _i, _syn_set in enumerate(_KNOWN_SYNONYM_SETS):
+    for _w in _syn_set:
+        _SYNONYM_INDEX[_w.lower()] = _i
+
+
+def _are_known_synonyms(a: str, b: str) -> bool:
+    """Return True if a and b belong to the same synonym set."""
+    idx_a = _SYNONYM_INDEX.get(a.lower())
+    idx_b = _SYNONYM_INDEX.get(b.lower())
+    if idx_a is not None and idx_b is not None and idx_a == idx_b:
+        return True
+    return False
+
+
+def _share_stem(a: str, b: str, min_overlap: int = 4) -> bool:
+    """Return True if a and b share a character substring of length >= min_overlap."""
+    a_low, b_low = a.lower(), b.lower()
+    if a_low in b_low or b_low in a_low:
+        return True
+    shorter = a_low if len(a_low) <= len(b_low) else b_low
+    longer = b_low if shorter == a_low else a_low
+    for k in range(min_overlap, len(shorter) + 1):
+        for start in range(len(shorter) - k + 1):
+            if shorter[start:start + k] in longer:
+                return True
+    return False
+
+
+def prune_cluster(
+    label: str,
+    aliases: list[str],
+    embeddings_map: dict[str, np.ndarray],
+    distance_matrix: np.ndarray | None = None,
+) -> tuple[str, list[str], list[str]]:
+    """
+    Validate every alias in a cluster against the label.
+
+    A short alias (≤2 words) is ejected when **both** the label and alias
+    are short and:
+    1. They are NOT known synonyms, AND
+    2. They share NO word overlap AND NO 4-char stem overlap.
+
+    Longer aliases (≥3 words) almost always carry enough semantic context
+    to be trustworthy, so they are kept unconditionally.
+
+    Returns (label, kept_aliases, ejected_aliases).
+    """
+    kept: list[str] = []
+    ejected: list[str] = []
+
+    label_words = set(label.lower().split())
+    label_word_count = len(label_words)
+
+    for alias in aliases:
+        alias_words = set(alias.lower().split())
+        alias_word_count = len(alias_words)
+
+        # Long aliases (≥3 words) are almost always fine — keep them
+        if alias_word_count >= 3:
+            kept.append(alias)
+            continue
+
+        # Long label with short alias — usually fine (e.g. "luxury writing set" + "luxury")
+        if label_word_count >= 3:
+            kept.append(alias)
+            continue
+
+        # --- Both label and alias are short (1-2 words): high-risk zone ---
+
+        # Check known synonyms
+        if _are_known_synonyms(label.lower(), alias.lower()):
+            kept.append(alias)
+            continue
+
+        # Check for any word in common (e.g. "sac" ↔ "duffle sac")
+        if label_words & alias_words:
+            kept.append(alias)
+            continue
+
+        # Check for stem overlap between any pair of words
+        has_stem = False
+        for lw in label_words:
+            for aw in alias_words:
+                if _share_stem(lw, aw):
+                    has_stem = True
+                    break
+            if has_stem:
+                break
+
+        if has_stem:
+            kept.append(alias)
+            continue
+
+        # No lexical, word-overlap, or synonym evidence → eject
+        ejected.append(alias)
+
+    return label, kept, ejected
+
 
 def embed_candidates(
     model,
@@ -212,6 +363,7 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
     
     # Build concepts from clusters
     concepts = []
+    ejected_total = 0
     for cluster_id in sorted(cluster_candidates_map.keys()):
         indices = cluster_candidates_map[cluster_id]
         cluster_candidate_list = [candidate_list[i] for i in indices]
@@ -230,12 +382,33 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
         
         # Collect aliases (all candidates in cluster except label)
         aliases = [c for c in cluster_candidate_list if c != label]
+
+        # ── Post-clustering pruning ──────────────────────────────
+        # Eject single-word aliases that ended up here only because
+        # the multilingual embedding model maps short words to
+        # nearly-identical vectors (e.g. végan ↔ taupe = 0.065).
+        label, aliases, ejected = prune_cluster(label, aliases, {})
+        if ejected:
+            ejected_total += len(ejected)
+            # Turn each ejected alias into its own singleton concept
+            for ej in ejected:
+                concepts.append({
+                    "label": ej,
+                    "aliases": [],
+                    "languages": set(lang_map.get(ej, "").split("|")),
+                    "freq_notes": freq_map.get(ej, 0),
+                    "examples": list(
+                        set(example_map.get(ej, "").split("|"))
+                    )[:5],
+                })
+        # ─────────────────────────────────────────────────────────
         
-        # Aggregate stats
-        total_freq = sum(freq_map.get(c, 0) for c in cluster_candidate_list)
+        # Aggregate stats (only label + kept aliases)
+        kept_members = [label] + aliases
+        total_freq = sum(freq_map.get(c, 0) for c in kept_members)
         all_langs = set()
         all_examples = set()
-        for c in cluster_candidate_list:
+        for c in kept_members:
             if c in lang_map:
                 all_langs.update(lang_map[c].split("|"))
             if c in example_map:
@@ -250,6 +423,8 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
         })
     
     # Sort by frequency (cluster size proxy) for stable IDs
+    if ejected_total:
+        log_stage("lexicon", f"Post-clustering pruning: ejected {ejected_total} misplaced aliases → new singletons")
     concepts.sort(key=lambda c: (-c["freq_notes"], c["label"]))
     
     # Assign concept IDs and taxonomy buckets

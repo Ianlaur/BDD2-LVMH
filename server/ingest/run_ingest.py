@@ -111,7 +111,12 @@ def anonymize_transcription(text: str) -> str:
         
         config = AnonymizationConfig(
             aggressive=ANONYMIZATION_AGGRESSIVE,
-            placeholder_style="[TYPE]"  # Use descriptive placeholders
+            placeholder_style="[TYPE]",  # Use descriptive placeholders
+            # Article 9 sensitive categories (health, religion, etc.) are
+            # detected for audit purposes but NOT redacted from the text
+            # because many (e.g. "allergie") are legitimate business concepts.
+            redact_article9=True,
+            article9_mode="log",  # detect-only, no text modification
         )
         
         return anonymize_text(text, config)

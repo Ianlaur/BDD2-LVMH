@@ -9,7 +9,7 @@ Usage:
 """
 from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
 import json
 import argparse
@@ -20,7 +20,7 @@ import logging
 import shutil
 from datetime import datetime
 
-from server.shared.config import BASE_DIR, DATA_OUTPUTS, TAXONOMY_DIR, DATA_INPUT
+from server.shared.config import BASE_DIR, DATA_OUTPUTS, TAXONOMY_DIR, DATA_INPUT, DATA_PROCESSED
 from server.run_all import run_pipeline
 
 # Configure logging
@@ -265,6 +265,16 @@ async def upload_csv(
         logger.error(f"Failed to save file: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
     
+    # Clean up older uploaded CSVs to prevent accumulation
+    # Keep only the file we just saved
+    try:
+        for old_csv in DATA_INPUT.glob("*.csv"):
+            if old_csv != file_path:
+                old_csv.unlink()
+                logger.info(f"Cleaned up old upload: {old_csv.name}")
+    except Exception as e:
+        logger.warning(f"Cleanup warning: {e}")
+    
     # Optionally run pipeline
     if run_pipeline_after:
         if pipeline_status["running"]:
@@ -345,6 +355,216 @@ async def get_knowledge_graph():
     
     with open(kg_path, 'r', encoding='utf-8') as f:
         return json.load(f)
+
+
+# ===================================================================
+# RGPD / GDPR Compliance Endpoints
+# ===================================================================
+
+@app.get("/api/rgpd/audit")
+async def rgpd_audit():
+    """
+    GDPR Compliance Audit — scan processed data for PII / Article 9 violations.
+    Returns compliance rate, violation counts and detailed findings.
+    """
+    from server.privacy.compliance import ComplianceAuditor
+    import pandas as pd
+
+    notes_path = DATA_PROCESSED / "notes_clean.parquet"
+    if not notes_path.exists():
+        raise HTTPException(status_code=404, detail="No processed data found. Run the pipeline first.")
+
+    df = pd.read_parquet(notes_path)
+    auditor = ComplianceAuditor()
+    results = auditor.audit_dataset(df, text_column="text")
+
+    # Strip the heavy per-record list for the API response
+    summary = {k: v for k, v in results.items() if k != "detailed_results"}
+    summary["sample_violations"] = [
+        r for r in results["detailed_results"] if r["has_violations"]
+    ][:10]
+    return summary
+
+
+@app.delete("/api/rgpd/erase/{client_id}")
+async def rgpd_erase_client(client_id: str):
+    """
+    GDPR Article 17 — Right to Erasure (droit à l'effacement).
+    Deletes all data associated with a specific client_id from:
+      - notes_clean.parquet
+      - note_concepts.csv
+      - client_profiles.csv / client_profiles_with_predictions.csv
+      - recommended_actions.csv
+      - clustering_results.json
+      - data.json (dashboard)
+    Returns a summary of what was deleted.
+    """
+    import pandas as pd
+
+    erased: dict = {}
+
+    # --- 1. notes_clean.parquet ---
+    notes_path = DATA_PROCESSED / "notes_clean.parquet"
+    if notes_path.exists():
+        df = pd.read_parquet(notes_path)
+        before = len(df)
+        df = df[df["client_id"].astype(str) != str(client_id)]
+        after = len(df)
+        df.to_parquet(notes_path, index=False)
+        erased["notes_clean.parquet"] = before - after
+
+    # --- 2. note_concepts.csv ---
+    nc_path = DATA_PROCESSED / "note_concepts.csv"
+    if nc_path.exists():
+        df = pd.read_csv(nc_path)
+        before = len(df)
+        id_col = "client_id" if "client_id" in df.columns else "note_id"
+        df = df[df[id_col].astype(str) != str(client_id)]
+        after = len(df)
+        df.to_csv(nc_path, index=False)
+        erased["note_concepts.csv"] = before - after
+
+    # --- 3. client profiles ---
+    for fname in ["client_profiles.csv", "client_profiles_with_predictions.csv"]:
+        fpath = DATA_OUTPUTS / fname
+        if fpath.exists():
+            df = pd.read_csv(fpath)
+            before = len(df)
+            id_col = "client_id" if "client_id" in df.columns else "id"
+            df = df[df[id_col].astype(str) != str(client_id)]
+            after = len(df)
+            df.to_csv(fpath, index=False)
+            erased[fname] = before - after
+
+    # --- 4. recommended_actions.csv ---
+    ra_path = DATA_OUTPUTS / "recommended_actions.csv"
+    if ra_path.exists():
+        df = pd.read_csv(ra_path)
+        before = len(df)
+        id_col = "client_id" if "client_id" in df.columns else "id"
+        df = df[df[id_col].astype(str) != str(client_id)]
+        after = len(df)
+        df.to_csv(ra_path, index=False)
+        erased["recommended_actions.csv"] = before - after
+
+    # --- 5. clustering_results.json ---
+    cr_path = DATA_OUTPUTS / "clustering_results.json"
+    if cr_path.exists():
+        try:
+            with open(cr_path, "r", encoding="utf-8") as f:
+                cr = json.load(f)
+            if isinstance(cr, dict) and "clients" in cr:
+                before = len(cr["clients"])
+                cr["clients"] = [
+                    c for c in cr["clients"]
+                    if str(c.get("client_id", c.get("id", ""))) != str(client_id)
+                ]
+                erased["clustering_results.json"] = before - len(cr["clients"])
+                with open(cr_path, "w", encoding="utf-8") as f:
+                    json.dump(cr, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
+    # --- 6. dashboard data.json ---
+    data_json = BASE_DIR / "dashboard" / "src" / "data.json"
+    if data_json.exists():
+        try:
+            with open(data_json, "r", encoding="utf-8") as f:
+                dj = json.load(f)
+            if isinstance(dj, dict) and "clients" in dj:
+                before = len(dj["clients"])
+                dj["clients"] = [
+                    c for c in dj["clients"]
+                    if str(c.get("id", c.get("client_id", ""))) != str(client_id)
+                ]
+                erased["data.json"] = before - len(dj["clients"])
+                with open(data_json, "w", encoding="utf-8") as f:
+                    json.dump(dj, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
+    total = sum(erased.values())
+    if total == 0:
+        raise HTTPException(status_code=404, detail=f"Client {client_id} not found in any data file.")
+
+    logger.info(f"RGPD ERASURE: client_id={client_id} — {total} records deleted across {len(erased)} files")
+
+    return {
+        "status": "erased",
+        "client_id": client_id,
+        "total_records_deleted": total,
+        "details": erased,
+        "timestamp": datetime.now().isoformat(),
+    }
+
+
+@app.get("/api/rgpd/export/{client_id}")
+async def rgpd_export_client(client_id: str):
+    """
+    GDPR Article 20 — Right to Data Portability (droit à la portabilité).
+    Returns ALL data held about a specific client_id in a single JSON payload.
+    """
+    import pandas as pd
+
+    export: dict = {"client_id": client_id}
+
+    # notes_clean
+    notes_path = DATA_PROCESSED / "notes_clean.parquet"
+    if notes_path.exists():
+        df = pd.read_parquet(notes_path)
+        rows = df[df["client_id"].astype(str) == str(client_id)]
+        export["notes"] = rows.to_dict("records")
+
+    # note_concepts
+    nc_path = DATA_PROCESSED / "note_concepts.csv"
+    if nc_path.exists():
+        df = pd.read_csv(nc_path)
+        id_col = "client_id" if "client_id" in df.columns else "note_id"
+        rows = df[df[id_col].astype(str) == str(client_id)]
+        export["concepts"] = rows.to_dict("records")
+
+    # client profiles
+    for fname in ["client_profiles.csv", "client_profiles_with_predictions.csv"]:
+        fpath = DATA_OUTPUTS / fname
+        if fpath.exists():
+            import numpy as np
+            df = pd.read_csv(fpath)
+            id_col = "client_id" if "client_id" in df.columns else "id"
+            rows = df[df[id_col].astype(str) == str(client_id)].replace({np.nan: None})
+            if not rows.empty:
+                export["profile"] = rows.to_dict("records")
+                break
+
+    # recommended actions
+    ra_path = DATA_OUTPUTS / "recommended_actions.csv"
+    if ra_path.exists():
+        df = pd.read_csv(ra_path)
+        id_col = "client_id" if "client_id" in df.columns else "id"
+        rows = df[df[id_col].astype(str) == str(client_id)]
+        export["actions"] = rows.to_dict("records")
+
+    has_data = any(
+        export.get(k) for k in ("notes", "concepts", "profile", "actions")
+    )
+    if not has_data:
+        raise HTTPException(status_code=404, detail=f"No data found for client {client_id}.")
+
+    export["exported_at"] = datetime.now().isoformat()
+    return export
+
+
+@app.get("/api/rgpd/config")
+async def rgpd_config():
+    """Return current RGPD/GDPR compliance configuration."""
+    from server.shared.config import ENABLE_ANONYMIZATION, ANONYMIZATION_AGGRESSIVE
+    return {
+        "anonymization_enabled": ENABLE_ANONYMIZATION,
+        "aggressive_mode": ANONYMIZATION_AGGRESSIVE,
+        "article9_detection": True,
+        "right_to_erasure_endpoint": "/api/rgpd/erase/{client_id}",
+        "data_portability_endpoint": "/api/rgpd/export/{client_id}",
+        "audit_endpoint": "/api/rgpd/audit",
+    }
 
 
 def main():
