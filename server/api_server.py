@@ -67,6 +67,7 @@ async def root():
 
 
 @app.get("/api/data")
+@app.get("/api/dashboard-data")
 async def get_dashboard_data():
     """Get the main dashboard data (data.json)."""
     data_path = BASE_DIR / "dashboard" / "src" / "data.json"
@@ -84,6 +85,73 @@ async def get_dashboard_data():
     except Exception as e:
         logger.error(f"Error reading dashboard data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/clients")
+async def get_clients():
+    """Get all client profiles."""
+    # Try to get client profiles with predictions first
+    predictions_path = DATA_OUTPUTS / "client_profiles_with_predictions.csv"
+    profiles_path = DATA_OUTPUTS / "client_profiles.json"
+    
+    if predictions_path.exists():
+        import pandas as pd
+        df = pd.read_csv(predictions_path)
+        return df.to_dict('records')
+    elif profiles_path.exists():
+        with open(profiles_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    else:
+        raise HTTPException(
+            status_code=404, 
+            detail="Client profiles not found. Run the pipeline first."
+        )
+
+
+@app.get("/api/clients/{client_id}")
+async def get_client(client_id: str):
+    """Get a specific client's profile."""
+    clients = await get_clients()
+    for client in clients:
+        if str(client.get('client_id')) == client_id or str(client.get('id')) == client_id:
+            return client
+    raise HTTPException(status_code=404, detail=f"Client {client_id} not found")
+
+
+@app.get("/api/predictions")
+async def get_predictions():
+    """Get all ML predictions."""
+    predictions_path = DATA_OUTPUTS / "client_profiles_with_predictions.csv"
+    
+    if not predictions_path.exists():
+        raise HTTPException(
+            status_code=404, 
+            detail="ML predictions not found. Run the pipeline with ML predictions enabled."
+        )
+    
+    try:
+        import pandas as pd
+        df = pd.read_csv(predictions_path)
+        # Filter to only prediction columns
+        pred_cols = ['client_id', 'purchase_probability', 'churn_risk', 
+                     'predicted_clv', 'value_segment']
+        available_cols = [col for col in pred_cols if col in df.columns]
+        if 'client_id' not in df.columns and 'id' in df.columns:
+            available_cols = ['id'] + [col for col in pred_cols[1:] if col in df.columns]
+        return df[available_cols].to_dict('records')
+    except Exception as e:
+        logger.error(f"Error reading predictions: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/predictions/{client_id}")
+async def get_client_predictions(client_id: str):
+    """Get ML predictions for a specific client."""
+    predictions = await get_predictions()
+    for pred in predictions:
+        if str(pred.get('client_id')) == client_id or str(pred.get('id')) == client_id:
+            return pred
+    raise HTTPException(status_code=404, detail=f"Predictions for client {client_id} not found")
 
 
 @app.get("/api/outputs/{filename}")

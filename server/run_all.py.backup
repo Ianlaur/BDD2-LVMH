@@ -111,23 +111,10 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         from server.actions.recommend_actions import recommend_actions
         recommend_actions()
         timings["actions"] = time.time() - stage_start
-
-        # Stage 8: ML Predictions (Purchase, Churn, CLV)
-        print("\n" + "=" * 40)
-        print("STAGE 8: ML PREDICTIONS")
-        print("=" * 40)
-        stage_start = time.time()
-        try:
-            from server.analytics.run_predictions import run_ml_predictions
-            run_ml_predictions()
-            timings["ml_predictions"] = time.time() - stage_start
-        except Exception as e:
-            log_stage("ml_predictions", f"Skipped: {e}")
-            timings["ml_predictions"] = 0
         
-        # Stage 9: Knowledge Graph Construction
+        # Stage 8: Knowledge Graph Construction
         print("\n" + "=" * 40)
-        print("STAGE 9: KNOWLEDGE GRAPH")
+        print("STAGE 8: KNOWLEDGE GRAPH")
         print("=" * 40)
         stage_start = time.time()
         try:
@@ -138,9 +125,9 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
             log_stage("kg", f"Warning: {e}")
             timings["knowledge_graph"] = 0
         
-        # Stage 10: 3D Projection (Optional)
+        # Stage 9: 3D Projection (Optional)
         print("\n" + "=" * 40)
-        print("STAGE 10: 3D PROJECTION")
+        print("STAGE 9: 3D PROJECTION")
         print("=" * 40)
         stage_start = time.time()
         try:
@@ -151,9 +138,9 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
             log_stage("projection", f"Skipped: {e}")
             timings["projection"] = 0
         
-        # Stage 11: Dashboard Data Generation (JSON for React)
+        # Stage 10: Dashboard Data Generation (JSON for React)
         print("\n" + "=" * 40)
-        print("STAGE 11: DASHBOARD DATA GENERATION")
+        print("STAGE 10: DASHBOARD DATA GENERATION")
         print("=" * 40)
         stage_start = time.time()
         try:
