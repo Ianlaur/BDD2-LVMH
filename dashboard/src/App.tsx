@@ -1155,12 +1155,11 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
       try {
         setLoading(true)
-        // Using a relative path for API requests, assuming proxy is set up in vite.config.js
-        const response = await fetch('/api/data')
+        // Using the API_CONFIG to connect to the backend server
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -1207,6 +1206,8 @@ function App() {
         setLoading(false)
       }
     }
+
+  useEffect(() => {
     fetchData()
   }, [])
 
