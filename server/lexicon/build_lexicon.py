@@ -21,30 +21,18 @@ import numpy as np
 
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.metrics.pairwise import cosine_distances
-from sentence_transformers import SentenceTransformer
 
 from server.shared.config import (
     DATA_PROCESSED, TAXONOMY_DIR, 
-    SENTENCE_TRANSFORMER_MODEL, SENTENCE_TRANSFORMERS_CACHE,
     CONCEPT_CLUSTER_DISTANCE_THRESHOLD, MIN_ALIASES_PER_CONCEPT,
     TAXONOMY_RULES, SKLEARN_RANDOM_STATE
 )
 from server.shared.utils import log_stage, set_all_seeds, slugify
-
-
-def load_sentence_transformer() -> SentenceTransformer:
-    """Load the SentenceTransformer model with proper cache folder."""
-    log_stage("lexicon", f"Loading SentenceTransformer: {SENTENCE_TRANSFORMER_MODEL}")
-    
-    model = SentenceTransformer(
-        SENTENCE_TRANSFORMER_MODEL,
-        cache_folder=str(SENTENCE_TRANSFORMERS_CACHE)
-    )
-    return model
+from server.shared.model_cache import get_sentence_transformer
 
 
 def embed_candidates(
-    model: SentenceTransformer, 
+    model,
     candidates: List[str],
     batch_size: int = 64
 ) -> np.ndarray:
@@ -210,7 +198,7 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
     lang_map = dict(zip(candidates_df["candidate"], candidates_df["language"]))
     
     # Load model and embed candidates
-    model = load_sentence_transformer()
+    model = get_sentence_transformer()
     candidate_list = candidates_df["candidate"].tolist()
     embeddings = embed_candidates(model, candidate_list)
     

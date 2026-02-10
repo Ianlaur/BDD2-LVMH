@@ -212,6 +212,9 @@ def segment_clients() -> pd.DataFrame:
             notes_path = DATA_PROCESSED / "notes_clean.parquet"
             if notes_path.exists():
                 notes_df = pd.read_parquet(notes_path, columns=["note_id", "client_id"])
+                # Ensure matching dtypes for the merge key
+                note_concepts_df["note_id"] = note_concepts_df["note_id"].astype(str)
+                notes_df["note_id"] = notes_df["note_id"].astype(str)
                 note_concepts_df = note_concepts_df.merge(
                     notes_df[["note_id", "client_id"]],
                     on="note_id",

@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
+from server.shared.model_cache import get_sentence_transformer
 import json
 from datetime import datetime
 
@@ -37,7 +37,7 @@ class ClientClusterer:
         """Lazy load the sentence transformer model."""
         if self.model is None:
             print(f"Loading embedding model: {self.model_name}")
-            self.model = SentenceTransformer(self.model_name)
+            self.model = get_sentence_transformer()
             
     def create_client_profile(self, concepts: List[str]) -> str:
         """

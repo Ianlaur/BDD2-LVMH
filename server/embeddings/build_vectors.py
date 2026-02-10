@@ -13,24 +13,12 @@ import sys
 from typing import List, Dict
 import pandas as pd
 import numpy as np
-from sentence_transformers import SentenceTransformer
 
 from server.shared.config import (
     DATA_PROCESSED, DATA_OUTPUTS,
-    SENTENCE_TRANSFORMER_MODEL, SENTENCE_TRANSFORMERS_CACHE
 )
 from server.shared.utils import log_stage, set_all_seeds
-
-
-def load_sentence_transformer() -> SentenceTransformer:
-    """Load the SentenceTransformer model with proper cache folder."""
-    log_stage("vectors", f"Loading SentenceTransformer: {SENTENCE_TRANSFORMER_MODEL}")
-    
-    model = SentenceTransformer(
-        SENTENCE_TRANSFORMER_MODEL,
-        cache_folder=str(SENTENCE_TRANSFORMERS_CACHE)
-    )
-    return model
+from server.shared.model_cache import get_sentence_transformer
 
 
 def build_vectors() -> pd.DataFrame:
@@ -56,7 +44,7 @@ def build_vectors() -> pd.DataFrame:
     log_stage("vectors", f"Loaded {len(notes_df)} notes")
     
     # Load model
-    model = load_sentence_transformer()
+    model = get_sentence_transformer()
     
     # Get texts
     texts = notes_df["text"].fillna("").tolist()

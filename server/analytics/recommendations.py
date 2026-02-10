@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from sentence_transformers import SentenceTransformer
+from server.shared.model_cache import get_sentence_transformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 from datetime import datetime
@@ -37,7 +37,7 @@ class RecommendationEngine:
         """Lazy load the sentence transformer model."""
         if self.model is None:
             print(f"Loading embedding model: {self.model_name}")
-            self.model = SentenceTransformer(self.model_name)
+            self.model = get_sentence_transformer()
             
     def load_product_catalog(
         self, 

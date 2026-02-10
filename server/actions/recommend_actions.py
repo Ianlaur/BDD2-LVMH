@@ -317,7 +317,30 @@ def recommend_actions() -> pd.DataFrame:
     concepts_path = DATA_OUTPUTS / "note_concepts.csv"
     if concepts_path.exists():
         note_concepts_df = pd.read_csv(concepts_path)
-        note_concepts_df["client_id"] = note_concepts_df["client_id"].astype(str)
+        
+        # If client_id is missing, join it from notes_clean via note_id
+        if "client_id" not in note_concepts_df.columns:
+            from server.shared.config import DATA_PROCESSED as _DP
+            _notes_path = _DP / "notes_clean.parquet"
+            if _notes_path.exists():
+                _notes_df = pd.read_parquet(_notes_path, columns=["note_id", "client_id"])
+                # Ensure matching dtypes for the merge key
+                note_concepts_df["note_id"] = note_concepts_df["note_id"].astype(str)
+                _notes_df["note_id"] = _notes_df["note_id"].astype(str)
+                note_concepts_df = note_concepts_df.merge(
+                    _notes_df[["note_id", "client_id"]],
+                    on="note_id",
+                    how="left"
+                )
+                log_stage("actions", "Joined client_id from notes_clean into note_concepts")
+            else:
+                log_stage("actions", "WARNING: Cannot resolve client_id — notes_clean.parquet not found")
+        
+        if "client_id" in note_concepts_df.columns:
+            note_concepts_df["client_id"] = note_concepts_df["client_id"].astype(str)
+        else:
+            log_stage("actions", "WARNING: note_concepts has no client_id, skipping concept-based actions")
+            note_concepts_df = None
     
     # Load lexicon
     lexicon_df = None

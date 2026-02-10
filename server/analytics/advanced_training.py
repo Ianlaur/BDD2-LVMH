@@ -65,7 +65,7 @@ try:
 except ImportError:
     HAS_OPTUNA = False
 
-from sentence_transformers import SentenceTransformer
+from server.shared.model_cache import get_sentence_transformer
 
 
 class AdvancedMLTrainer:
@@ -130,7 +130,7 @@ class AdvancedMLTrainer:
         """Lazy load embedding model."""
         if self.embedding_model is None:
             print(f"Loading embedding model: {self.embedding_model_name}")
-            self.embedding_model = SentenceTransformer(self.embedding_model_name)
+            self.embedding_model = get_sentence_transformer()
             
     def create_advanced_features(
         self,
