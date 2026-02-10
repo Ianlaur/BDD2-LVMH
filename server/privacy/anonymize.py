@@ -177,6 +177,10 @@ class TextAnonymizer:
             r'\b(?:M\.|Mr\.|Monsieur|Mme|Madame|Mlle|Mademoiselle|Dr\.|Docteur|Prof\.|Professeur)\b',
         ]
         
+        # Lazy-loaded ML safety-net detector (only loaded once, on first use)
+        self._ml_detector: Optional[object] = None
+        self._ml_detector_checked = False
+        
         # Compile regex patterns for efficiency
         self._compile_patterns()
     
@@ -415,6 +419,73 @@ class TextAnonymizer:
 
         return text
 
+    # ------------------------------------------------------------------
+    # ML Safety-Net — catches sensitive words that regex missed
+    # ------------------------------------------------------------------
+
+    def _get_ml_detector(self):
+        """Lazy-load the ML sensitive-word detector (singleton)."""
+        if not self._ml_detector_checked:
+            self._ml_detector_checked = True
+            try:
+                from server.privacy.sensitive_model import SensitiveWordDetector
+                det = SensitiveWordDetector()
+                if det.available:
+                    self._ml_detector = det
+            except Exception:
+                pass  # Model not trained or import error — silently skip
+        return self._ml_detector
+
+    def _ml_safety_net(self, text: str) -> Tuple[str, List[Dict]]:
+        """
+        Run the ML NER model on text to catch sensitive words the regex missed.
+
+        Only flags/redacts tokens that were NOT already caught by regex.
+        Returns (possibly_modified_text, ml_findings).
+        """
+        if not self.config.redact_article9:
+            return text, []
+
+        detector = self._get_ml_detector()
+        if detector is None:
+            return text, []
+
+        ml_hits = detector.predict(text)
+        if not ml_hits:
+            return text, []
+
+        # Get regex findings so we can skip already-caught spans
+        regex_findings = self.detect_article9(text)
+        regex_spans = {(f["span"][0], f["span"][1]) for f in regex_findings}
+
+        # Only keep ML hits that don't overlap with regex hits
+        novel_hits: List[Dict] = []
+        for hit in ml_hits:
+            s, e = hit["start"], hit["end"]
+            overlaps = any(s < re and e > rs for (rs, re) in regex_spans)
+            if not overlaps:
+                novel_hits.append(hit)
+
+        if not novel_hits:
+            return text, []
+
+        mode = self.config.article9_mode
+
+        if mode == "log":
+            # Just return findings, don't modify text
+            return text, novel_hits
+
+        # Apply replacements (reverse order to preserve offsets)
+        novel_hits.sort(key=lambda h: h["start"], reverse=True)
+        for hit in novel_hits:
+            if mode == "flag":
+                placeholder = f"[SENSITIVE:{hit['label']}]"
+            else:
+                placeholder = self._get_placeholder(f"SENSITIVE_{hit['label']}")
+            text = text[: hit["start"]] + placeholder + text[hit["end"] :]
+
+        return text, novel_hits
+
     def anonymize(self, text: str) -> str:
         """
         Main anonymization method. Applies all configured anonymizations.
@@ -440,6 +511,9 @@ class TextAnonymizer:
         text = self._anonymize_addresses(text)
         text = self._anonymize_names(text)
         text = self._anonymize_article9(text)
+        
+        # ML safety net — final pass to catch anything regex missed
+        text, _ml_findings = self._ml_safety_net(text)
         
         # Clean up excessive whitespace
         text = re.sub(r'\s+', ' ', text).strip()
