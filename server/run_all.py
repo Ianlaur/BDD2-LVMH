@@ -76,13 +76,37 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         build_lexicon()
         timings["lexicon"] = time.time() - stage_start
         
-        # Stage 4: Concept Detection
+        # Stage 4: Concept Detection (with optional ML enhancement)
         print("\n" + "=" * 40)
         print("STAGE 4: CONCEPT DETECTION")
         print("=" * 40)
         stage_start = time.time()
-        from server.extract.detect_concepts import detect_concepts
-        detect_concepts()
+        
+        # Check if ML models are available
+        from server.shared.config import MODELS_DIR
+        ml_available = MODELS_DIR.exists() and any(MODELS_DIR.iterdir())
+        
+        if ml_available:
+            try:
+                print("🤖 ML models detected - using ML-enhanced concept detection")
+                from server.extract.ml_detect import detect_concepts_with_ml
+                detect_concepts_with_ml(use_ml=True)
+            except ImportError as e:
+                print(f"⚠️  ML detection module import failed: {e}")
+                print("   Falling back to rule-based detection")
+                from server.extract.detect_concepts import detect_concepts
+                detect_concepts()
+            except Exception as e:
+                print(f"⚠️  ML detection failed: {e}")
+                print("   Falling back to rule-based detection")
+                from server.extract.detect_concepts import detect_concepts
+                detect_concepts()
+        else:
+            print("📋 No ML models found - using rule-based concept detection")
+            print("   (Train a model with: python -m server.ml.cli train --size base --epochs 20)")
+            from server.extract.detect_concepts import detect_concepts
+            detect_concepts()
+        
         timings["concepts"] = time.time() - stage_start
         
         # Stage 5: Vector Building
@@ -111,7 +135,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         from server.actions.recommend_actions import recommend_actions
         recommend_actions()
         timings["actions"] = time.time() - stage_start
-
+        
         # Stage 8: ML Predictions (Purchase, Churn, CLV)
         print("\n" + "=" * 40)
         print("STAGE 8: ML PREDICTIONS")
@@ -158,12 +182,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         stage_start = time.time()
         try:
             from server.shared.generate_dashboard_data import generate_dashboard_data
-            # Pass pipeline timings so dashboard can display them
-            pipeline_total = time.time() - start_time
-            generate_dashboard_data(pipeline_timings={
-                **timings,
-                'total': round(pipeline_total, 2)
-            })
+            generate_dashboard_data()
             timings["dashboard_data"] = time.time() - stage_start
         except Exception as e:
             log_stage("dashboard", f"Warning: {e}")
@@ -173,25 +192,18 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         log_stage("pipeline", f"PIPELINE FAILED: {e}")
         import traceback
         traceback.print_exc()
-        sys.exit(1)
+        raise RuntimeError(f"Pipeline failed: {e}") from e
     
     # Summary
     total_time = time.time() - start_time
     
     print("\n" + "=" * 60)
-    print("⏱️  PIPELINE TIMING SUMMARY")
+    print("PIPELINE COMPLETE")
     print("=" * 60)
-    
-    # Visual timing bar
-    max_time = max(timings.values()) if timings else 1
+    print(f"\nTotal time: {total_time:.1f}s")
+    print("\nStage timings:")
     for stage, duration in timings.items():
-        bar_len = int(40 * duration / max_time)
-        bar = "█" * bar_len + "░" * (40 - bar_len)
-        print(f"  {stage:<15} {bar} {duration:>6.1f}s")
-    
-    print("  " + "─" * 58)
-    print(f"  {'TOTAL':<15} {'':>40} {total_time:>6.1f}s")
-    print("=" * 60)
+        print(f"  {stage}: {duration:.1f}s")
     
     # List outputs
     print("\nOutputs generated:")
@@ -205,6 +217,8 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
         DATA_OUTPUTS / "note_concepts.csv",
         DATA_OUTPUTS / "note_vectors.parquet",
         DATA_OUTPUTS / "client_profiles.csv",
+        DATA_OUTPUTS / "client_profiles_with_predictions.csv",
+        DATA_OUTPUTS / "ml_predictions_report.txt",
         DATA_OUTPUTS / "recommended_actions.csv",
         DATA_OUTPUTS / "knowledge_graph_cytoscape.json",
         BASE_DIR / "dashboard" / "src" / "data.json"

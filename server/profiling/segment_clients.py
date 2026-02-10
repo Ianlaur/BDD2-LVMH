@@ -206,7 +206,26 @@ def segment_clients() -> pd.DataFrame:
     concepts_path = DATA_OUTPUTS / "note_concepts.csv"
     if concepts_path.exists():
         note_concepts_df = pd.read_csv(concepts_path)
-        note_concepts_df["client_id"] = note_concepts_df["client_id"].astype(str)
+        
+        # If client_id is missing, join it from notes_clean via note_id
+        if "client_id" not in note_concepts_df.columns:
+            notes_path = DATA_PROCESSED / "notes_clean.parquet"
+            if notes_path.exists():
+                notes_df = pd.read_parquet(notes_path, columns=["note_id", "client_id"])
+                note_concepts_df = note_concepts_df.merge(
+                    notes_df[["note_id", "client_id"]],
+                    on="note_id",
+                    how="left"
+                )
+                log_stage("profiles", "Joined client_id from notes_clean into note_concepts")
+            else:
+                log_stage("profiles", "WARNING: Cannot resolve client_id — notes_clean.parquet not found")
+        
+        if "client_id" in note_concepts_df.columns:
+            note_concepts_df["client_id"] = note_concepts_df["client_id"].astype(str)
+        else:
+            log_stage("profiles", "WARNING: note_concepts has no client_id, skipping concept-based profiling")
+            note_concepts_df = None
     
     lexicon_path = TAXONOMY_DIR / "lexicon_v1.csv"
     if lexicon_path.exists():

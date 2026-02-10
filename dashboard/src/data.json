@@ -18677,23 +18677,23 @@
     }
   ],
   "processingInfo": {
-    "timestamp": "2026-02-10T14:26:24.200214",
+    "timestamp": "2026-02-10T14:36:58.112184",
     "totalRecords": 400,
     "totalConcepts": 12,
     "totalSegments": 8,
-    "dashboardGenTime": 0.77,
+    "dashboardGenTime": 0.79,
     "pipelineTimings": {
-      "ingest": 0.08309078216552734,
-      "candidates": 6.439452886581421,
-      "lexicon": 12.840880870819092,
-      "concepts": 5.123730897903442,
-      "vectors": 5.909213066101074,
-      "profiles": 0.33429718017578125,
-      "actions": 0.4952518939971924,
-      "ml_predictions": 0.5025129318237305,
-      "knowledge_graph": 0.2571432590484619,
-      "projection": 10.001405954360962,
-      "total": 41.99
+      "ingest": 0.09681892395019531,
+      "candidates": 4.515397071838379,
+      "lexicon": 9.623652935028076,
+      "concepts": 5.65601110458374,
+      "vectors": 6.384397029876709,
+      "profiles": 0.42437219619750977,
+      "actions": 0.49445390701293945,
+      "ml_predictions": 0.46407294273376465,
+      "knowledge_graph": 0.27123308181762695,
+      "projection": 7.589431047439575,
+      "total": 35.52
     }
   }
 }

@@ -96,7 +96,10 @@ async def get_clients():
     
     if predictions_path.exists():
         import pandas as pd
+        import numpy as np
         df = pd.read_csv(predictions_path)
+        # Replace NaN with None for JSON serialization
+        df = df.replace({np.nan: None})
         return df.to_dict('records')
     elif profiles_path.exists():
         with open(profiles_path, 'r', encoding='utf-8') as f:
@@ -131,6 +134,7 @@ async def get_predictions():
     
     try:
         import pandas as pd
+        import numpy as np
         df = pd.read_csv(predictions_path)
         # Filter to only prediction columns
         pred_cols = ['client_id', 'purchase_probability', 'churn_risk', 
@@ -138,7 +142,10 @@ async def get_predictions():
         available_cols = [col for col in pred_cols if col in df.columns]
         if 'client_id' not in df.columns and 'id' in df.columns:
             available_cols = ['id'] + [col for col in pred_cols[1:] if col in df.columns]
-        return df[available_cols].to_dict('records')
+        
+        # Replace NaN with None for JSON serialization
+        df_filtered = df[available_cols].replace({np.nan: None})
+        return df_filtered.to_dict('records')
     except Exception as e:
         logger.error(f"Error reading predictions: {e}")
         raise HTTPException(status_code=500, detail=str(e))

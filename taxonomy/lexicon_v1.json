@@ -1,1933 +1,4227 @@
 {
-  "CONCEPT_0000_551615": {
-    "label": "ceo",
+  "CONCEPT_0000_2fca68": {
+    "label": "dire",
     "aliases": [
-      "mogul",
-      "interessato",
-      "خاصًا",
-      "عرضًا",
-      "busca",
-      "interested",
-      "interested in",
-      "geïnteresseerd",
-      "geïnteresseerd in",
-      "heeft",
+      "tipo",
+      "see",
+      "you",
+      "ungefähr",
+      "modo",
+      "qualche",
+      "pues",
+      "quelque",
+      "in qualche",
+      "en quelque",
+      "diciamo",
+      "così",
+      "know",
+      "sozusagen",
+      "alguna",
+      "capisci",
+      "digamos",
+      "let",
+      "okay",
+      "sie",
+      "way",
+      "you know",
+      "así decirlo",
+      "gesehen",
+      "quasi",
+      "sra",
+      "decirlo",
+      "en alguna",
+      "so gesehen",
+      "veux",
+      "weißt du",
+      "ziemlich",
+      "ähm",
+      "disons",
+      "se capite",
+      "tipo così",
+      "capite",
+      "diciamo che",
+      "en cierto modo",
+      "por así decirlo",
+      "se vuoi",
+      "si quieres",
+      "so ungefähr",
+      "du willst",
+      "insomma",
+      "piuttosto",
+      "pues sí",
+      "wie",
+      "così dire",
+      "genau",
+      "in qualche maniera",
+      "maniera",
+      "por así",
+      "sag mal",
+      "sai",
+      "tantito",
+      "ves",
+      "vuoi",
+      "wenn du willst",
+      "beh",
+      "cioè",
+      "ehm",
+      "en alguna forma",
+      "irgendwie",
+      "per così",
+      "per così dire",
+      "qualche maniera",
+      "weißt",
+      "alrededor",
+      "así",
+      "capito",
+      "gewisser",
+      "gewissermaßen",
+      "guess",
+      "in gewisser",
+      "in un certo",
+      "naja",
+      "pour ainsi dire",
+      "quieres",
+      "sabes",
+      "suppose",
+      "tantino",
+      "vale",
+      "ainsi dire",
+      "alguna forma",
+      "allora",
+      "certo senso",
+      "en cierto",
+      "gros",
+      "grosso",
+      "grosso modo",
+      "herr und frau",
+      "sagen wir",
+      "signor",
+      "un certo",
+      "un certo senso",
+      "un tantito",
+      "ya ves",
+      "yep",
+      "alrededor de",
+      "bref",
+      "hmm",
+      "hum",
+      "mal",
+      "plutôt",
+      "pour ainsi",
+      "praticamente",
+      "queréis",
+      "realidad",
+      "sag",
+      "sagen",
+      "signora",
+      "un tantino",
+      "wir",
+      "ya sabes",
+      "you see",
+      "alto",
+      "cierto",
+      "cierto modo",
+      "decir",
+      "es decir",
+      "on va dire",
+      "por ahí",
+      "se capisci",
+      "va bene",
+      "va dire",
+      "vamos ver",
+      "actually",
+      "digamos que",
+      "du coup",
+      "let see",
+      "manière",
+      "on va",
+      "peu près",
+      "près",
+      "savez",
+      "sehr",
+      "some way",
+      "vamos",
+      "ver",
+      "voilà",
+      "well",
+      "ahí",
+      "all incirca",
+      "bah",
+      "de alguna manera",
+      "en gros",
+      "en quelque manière",
+      "incirca",
+      "let me see",
+      "me see",
+      "or so",
+      "quelque manière",
+      "right",
+      "senso",
+      "tu sais",
+      "vois",
+      "vous savez",
+      "ainsi",
+      "alguna manera",
+      "certo",
+      "hein",
+      "in way",
+      "qualche modo",
+      "sais",
+      "si queréis",
+      "tu vois",
+      "un poquito",
+      "veux dire",
+      "yeah",
+      "beispiel",
+      "en quelque façon",
+      "enfin",
+      "entonces",
+      "euh",
+      "in some way",
+      "je veux dire",
+      "know what",
+      "let me",
+      "veis",
+      "all",
+      "disons que",
+      "eigentlich",
+      "en quelque sorte",
+      "façon",
+      "in qualche modo",
+      "manera",
+      "quelque façon",
+      "si tu",
+      "truc",
+      "tu veux",
+      "un tantinet",
+      "you know what",
+      "alors",
+      "ben",
+      "de alguna",
+      "en realidad",
+      "je veux",
+      "si tu veux",
+      "sorte",
+      "quindi",
+      "ya veis",
+      "est dire",
+      "voulez",
       "cerca",
-      "pronto",
-      "интересуется",
-      "raro",
-      "مهتم",
-      "procura",
-      "sucht",
-      "ищет",
-      "トビュ",
-      "프라이빗",
-      "annata",
-      "annata raro",
-      "d'annata",
-      "d'annata raro",
-      "intéressé",
-      "intéressé par",
-      "recherche",
-      "sac in",
-      "صندوق",
-      "مخصص",
-      "관심을",
-      "ceo interessato",
-      "interesado",
-      "interesado en",
-      "interessado",
-      "interessado em",
-      "кутюр",
-      "يبحث",
-      "baúl",
-      "busca alta",
+      "importante",
+      "quelque sorte",
+      "végan",
+      "all'incirca",
+      "nouvelle",
+      "si vous voulez",
+      "vous voulez",
+      "busca",
+      "wagner",
+      "anderson",
+      "cherche",
+      "gentile",
+      "hoffmann",
+      "élégant",
+      "frau hoffmann",
+      "frau wagner",
+      "herr",
       "interessiert",
-      "interessiert an",
-      "montre in",
-      "فاخرة",
-      "이니셜",
-      "bonifico",
-      "interessato sac in",
-      "mala",
-      "mala sob",
-      "millésimé",
-      "sob",
-      "zoekt",
-      "جلد",
-      "뷰잉을",
-      "뷰잉을 요청함",
-      "요청함",
-      "프라이빗 뷰잉을",
-      "프라이빗 뷰잉을 요청함",
-      "bonifico in",
-      "bonifico in sospeso",
-      "fijne",
-      "in sospeso",
-      "interessato a alta",
-      "interessato alta",
-      "joalharia",
-      "met",
-      "pendente",
-      "pronto para",
-      "sospeso",
-      "voor",
-      "جلد غريب",
-      "غريب",
-      "ausstehend",
-      "baule",
-      "baule su",
-      "ceo geïnteresseerd",
-      "ceo geïnteresseerd in",
-      "interessert",
-      "interessert an",
-      "intéressé par haute",
-      "pendiente",
-      "rara",
-      "tras",
-      "интересуется от кутюр",
-      "серии",
-      "トクチュ",
-      "ceo interested",
-      "ceo интересуется",
-      "geïnteresseerd in fijne",
-      "interesado en baúl",
-      "interessiert an feiner",
-      "listo",
-      "malle",
-      "mogul interessado",
-      "procura alta",
-      "virement",
-      "كوتور",
-      "هوت",
-      "هوت كوتور",
-      "のプライベ",
-      "のプライベ ー トビュ",
-      "は希少なヴィンテ",
-      "は高級ジュエリ",
-      "は高級ジュエリ ー のプライベ",
-      "고객이",
-      "엑조틱",
-      "busca baúl",
-      "busca sac",
-      "collector )이 한정판",
-      "interesado en montre",
-      "interessado em alta",
-      "interessado em mala",
-      "interessato a baule",
-      "interesse",
-      "joaillerie",
-      "mogul interested",
-      "recherche haute",
-      "винтажное",
-      "ищет от кутюр",
-      "перевод",
-      "が高級ジュエリ",
-      "주얼리",
-      "주얼리를"
+      "ricci",
+      "signor gentile",
+      "ceo",
+      "colombo",
+      "frau müller",
+      "garcía",
+      "intéressant",
+      "lópez",
+      "ruiz",
+      "seit",
+      "signor colombo",
+      "signora ricci",
+      "signora rizzo",
+      "élevé",
+      "ans cheffe",
+      "appreciate",
+      "bauer",
+      "caruso",
+      "castro",
+      "difficiles",
+      "enfin cherche",
+      "fernández",
+      "ferretti",
+      "frau bauer",
+      "frau richter",
+      "frau und herr",
+      "garcía y sra",
+      "grande",
+      "grands",
+      "herrera",
+      "ipo",
+      "jiménez",
+      "lusso",
+      "moreno",
+      "méndez",
+      "nouvelle je veux",
+      "ong",
+      "ortiz",
+      "rse",
+      "sac",
+      "signor conti",
+      "signor e signora",
+      "signor ferretti",
+      "signora caruso",
+      "signora conti",
+      "signora esposito",
+      "signora moretti",
+      "silva",
+      "sra. castro",
+      "sra. garcía",
+      "vega"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 861,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 4764,
     "examples": [
-      "SA_0193",
-      "SA_0163",
-      "SA_0393",
-      "SA_0366",
-      "SA_0207"
+      "CA_381",
+      "CA_124",
+      "CA_141",
+      "CA_369",
+      "CA_361"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0001_ec7e63": {
-    "label": "privata",
+  "CONCEPT_0001_530b64": {
+    "label": "menos",
     "aliases": [
-      "privada",
-      "privata per",
-      "private",
-      "private besichtigung",
-      "частный",
-      "частный просмотр",
-      "privada para",
-      "een privébezichtiging",
-      "een privébezichtiging aangevraagd",
-      "heeft een privébezichtiging",
-      "privébezichtiging",
-      "privébezichtiging aangevraagd",
-      "vista privada",
-      "eine private",
-      "eine private besichtigung",
-      "um eine private",
-      "visione privata",
-      "privée",
-      "una visione privata",
-      "visualização privada",
-      "private besichtigung angefordert",
-      "privébezichtiging aangevraagd for",
-      "una vista privada",
-      "visione privata per",
-      "vista privada para",
-      "visualização privata",
-      "запросил частный",
-      "запросил частный просмотр",
-      "private besichtigung for",
-      "запрошен частный",
-      "запрошен частный просмотр",
-      "privada para alta",
-      "solicitó vista privada",
-      "uma privada",
-      "uma privada para",
-      "uma visualização privada",
-      "une visite privée",
-      "visite privée",
-      "visualização privada para",
-      "presentazione privata",
-      "presentazione privata per",
-      "privébezichtiging aangevraagd voor",
-      "solicitou uma privada",
-      "solicitou uma privata",
-      "uma privata",
-      "uma privata per",
-      "uma visualização privata",
-      "une presentazione privata",
-      "privata per alta",
-      "privata per mala",
-      "privata per montre",
-      "solicitou visualização privada",
-      "solicitou visualização privata",
-      "частный просмотр часы",
-      "ceo запросил частный",
-      "client запросил частный",
-      "privada para bolsa",
-      "privada para relógio",
-      "privée pour montre",
-      "présentation privée",
-      "vista privata",
-      "vista privata per"
+      "más menos",
+      "pochino",
+      "un pochino",
+      "ein wenig",
+      "or less",
+      "più meno",
+      "meno",
+      "wenig",
+      "ein bisschen",
+      "un po",
+      "more or less",
+      "poco",
+      "un poco",
+      "less",
+      "mehr oder weniger",
+      "bisschen",
+      "mehr oder",
+      "weniger",
+      "mehr",
+      "oder weniger",
+      "moins",
+      "ou moins",
+      "un petit",
+      "un petit peu",
+      "petit",
+      "petit peu",
+      "plus ou moins",
+      "klein"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 440,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 584,
     "examples": [
-      "SA_0167",
-      "SA_0297",
-      "SA_0214",
-      "SA_0192",
-      "SA_0375"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0002_f48e3a": {
-    "label": "طلب",
-    "aliases": [
-      "solicitou",
-      "solicitó",
-      "requested",
-      "aangevraagd",
-      "demandé",
-      "demandé une",
-      "een",
-      "heeft een",
-      "solicitó una",
-      "العميل",
-      "한정판",
-      "bat um eine",
-      "um eine",
-      "uma",
-      "ha richiesto",
-      "ha richiesto una",
-      "klant",
-      "richiesto",
-      "richiesto una",
-      "solicitou uma",
-      "aangevraagd for",
-      "angefordert",
-      "needs",
-      "заказ",
-      "запросил",
-      "benötigt",
-      "besoin",
-      "besoin un",
-      "nodig",
-      "aangevraagd voor",
-      "necesita",
-      "necessita",
-      "necessita di",
-      "besoin d'un",
-      "ceo solicitou",
-      "ceo solicitou uma",
-      "client )이 한정판",
-      "mogul طلب",
-      "mogul طلب عرضًا",
-      "يحتاج إلى",
-      "ceo ha richiesto",
-      "ceo запросил",
-      "d'un",
-      "mogul ha richiesto",
-      "нужна"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU",
-    "freq_notes": 325,
-    "examples": [
-      "SA_0110",
-      "SA_0167",
-      "SA_0297",
-      "SA_0234",
-      "SA_0192"
+      "CA_153",
+      "CA_134",
+      "CA_124",
+      "CA_168",
+      "CA_174"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0003_afc54f": {
-    "label": "montre",
+  "CONCEPT_0002_be1ab1": {
+    "label": "like",
     "aliases": [
-      "besichtigung",
-      "vista",
-      "looking",
-      "visualização",
-      "looking at",
-      "solicitó una vista",
-      "una vista",
-      "просмотр",
-      "uma visualização",
-      "visione",
-      "richiesto una visione",
-      "solicitou uma visualização",
-      "una visione",
-      "besichtigung angefordert",
-      "besichtigung for",
-      "solicitou visualização",
-      "montre de",
-      "solicitó vista",
-      "cerca montre in",
-      "par montre",
-      "наблюдение",
-      "наблюдение после",
-      "последующее наблюдение",
-      "последующее наблюдение после",
-      "per montre",
-      "просмотр от кутюр"
+      "sort of",
+      "in gewisser weise",
+      "por ejemplo",
+      "etwa",
+      "esempio",
+      "gewisser weise",
+      "weise",
+      "ejemplo",
+      "per esempio",
+      "extent",
+      "in manner",
+      "in manner of",
+      "manner",
+      "exemple",
+      "of like",
+      "some extent",
+      "something",
+      "manner of",
+      "something like",
+      "basically",
+      "par exemple",
+      "what",
+      "sort of like",
+      "to some extent",
+      "kind of",
+      "sucht"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 222,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 531,
     "examples": [
-      "SA_0200",
-      "SA_0129",
-      "SA_0215",
-      "SA_0082",
-      "SA_0219"
+      "CA_134",
+      "CA_168",
+      "CA_141",
+      "CA_187",
+      "CA_157"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0004_232059": {
-    "label": "vip",
+  "CONCEPT_0003_3a517e": {
+    "label": "budget @0",
     "aliases": [
-      "client vip",
-      "vip client",
+      "budget 5500",
+      "presupuesto",
+      "combined budget",
+      "budget 6500",
+      "budget 4500",
+      "budget 5-@0",
+      "budget extremely",
+      "jubiläen budget",
+      "yep budget"
+    ],
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 233,
+    "examples": [
+      "CA_174",
+      "CA_124",
+      "CA_141",
+      "CA_157",
+      "CA_212"
+    ],
+    "rule": "bucket=constraints"
+  },
+  "CONCEPT_0004_4a9c3d": {
+    "label": "kunden",
+    "aliases": [
+      "treue kunden",
+      "cliente regolare",
+      "nouvelle cliente potentiel",
+      "clienta potencial",
+      "cliente potentiel",
+      "nouveau client potentiel",
+      "nouvelle cliente",
+      "client potentiel",
+      "cliente potencial",
+      "clients",
+      "nouveau client",
+      "client potentiel bon",
+      "clienta potencial alto",
+      "cliente occasionale",
+      "cliente potentiel bon",
+      "clienta",
+      "cliente potenziale interessante",
+      "nuova cliente potenziale",
+      "regelmäßige kunden",
+      "cliente ocasional",
+      "clientes",
+      "nuova cliente",
+      "client high potential",
+      "client potentiel intéressant",
+      "cliente altissimo potenziale",
+      "cliente potencial excelente",
+      "cliente potentiel excellent",
+      "cliente potentiel intéressant",
+      "cliente potenziale",
+      "clientes alto potencial",
+      "clienti",
+      "michelin nouvelle cliente"
+    ],
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 233,
+    "examples": [
+      "CA_381",
+      "CA_124",
+      "CA_141",
+      "CA_361",
+      "CA_241"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0005_432eaa": {
+    "label": "client vip",
+    "aliases": [
+      "vip",
+      "vip clients",
       "cliente vip",
-      "cliente vip client",
-      "vip client interested",
-      "客户（ vip",
-      "客户（ vip client",
-      "client は高級ジュエリ",
-      "vip client interesado",
-      "vip client interessato",
-      "vip client requested",
-      "vip client запросил",
-      "vip client طلب",
-      "vip client は高級ジュエリ",
-      "クライアント（ vip",
-      "クライアント（ vip client"
+      "regular vip",
+      "regular vip clients",
+      "clienta vip",
+      "clientes vip",
+      "años clientes vip",
+      "clientes vip excelentes",
+      "clienti vip",
+      "clients vip",
+      "importante cliente vip",
+      "kunden vip",
+      "vip excelentes"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 213,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 216,
     "examples": [
-      "SA_0062",
-      "SA_0068",
-      "SA_0255",
-      "SA_0262",
-      "SA_0305"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0005_5596ef": {
-    "label": "champagne",
-    "aliases": [
-      "champagne annata",
-      "champagne annata raro",
-      "champagne d'annata",
-      "champagne d'annata raro",
-      "vintage champagne",
-      "champagne millésimé",
-      "champagne millésimé rare",
-      "champaña",
-      "zeldzame vintage champagne",
-      "champaña vintage",
-      "champaña vintage rara",
-      "per champagne",
-      "privata per champagne",
-      "cerca champagne",
-      "cerca champagne d'annata",
-      "champanhe",
-      "champanhe vintage",
-      "champanhe vintage raro",
-      "interessato a champagne",
-      "شامبانيا معتقة",
-      "شامبانيا معتقة نادرة",
-      "intéressé par champagne",
-      "procura champanhe",
-      "procura champanhe vintage",
-      "rare vintage champagne",
-      "recherche champagne",
-      "recherche champagne millésimé",
-      "винтажное шампанское",
-      "редкое винтажное шампанское",
-      "шампанское",
-      "شامبانيا",
-      "は希少なヴィンテ ー ジシャンパンに興味を持っています。購入の準備ができています",
-      "ジシャンパンに興味を持っています。購入の準備ができています",
-      "要求私下查看稀有年份香槟。电汇待定",
-      "빈티지 샴페인",
-      "빈티지 샴페인 프라이빗",
-      "빈티지 샴페인에",
-      "빈티지 샴페인에 관심을",
-      "샴페인",
-      "샴페인 프라이빗",
-      "샴페인 프라이빗 뷰잉을",
-      "샴페인에",
-      "샴페인에 관심을"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 172,
-    "examples": [
-      "SA_0136",
-      "SA_0343",
-      "SA_0359",
-      "SA_0321",
-      "SA_0189"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0006_52a43b": {
-    "label": "gala",
-    "aliases": [
-      "after gala",
-      "up after gala",
-      "suivi after gala",
-      "متابعة بعد الحفل",
-      "الحفل",
-      "بعد الحفل",
-      "der gala",
-      "nach der gala",
-      "la gala",
-      "na gala",
-      "suivi na gala",
-      "up na gala",
-      "après le gala",
-      "dopo il gala",
-      "il gala",
-      "le gala",
-      "tras la gala",
-      "гала-концерта",
-      "наблюдение после гала-концерта",
-      "после гала-концерта",
-      "após a gala"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 155,
-    "examples": [
-      "SA_0085",
-      "SA_0200",
-      "SA_0207",
-      "SA_0215",
-      "SA_0167"
+      "CA_153",
+      "CA_134",
+      "CA_369",
+      "CA_157",
+      "CA_308"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0007_977fd0": {
-    "label": "edizione",
+  "CONCEPT_0006_43921c": {
+    "label": "pescétarien",
     "aliases": [
-      "edizione limitata",
-      "edition",
-      "edition montre",
-      "limited edition",
-      "limited edition montre",
-      "إصدار",
-      "إصدار محدود",
-      "in edizione",
-      "montre in edizione",
-      "de edizione",
-      "de edizione limitata",
-      "edizione limitada",
-      "édition",
-      "in edizione limitada",
-      "montre edizione",
-      "montre édition",
-      "édition limitée",
-      "edición",
-      "edición limitada",
-      "montre de edición",
-      "montre edizione limitata",
-      "montre édition limitée",
-      "edição",
-      "edição limitada",
-      "montre de edizione",
-      "per montre edizione"
+      "sea",
+      "fischer",
+      "frau fischer",
+      "martinez",
+      "bleu marine",
+      "bleu marine 44 ans",
+      "marini",
+      "signor bleu marine",
+      "signor marini"
     ],
-    "languages": "AR|EN|ES|FR|IT|PT",
-    "freq_notes": 152,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 128,
     "examples": [
-      "SA_0163",
-      "SA_0200",
-      "SA_0385",
-      "SA_0133",
-      "SA_0223"
-    ],
-    "rule": "bucket=other"
-  },
-  "CONCEPT_0008_b5241b": {
-    "label": "sac",
-    "aliases": [
-      "sac à main",
-      "maßgefertigter koffer",
-      "sac in pelle",
-      "interessato a sac",
-      "interessato sac",
-      "багаж на заказ",
-      "حقيبة",
-      "حقيبة جلد",
-      "handtasche",
-      "сумка",
-      "сумка из экзотической",
-      "حقيبة جلد غريب",
-      "bolsa",
-      "bolsa de",
-      "exotische handtasche",
-      "gemaakte koffer",
-      "maat gemaakte koffer",
-      "sac de",
-      "sac de cuir",
-      "интересуется багаж",
-      "bolsa de pele",
-      "интересуется сумка",
-      "for maßgefertigter koffer",
-      "para bolsa",
-      "procura bolsa",
-      "recherche sac",
-      "sac en peau",
-      "ищет сумка",
-      "يبحث عن حقيبة"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 141,
-    "examples": [
-      "SA_0366",
-      "SA_0110",
-      "SA_0160",
-      "SA_0278",
-      "SA_0297"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0009_6666e1": {
-    "label": "monogram",
-    "aliases": [
-      "monogramma",
-      "custom monogram",
-      "needs custom monogram",
-      "monogramma personalizzato",
-      "monogramme",
-      "aangepast monogram",
-      "aangepast monogram nodig",
-      "benötigt individuelles monogramm",
-      "besoin un monogramme",
-      "heeft aangepast monogram",
-      "individuelles monogramm",
-      "monogram nodig",
-      "monogramm",
-      "monogramme personnalisé",
-      "un monogramme",
-      "un monogramme personnalisé",
-      "di monogramma",
-      "di monogramma personalizzato",
-      "necessita di monogramma",
-      "necesita monogramma",
-      "besoin d'un monogramme",
-      "d'un monogramme",
-      "d'un monogramme personnalisé",
-      "monograma",
-      "monograma personalizado",
-      "monogramma personalizado",
-      "necesita monogramma personalizado",
-      "индивидуальная монограмма",
-      "монограмма",
-      "нужна индивидуальная монограмма"
-    ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 136,
-    "examples": [
-      "SA_0136",
-      "SA_0120",
-      "SA_0359",
-      "SA_0058",
-      "SA_0110"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0010_1931a4": {
-    "label": "art collector",
-    "aliases": [
-      "collector",
-      "cliente art collector",
-      "art collector solicitó",
-      "collector solicitó",
-      "collector solicitó una",
-      "art collector interessert",
-      "art collector intéressé",
-      "collector interessert",
-      "collector intéressé",
-      "art collector requested",
-      "art collector solicitou",
-      "collector requested",
-      "collector solicitou"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|ZH",
-    "freq_notes": 134,
-    "examples": [
-      "SA_0138",
-      "SA_0321",
-      "SA_0160",
-      "SA_001",
-      "SA_0060"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0011_88a76b": {
-    "label": "suivi",
-    "aliases": [
-      "follow",
-      "after",
-      "follow up after",
-      "متابعة",
-      "متابعة بعد",
-      "بعد",
-      "approx follow",
-      "approx follow up",
-      "follow up dopo",
-      "suivi après",
-      "suivi après le",
-      "suivi tras",
-      "suivi tras la",
-      "tras la",
-      "после",
-      "последующее",
-      "acompanhamento",
-      "acompanhamento após"
-    ],
-    "languages": "AR|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 134,
-    "examples": [
-      "SA_0200",
-      "SA_0207",
-      "SA_0215",
-      "SA_0060",
-      "SA_0306"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0012_08eae1": {
-    "label": "готов к покупке",
-    "aliases": [
-      "acquisto",
-      "покупке",
-      "all acquisto",
-      "all'acquisto",
-      "buy",
-      "comprar",
-      "para comprar",
-      "pronto all acquisto",
-      "pronto all'acquisto",
-      "ready to buy",
-      "to buy",
-      "جاهز للشراء",
-      "pronto para comprar",
-      "للشراء",
-      "kaufbereit",
-      "kopen",
-      "listo para comprar",
-      "acheter",
-      "prêt à acheter"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 115,
-    "examples": [
-      "SA_0193",
-      "SA_0138",
-      "SA_001",
-      "SA_0245",
-      "SA_0133"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0013_9e7ebc": {
-    "label": "bijoux",
-    "aliases": [
-      "مجوهرات",
-      "alta bijoux",
-      "alta gioielleria",
-      "gioielleria",
-      "مجوهرات فاخرة",
-      "feiner bijoux",
-      "fijne sieraden",
-      "sieraden",
-      "ювелирные",
-      "ювелирные изделия",
-      "an feiner bijoux",
-      "busca alta bijoux",
-      "fine bijoux",
-      "cerca alta gioielleria",
-      "ищет ювелирные",
-      "ищет ювелирные изделия",
-      "procura alta joalharia"
-    ],
-    "languages": "AR|DE|EN|ES|IT|NL|PT|RU",
-    "freq_notes": 102,
-    "examples": [
-      "SA_0085",
-      "SA_0233",
-      "SA_0261",
-      "SA_0167",
-      "SA_0283"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0014_22d98c": {
-    "label": "estate mogul",
-    "aliases": [
-      "estate",
-      "estate mogul interessado",
-      "estate mogul طلب",
-      "estate mogul heeft",
-      "estate mogul interested"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 100,
-    "examples": [
-      "SA_0069",
-      "SA_003",
-      "SA_0079",
-      "SA_0336",
-      "SA_0205"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0015_52a465": {
-    "label": "real estate",
-    "aliases": [
-      "real estate mogul",
-      "client real estate",
-      "cliente real estate"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 98,
-    "examples": [
-      "SA_0069",
-      "SA_003",
-      "SA_0079",
-      "SA_0361",
-      "SA_0056"
-    ],
-    "rule": "bucket=other"
-  },
-  "CONCEPT_0016_37c24a": {
-    "label": "skin",
-    "aliases": [
-      "exotic skin",
-      "exotic skin sac à main",
-      "skin sac à main",
-      "pelle",
-      "in exotic skin",
-      "in pelle",
-      "in pelle esotica",
-      "pelle esotica",
-      "кожи",
-      "экзотической кожи",
-      "pele",
-      "pele exótica",
-      "peau",
-      "peau exotique"
-    ],
-    "languages": "EN|FR|IT|PT|RU",
-    "freq_notes": 96,
-    "examples": [
-      "SA_0110",
-      "SA_012",
-      "SA_0250",
-      "SA_0232",
-      "SA_0319"
+      "CA_124",
+      "CA_245",
+      "CA_318",
+      "CA_145",
+      "CA_119"
     ],
     "rule": "bucket=preferences"
   },
-  "CONCEPT_0017_6a0685": {
-    "label": "tech founder",
+  "CONCEPT_0007_58b4bf": {
+    "label": "eine art",
     "aliases": [
-      "cliente tech founder",
-      "tech founder cerca",
-      "tech founder طلب",
-      "tech founder interessato",
-      "tech founder интересуется",
-      "tech founder interesado",
-      "tech founder heeft",
-      "tech founder interested",
-      "tech founder intéressé",
-      "tech founder requested",
-      "tech founder مهتم"
+      "art",
+      "auf eine art",
+      "artistas",
+      "directora fundación art",
+      "anciens art déco",
+      "art contemporáneo",
+      "art déco",
+      "art nouveau",
+      "creative",
+      "creativo",
+      "créatif",
+      "fundación art",
+      "fundación art contemporáneo"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU",
-    "freq_notes": 95,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 122,
     "examples": [
-      "SA_0343",
-      "SA_0340",
-      "SA_0110",
-      "SA_0283",
-      "SA_0385"
+      "CA_369",
+      "CA_157",
+      "CA_119",
+      "CA_289",
+      "CA_125"
     ],
-    "rule": "bucket=intent"
+    "rule": "bucket=lifestyle"
   },
-  "CONCEPT_0018_7cef8d": {
-    "label": "philanthropist",
+  "CONCEPT_0008_07d46f": {
+    "label": "frau",
     "aliases": [
-      "client philanthropist",
-      "cliente philanthropist",
-      "philanthropist interessato",
-      "philanthropist interessiert",
-      "philanthropist طلب",
-      "philanthropist طلب عرضًا",
-      "客户（ philanthropist",
-      "philanthropist geïnteresseerd",
-      "philanthropist heeft",
-      "philanthropist heeft een",
-      "philanthropist requested",
-      "philanthropist requested viewing",
-      "philanthropist solicitou",
-      "philanthropist solicitou uma",
-      "philanthropist интересуется",
-      "philanthropist مهتم"
+      "machin",
+      "tantinet",
+      "michelin",
+      "frau schulz",
+      "frau becker",
+      "frau klein",
+      "schmidt",
+      "meyer",
+      "estrellas michelin",
+      "frau meyer",
+      "frau neumann",
+      "frau schmidt",
+      "frau zimmermann",
+      "herr schmidt",
+      "herr schneider",
+      "michelin nouvelle",
+      "stelle michelin",
+      "zimmermann",
+      "étoilé michelin"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 94,
+    "languages": "DE|ES|FR|IT",
+    "freq_notes": 107,
     "examples": [
-      "SA_0285",
-      "SA_0366",
-      "SA_0163",
-      "SA_0317",
-      "SA_0207"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0019_caaa84": {
-    "label": "founder",
-    "aliases": [
-      "founder cerca",
-      "founder طلب",
-      "founder طلب عرضًا",
-      "founder interessato",
-      "founder интересуется",
-      "founder interesado",
-      "founder heeft",
-      "founder heeft een",
-      "founder interested",
-      "founder intéressé",
-      "founder requested",
-      "founder مهتم"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU",
-    "freq_notes": 92,
-    "examples": [
-      "SA_0343",
-      "SA_0340",
-      "SA_0110",
-      "SA_0385",
-      "SA_0364"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0020_d54c0e": {
-    "label": "ساعة",
-    "aliases": [
-      "ساعة إصدار",
-      "ساعة إصدار محدود",
-      "relógio",
-      "relógio de",
-      "시계를",
-      "한정판 시계를",
-      "horloge",
-      "часы",
-      "часы ограниченной",
-      "часы ограниченной серии",
-      "relógio de edizione",
-      "relógio de edição",
-      "просмотр часы",
-      "просмотр часы ограниченной",
-      "interessado em relógio",
-      "para relógio",
-      "procura relógio",
-      "يبحث عن ساعة"
-    ],
-    "languages": "AR|KO|NL|PT|RU",
-    "freq_notes": 92,
-    "examples": [
-      "SA_0163",
-      "SA_0180",
-      "SA_0393",
-      "SA_0058",
-      "SA_0237"
+      "CA_381",
+      "CA_194",
+      "CA_141",
+      "CA_318",
+      "CA_250"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0021_322688": {
-    "label": "cadeau",
+  "CONCEPT_0009_12d8b6": {
+    "label": "cerca borse",
     "aliases": [
-      "corporate gifting",
-      "gifting",
-      "zakelijk cadeau",
-      "cadeau aziendale",
-      "هدية",
-      "هدية مؤسسية",
-      "approx corporate gifting",
-      "cadeau corporativo",
-      "cadeau d'entreprise",
-      "cadeau entreprise",
-      "корпоративный подарок",
-      "подарок",
-      "firmengeschenk"
+      "cerca borse nuove",
+      "cherche sac",
+      "recherche sac",
+      "busca bolsos profesionales",
+      "cerca borse professionali",
+      "recherche sac élégant",
+      "cherche sac travail",
+      "bolsos profesionales trabajo",
+      "borse professionali",
+      "borse nuove",
+      "busca maletas",
+      "busca maletas bolsos",
+      "cherche sac voyage",
+      "cherche sac élégant",
+      "cherche sacs",
+      "cherche sacs voyage",
+      "recherche sac professionnel",
+      "renouvelle sacs",
+      "renouvelle sacs travail",
+      "sac travail",
+      "sac travail professionnel",
+      "sac élégant",
+      "sac élégant travail",
+      "sac élégant usage",
+      "sacs travail chantiers"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|RU",
-    "freq_notes": 89,
+    "languages": "ES|FR|IT",
+    "freq_notes": 101,
     "examples": [
-      "SA_0285",
-      "SA_0317",
-      "SA_0385",
-      "SA_0214",
-      "SA_0216"
+      "CA_381",
+      "CA_174",
+      "CA_168",
+      "CA_166",
+      "CA_141"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0022_2b8153": {
-    "label": "maßgefertigter",
+  "CONCEPT_0010_79ee26": {
+    "label": "allergie latex",
     "aliases": [
-      "nachbereitung",
-      "nachbereitung nach",
-      "nachbereitung nach der",
-      "aangepast",
-      "feiner",
-      "gelimiteerd",
-      "heeft aangepast",
-      "изделия",
-      "an feiner",
-      "gemaakte",
-      "geïnteresseerd in gelimiteerd",
-      "in gelimiteerd",
-      "maat gemaakte",
-      "op maat gemaakte",
-      "überweisung",
-      "überweisung ausstehend",
-      "besichtigung for maßgefertigter",
-      "for maßgefertigter",
-      "interessert an maßgefertigter"
+      "allergie nickel",
+      "allergie important",
+      "allergie pollen",
+      "allergie fruits",
+      "allergie critical",
+      "allergie profumi",
+      "allergie crostacei",
+      "allergie altitude",
+      "allergie arachides",
+      "allergie gluten",
+      "allergie polvere",
+      "allergie se",
+      "keine allergien",
+      "allergie diciamo",
+      "allergie ehm",
+      "allergie lactose",
+      "allergie metalli",
+      "allergie multiple",
+      "allergie nut",
+      "allergie peanut",
+      "allergie poussière",
+      "allergie pressappoco",
+      "allergie wichtig"
     ],
-    "languages": "DE|NL|RU",
-    "freq_notes": 88,
+    "languages": "DE|EN|FR|IT",
+    "freq_notes": 97,
     "examples": [
-      "SA_0136",
-      "SA_0085",
-      "SA_0058",
-      "SA_0261",
-      "SA_0160"
+      "CA_381",
+      "CA_153",
+      "CA_333",
+      "CA_318",
+      "CA_141"
     ],
-    "rule": "bucket=other"
+    "rule": "bucket=constraints"
   },
-  "CONCEPT_0023_679dec": {
-    "label": "concorrenza",
+  "CONCEPT_0011_38c9f0": {
+    "label": "pratica",
     "aliases": [
-      "con la concorrenza",
-      "la concorrenza",
-      "met concurrenten",
-      "mit wettbewerbern",
-      "vergelijken met concurrenten",
-      "vergleich mit wettbewerbern",
-      "wettbewerbern",
-      "المنافسين",
-      "مقارنة مع المنافسين",
-      "competidores",
-      "сравнение с конкурентами",
-      "comparando con competidores",
-      "concurrence",
-      "конкурентами",
-      "경쟁사와",
-      "comparando com concorrentes",
-      "concorrentes"
+      "in pratica",
+      "zum beispiel",
+      "recherche",
+      "research",
+      "ricerca",
+      "consulta",
+      "investigativa premiada",
+      "praxis"
     ],
-    "languages": "AR|DE|ES|FR|IT|KO|NL|PT|RU",
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 91,
+    "examples": [
+      "CA_187",
+      "CA_104",
+      "CA_128",
+      "CA_125",
+      "CA_123"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0012_1f2455": {
+    "label": "aproximadamente",
+    "aliases": [
+      "roughly",
+      "approximately",
+      "pretty much",
+      "werte",
+      "much"
+    ],
+    "languages": "DE|EN|ES",
     "freq_notes": 83,
     "examples": [
-      "SA_0152",
-      "SA_0163",
-      "SA_0366",
-      "SA_0393",
-      "SA_0321"
+      "CA_124",
+      "CA_187",
+      "CA_160",
+      "CA_212",
+      "CA_207"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0024_0dc98c": {
-    "label": "exotische",
+  "CONCEPT_0013_cadc8c": {
+    "label": "sort",
     "aliases": [
-      "exotic",
-      "exótica",
-      "esotica",
-      "in exotic",
-      "interested in exotic",
-      "for exotische",
-      "экзотической",
-      "aangevraagd for exotische",
-      "aangevraagd voor exotische",
-      "exotique",
-      "geïnteresseerd in exotische",
-      "viewing for exotic",
-      "voor exotische"
+      "kind",
+      "kinder"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 75,
-    "examples": [
-      "SA_0110",
-      "SA_0389",
-      "SA_012",
-      "SA_0221",
-      "SA_0232"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0025_a4dfe9": {
-    "label": "alta",
-    "aliases": [
-      "haute",
-      "alta joalharia",
-      "para alta",
-      "par haute",
-      "cerca alta",
-      "haute joaillerie",
-      "high"
-    ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT",
-    "freq_notes": 72,
-    "examples": [
-      "SA_0081",
-      "SA_0060",
-      "SA_0219",
-      "SA_0121",
-      "SA_0214"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0026_6074aa": {
-    "label": "confronto con la",
-    "aliases": [
-      "confronto",
-      "confronto con",
-      "comparando",
-      "concurrenten",
-      "vergelijken",
-      "vergelijken met",
-      "vergleich",
-      "vergleich mit",
-      "مقارنة",
-      "comparando con",
-      "compare",
-      "сравнение"
-    ],
-    "languages": "AR|DE|ES|FR|IT|NL|PT|RU",
+    "languages": "DE|EN",
     "freq_notes": 71,
     "examples": [
-      "SA_0152",
-      "SA_0163",
-      "SA_0366",
-      "SA_0393",
-      "SA_0321"
+      "CA_335",
+      "CA_122",
+      "CA_107",
+      "CA_400",
+      "CA_147"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0027_151dc6": {
-    "label": "medida",
+  "CONCEPT_0014_1b8774": {
+    "label": "frühjahr geschenke",
     "aliases": [
-      "approx",
-      "baúl a medida",
-      "baúl medida",
-      "mala sob medida",
-      "sob medida",
-      "baule su misura",
-      "misura",
-      "op maat",
-      "su misura",
-      "malle sur mesure",
-      "mesure"
+      "frühjahrskollektion plus geschenke",
+      "plus geschenke",
+      "frühjahr geschenke kinder",
+      "geschenke eltern",
+      "großeinkauf frühjahr geschenke",
+      "einkauf frühjahr geschenke",
+      "frühjahr plus geschenke",
+      "geschenke kinder",
+      "plus geschenke eltern",
+      "plus geschenke kinder",
+      "geschenke jubiläum",
+      "plus geschenke jubiläum",
+      "feier geschenke",
+      "geschenke famille freunde",
+      "geschenke kinder abschlüsse"
     ],
-    "languages": "EN|ES|FR|IT|NL|PT",
-    "freq_notes": 71,
+    "languages": "DE",
+    "freq_notes": 68,
     "examples": [
-      "SA_0322",
-      "SA_0138",
-      "SA_001",
-      "SA_0364",
-      "SA_018"
-    ],
-    "rule": "bucket=other"
-  },
-  "CONCEPT_0028_9139c5": {
-    "label": "limitada",
-    "aliases": [
-      "limitata",
-      "limited",
-      "محدود",
-      "limitierte",
-      "limitée",
-      "in limited",
-      "ограниченной серии",
-      "interested in limited",
-      "for limitierte",
-      "sucht limitierte",
-      "ограниченной"
-    ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|PT|RU",
-    "freq_notes": 67,
-    "examples": [
-      "SA_0163",
-      "SA_0200",
-      "SA_0393",
-      "SA_0311",
-      "SA_0133"
+      "CA_400",
+      "CA_250",
+      "CA_290",
+      "CA_160",
+      "CA_240"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0029_45b2fd": {
-    "label": "맞춤형",
+  "CONCEPT_0015_7cbdd4": {
+    "label": "medical",
     "aliases": [
-      "custom",
-      "needs custom",
-      "맞춤형 이니셜",
-      "personalizzato",
-      "benötigt individuelles",
-      "individuelles",
-      "personnalisé",
-      "alta moda",
-      "moda",
-      "personalizado",
-      "индивидуальная",
-      "нужна индивидуальная"
+      "hospital",
+      "healthcare",
+      "medical academic",
+      "medici",
+      "medicine",
+      "salud",
+      "clinica studio",
+      "clinique",
+      "clínica prestigiosa",
+      "gestiona hospital",
+      "health",
+      "interventista ospedale",
+      "interventista ospedale universitario",
+      "ospedale universitario",
+      "pacientes",
+      "teaching hospital",
+      "universitätsklinik"
     ],
-    "languages": "DE|EN|ES|FR|IT|KO|PT|RU",
-    "freq_notes": 67,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 63,
     "examples": [
-      "SA_0120",
-      "SA_0284",
-      "SA_0139",
-      "SA_0359",
-      "SA_0110"
+      "CA_187",
+      "CA_207",
+      "CA_309",
+      "CA_392",
+      "CA_102"
     ],
-    "rule": "bucket=lifestyle"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0030_a0e29a": {
-    "label": "viewing",
+  "CONCEPT_0016_2b1218": {
+    "label": "taschen frühjahr",
     "aliases": [
-      "viewing for",
-      "requested viewing",
-      "requested viewing for",
-      "viewing for limited",
-      "client requested viewing",
-      "collector requested viewing",
-      "viewing for bespoke"
+      "sucht taschen frühjahr",
+      "großeinkauf frühjahr",
+      "einkauf frühjahr",
+      "einkauf frühjahrskollektion plus",
+      "frühjahr plus",
+      "einkauf frühjahrskollektion",
+      "frühjahrskollektion plus",
+      "einkauf frühjahr plus",
+      "einkaufssession frühjahr",
+      "einkaufssession frühjahr plus",
+      "großeinkauf frühjahr plus",
+      "großeinkauf frühjahrskollektion plus",
+      "taschen frühjahr beruflich"
+    ],
+    "languages": "DE",
+    "freq_notes": 59,
+    "examples": [
+      "CA_245",
+      "CA_250",
+      "CA_160",
+      "CA_185",
+      "CA_380"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0017_b93db1": {
+    "label": "mean",
+    "aliases": [
+      "know what mean",
+      "what mean"
     ],
     "languages": "EN",
-    "freq_notes": 60,
+    "freq_notes": 58,
     "examples": [
-      "SA_0285",
-      "SA_0354",
-      "SA_0187",
-      "SA_0262",
-      "SA_0174"
+      "CA_167",
+      "CA_172",
+      "CA_182",
+      "CA_192",
+      "CA_162"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0031_5856bc": {
-    "label": "seltener",
+  "CONCEPT_0018_798f5e": {
+    "label": "potentiel bon",
     "aliases": [
-      "rare",
-      "millésimé rare",
-      "zeldzame",
-      "sucht seltener",
-      "نادرة",
-      "معتقة نادرة",
-      "besichtigung for seltener",
-      "for seltener",
-      "geïnteresseerd in zeldzame",
-      "zoekt zeldzame",
-      "ищет редкое",
-      "ищет редкое винтажное",
-      "редкое",
-      "редкое винтажное"
+      "potencial alto",
+      "hohes potenzial",
+      "potentiel intéressant",
+      "potentiel élevé",
+      "potenzial",
+      "potencial excelente",
+      "potentiel excellent",
+      "potenziale interessante",
+      "altissimo potenziale",
+      "excellent potential",
+      "kundin hohes potenzial",
+      "potencial muy alto",
+      "potenziale eccellente"
     ],
-    "languages": "AR|DE|EN|FR|NL|RU",
+    "languages": "DE|EN|ES|FR|IT",
     "freq_notes": 57,
     "examples": [
-      "SA_0136",
-      "SA_0193",
-      "SA_0120",
-      "SA_0240",
-      "SA_0327"
+      "CA_333",
+      "CA_194",
+      "CA_141",
+      "CA_318",
+      "CA_229"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0019_dfa96d": {
+    "label": "jubiläum 20 ans",
+    "aliases": [
+      "ricci 44 ans",
+      "rossi 45 ans",
+      "bellini 38 ans",
+      "bernard 29 ans",
+      "bianchi 46 ans",
+      "caruso 41 ans",
+      "castro 39 ans",
+      "castro 46 ans",
+      "colombo 48 ans",
+      "ferretti 36 ans",
+      "gentile 49 ans",
+      "herrera 44 ans",
+      "jiménez 44 ans",
+      "jubiläum 35 ans",
+      "lambert 35 ans",
+      "lópez 41 ans",
+      "mercier 37 ans",
+      "morales 36 ans",
+      "moreno 41 ans",
+      "ortiz 43 ans",
+      "petit 34 ans",
+      "pérez 40 ans",
+      "rizzo 46 ans",
+      "silva 45 ans",
+      "vázquez 42 ans"
+    ],
+    "languages": "DE|ES|FR|IT",
+    "freq_notes": 56,
+    "examples": [
+      "CA_333",
+      "CA_399",
+      "CA_168",
+      "CA_166",
+      "CA_194"
+    ],
+    "rule": "bucket=occasion"
+  },
+  "CONCEPT_0020_1ef0dc": {
+    "label": "ein tick",
+    "aliases": [
+      "tick"
+    ],
+    "languages": "DE",
+    "freq_notes": 55,
+    "examples": [
+      "CA_130",
+      "CA_150",
+      "CA_160",
+      "CA_110",
+      "CA_155"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0021_adc285": {
+    "label": "mrs",
+    "aliases": [
+      "mrs i guess",
+      "mrs sort",
+      "mrs. anderson",
+      "mrs. sort",
+      "mrs. thompson",
+      "mrs. williams",
+      "see. and mrs"
+    ],
+    "languages": "EN",
+    "freq_notes": 55,
+    "examples": [
+      "CA_122",
+      "CA_107",
+      "CA_202",
+      "CA_362",
+      "CA_142"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0032_061117": {
-    "label": "corporate",
+  "CONCEPT_0022_2929c6": {
+    "label": "manner of speaking",
     "aliases": [
-      "corporativo",
-      "zakelijk",
-      "aziendale",
-      "approx corporate",
-      "d'entreprise",
-      "entreprise",
-      "presente corporativo",
-      "корпоративный",
-      "기업용"
+      "speaking",
+      "of speaking"
     ],
-    "languages": "EN|ES|FR|IT|KO|NL|PT|RU",
+    "languages": "EN",
     "freq_notes": 54,
     "examples": [
-      "SA_0285",
-      "SA_0394",
-      "SA_0385",
-      "SA_0214",
-      "SA_0128"
+      "CA_107",
+      "CA_167",
+      "CA_157",
+      "CA_212",
+      "CA_172"
     ],
-    "rule": "bucket=next_action"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0033_136599": {
-    "label": "le client",
+  "CONCEPT_0023_3d4e99": {
+    "label": "director",
     "aliases": [
-      "cliente tech",
-      "клиент",
-      "クライアント",
-      "client interested",
-      "client ha richiesto",
-      "client interesado",
-      "client interessato",
-      "client requested",
-      "client запросил",
-      "client طلب",
-      "client طلب عرضًا",
-      "客户（ ceo"
+      "direttore",
+      "chef",
+      "chefredakteurin",
+      "años directora",
+      "chef abteilung",
+      "director general",
+      "directora recursos",
+      "directora recursos humanos",
+      "directrice",
+      "direttore comunicazione",
+      "direttore comunicazione azienda",
+      "direttore generale",
+      "direttore generale azienda",
+      "executive",
+      "executives",
+      "führung",
+      "genau chefredakteurin",
+      "krankenhaus chef",
+      "krankenhaus chef abteilung",
+      "sommelière chef"
     ],
-    "languages": "AR|EN|ES|FR|IT|JA|PT|RU|ZH",
-    "freq_notes": 54,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 53,
     "examples": [
-      "SA_0322",
-      "SA_0268",
-      "SA_0207",
-      "SA_0262",
-      "SA_0081"
+      "CA_399",
+      "CA_379",
+      "CA_361",
+      "CA_208",
+      "CA_226"
     ],
-    "rule": "bucket=intent"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0034_d9f913": {
-    "label": "tech",
+  "CONCEPT_0024_d9bebd": {
+    "label": "végétarien",
     "aliases": [],
-    "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU",
-    "freq_notes": 54,
+    "languages": "EN|ES|FR|IT",
+    "freq_notes": 48,
     "examples": [
-      "SA_0061",
-      "SA_0059",
-      "SA_008",
-      "SA_0075",
-      "SA_0064"
+      "CA_146",
+      "CA_147",
+      "CA_156",
+      "CA_117",
+      "CA_116"
+    ],
+    "rule": "bucket=constraints"
+  },
+  "CONCEPT_0025_5fc251": {
+    "label": "plan",
+    "aliases": [
+      "en plan"
+    ],
+    "languages": "ES",
+    "freq_notes": 47,
+    "examples": [
+      "CA_159",
+      "CA_134",
+      "CA_124",
+      "CA_103",
+      "CA_139"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0035_2c5f64": {
-    "label": "art",
+  "CONCEPT_0026_a1b01e": {
+    "label": "style",
     "aliases": [
-      "cliente art"
+      "fashion",
+      "moda",
+      "créatrice mode",
+      "créatrice mode marque",
+      "estilo",
+      "luxe",
+      "mode marque",
+      "tech fashion"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|ZH",
-    "freq_notes": 53,
+    "languages": "EN|ES|FR|IT",
+    "freq_notes": 46,
     "examples": [
-      "SA_0055",
-      "SA_0080",
-      "SA_001",
-      "SA_0060",
-      "SA_0053"
+      "CA_196",
+      "CA_107",
+      "CA_278",
+      "CA_258",
+      "CA_111"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0027_f5d7e2": {
+    "label": "business",
+    "aliases": [
+      "company",
+      "corporate",
+      "grande entreprise",
+      "azienda",
+      "generale azienda",
+      "unternehmer"
+    ],
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 35,
+    "examples": [
+      "CA_212",
+      "CA_231",
+      "CA_167",
+      "CA_127",
+      "CA_298"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0028_8b0a44": {
+    "label": "person",
+    "aliases": [
+      "humanos",
+      "kim"
+    ],
+    "languages": "EN|ES|FR",
+    "freq_notes": 35,
+    "examples": [
+      "CA_111",
+      "CA_377",
+      "CA_177",
+      "CA_259",
+      "CA_126"
     ],
     "rule": "bucket=lifestyle"
   },
-  "CONCEPT_0036_4bca24": {
-    "label": "real",
+  "CONCEPT_0029_d9f913": {
+    "label": "tech",
     "aliases": [
-      "client real",
-      "cliente real"
+      "digital",
+      "tecnología"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 53,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 34,
     "examples": [
-      "SA_0069",
-      "SA_003",
-      "SA_0079",
-      "SA_0361",
-      "SA_0056"
+      "CA_246",
+      "CA_214",
+      "CA_104",
+      "CA_293",
+      "CA_156"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0037_b2ffbf": {
-    "label": "طلب عرضًا خاصًا",
+  "CONCEPT_0030_96f0ea": {
+    "label": "regolare",
     "aliases": [
-      "طلب عرضًا",
-      "запрошен"
+      "regelmäßige kundin",
+      "regular"
     ],
-    "languages": "AR|RU",
-    "freq_notes": 44,
+    "languages": "DE|EN|IT",
+    "freq_notes": 32,
     "examples": [
-      "SA_0212",
-      "SA_0231",
-      "SA_0111",
-      "SA_0129",
-      "SA_0113"
+      "CA_168",
+      "CA_205",
+      "CA_123",
+      "CA_195",
+      "CA_145"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0038_b2fdab": {
-    "label": "ready",
+  "CONCEPT_0031_66f7dd": {
+    "label": "voyage",
     "aliases": [
-      "ready to",
-      "pronto all",
-      "готов",
-      "جاهز",
-      "klaar",
-      "prêt",
-      "معتقة"
+      "cerca borse voyage",
+      "borse voyage",
+      "influenceur voyage lifestyle",
+      "voyage lifestyle"
     ],
-    "languages": "AR|EN|FR|IT|NL|RU",
-    "freq_notes": 43,
+    "languages": "EN|FR|IT",
+    "freq_notes": 32,
     "examples": [
-      "SA_001",
-      "SA_0245",
-      "SA_0133",
-      "SA_0234",
-      "SA_0223"
-    ],
-    "rule": "bucket=other"
-  },
-  "CONCEPT_0039_1cae3b": {
-    "label": "عرضًا خاصًا",
-    "aliases": [
-      "demandé une presentazione",
-      "presentazione",
-      "presente",
-      "une presentazione",
-      "demandé une présentation",
-      "présentation"
-    ],
-    "languages": "AR|FR|PT",
-    "freq_notes": 39,
-    "examples": [
-      "SA_0128",
-      "SA_0111",
-      "SA_0368",
-      "SA_0293",
-      "SA_0192"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0040_316fb7": {
-    "label": "haute couture",
-    "aliases": [
-      "alta costura",
-      "costura",
-      "busca alta costura",
-      "recherche haute couture"
-    ],
-    "languages": "DE|EN|ES|FR|NL|PT",
-    "freq_notes": 36,
-    "examples": [
-      "SA_0073",
-      "SA_0098",
-      "SA_0095",
-      "SA_0207",
-      "SA_0081"
+      "CA_278",
+      "CA_218",
+      "CA_146",
+      "CA_111",
+      "CA_248"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0041_347fe3": {
-    "label": "koffer",
+  "CONCEPT_0032_f1425d": {
+    "label": "major",
     "aliases": [
-      "багаж",
-      "cerca sac",
-      "맞춤형 트렁크를",
-      "엑조틱 스킨 핸드백에",
-      "트렁크",
-      "트렁크를",
-      "핸드백에"
+      "academic",
+      "schulz",
+      "educación",
+      "education",
+      "universitario",
+      "university",
+      "universität"
     ],
-    "languages": "DE|IT|KO|NL|RU",
-    "freq_notes": 30,
+    "languages": "DE|EN|ES|IT",
+    "freq_notes": 31,
     "examples": [
-      "SA_0212",
-      "SA_0284",
-      "SA_0387",
-      "SA_033",
-      "SA_0146"
+      "CA_245",
+      "CA_282",
+      "CA_250",
+      "CA_157",
+      "CA_295"
     ],
-    "rule": "bucket=intent"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0042_7b23b6": {
-    "label": "vintage",
+  "CONCEPT_0033_5d550b": {
+    "label": "professionale",
     "aliases": [
-      "zeldzame vintage",
-      "vintage rara",
-      "vintage raro",
-      "rare vintage",
-      "zoekt zeldzame vintage"
+      "meilensteine karriere",
+      "paysagiste",
+      "paysagiste renommée",
+      "professionnel",
+      "professionnel discret élégant"
     ],
-    "languages": "EN|ES|NL|PT",
-    "freq_notes": 30,
+    "languages": "DE|FR|IT",
+    "freq_notes": 31,
     "examples": [
-      "SA_0136",
-      "SA_0093",
-      "SA_0397",
-      "SA_0392",
-      "SA_0321"
+      "CA_101",
+      "CA_336",
+      "CA_123",
+      "CA_158",
+      "CA_111"
     ],
-    "rule": "bucket=lifestyle"
+    "rule": "bucket=preferences"
   },
-  "CONCEPT_0043_b6d31a": {
-    "label": "transferência",
+  "CONCEPT_0034_c99766": {
+    "label": "as it were",
     "aliases": [
-      "transferência pendente",
-      "transfer",
-      "transfer pending",
-      "transferencia",
-      "transferencia pendiente",
-      "overschrijving"
+      "as it"
     ],
-    "languages": "EN|ES|NL|PT",
+    "languages": "EN",
     "freq_notes": 29,
     "examples": [
-      "SA_002",
-      "SA_0069",
-      "SA_0233",
-      "SA_0068",
-      "SA_0337"
+      "CA_122",
+      "CA_157",
+      "CA_137",
+      "CA_172",
+      "CA_152"
     ],
-    "rule": "bucket=lifestyle"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0044_0edb21": {
-    "label": "value approx",
+  "CONCEPT_0035_4a1bde": {
+    "label": "halt",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 29,
+    "examples": [
+      "CA_130",
+      "CA_105",
+      "CA_115",
+      "CA_155",
+      "CA_135"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0036_f3f7b8": {
+    "label": "trabajo",
     "aliases": [
-      "value",
-      "value approx follow"
+      "busca sac trabajo",
+      "chantiers",
+      "chantiers rendez-vous clients",
+      "travail chantiers rendez-vous",
+      "élégant travail"
+    ],
+    "languages": "ES|FR",
+    "freq_notes": 29,
+    "examples": [
+      "CA_381",
+      "CA_174",
+      "CA_124",
+      "CA_349",
+      "CA_166"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0037_6468a7": {
+    "label": "événements",
+    "aliases": [
+      "eventi",
+      "events",
+      "eventos",
+      "pour événements"
+    ],
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 29,
+    "examples": [
+      "CA_194",
+      "CA_361",
+      "CA_241",
+      "CA_309",
+      "CA_315"
+    ],
+    "rule": "bucket=occasion"
+  },
+  "CONCEPT_0038_037e42": {
+    "label": "if you",
+    "aliases": [
+      "if you will",
+      "you will"
     ],
     "languages": "EN",
     "freq_notes": 28,
     "examples": [
-      "SA_0187",
-      "SA_0174",
-      "SA_0077",
-      "SA_0199",
-      "SA_0354"
+      "CA_227",
+      "CA_142",
+      "CA_137",
+      "CA_207",
+      "CA_237"
     ],
-    "rule": "bucket=other"
+    "rule": "bucket=intent"
   },
-  "CONCEPT_0045_c4903a": {
-    "label": "up after",
+  "CONCEPT_0039_ed81c0": {
+    "label": "famille",
     "aliases": [
-      "up na",
-      "up dopo",
-      "up dopo il",
-      "アップ"
+      "rioja famille generaciones"
     ],
-    "languages": "EN|IT|JA|NL",
+    "languages": "DE|EN|ES|IT",
     "freq_notes": 27,
     "examples": [
-      "SA_0201",
-      "SA_0208",
-      "SA_0164",
-      "SA_0135",
-      "SA_0098"
+      "CA_314",
+      "CA_190",
+      "CA_167",
+      "CA_157",
+      "CA_180"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0040_a05be3": {
+    "label": "forma",
+    "aliases": [
+      "dancer"
+    ],
+    "languages": "EN|ES",
+    "freq_notes": 26,
+    "examples": [
+      "CA_134",
+      "CA_103",
+      "CA_139",
+      "CA_127",
+      "CA_119"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0046_cd9511": {
-    "label": "seltener jahrgangschampagner",
+  "CONCEPT_0041_89b266": {
+    "label": "avocate droit",
     "aliases": [
-      "jahrgangschampagner",
-      "sucht seltener jahrgangschampagner",
-      "for seltener jahrgangschampagner"
+      "ans avocate",
+      "anwalt wirtschaftsrecht",
+      "avocate",
+      "avocate fiscaliste",
+      "avocate fiscaliste cabinet",
+      "avvocata",
+      "avvocata diritto",
+      "avvocata penalista",
+      "avvocata penalista casi",
+      "law",
+      "legal"
     ],
-    "languages": "DE",
+    "languages": "DE|EN|FR|IT",
     "freq_notes": 25,
     "examples": [
-      "SA_0240",
-      "SA_0193",
-      "SA_0120",
-      "SA_0158",
-      "SA_0351"
+      "CA_262",
+      "CA_151",
+      "CA_243",
+      "CA_393",
+      "CA_170"
     ],
-    "rule": "bucket=intent"
+    "rule": "bucket=lifestyle"
   },
-  "CONCEPT_0047_69683f": {
-    "label": "gelimiteerd horloge",
+  "CONCEPT_0042_31c13f": {
+    "label": "design",
     "aliases": [
-      "cerca montre",
-      "in gelimiteerd horloge",
-      "limitierte montre",
-      "intéressé par montre",
-      "busca montre",
-      "正在寻找限量版手表。公司送礼"
+      "architektur",
+      "diseño",
+      "design architektur welt"
     ],
-    "languages": "DE|ES|FR|IT|NL|ZH",
-    "freq_notes": 24,
+    "languages": "DE|EN|ES|IT",
+    "freq_notes": 25,
     "examples": [
-      "SA_0058",
-      "SA_0255",
-      "SA_0385",
-      "SA_0216",
-      "SA_0114"
+      "CA_138",
+      "CA_218",
+      "CA_340",
+      "CA_157",
+      "CA_189"
     ],
-    "rule": "bucket=intent"
+    "rule": "bucket=other"
   },
-  "CONCEPT_0048_713848": {
-    "label": "exotische handtas",
+  "CONCEPT_0043_19027b": {
+    "label": "shopping session",
     "aliases": [
-      "handtas",
-      "for exotische handtas",
-      "voor exotische handtas"
+      "major shopping session",
+      "shopping",
+      "shopping spring",
+      "shopping spring collection",
+      "session shopping",
+      "session shopping importante",
+      "shopping session spring",
+      "yep shopping"
     ],
-    "languages": "NL",
+    "languages": "EN|FR|IT",
+    "freq_notes": 23,
+    "examples": [
+      "CA_122",
+      "CA_202",
+      "CA_326",
+      "CA_362",
+      "CA_342"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0044_a3f665": {
+    "label": "coup",
+    "aliases": [],
+    "languages": "FR",
     "freq_notes": 22,
     "examples": [
-      "SA_0209",
-      "SA_0205",
-      "SA_0225",
-      "SA_0090",
-      "SA_0389"
+      "CA_146",
+      "CA_111",
+      "CA_156",
+      "CA_161",
+      "CA_106"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0049_1c9789": {
-    "label": "bat um",
+  "CONCEPT_0045_9192f7": {
+    "label": "direttrice marketing",
     "aliases": [
-      "bat",
-      "ceo bat"
+      "direttore vendite",
+      "agenzia pubblicità",
+      "directora marketing",
+      "directora marketing agencia",
+      "direttore vendite azienda",
+      "direttrice marketing multinazionale",
+      "marketing",
+      "marketing multinazionale",
+      "vendite azienda"
     ],
-    "languages": "DE",
-    "freq_notes": 21,
+    "languages": "ES|IT",
+    "freq_notes": 22,
     "examples": [
-      "SA_0358",
-      "SA_0168",
-      "SA_0082",
-      "SA_0130",
-      "SA_0286"
+      "CA_138",
+      "CA_399",
+      "CA_293",
+      "CA_113",
+      "CA_398"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0050_6a25c3": {
-    "label": "イングを依頼しました。ガラ後のフォロ",
+  "CONCEPT_0046_c4750a": {
+    "label": "orquesta",
     "aliases": [
-      "イングを依頼",
-      "イングを依頼しました。ガラ後のフォロ ー アップ",
-      "トビュ ー イングを依頼",
-      "トビュ ー イングを依頼しました。ガラ後のフォロ",
-      "イングを依頼しました。カスタムモノグラムが必要",
-      "トビュ ー イングを依頼しました。カスタムモノグラムが必要"
+      "musical",
+      "geschenke orchestermusiker",
+      "geschenke orchestermusiker wichtige",
+      "opernsängerin",
+      "orchestermusiker wichtige jubiläen",
+      "orquesta sinfónica",
+      "plus geschenke orchestermusiker",
+      "violinista orchestra",
+      "violinista orchestra filarmonica"
     ],
-    "languages": "JA",
-    "freq_notes": 19,
+    "languages": "DE|ES|IT",
+    "freq_notes": 22,
     "examples": [
-      "SA_0164",
-      "SA_0071",
-      "SA_0067",
-      "SA_0157",
-      "SA_0326"
+      "CA_333",
+      "CA_344",
+      "CA_155",
+      "CA_355",
+      "CA_133"
     ],
-    "rule": "bucket=other"
+    "rule": "bucket=intent"
   },
-  "CONCEPT_0051_854ef3": {
-    "label": "couture",
+  "CONCEPT_0047_0106a8": {
+    "label": "pressappoco",
     "aliases": [],
-    "languages": "DE|EN|FR|NL",
-    "freq_notes": 18,
+    "languages": "IT",
+    "freq_notes": 22,
     "examples": [
-      "SA_0073",
-      "SA_0098",
-      "SA_0081",
-      "SA_011",
-      "SA_0078"
+      "CA_153",
+      "CA_138",
+      "CA_123",
+      "CA_104",
+      "CA_143"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0052_55678c": {
-    "label": "cuir exótica",
+  "CONCEPT_0048_bffd5a": {
+    "label": "studio privato",
     "aliases": [
-      "cuir",
-      "de cuir",
-      "de cuir exótica"
+      "private",
+      "clinica studio privato",
+      "clinique privée",
+      "consultorio privado",
+      "infantile studio privato",
+      "privato clientela",
+      "privato clientela alto",
+      "privée"
     ],
-    "languages": "ES",
-    "freq_notes": 16,
+    "languages": "DE|EN|ES|FR|IT",
+    "freq_notes": 22,
     "examples": [
-      "SA_0103",
-      "SA_0291",
-      "SA_0217",
-      "SA_0366"
+      "CA_159",
+      "CA_343",
+      "CA_336",
+      "CA_136",
+      "CA_123"
     ],
     "rule": "bucket=preferences"
   },
-  "CONCEPT_0053_c6a6b1": {
-    "label": "for haute",
-    "aliases": [
-      "for haute couture",
-      "viewing for haute",
-      "interessiert an haute",
-      "interested in haute"
-    ],
-    "languages": "DE|EN|NL",
-    "freq_notes": 15,
+  "CONCEPT_0049_89233a": {
+    "label": "willst",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 21,
     "examples": [
-      "SA_0320",
-      "SA_0252",
-      "SA_0269",
-      "SA_0262",
-      "SA_0204"
+      "CA_105",
+      "CA_145",
+      "CA_165",
+      "CA_110",
+      "CA_200"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0054_d6f7d1": {
-    "label": "une visite",
+  "CONCEPT_0050_7d7930": {
+    "label": "world",
     "aliases": [
-      "demandé une visite",
-      "visite"
+      "internacional",
+      "ong internacional",
+      "spatial",
+      "spatiales",
+      "unesco"
     ],
+    "languages": "EN|ES|FR|IT",
+    "freq_notes": 21,
+    "examples": [
+      "CA_227",
+      "CA_174",
+      "CA_386",
+      "CA_202",
+      "CA_142"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0051_7f8009": {
+    "label": "genre",
+    "aliases": [],
     "languages": "FR",
+    "freq_notes": 20,
+    "examples": [
+      "CA_151",
+      "CA_126",
+      "CA_131",
+      "CA_136",
+      "CA_121"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0052_b7cf27": {
+    "label": "taschen frühjahr konferenzen",
+    "aliases": [
+      "frühjahr konferenzen",
+      "frühjahr beruflich konferenzen",
+      "réunions stakeholders"
+    ],
+    "languages": "DE|FR",
+    "freq_notes": 20,
+    "examples": [
+      "CA_245",
+      "CA_385",
+      "CA_205",
+      "CA_195",
+      "CA_185"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0053_a95082": {
+    "label": "psicologa",
+    "aliases": [
+      "beruflich konferenzen psychiatrie",
+      "konferenzen psychiatrie frequent",
+      "psicologa clinica",
+      "psicologa clinica studio",
+      "psicoterapeuta",
+      "psicoterapeuta infantile",
+      "psicoterapeuta infantile studio",
+      "psicoterapeuta studio"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 19,
+    "examples": [
+      "CA_343",
+      "CA_283",
+      "CA_385",
+      "CA_123",
+      "CA_185"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0054_527fe7": {
+    "label": "kardiologie krankenhaus",
+    "aliases": [
+      "cardiologo",
+      "cardiologo interventista",
+      "cardiologo interventista ospedale",
+      "chefärztin kardiologie",
+      "chefärztin kardiologie krankenhaus",
+      "kardiologie",
+      "kardiologie symposium",
+      "usa kardiologie symposium"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 18,
+    "examples": [
+      "CA_260",
+      "CA_378",
+      "CA_145",
+      "CA_345",
+      "CA_178"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0055_3c296d": {
+    "label": "nuove primavera",
+    "aliases": [
+      "borse professionali primavera",
+      "primavera",
+      "borse nuove primavera",
+      "primavera più regali",
+      "primavera presentazione importante",
+      "session spring collection"
+    ],
+    "languages": "EN|IT",
+    "freq_notes": 18,
+    "examples": [
+      "CA_343",
+      "CA_283",
+      "CA_123",
+      "CA_393",
+      "CA_258"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0056_2f0e7e": {
+    "label": "pretty",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 18,
+    "examples": [
+      "CA_157",
+      "CA_147",
+      "CA_127",
+      "CA_162",
+      "CA_132"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0057_030810": {
+    "label": "professorin",
+    "aliases": [
+      "filosofia",
+      "professore filosofia",
+      "professore filosofia università",
+      "professorin soziologie",
+      "professorin soziologie universität",
+      "soziologie universität"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 18,
+    "examples": [
+      "CA_245",
+      "CA_168",
+      "CA_130",
+      "CA_295",
+      "CA_368"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0058_0baa0d": {
+    "label": "san valentino",
+    "aliases": [
+      "asisten cannes san",
+      "cannes san",
+      "cannes san sebastián",
+      "san francisco",
+      "san francisco tokyo",
+      "san sebastián",
+      "épouse san",
+      "épouse san valentino"
+    ],
+    "languages": "EN|ES|IT",
+    "freq_notes": 18,
+    "examples": [
+      "CA_138",
+      "CA_304",
+      "CA_103",
+      "CA_104",
+      "CA_293"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0059_de3706": {
+    "label": "highest",
+    "aliases": [
+      "alto profilo",
+      "casi alto profilo",
+      "haute couture"
+    ],
+    "languages": "EN|FR|IT",
+    "freq_notes": 17,
+    "examples": [
+      "CA_343",
+      "CA_202",
+      "CA_142",
+      "CA_393",
+      "CA_167"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0060_4c0ad1": {
+    "label": "zum",
+    "aliases": [
+      "rizzo"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 17,
+    "examples": [
+      "CA_233",
+      "CA_150",
+      "CA_190",
+      "CA_143",
+      "CA_255"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0061_f8133a": {
+    "label": "chose",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 16,
+    "examples": [
+      "CA_101",
+      "CA_146",
+      "CA_191",
+      "CA_116",
+      "CA_136"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0062_bbe289": {
+    "label": "hijos",
+    "aliases": [
+      "figli",
+      "children",
+      "infantile studio"
+    ],
+    "languages": "EN|ES|IT",
+    "freq_notes": 16,
+    "examples": [
+      "CA_159",
+      "CA_134",
+      "CA_174",
+      "CA_218",
+      "CA_209"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0063_6bbdfe": {
+    "label": "silicon valley",
+    "aliases": [
+      "konferenzen silicon valley",
+      "network silicon valley",
+      "networks silicon valley",
+      "silicon",
+      "silicon valley tokyo"
+    ],
+    "languages": "DE|EN|FR",
+    "freq_notes": 16,
+    "examples": [
+      "CA_335",
+      "CA_276",
+      "CA_242",
+      "CA_312",
+      "CA_112"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0064_e1e7e8": {
+    "label": "grands médias",
+    "aliases": [
+      "alto profilo media",
+      "giornalista economico",
+      "giornalista economico quotidiano",
+      "médias",
+      "reporter grands",
+      "reporter grands médias"
+    ],
+    "languages": "FR|IT",
     "freq_notes": 15,
     "examples": [
-      "SA_0251",
-      "SA_0206",
-      "SA_0330",
-      "SA_0121",
-      "SA_0100"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0055_7179b0": {
-    "label": "bespoke trunk",
-    "aliases": [
-      "trunk"
-    ],
-    "languages": "EN",
-    "freq_notes": 14,
-    "examples": [
-      "SA_0238",
-      "SA_0077",
-      "SA_0229",
-      "SA_0123",
-      "SA_0153"
+      "CA_393",
+      "CA_158",
+      "CA_241",
+      "CA_231",
+      "CA_193"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0056_f484ec": {
-    "label": "빈티지",
-    "aliases": [
-      "maat",
-      "오트쿠튀르를",
-      "오트쿠튀르에"
-    ],
-    "languages": "KO|NL",
-    "freq_notes": 14,
+  "CONCEPT_0065_2aa34e": {
+    "label": "poquito",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 15,
     "examples": [
-      "SA_003",
-      "SA_0201",
-      "SA_0139",
-      "SA_0104",
-      "SA_0134"
+      "CA_194",
+      "CA_229",
+      "CA_189",
+      "CA_224",
+      "CA_114"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0057_7c6c2e": {
-    "label": "pending",
+  "CONCEPT_0066_c6b746": {
+    "label": "surgery",
     "aliases": [
-      "attente",
-      "virement en attente",
-      "ожидании",
-      "перевод в ожидании"
+      "surgeon",
+      "chirurgien",
+      "surgeon trauma",
+      "surgeon trauma center",
+      "surgical"
     ],
-    "languages": "EN|FR|RU",
+    "languages": "EN|FR",
+    "freq_notes": 15,
+    "examples": [
+      "CA_267",
+      "CA_172",
+      "CA_277",
+      "CA_372",
+      "CA_217"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0067_a9d40b": {
+    "label": "ceo pharmaceutical company",
+    "aliases": [
+      "ceo pharmaceutical",
+      "azienda farmaceutica",
+      "azienda farmaceutica multinazionale",
+      "farmaceutica multinazionale",
+      "vendite azienda farmaceutica"
+    ],
+    "languages": "EN|IT",
+    "freq_notes": 14,
+    "examples": [
+      "CA_142",
+      "CA_342",
+      "CA_398",
+      "CA_192",
+      "CA_198"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0068_228306": {
+    "label": "pareja",
+    "aliases": [
+      "coppia",
+      "coppia 45-48",
+      "pareja 60-62 años"
+    ],
+    "languages": "ES|IT",
+    "freq_notes": 14,
+    "examples": [
+      "CA_138",
+      "CA_134",
+      "CA_194",
+      "CA_124",
+      "CA_318"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0069_0c99e4": {
+    "label": "restaurante",
+    "aliases": [
+      "cheffe restaurant",
+      "cheffe restaurant gastronomique",
+      "gastronomía",
+      "restaurant",
+      "restaurant étoilé michelin",
+      "ristorante"
+    ],
+    "languages": "ES|FR|IT",
+    "freq_notes": 14,
+    "examples": [
+      "CA_381",
+      "CA_394",
+      "CA_194",
+      "CA_141",
+      "CA_318"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0070_abc51d": {
+    "label": "verlegerin buchverlag literarisch",
+    "aliases": [
+      "buchverlag literarisch",
+      "importante pubblicazioni",
+      "importante pubblicazioni internazionali",
+      "pubblicazioni internazionali",
+      "salone libro",
+      "verlegerin buchverlag"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 14,
+    "examples": [
+      "CA_168",
+      "CA_308",
+      "CA_368",
+      "CA_375",
+      "CA_108"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0071_2612c7": {
+    "label": "américa latina",
+    "aliases": [
+      "asia américa",
+      "asia america",
+      "emergente américa latina",
+      "intercontinentales asia américa"
+    ],
+    "languages": "ES|IT",
     "freq_notes": 13,
     "examples": [
-      "SA_002",
-      "SA_0069",
-      "SA_0363",
-      "SA_0337",
-      "SA_0361"
+      "CA_319",
+      "CA_174",
+      "CA_339",
+      "CA_169",
+      "CA_113"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0072_9de93e": {
+    "label": "direttore creativo",
+    "aliases": [
+      "directeur artistique",
+      "directeur artistique maison",
+      "director cine",
+      "director cine documentales",
+      "estilo director"
+    ],
+    "languages": "ES|FR|IT",
+    "freq_notes": 13,
+    "examples": [
+      "CA_138",
+      "CA_258",
+      "CA_146",
+      "CA_346",
+      "CA_103"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0073_00370c": {
+    "label": "frühjahr plus silberhochzeit",
+    "aliases": [
+      "geschenke silberhochzeit",
+      "plus silberhochzeit geschenke",
+      "silberhochzeit feier",
+      "silberhochzeit feier geschenke",
+      "silberhochzeit geschenke"
+    ],
+    "languages": "DE",
+    "freq_notes": 13,
+    "examples": [
+      "CA_300",
+      "CA_260",
+      "CA_150",
+      "CA_180",
+      "CA_350"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0074_d3440b": {
+    "label": "innovation",
+    "aliases": [
+      "empresario tecnología",
+      "venture capitalist tech"
+    ],
+    "languages": "DE|EN|ES|FR",
+    "freq_notes": 13,
+    "examples": [
+      "CA_246",
+      "CA_205",
+      "CA_210",
+      "CA_251",
+      "CA_177"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0058_0dfb86": {
-    "label": "wire transfer",
+  "CONCEPT_0075_7eddc8": {
+    "label": "krankenhaus",
     "aliases": [
-      "wire",
-      "wire transfer pending"
+      "artistique maison",
+      "artistique maison haute",
+      "maison haute",
+      "maison haute couture"
     ],
-    "languages": "EN",
+    "languages": "DE|FR",
+    "freq_notes": 13,
+    "examples": [
+      "CA_205",
+      "CA_146",
+      "CA_346",
+      "CA_195",
+      "CA_145"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0076_15d617": {
+    "label": "mode",
+    "aliases": [],
+    "languages": "DE|FR",
     "freq_notes": 12,
     "examples": [
-      "SA_002",
-      "SA_0337",
-      "SA_0069",
-      "SA_0361"
+      "CA_146",
+      "CA_176",
+      "CA_110",
+      "CA_131",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0059_a9d062": {
-    "label": "صندوق مخصص",
+  "CONCEPT_0077_db2b2e": {
+    "label": "multinazionale",
     "aliases": [
-      "يبحث عن صندوق"
+      "azienda multinazionale",
+      "corporación multinacional",
+      "multinazionale cliente",
+      "multinazionale cliente regolare"
     ],
-    "languages": "AR",
+    "languages": "ES|IT",
+    "freq_notes": 12,
+    "examples": [
+      "CA_379",
+      "CA_179",
+      "CA_113",
+      "CA_398",
+      "CA_388"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0078_92d434": {
+    "label": "müller",
+    "aliases": [
+      "blanc",
+      "basel hong",
+      "miami basel",
+      "miami basel hong"
+    ],
+    "languages": "DE|EN|ES|FR",
+    "freq_notes": 12,
+    "examples": [
+      "CA_367",
+      "CA_319",
+      "CA_246",
+      "CA_167",
+      "CA_325"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0079_7bbfd6": {
+    "label": "sostenibles",
+    "aliases": [
+      "büro nachhaltige gebäude",
+      "nachhaltige mode",
+      "sostenibilidad",
+      "unternehmer nachhaltige",
+      "unternehmer nachhaltige mode"
+    ],
+    "languages": "DE|ES",
+    "freq_notes": 12,
+    "examples": [
+      "CA_340",
+      "CA_184",
+      "CA_384",
+      "CA_129",
+      "CA_110"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0080_dd82c1": {
+    "label": "startup",
+    "aliases": [
+      "mode startup",
+      "mode startup erfolg",
+      "startup erfolg",
+      "tech startups"
+    ],
+    "languages": "DE|EN|IT",
     "freq_notes": 11,
     "examples": [
-      "SA_0152",
-      "SA_0111",
-      "SA_0162",
-      "SA_0113",
-      "SA_0306"
+      "CA_304",
+      "CA_110",
+      "CA_177",
+      "CA_310",
+      "CA_377"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0081_4411d2": {
+    "label": "borgoña napa toscana",
+    "aliases": [
+      "borgoña napa",
+      "napa toscana",
+      "toscane napa",
+      "vinícolas borgoña napa"
+    ],
+    "languages": "ES|FR",
+    "freq_notes": 10,
+    "examples": [
+      "CA_361",
+      "CA_314",
+      "CA_114",
+      "CA_161"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0082_22bb2f": {
+    "label": "cliente altissimo",
+    "aliases": [
+      "clientela alto",
+      "clientela alto profilo",
+      "customers ultra-high",
+      "customers ultra-high potential"
+    ],
+    "languages": "EN|IT",
+    "freq_notes": 10,
+    "examples": [
+      "CA_343",
+      "CA_304",
+      "CA_104",
+      "CA_143",
+      "CA_312"
+    ],
+    "rule": "bucket=preferences"
+  },
+  "CONCEPT_0083_b23abb": {
+    "label": "direttore finanziario",
+    "aliases": [
+      "finanziario",
+      "direttore finanziario multinazionale",
+      "finanziario multinazionale"
+    ],
+    "languages": "IT",
+    "freq_notes": 10,
+    "examples": [
+      "CA_208",
+      "CA_158",
+      "CA_348",
+      "CA_148"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0060_145af5": {
-    "label": "bespoke",
+  "CONCEPT_0084_20d311": {
+    "label": "europa asia",
     "aliases": [
-      "interested in bespoke"
+      "europa asia america",
+      "frequenti europa",
+      "frequenti europa asia"
+    ],
+    "languages": "IT",
+    "freq_notes": 10,
+    "examples": [
+      "CA_348",
+      "CA_113",
+      "CA_313",
+      "CA_148"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0085_091105": {
+    "label": "ferrari",
+    "aliases": [
+      "ferrari 43 ans",
+      "ferrari 50 ans",
+      "signora ferrari"
+    ],
+    "languages": "IT",
+    "freq_notes": 10,
+    "examples": [
+      "CA_388",
+      "CA_273",
+      "CA_188",
+      "CA_243"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0086_f22ffc": {
+    "label": "high-end residential projects",
+    "aliases": [
+      "designer high-end residential",
+      "high-end residential",
+      "proyectos residenciales",
+      "residential projects"
+    ],
+    "languages": "EN|ES",
+    "freq_notes": 10,
+    "examples": [
+      "CA_332",
+      "CA_189",
+      "CA_389",
+      "CA_132"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0087_eff97a": {
+    "label": "milán parís miami",
+    "aliases": [
+      "milán parís",
+      "parís miami",
+      "romano",
+      "signora romano"
+    ],
+    "languages": "ES|IT",
+    "freq_notes": 10,
+    "examples": [
+      "CA_113",
+      "CA_189",
+      "CA_389",
+      "CA_313"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0088_580448": {
+    "label": "orthopédiste clinique",
+    "aliases": [
+      "chirurgien orthopédiste",
+      "chirurgien orthopédiste clinique",
+      "orthopédiste",
+      "orthopédiste clinique privée"
+    ],
+    "languages": "FR",
+    "freq_notes": 10,
+    "examples": [
+      "CA_336",
+      "CA_136"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0089_92ac15": {
+    "label": "saison plus geschenke",
+    "aliases": [
+      "saison plus",
+      "taschen saison",
+      "taschen saison plus"
+    ],
+    "languages": "DE",
+    "freq_notes": 10,
+    "examples": [
+      "CA_305",
+      "CA_355",
+      "CA_155",
+      "CA_105"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0090_98e54e": {
+    "label": "taschen frühling beruflich",
+    "aliases": [
+      "einkaufssession frühling plus",
+      "frühling beruflich events",
+      "sucht taschen frühling",
+      "taschen frühling"
+    ],
+    "languages": "DE",
+    "freq_notes": 10,
+    "examples": [
+      "CA_165",
+      "CA_365",
+      "CA_130",
+      "CA_330"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0091_8b7831": {
+    "label": "tecnología blockchain startup",
+    "aliases": [
+      "blockchain startup",
+      "blockchain startup unicornio",
+      "empresario tecnología blockchain",
+      "tecnología blockchain"
+    ],
+    "languages": "ES",
+    "freq_notes": 10,
+    "examples": [
+      "CA_354",
+      "CA_154"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0092_3a7e1b": {
+    "label": "thompson",
+    "aliases": [
+      "williams"
     ],
     "languages": "EN",
     "freq_notes": 10,
     "examples": [
-      "SA_0238",
-      "SA_0077",
-      "SA_0229",
-      "SA_0123",
-      "SA_0153"
+      "CA_227",
+      "CA_142",
+      "CA_342",
+      "CA_277",
+      "CA_192"
     ],
     "rule": "bucket=intent"
   },
-  "CONCEPT_0061_fc27b0": {
-    "label": "ceo heeft een",
+  "CONCEPT_0093_937ab0": {
+    "label": "mailand new york",
     "aliases": [
-      "ceo heeft",
-      "mogul heeft",
-      "mogul heeft een"
+      "new york london",
+      "new york sydney",
+      "wien new york"
     ],
-    "languages": "NL",
-    "freq_notes": 8,
+    "languages": "DE",
+    "freq_notes": 9,
     "examples": [
-      "SA_0136",
-      "SA_0205",
-      "SA_0245",
-      "SA_0090"
+      "CA_325",
+      "CA_165",
+      "CA_315",
+      "CA_115",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0062_a181a6": {
-    "label": "all",
-    "aliases": [],
-    "languages": "IT",
-    "freq_notes": 7,
+  "CONCEPT_0094_1b3ad2": {
+    "label": "reist fashion weeks",
+    "aliases": [
+      "fashion weeks",
+      "fashion weeks paris",
+      "zahlreich fashion weeks"
+    ],
+    "languages": "DE",
+    "freq_notes": 9,
     "examples": [
-      "SA_0091",
-      "SA_0055",
-      "SA_0344",
-      "SA_0074",
-      "SA_0133"
+      "CA_325",
+      "CA_365",
+      "CA_165",
+      "CA_125"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0063_4d099f": {
-    "label": "behandeling",
+  "CONCEPT_0095_62911a": {
+    "label": "vin",
     "aliases": [
-      "overschrijving in behandeling"
+      "martini",
+      "signora martini",
+      "vins"
     ],
-    "languages": "NL",
-    "freq_notes": 6,
+    "languages": "ES|FR|IT",
+    "freq_notes": 9,
     "examples": [
-      "SA_0124",
-      "SA_0386",
-      "SA_0233"
+      "CA_394",
+      "CA_314",
+      "CA_194",
+      "CA_361",
+      "CA_383"
     ],
     "rule": "bucket=lifestyle"
   },
-  "CONCEPT_0064_597607": {
-    "label": "follow up na",
-    "aliases": [],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0201",
-      "SA_0078",
-      "SA_0167",
-      "SA_0105",
-      "SA_0135"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0065_69c3c4": {
-    "label": "مونوغرام مخصص",
+  "CONCEPT_0096_085cb4": {
+    "label": "berlin venice sundance",
     "aliases": [
-      "يحتاج إلى مونوغرام"
-    ],
-    "languages": "AR",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0340",
-      "SA_0247",
-      "SA_0211"
-    ],
-    "rule": "bucket=other"
-  },
-  "CONCEPT_0066_0523ad": {
-    "label": "ceo requested",
-    "aliases": [
-      "ceo requested viewing"
+      "berlin venice",
+      "festivals berlin venice",
+      "venice sundance"
     ],
     "languages": "EN",
-    "freq_notes": 4,
+    "freq_notes": 8,
     "examples": [
-      "SA_0269",
-      "SA_0077"
+      "CA_352",
+      "CA_152"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0067_fff259": {
-    "label": "fine",
+  "CONCEPT_0097_c1b4d3": {
+    "label": "cine documentales",
+    "aliases": [
+      "documentales",
+      "film",
+      "films"
+    ],
+    "languages": "EN|ES",
+    "freq_notes": 8,
+    "examples": [
+      "CA_152",
+      "CA_103",
+      "CA_352",
+      "CA_303"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0098_700b81": {
+    "label": "frühjahr gerichtstermine",
+    "aliases": [
+      "taschen frühjahr gerichtstermine",
+      "nuove primavera tribunali"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 8,
+    "examples": [
+      "CA_393",
+      "CA_285",
+      "CA_235",
+      "CA_193",
+      "CA_255"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0099_0e1961": {
+    "label": "investment banker private",
+    "aliases": [
+      "banker private equity",
+      "investment banker",
+      "investmentbanker luxembourg"
+    ],
+    "languages": "DE|EN",
+    "freq_notes": 8,
+    "examples": [
+      "CA_120",
+      "CA_202",
+      "CA_332",
+      "CA_320",
+      "CA_132"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0100_b31537": {
+    "label": "oncology",
+    "aliases": [
+      "cancer",
+      "oncologia"
+    ],
+    "languages": "EN|IT",
+    "freq_notes": 8,
+    "examples": [
+      "CA_187",
+      "CA_213",
+      "CA_297",
+      "CA_253",
+      "CA_387"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0101_15c6d4": {
+    "label": "proyectos",
+    "aliases": [
+      "consultante projets",
+      "urbaniste consultante projets"
+    ],
+    "languages": "ES|FR",
+    "freq_notes": 8,
+    "examples": [
+      "CA_184",
+      "CA_171",
+      "CA_384",
+      "CA_224",
+      "CA_371"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0102_accb92": {
+    "label": "qualitätsstücke reisen auftritte",
+    "aliases": [
+      "profesionales trabajo viajes",
+      "reisen auftritte weltweit",
+      "sucht qualitätsstücke reisen"
+    ],
+    "languages": "DE|ES",
+    "freq_notes": 8,
+    "examples": [
+      "CA_115",
+      "CA_179",
+      "CA_214",
+      "CA_315"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0103_a5597e": {
+    "label": "retired",
+    "aliases": [
+      "retirement"
+    ],
+    "languages": "EN",
+    "freq_notes": 8,
+    "examples": [
+      "CA_232",
+      "CA_122",
+      "CA_212",
+      "CA_222",
+      "CA_192"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0104_2bf652": {
+    "label": "rossi",
+    "aliases": [
+      "rouge",
+      "signora rossi"
+    ],
+    "languages": "ES|IT",
+    "freq_notes": 8,
+    "examples": [
+      "CA_369",
+      "CA_293",
+      "CA_324",
+      "CA_398",
+      "CA_223"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0105_1a11f1": {
+    "label": "sucht taschen",
+    "aliases": [
+      "cerca rinnovo borse"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 8,
+    "examples": [
+      "CA_123",
+      "CA_285",
+      "CA_235",
+      "CA_145",
+      "CA_185"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0106_847aa1": {
+    "label": "sviluppatore software",
+    "aliases": [
+      "softwareentwicklerin",
+      "softwareentwicklerin tech-unternehmen",
+      "sviluppatore"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 8,
+    "examples": [
+      "CA_335",
+      "CA_104",
+      "CA_304",
+      "CA_135"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0107_6819d5": {
+    "label": "tradition",
+    "aliases": [
+      "patrimoine"
+    ],
+    "languages": "DE|EN|FR",
+    "freq_notes": 8,
+    "examples": [
+      "CA_166",
+      "CA_385",
+      "CA_250",
+      "CA_222",
+      "CA_375"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0108_646241": {
+    "label": "becker",
+    "aliases": [
+      "lee"
+    ],
+    "languages": "DE|EN",
+    "freq_notes": 7,
+    "examples": [
+      "CA_290",
+      "CA_242",
+      "CA_182",
+      "CA_315",
+      "CA_230"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0109_664606": {
+    "label": "comunicazione",
+    "aliases": [
+      "comunicazione azienda",
+      "comunicazione azienda multinazionale"
+    ],
+    "languages": "IT",
+    "freq_notes": 7,
+    "examples": [
+      "CA_388",
+      "CA_268",
+      "CA_188"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0110_f80c8a": {
+    "label": "gestión",
+    "aliases": [
+      "responsable"
+    ],
+    "languages": "ES|FR",
+    "freq_notes": 7,
+    "examples": [
+      "CA_219",
+      "CA_294",
+      "CA_231",
+      "CA_291",
+      "CA_191"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0111_5e0c55": {
+    "label": "morales",
+    "aliases": [
+      "cerca cadeau compagna",
+      "fedeli"
+    ],
+    "languages": "ES|IT",
+    "freq_notes": 7,
+    "examples": [
+      "CA_318",
+      "CA_329",
+      "CA_129",
+      "CA_118",
+      "CA_128"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0112_1b9046": {
+    "label": "recursos humanos",
+    "aliases": [
+      "humanos corporación",
+      "recursos humanos corporación"
+    ],
+    "languages": "ES",
+    "freq_notes": 7,
+    "examples": [
+      "CA_179",
+      "CA_214",
+      "CA_379",
+      "CA_279"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0113_33b0ff": {
+    "label": "sucht qualitätsstücke",
+    "aliases": [
+      "quality",
+      "qualitätsstücke nach beförderung"
+    ],
+    "languages": "DE|EN",
+    "freq_notes": 7,
+    "examples": [
+      "CA_242",
+      "CA_110",
+      "CA_352",
+      "CA_335",
+      "CA_310"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0114_c13eb4": {
+    "label": "allergie penicillina",
+    "aliases": [
+      "allergie penicillin"
+    ],
+    "languages": "DE|IT",
+    "freq_notes": 6,
+    "examples": [
+      "CA_304",
+      "CA_104",
+      "CA_378",
+      "CA_145",
+      "CA_345"
+    ],
+    "rule": "bucket=constraints"
+  },
+  "CONCEPT_0115_28bca1": {
+    "label": "basel venice miami",
+    "aliases": [
+      "basel venice",
+      "venice miami"
+    ],
+    "languages": "EN",
+    "freq_notes": 6,
+    "examples": [
+      "CA_307",
+      "CA_107"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0116_3e4c0f": {
+    "label": "chefredakteurin lifestyle-magazin premium",
+    "aliases": [
+      "chefredakteurin lifestyle-magazin",
+      "lifestyle-magazin premium"
+    ],
+    "languages": "DE",
+    "freq_notes": 6,
+    "examples": [
+      "CA_365",
+      "CA_165"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0117_192039": {
+    "label": "discos platino múltiples",
+    "aliases": [
+      "discos platino",
+      "platino múltiples"
+    ],
+    "languages": "ES",
+    "freq_notes": 6,
+    "examples": [
+      "CA_344",
+      "CA_144"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0118_518a92": {
+    "label": "frau weber",
+    "aliases": [
+      "weber"
+    ],
+    "languages": "DE",
+    "freq_notes": 6,
+    "examples": [
+      "CA_355",
+      "CA_215",
+      "CA_155",
+      "CA_275"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0119_5005ed": {
+    "label": "interior designer high-end",
+    "aliases": [
+      "designer high-end",
+      "interior designer"
+    ],
+    "languages": "EN",
+    "freq_notes": 6,
+    "examples": [
+      "CA_332",
+      "CA_132"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0120_314bb1": {
+    "label": "lombardi",
+    "aliases": [
+      "lombardi 52 ans",
+      "signor lombardi"
+    ],
+    "languages": "IT",
+    "freq_notes": 6,
+    "examples": [
+      "CA_378",
+      "CA_178"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0121_6cb2b4": {
+    "label": "malattie neurodegenerative università",
+    "aliases": [
+      "malattie neurodegenerative",
+      "neurodegenerative università"
+    ],
+    "languages": "IT",
+    "freq_notes": 6,
+    "examples": [
+      "CA_183",
+      "CA_383"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0122_82eef7": {
+    "label": "professorin neurowissenschaften",
+    "aliases": [
+      "neurochirurg",
+      "neurowissenschaften"
+    ],
+    "languages": "DE",
+    "freq_notes": 6,
+    "examples": [
+      "CA_130",
+      "CA_330"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0123_88d7af": {
+    "label": "ruiz 50 ans",
+    "aliases": [
+      "navarro 50 ans",
+      "ruiz 51 ans"
+    ],
+    "languages": "ES",
+    "freq_notes": 6,
+    "examples": [
+      "CA_319",
+      "CA_174",
+      "CA_103",
+      "CA_374",
+      "CA_119"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0124_df4414": {
+    "label": "russo",
+    "aliases": [
+      "signor russo"
+    ],
+    "languages": "IT",
+    "freq_notes": 6,
+    "examples": [
+      "CA_258",
+      "CA_138",
+      "CA_338"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0125_87c472": {
+    "label": "successo",
+    "aliases": [
+      "erfolg",
+      "succès croissant"
+    ],
+    "languages": "DE|FR|IT",
+    "freq_notes": 6,
+    "examples": [
+      "CA_304",
+      "CA_104",
+      "CA_110",
+      "CA_331",
+      "CA_310"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0126_c4bc15": {
+    "label": "time customers",
+    "aliases": [
+      "time customers ultra-high"
+    ],
+    "languages": "EN",
+    "freq_notes": 6,
+    "examples": [
+      "CA_112",
+      "CA_302",
+      "CA_102",
+      "CA_312"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0127_f34c2c": {
+    "label": "architekt eigenes büro",
+    "aliases": [
+      "architecte paysagiste renommée"
+    ],
+    "languages": "DE|FR",
+    "freq_notes": 5,
+    "examples": [
+      "CA_340",
+      "CA_111",
+      "CA_240",
+      "CA_140",
+      "CA_311"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0128_db6d9b": {
+    "label": "collection",
+    "aliases": [],
+    "languages": "EN|ES|FR",
+    "freq_notes": 5,
+    "examples": [
+      "CA_194",
+      "CA_107",
+      "CA_176",
+      "CA_307",
+      "CA_376"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0129_5bded0": {
+    "label": "directora fundación",
+    "aliases": [
+      "fundación"
+    ],
+    "languages": "ES",
+    "freq_notes": 5,
+    "examples": [
+      "CA_369",
+      "CA_289",
+      "CA_169",
+      "CA_269"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0130_734e02": {
+    "label": "extremely flexible discussed",
+    "aliases": [
+      "budget extremely flexible"
+    ],
+    "languages": "EN",
+    "freq_notes": 5,
+    "examples": [
+      "CA_362",
+      "CA_162",
+      "CA_142"
+    ],
+    "rule": "bucket=constraints"
+  },
+  "CONCEPT_0131_9b8a2d": {
+    "label": "frau schneider",
+    "aliases": [
+      "schneider"
+    ],
+    "languages": "DE",
+    "freq_notes": 5,
+    "examples": [
+      "CA_280",
+      "CA_130",
+      "CA_330"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0132_458870": {
+    "label": "moretti",
+    "aliases": [
+      "moretti 52 ans"
+    ],
+    "languages": "IT",
+    "freq_notes": 5,
+    "examples": [
+      "CA_153",
+      "CA_263",
+      "CA_353"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0133_0ec8e6": {
+    "label": "occasionale",
+    "aliases": [
+      "ocasional ya sabes"
+    ],
+    "languages": "ES|IT",
+    "freq_notes": 5,
+    "examples": [
+      "CA_103",
+      "CA_158",
+      "CA_113",
+      "CA_224",
+      "CA_263"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0134_78e07d": {
+    "label": "olympics world",
+    "aliases": [
+      "covers olympics world"
+    ],
+    "languages": "EN",
+    "freq_notes": 5,
+    "examples": [
+      "CA_227",
+      "CA_137",
+      "CA_337"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0135_2d6a23": {
+    "label": "paris mailand new",
+    "aliases": [
+      "weeks paris mailand"
+    ],
+    "languages": "DE",
+    "freq_notes": 5,
+    "examples": [
+      "CA_325",
+      "CA_165",
+      "CA_125"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0136_6b7e90": {
+    "label": "pieces",
     "aliases": [],
     "languages": "EN",
-    "freq_notes": 4,
+    "freq_notes": 5,
     "examples": [
-      "SA_0069",
-      "SA_0354",
-      "SA_0106",
-      "SA_0159"
+      "CA_142",
+      "CA_127",
+      "CA_352",
+      "CA_327",
+      "CA_152"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0068_3b6259": {
-    "label": "founder bat",
+  "CONCEPT_0137_088495": {
+    "label": "sports",
     "aliases": [
-      "tech founder bat"
+      "deportiva"
+    ],
+    "languages": "EN|ES",
+    "freq_notes": 5,
+    "examples": [
+      "CA_227",
+      "CA_337",
+      "CA_137",
+      "CA_204",
+      "CA_234"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0138_d659bf": {
+    "label": "trauma",
+    "aliases": [
+      "trauma center"
+    ],
+    "languages": "EN|ES",
+    "freq_notes": 5,
+    "examples": [
+      "CA_209",
+      "CA_287",
+      "CA_172",
+      "CA_372"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0139_63f5bc": {
+    "label": "aires parís viena",
+    "aliases": [
+      "parís viena"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_159",
+      "CA_359"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0140_62ce22": {
+    "label": "art nouveau furniture",
+    "aliases": [
+      "designmöbel klassiker bauhaus"
+    ],
+    "languages": "DE|EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_340",
+      "CA_157",
+      "CA_357",
+      "CA_140"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0141_28a201": {
+    "label": "autoren agenten jubiläen",
+    "aliases": [
+      "geschenke autoren agenten"
     ],
     "languages": "DE",
     "freq_notes": 4,
     "examples": [
-      "SA_0240",
-      "SA_0130"
+      "CA_175",
+      "CA_375"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0142_8ac299": {
+    "label": "business recently significant",
+    "aliases": [
+      "qualitätsstücke nach geschäftswachstum"
+    ],
+    "languages": "DE|EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_367",
+      "CA_167",
+      "CA_310",
+      "CA_110"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0069_8c67f3": {
-    "label": "value approx corporate",
-    "aliases": [],
+  "CONCEPT_0143_b5f564": {
+    "label": "cannes selection",
+    "aliases": [
+      "cannes selection official"
+    ],
     "languages": "EN",
     "freq_notes": 4,
     "examples": [
-      "SA_0285",
-      "SA_0269",
-      "SA_0123",
-      "SA_0392"
+      "CA_352",
+      "CA_152"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0070_821219": {
-    "label": "を探しています。銀行振込待ち",
+  "CONCEPT_0144_c1302b": {
+    "label": "celebrate research grant",
     "aliases": [
-      "が高級ジュエリ ー を探しています。銀行振込待ち"
+      "research grant received"
     ],
-    "languages": "JA",
+    "languages": "EN",
     "freq_notes": 4,
     "examples": [
-      "SA_0268",
-      "SA_0176"
+      "CA_302",
+      "CA_102"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0071_aeb2e8": {
-    "label": "핸드백에 관심을",
+  "CONCEPT_0145_f95e80": {
+    "label": "collects art nouveau",
     "aliases": [
-      "要求私下查看珍稀皮手袋。需要定制缩写"
+      "deco art nouveau"
     ],
-    "languages": "KO|ZH",
+    "languages": "DE|EN",
     "freq_notes": 4,
     "examples": [
-      "SA_0203",
-      "SA_0256",
-      "SA_0284",
-      "SA_0381"
+      "CA_115",
+      "CA_157",
+      "CA_357",
+      "CA_315"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0146_12ce92": {
+    "label": "company ipo",
+    "aliases": [
+      "milestone company ipo"
+    ],
+    "languages": "EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_182",
+      "CA_382"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0072_c0cc70": {
-    "label": "founder интересуется багаж",
+  "CONCEPT_0147_236c5a": {
+    "label": "conti",
     "aliases": [],
-    "languages": "RU",
+    "languages": "IT",
+    "freq_notes": 4,
+    "examples": [
+      "CA_208",
+      "CA_328",
+      "CA_268",
+      "CA_128"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0148_e01af8": {
+    "label": "dirigentin sinfonieorchester",
+    "aliases": [
+      "dirigentin"
+    ],
+    "languages": "DE",
+    "freq_notes": 4,
+    "examples": [
+      "CA_355",
+      "CA_155"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0149_7256cf": {
+    "label": "estilo classique élégant",
+    "aliases": [
+      "estilo classique"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_364",
+      "CA_164"
+    ],
+    "rule": "bucket=preferences"
+  },
+  "CONCEPT_0150_ac06de": {
+    "label": "festival circuit",
+    "aliases": [
+      "films festival circuit"
+    ],
+    "languages": "EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_352",
+      "CA_152"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0151_9ac727": {
+    "label": "geschenke kinder hochschulabschlüsse",
+    "aliases": [
+      "geschenke kinder universitätsabschlüsse"
+    ],
+    "languages": "DE",
+    "freq_notes": 4,
+    "examples": [
+      "CA_270",
+      "CA_230",
+      "CA_290",
+      "CA_330"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0152_f2b0cb": {
+    "label": "gynäkologin",
+    "aliases": [
+      "frühjahr konferenzen gynäkologie"
+    ],
+    "languages": "DE",
+    "freq_notes": 4,
+    "examples": [
+      "CA_195",
+      "CA_395"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0153_db1e8c": {
+    "label": "hong kong",
+    "aliases": [
+      "basel hong kong"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_319",
+      "CA_119"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0154_183ef0": {
+    "label": "humanos ong internacional",
+    "aliases": [
+      "humanos ong"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_339",
+      "CA_139"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0155_05290b": {
+    "label": "koch",
+    "aliases": [
+      "frau koch"
+    ],
+    "languages": "DE",
+    "freq_notes": 4,
+    "examples": [
+      "CA_340",
+      "CA_140"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0156_db0183": {
+    "label": "leroy 44 ans",
+    "aliases": [
+      "leroy"
+    ],
+    "languages": "FR",
+    "freq_notes": 4,
+    "examples": [
+      "CA_316",
+      "CA_116"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0157_790dd9": {
+    "label": "mitchell and partner",
+    "aliases": [
+      "mitchell"
+    ],
+    "languages": "EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_302",
+      "CA_102"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0158_b5fc15": {
+    "label": "moving permanently provence",
+    "aliases": [
+      "permanently provence"
+    ],
+    "languages": "EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_322",
+      "CA_122"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0159_98dd44": {
+    "label": "oncologists teaching",
+    "aliases": [
+      "oncologists teaching hospital"
+    ],
+    "languages": "EN",
+    "freq_notes": 4,
+    "examples": [
+      "CA_302",
+      "CA_102"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0160_1df62e": {
+    "label": "originales freud lacan",
+    "aliases": [
+      "freud lacan"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_159",
+      "CA_359"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0161_a67500": {
+    "label": "partituren originalmanuskripte komponisten",
+    "aliases": [
+      "sammelt partituren originalmanuskripte"
+    ],
+    "languages": "DE",
+    "freq_notes": 4,
+    "examples": [
+      "CA_355",
+      "CA_155"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0162_e5e4cb": {
+    "label": "smart cities",
+    "aliases": [
+      "contemporanea città"
+    ],
+    "languages": "FR|IT",
+    "freq_notes": 4,
+    "examples": [
+      "CA_153",
+      "CA_371",
+      "CA_171",
+      "CA_353"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0163_720afd": {
+    "label": "vitale",
+    "aliases": [
+      "signor vitale"
+    ],
+    "languages": "IT",
+    "freq_notes": 4,
+    "examples": [
+      "CA_158",
+      "CA_358"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0164_a59d43": {
+    "label": "voyage orient express",
+    "aliases": [
+      "orient express"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_134",
+      "CA_334"
+    ],
+    "rule": "bucket=occasion"
+  },
+  "CONCEPT_0165_dc2fee": {
+    "label": "áfrica asia",
+    "aliases": [
+      "áfrica asia américa"
+    ],
+    "languages": "ES",
+    "freq_notes": 4,
+    "examples": [
+      "CA_139",
+      "CA_339",
+      "CA_269"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0166_0ab3e5": {
+    "label": "allergie shellfish",
+    "aliases": [],
+    "languages": "EN",
     "freq_notes": 3,
     "examples": [
-      "SA_0353",
-      "SA_0234",
-      "SA_0061"
+      "CA_362",
+      "CA_327",
+      "CA_162"
     ],
-    "rule": "bucket=other"
+    "rule": "bucket=constraints"
   },
-  "CONCEPT_0073_beda62": {
-    "label": "مؤسسية",
+  "CONCEPT_0167_1f5c8c": {
+    "label": "bianchi",
     "aliases": [],
-    "languages": "AR",
+    "languages": "IT",
     "freq_notes": 3,
     "examples": [
-      "SA_0317",
-      "SA_0367",
-      "SA_0096"
+      "CA_393",
+      "CA_193",
+      "CA_253"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0074_1de38a": {
-    "label": "factuur",
+  "CONCEPT_0168_d2da2c": {
+    "label": "chefärztin",
     "aliases": [],
-    "languages": "NL",
+    "languages": "DE",
+    "freq_notes": 3,
+    "examples": [
+      "CA_345",
+      "CA_145",
+      "CA_205"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0169_bc180d": {
+    "label": "london",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 3,
+    "examples": [
+      "CA_112",
+      "CA_322",
+      "CA_312"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0170_aaabf0": {
+    "label": "service",
+    "aliases": [],
+    "languages": "EN|FR",
+    "freq_notes": 3,
+    "examples": [
+      "CA_222",
+      "CA_196",
+      "CA_396"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0171_6670d8": {
+    "label": "signora bianchi",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 3,
+    "examples": [
+      "CA_393",
+      "CA_193",
+      "CA_253"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0172_abd737": {
+    "label": "wilson",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 3,
+    "examples": [
+      "CA_252",
+      "CA_267",
+      "CA_207"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0173_944e33": {
+    "label": "affaires cabinet international",
+    "aliases": [],
+    "languages": "FR",
     "freq_notes": 2,
     "examples": [
-      "SA_014",
-      "SA_045"
+      "CA_321",
+      "CA_121"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0075_b35918": {
-    "label": "founder requested viewing",
+  "CONCEPT_0174_71a8bf": {
+    "label": "anfang",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_305",
+      "CA_105"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0175_7e3965": {
+    "label": "arbeitet herzkrankheiten spitzenforschung",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_345",
+      "CA_145"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0176_f9d7a7": {
+    "label": "australia then japan",
     "aliases": [],
     "languages": "EN",
     "freq_notes": 2,
     "examples": [
-      "SA_0199",
-      "SA_0252"
+      "CA_327",
+      "CA_127"
     ],
     "rule": "bucket=other"
   },
-  "CONCEPT_0076_efd7cf": {
-    "label": "오트쿠튀르에 관심을",
+  "CONCEPT_0177_fe9308": {
+    "label": "beförderung teamleiterin",
     "aliases": [],
-    "languages": "KO",
+    "languages": "DE",
     "freq_notes": 2,
     "examples": [
-      "SA_0104",
-      "SA_0127"
+      "CA_335",
+      "CA_135"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0178_d7302e": {
+    "label": "bellini",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_133",
+      "CA_333"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0179_6f7961": {
+    "label": "cabinet",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_301",
+      "CA_201"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0180_9617a9": {
+    "label": "cadeaux équipe studio",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_346",
+      "CA_146"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0181_f03ad2": {
+    "label": "cdc atlanta",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_197",
+      "CA_397"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0182_0c5653": {
+    "label": "ceo biotech company",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_182",
+      "CA_382"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0183_903cca": {
+    "label": "certificaciones leed",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_224",
+      "CA_129"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0184_45a26f": {
+    "label": "cirujana plástica",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_109",
+      "CA_309"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0185_507d92": {
+    "label": "combined",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_177",
+      "CA_377"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0186_a6e311": {
+    "label": "decades",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_292",
+      "CA_222"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0187_15954b": {
+    "label": "dentiste",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_301",
+      "CA_101"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0188_0705e5": {
+    "label": "derechos humanos",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_259",
+      "CA_139"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0189_33652e": {
+    "label": "diseñadora moda freelance",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_124",
+      "CA_324"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0190_3ab61b": {
+    "label": "durand",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_336",
+      "CA_136"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0191_cd6504": {
+    "label": "e-commerce platform successful",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_177",
+      "CA_377"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0192_be82a5": {
+    "label": "eames jacobsen",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_329",
+      "CA_129"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0193_16302d": {
+    "label": "economico quotidiano",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_158",
+      "CA_358"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0194_7bec98": {
+    "label": "eltern beide seiten",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_320",
+      "CA_120"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0195_8e3a06": {
+    "label": "erstausgaben euklid newton",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_400",
+      "CA_200"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0196_ad3126": {
+    "label": "eventi boutique",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_108",
+      "CA_308"
+    ],
+    "rule": "bucket=occasion"
+  },
+  "CONCEPT_0197_bf68a9": {
+    "label": "fairs basel venice",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_307",
+      "CA_107"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0198_5c2532": {
+    "label": "frau marron",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_400",
+      "CA_200"
+    ],
+    "rule": "bucket=preferences"
+  },
+  "CONCEPT_0199_1cf96c": {
+    "label": "gaming leidenschaft kindheit",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_335",
+      "CA_135"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0200_5975a6": {
+    "label": "garnier",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_346",
+      "CA_146"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0201_958153": {
+    "label": "general",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_284",
+      "CA_244"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0202_632a04": {
+    "label": "geneva next cdc",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_197",
+      "CA_397"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0203_1eb310": {
+    "label": "greco",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_108",
+      "CA_308"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0204_3ca14c": {
+    "label": "hardware",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_321",
+      "CA_121"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0205_63ddb8": {
+    "label": "hôtellerie",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_196",
+      "CA_396"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0206_b4108a": {
+    "label": "implantologie symposium usa",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_190",
+      "CA_390"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0207_79ab94": {
+    "label": "johnson",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_187",
+      "CA_387"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0208_85b771": {
+    "label": "machine learning projekte",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_335",
+      "CA_135"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0209_9592f7": {
+    "label": "mailand wien new",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_115",
+      "CA_315"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0210_86f8ca": {
+    "label": "mariage 30 ans",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_126",
+      "CA_326"
+    ],
+    "rule": "bucket=occasion"
+  },
+  "CONCEPT_0211_0dae7f": {
+    "label": "mercier",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_356",
+      "CA_156"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0212_cab507": {
+    "label": "misiones",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_259",
+      "CA_269"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0213_69f526": {
+    "label": "mrs. blanc",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_367",
+      "CA_167"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0214_0369c1": {
+    "label": "multiple pieces celebrate",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_302",
+      "CA_102"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0215_5d765b": {
+    "label": "múltiples reconocimientos",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_149",
+      "CA_349"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0216_bf3a1c": {
+    "label": "nachhaltige mode startup",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_310",
+      "CA_110"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0217_5a4c64": {
+    "label": "nobel symposium stockholm",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_270",
+      "CA_230"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0218_723fc2": {
+    "label": "oncologa",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_253",
+      "CA_213"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0219_c08d56": {
+    "label": "penalista casi alto",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_393",
+      "CA_193"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0220_535737": {
+    "label": "pieces celebrate research",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_302",
+      "CA_102"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0221_98df2b": {
+    "label": "planning salzburg festival",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_322",
+      "CA_122"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0222_4a1f3d": {
+    "label": "platform successful exit",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_177",
+      "CA_377"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0223_e2794d": {
+    "label": "precision",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_297",
+      "CA_277"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0224_04abb4": {
+    "label": "professor mathematics retired",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_362",
+      "CA_162"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0225_6db97a": {
+    "label": "psychiaterin",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_385",
+      "CA_185"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0226_1f5290": {
+    "label": "recherche inspiration marrakech",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_331",
+      "CA_131"
+    ],
+    "rule": "bucket=intent"
+  },
+  "CONCEPT_0227_51dd1a": {
+    "label": "regiones",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_394",
+      "CA_194"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0228_e95daf": {
+    "label": "roberts",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_322",
+      "CA_122"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0229_653c92": {
+    "label": "rodriguez",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_157",
+      "CA_357"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0230_06f6bb": {
+    "label": "réseau",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_361",
+      "CA_371"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0231_2db8c3": {
+    "label": "satellites",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_386",
+      "CA_186"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0232_a31d83": {
+    "label": "seiten jubiläen",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_170",
+      "CA_370"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0233_32e479": {
+    "label": "sold business recently",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_367",
+      "CA_167"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0234_20ee73": {
+    "label": "sommelière chef cave",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_361",
+      "CA_161"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0235_ab23f2": {
+    "label": "soziologie gender häufig",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_215",
+      "CA_295"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0236_af0631": {
+    "label": "startup unicornio",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_354",
+      "CA_154"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0237_322a2d": {
+    "label": "steuerberaterin eigene kanzlei",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_170",
+      "CA_370"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0238_129427": {
+    "label": "symposium quantenphysik genf",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_400",
+      "CA_200"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0239_7d8bc5": {
+    "label": "taylor",
+    "aliases": [],
+    "languages": "EN",
+    "freq_notes": 2,
+    "examples": [
+      "CA_262",
+      "CA_202"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0240_e438d3": {
+    "label": "torres 47 ans",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_159",
+      "CA_359"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0241_3935f8": {
+    "label": "transformation",
+    "aliases": [],
+    "languages": "FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_246",
+      "CA_206"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0242_8a8df9": {
+    "label": "umani organizzazione internazionale",
+    "aliases": [],
+    "languages": "IT",
+    "freq_notes": 2,
+    "examples": [
+      "CA_363",
+      "CA_163"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0243_dd2921": {
+    "label": "valley",
+    "aliases": [],
+    "languages": "EN|FR",
+    "freq_notes": 2,
+    "examples": [
+      "CA_276",
+      "CA_242"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0244_f5597f": {
+    "label": "verfassungsrecht professor universität",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_380",
+      "CA_180"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0245_704597": {
+    "label": "visual 28 ans",
+    "aliases": [],
+    "languages": "ES",
+    "freq_notes": 2,
+    "examples": [
+      "CA_319",
+      "CA_119"
+    ],
+    "rule": "bucket=other"
+  },
+  "CONCEPT_0246_fa2112": {
+    "label": "zahnärztin auch partner",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_190",
+      "CA_390"
+    ],
+    "rule": "bucket=lifestyle"
+  },
+  "CONCEPT_0247_7ac332": {
+    "label": "ziele museen kulturerbe",
+    "aliases": [],
+    "languages": "DE",
+    "freq_notes": 2,
+    "examples": [
+      "CA_305",
+      "CA_105"
     ],
     "rule": "bucket=other"
   }
