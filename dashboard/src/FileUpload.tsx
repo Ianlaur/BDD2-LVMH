@@ -12,6 +12,7 @@ interface UploadResult {
 
 interface FileUploadProps {
   onUploadSuccess?: (result: UploadResult) => void;
+  userId?: number;
 }
 
 interface ProcessingTimings {
@@ -27,7 +28,7 @@ const Icons = {
   timer: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>,
 }
 
-export default function FileUpload({ onUploadSuccess }: FileUploadProps) {
+export default function FileUpload({ onUploadSuccess, userId }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
@@ -40,9 +41,9 @@ export default function FileUpload({ onUploadSuccess }: FileUploadProps) {
 
   // Live timer while processing
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null
+    let interval: number | null = null
     if (uploading && startTime) {
-      interval = setInterval(() => {
+      interval = window.setInterval(() => {
         setElapsedTime(Math.floor((Date.now() - startTime) / 1000))
       }, 100)
     }
@@ -91,7 +92,7 @@ export default function FileUpload({ onUploadSuccess }: FileUploadProps) {
     formData.append('file', file)
 
     try {
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/upload-csv?run_pipeline_after=true`, {
+      const response = await fetch(`${API_CONFIG.BASE_URL}/api/upload-csv?run_pipeline_after=true${userId ? `&user_id=${userId}` : ''}`, {
         method: 'POST',
         body: formData
       })
@@ -103,15 +104,17 @@ export default function FileUpload({ onUploadSuccess }: FileUploadProps) {
       const result = await response.json()
       setMessage(result.message || 'File uploaded and pipeline started!')
       setFile(null)
-      
-      // Notify parent component of successful upload
-      if (onUploadSuccess) {
-        onUploadSuccess(result)
-      }
 
       // Poll for pipeline completion
       if (result.pipeline_status === 'running') {
         pollPipelineStatus()
+      } else {
+        // Pipeline didn't start or completed immediately
+        setUploading(false)
+        setStartTime(null)
+        if (onUploadSuccess) {
+          onUploadSuccess(result)
+        }
       }
     } catch (err) {
       console.error('Upload error:', err)
@@ -145,10 +148,13 @@ export default function FileUpload({ onUploadSuccess }: FileUploadProps) {
           }
           
           if (status.last_run === 'success') {
-            setMessage('✓ Pipeline completed successfully! Refresh to see new data.')
-            if (onUploadSuccess) {
-              onUploadSuccess({ status: 'completed', processing_time: finalTime || undefined })
-            }
+            setMessage('✓ Pipeline completed successfully! Dashboard will refresh automatically.')
+            // Wait a moment for files to be written, then notify parent to refresh
+            setTimeout(() => {
+              if (onUploadSuccess) {
+                onUploadSuccess({ status: 'completed', processing_time: finalTime || undefined })
+              }
+            }, 1000)
           } else if (status.last_run === 'error') {
             setError(`Pipeline failed: ${status.last_error}`)
           }

@@ -26,3 +26,9 @@ pyyaml>=6.0
 # API server for remote access
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
+
+# Database (Neon PostgreSQL)
+asyncpg>=0.29.0
+psycopg2-binary>=2.9.9
+python-dotenv>=1.0.0
+bcrypt>=4.1.0

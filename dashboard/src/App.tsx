@@ -9,6 +9,9 @@ import Graph from "react-graph-vis";
 import { HeatMapGrid } from "react-heatmap-grid";
 import API_CONFIG from './config'
 import FileUpload from './FileUpload'
+import VoiceRecorder from './VoiceRecorder'
+import { useAuth } from './auth/AuthContext'
+import LoginScreen from './auth/LoginScreen'
 import './App.css'
 
 // Type Definitions
@@ -116,6 +119,8 @@ const Icons = {
   share: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>,
   barchart: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>,
   grid: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>,
+  settings: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>,
+  timer: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>,
 }
 
 // Navigation Component - Modern Top Navigation
@@ -125,19 +130,29 @@ const Navigation = ({ activePage, setActivePage, data }: {
   data: DashboardData | null;
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const { user, logout } = useAuth()
   
   const pages = [
-    { id: 'upload', label: 'Upload', icon: Icons.actions },
-    { id: 'actions', label: 'Actions', icon: Icons.actions },
-    { id: 'segments', label: 'Segments', icon: Icons.segments },
     { id: 'clients', label: 'Clients', icon: Icons.clients },
-    { id: 'data', label: 'Data', icon: Icons.chart },
+    { id: 'segments', label: 'Segments', icon: Icons.segments },
+    { id: 'actions', label: 'Actions', icon: Icons.actions },
+    { id: 'data', label: 'Analytics', icon: Icons.chart },
+    { id: 'upload', label: 'Import', icon: Icons.tag },
+    ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: Icons.settings }] : []),
   ]
 
   const handleNavClick = (pageId: string) => {
     setActivePage(pageId)
     setMobileMenuOpen(false)
   }
+
+  const initials = user?.display_name
+    ?.split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2) || user?.username?.slice(0, 2).toUpperCase() || '??'
 
   return (
     <header className="topnav">
@@ -191,6 +206,44 @@ const Navigation = ({ activePage, setActivePage, data }: {
             </div>
           )}
         </div>
+
+        {/* User Menu */}
+        {user && (
+          <div className="user-menu">
+            <button
+              className="user-menu-trigger"
+              onClick={() => setUserMenuOpen(!userMenuOpen)}
+            >
+              <div className={`user-avatar-small ${user.role}`}>{initials}</div>
+              <span className="user-name">{user.display_name}</span>
+              <span className={`user-role-badge ${user.role}`}>{user.role}</span>
+            </button>
+
+            {userMenuOpen && (
+              <>
+                <div
+                  style={{ position: 'fixed', inset: 0, zIndex: 99 }}
+                  onClick={() => setUserMenuOpen(false)}
+                />
+                <div className="user-dropdown">
+                  <div className="user-dropdown-header">
+                    <div className="user-full-name">{user.display_name}</div>
+                    <div className="user-email">{user.email || user.username}</div>
+                  </div>
+                  <button
+                    className="user-dropdown-item danger"
+                    onClick={() => { setUserMenuOpen(false); logout(); }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+                    </svg>
+                    Sign Out
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </header>
   )
@@ -257,21 +310,21 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
     <div className="page">
       <div className="page-header">
         <div>
-          <h1>Actions Recommandées</h1>
-          <p>{actions.length} actions pour {uniqueClients} clients — priorisez vos interactions.</p>
+          <h1>Recommended Actions</h1>
+          <p>{actions.length} actions for {uniqueClients} clients — prioritize your interactions.</p>
         </div>
         <div className="filter-group">
           <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
-            Toutes ({actions.length})
+            All ({actions.length})
           </button>
           <button className={`filter-btn high ${filter === 'high' ? 'active' : ''}`} onClick={() => setFilter('high')}>
-            Urgentes ({highCount})
+            Urgent ({highCount})
           </button>
           <button className={`filter-btn medium ${filter === 'medium' ? 'active' : ''}`} onClick={() => setFilter('medium')}>
-            Moyennes ({mediumCount})
+            Medium ({mediumCount})
           </button>
           <button className={`filter-btn ${filter === 'low' ? 'active' : ''}`} onClick={() => setFilter('low')}>
-            Basses ({lowCount})
+            Low ({lowCount})
           </button>
         </div>
       </div>
@@ -281,14 +334,14 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
           <div className="stat-icon">{Icons.actions}</div>
           <div className="stat-content">
             <div className="stat-value">{highCount}</div>
-            <div className="stat-label">Actions Urgentes</div>
+            <div className="stat-label">Urgent Actions</div>
           </div>
         </div>
         <div className="stat-card accent-blue">
           <div className="stat-icon">{Icons.calendar}</div>
           <div className="stat-content">
             <div className="stat-value">{actions.filter(a => (a.channel || '').toLowerCase() === 'event').length}</div>
-            <div className="stat-label">Événements</div>
+            <div className="stat-label">Events</div>
           </div>
         </div>
         <div className="stat-card accent-green">
@@ -302,7 +355,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
           <div className="stat-icon">{Icons.user}</div>
           <div className="stat-content">
             <div className="stat-value">{uniqueClients}</div>
-            <div className="stat-label">Clients Concernés</div>
+            <div className="stat-label">Active Clients</div>
           </div>
         </div>
       </div>
@@ -342,7 +395,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
         {selectedAction ? (
           <div className="card action-detail-card">
             <div className="action-detail-header">
-              <h3>Détail de l'Action</h3>
+              <h3>Action Detail</h3>
               <button className="close-btn" onClick={() => setSelectedAction(null)}>{Icons.close}</button>
             </div>
             <div className="action-detail-content">
@@ -361,11 +414,11 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
                 <span className="detail-value">{selectedAction.title}</span>
               </div>
               <div className="detail-item">
-                <span className="detail-label">Canal</span>
+                <span className="detail-label">Channel</span>
                 <span className="detail-value">{selectedAction.channel}</span>
               </div>
               <div className="detail-item">
-                <span className="detail-label">Priorité</span>
+                <span className="detail-label">Priority</span>
                 <span className={`detail-value priority-tag ${selectedAction.priority}`}>{selectedAction.priority}</span>
               </div>
               <div className="detail-item">
@@ -373,17 +426,17 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
                 <span className="detail-value">{selectedAction.kpi}</span>
               </div>
               <div className="detail-item">
-                <span className="detail-label">Confiance</span>
+                <span className="detail-label">Confidence</span>
                 <span className="detail-value">{((selectedAction.client.confidence || 0) * 100).toFixed(0)}%</span>
               </div>
 
               <div className="detail-item detail-rationale">
-                <span className="detail-label">Recommandation</span>
+                <span className="detail-label">Recommendation</span>
                 <span className="detail-value">{selectedAction.rationale}</span>
               </div>
 
               <div className="detail-item">
-                <span className="detail-label">Déclencheurs</span>
+                <span className="detail-label">Triggers</span>
                 <div className="trigger-tags">
                   {(selectedAction.triggers || '').split('|').map((t: string, i: number) => (
                     <span key={i} className="concept-badge" style={{ backgroundColor: '#f3f4f6', color: '#374151' }}>{t.trim()}</span>
@@ -392,7 +445,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
               </div>
 
               <div className="client-concepts">
-                <h4>Top Concepts du Client</h4>
+                <h4>Client's Top Concepts</h4>
                 {selectedAction.client.topConcepts?.map((c: string, i: number) => (
                   <span key={i} className="concept-badge" style={{ backgroundColor: SEGMENT_COLORS[selectedAction.client.segment as keyof typeof SEGMENT_COLORS] + '20', color: SEGMENT_COLORS[selectedAction.client.segment as keyof typeof SEGMENT_COLORS] }}>{c}</span>
                 ))}
@@ -400,7 +453,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
 
               {selectedAction.client.originalNote && (
                 <div className="client-note">
-                  <h4>Note Originale</h4>
+                  <h4>Original Note</h4>
                   <p>{selectedAction.client.originalNote}</p>
                 </div>
               )}
@@ -410,8 +463,8 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
           <div className="card action-detail-placeholder">
             <div className="placeholder-content">
               {Icons.actions}
-              <h4>Sélectionnez une action</h4>
-              <p>Cliquez sur une action dans la liste pour voir les détails du client et de la recommandation.</p>
+              <h4>Select an Action</h4>
+              <p>Click an action from the list to see client details and the recommendation.</p>
             </div>
           </div>
         )}
@@ -441,15 +494,15 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
     <div className="page">
       <div className="page-header">
         <div>
-          <h1>Analyse des Segments</h1>
-          <p>Explorez les {segmentData.length} profils clients identifiés par l'IA.</p>
+          <h1>Segment Analysis</h1>
+          <p>Explore {segmentData.length} client profiles identified by the AI.</p>
         </div>
       </div>
 
       <div className="segments-layout">
         {/* Left Column: Segment List */}
         <div className="card segments-list-card">
-          <h3 className="card-title">Profils Clients</h3>
+          <h3 className="card-title">Client Profiles</h3>
           <div className="segments-list">
             {segmentData.map((segment, idx) => (
               <div 
@@ -484,12 +537,12 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
                 <h3 className="card-title">Segment {selectedSegment}</h3>
                 <div className="segment-detail-pills">
                   <span className="pill">{selectedSegmentData.value} clients</span>
-                  <span className="pill">{selectedSegmentData.fullProfile.split(' | ').length} concepts clés</span>
+                  <span className="pill">{selectedSegmentData.fullProfile.split(' | ').length} key concepts</span>
                 </div>
               </div>
               <p className="segment-full-profile">{selectedSegmentData.fullProfile}</p>
               
-              <h4>Clients représentatifs</h4>
+              <h4>Representative Clients</h4>
               <div className="representative-clients">
                 {clientsInSegment.map(client => (
                   <div key={client.id} className="client-chip">
@@ -503,13 +556,13 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
             </div>
           ) : (
             <div className="card placeholder-card">
-              <p>Sélectionnez un segment pour voir les détails.</p>
+              <p>Select a segment to see details.</p>
             </div>
           )}
 
           <div className="charts-row">
             <div className="card">
-              <h3 className="card-title">Distribution des Segments</h3>
+              <h3 className="card-title">Segment Distribution</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
                   <Pie 
@@ -537,7 +590,7 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
             </div>
 
             <div className="card">
-              <h3 className="card-title">Profil Radar</h3>
+              <h3 className="card-title">Radar Profile</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="75%">
                   <PolarGrid stroke="var(--border-light)" />
@@ -619,15 +672,15 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
     <div className="page">
       <header className="page-header">
         <div>
-          <h1>Exploration des Clients</h1>
-          <p>{filteredAndSortedClients.length} sur {clients.length} clients affichés</p>
+          <h1>Client Explorer</h1>
+          <p>Showing {filteredAndSortedClients.length} of {clients.length} clients</p>
         </div>
         <div className="search-group">
           <div className="search-input-wrapper">
             <span className="search-icon">{Icons.search}</span>
             <input
               type="text"
-              placeholder="Rechercher par ID, concept, note..."
+              placeholder="Search by ID, concept, or note..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-input"
@@ -638,9 +691,9 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
             value={filterSegment}
             onChange={(e) => setFilterSegment(e.target.value)}
           >
-            <option value="all">Tous les segments</option>
-            {segments.map(s => (
-              <option key={s.name} value={s.name}>{s.profile} ({s.value})</option>
+            <option value="all">All Segments</option>
+            {segments.map((s, idx) => (
+              <option key={s.name} value={idx.toString()}>Segment {idx} — {s.profile} ({s.value})</option>
             ))}
           </select>
           <select
@@ -648,10 +701,10 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option value="confidence_desc">Confiance (décroissant)</option>
-            <option value="confidence_asc">Confiance (croissant)</option>
-            <option value="id_asc">ID (A-Z)</option>
-            <option value="id_desc">ID (Z-A)</option>
+            <option value="confidence_desc">Confidence ↓</option>
+            <option value="confidence_asc">Confidence ↑</option>
+            <option value="id_asc">Client ID (A→Z)</option>
+            <option value="id_desc">Client ID (Z→A)</option>
           </select>
         </div>
       </header>
@@ -684,12 +737,13 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
                   <div className="confidence-ring" style={{ "--confidence": similarity / 100, '--ring-color': color } as any}>
                     <span>{similarity}%</span>
                   </div>
+                  <span className="confidence-label">match</span>
                 </div>
               </div>
 
               <div className="client-concepts">
-                {client.topConcepts?.slice(0, 4).map((concept, idx) => (
-                  <span key={idx} className="concept-badge" style={{ backgroundColor: color + '20', color: color }}>
+                {client.topConcepts?.slice(0, 5).map((concept, idx) => (
+                  <span key={idx} className="concept-badge" style={{ backgroundColor: color + '15', color: color, borderLeft: `2px solid ${color}` }}>
                     {concept}
                   </span>
                 ))}
@@ -697,7 +751,7 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
 
               {client.fullText && (
                 <div className="client-text">
-                  <p>{client.fullText.substring(0, 140)}{client.fullText.length > 140 ? '...' : ''}</p>
+                  <p className="client-note-text">{client.fullText.substring(0, 160)}{client.fullText.length > 160 ? '…' : ''}</p>
                 </div>
               )}
 
@@ -920,15 +974,15 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     <div className="page">
       <div className="page-header">
         <div>
-          <h1>Visualisation des Données</h1>
-          <p>Explorez les relations complexes entre clients, concepts et segments.</p>
+          <h1>Data Analytics</h1>
+          <p>Explore complex relationships between clients, concepts, and segments.</p>
         </div>
         <div className="filter-group">
           <button className={`filter-btn ${view === '3d' ? 'active' : ''}`} onClick={() => setView('3d')}>
-            {Icons.cube} Espace 3D
+            {Icons.cube} 3D Space
           </button>
           <button className={`filter-btn ${view === 'knowledge' ? 'active' : ''}`} onClick={() => setView('knowledge')}>
-            {Icons.share} Graphe de Connaissances
+            {Icons.share} Knowledge Graph
           </button>
           <button className={`filter-btn ${view === 'concepts' ? 'active' : ''}`} onClick={() => setView('concepts')}>
             {Icons.barchart} Top Concepts
@@ -950,9 +1004,9 @@ const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint,
     <div className="card main-chart-card">
       <div className="chart-controls">
         <div className="control-group">
-          <label>Segment à Surligner</label>
+          <label>Highlight Segment</label>
           <select value={highlightSegment ?? 'all'} onChange={e => setHighlightSegment(e.target.value === 'all' ? null : Number(e.target.value))}>
-            <option value="all">Aucun</option>
+            <option value="all">None</option>
             {[...new Set(scatter3d.map((p:any) => p.segment))].map((s: Key | null | undefined) => <option key={s} value={s as any}>Segment {s}</option>)}
           </select>
         </div>
@@ -1003,7 +1057,7 @@ const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint,
     {selectedPoint && (
       <div className="card info-sidebar">
         <div className="sidebar-header">
-          <h3>Client Sélectionné</h3>
+          <h3>Selected Client</h3>
           <button className="close-btn" onClick={() => setSelectedPoint(null)}>{Icons.close}</button>
         </div>
         <ClientDetailCard client={selectedPoint} />
@@ -1017,16 +1071,16 @@ const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, set
     <div className="card main-chart-card">
       <div className="chart-controls">
         <div className="control-group">
-          <label>Client Central</label>
+          <label>Central Client</label>
           <select value={selectedKGClient ?? ''} onChange={e => setSelectedKGClient(e.target.value)}>
             {clients.slice(0, 100).map((c:any) => <option key={c.id} value={c.id}>{c.id}</option>)}
           </select>
         </div>
         <div className="control-group">
-          <label>Profondeur</label>
+          <label>Depth</label>
           <select value={kgDepth} onChange={e => setKgDepth(Number(e.target.value))}>
             <option value={1}>1 (Concepts)</option>
-            <option value={2}>2 (Clients liés)</option>
+            <option value={2}>2 (Related Clients)</option>
           </select>
         </div>
       </div>
@@ -1066,7 +1120,7 @@ const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, set
     {knowledgeGraphData?.client && (
       <div className="card info-sidebar">
         <div className="sidebar-header">
-          <h3>Client Central</h3>
+          <h3>Central Client</h3>
         </div>
         <ClientDetailCard client={knowledgeGraphData.client} />
       </div>
@@ -1077,7 +1131,7 @@ const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, set
 const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelectedConcept, conceptClients }: any) => (
   <div className="data-view-layout">
     <div className="card main-chart-card">
-      <h3 className="card-title">Top 20 Concepts Clients</h3>
+      <h3 className="card-title">Top 20 Client Concepts</h3>
       <div className="chart-container">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart layout="vertical" data={concepts} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -1096,7 +1150,7 @@ const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelect
     {selectedConcept && (
       <div className="card info-sidebar">
         <div className="sidebar-header">
-          <h3>Clients pour "{selectedConcept}"</h3>
+          <h3>Clients for "{selectedConcept}"</h3>
           <button className="close-btn" onClick={() => setSelectedConcept(null)}>{Icons.close}</button>
         </div>
         <div className="sidebar-client-list">
@@ -1110,7 +1164,7 @@ const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelect
 const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSelectedHeatmapCell, heatmapClients }: any) => (
   <div className="data-view-layout">
     <div className="card main-chart-card" style={{ overflowX: 'auto' }}>
-      <h3 className="card-title">Heatmap Segment vs. Concept</h3>
+      <h3 className="card-title">Heatmap: Segment vs Concept</h3>
       <div className="chart-container" style={{ minWidth: '800px' }}>
         <ResponsiveContainer width="100%" height={600}>
           <HeatMapGrid
@@ -1136,13 +1190,13 @@ const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSele
     {selectedHeatmapCell && (
       <div className="card info-sidebar">
         <div className="sidebar-header">
-          <h3>Clients à l'intersection</h3>
+          <h3>Clients at Intersection</h3>
           <button className="close-btn" onClick={() => setSelectedHeatmapCell(null)}>{Icons.close}</button>
         </div>
         <div className="sidebar-info">
           <p><strong>Segment:</strong> {selectedHeatmapCell.segment}</p>
           <p><strong>Concept:</strong> {selectedHeatmapCell.concept}</p>
-          <p><strong>Nombre:</strong> {selectedHeatmapCell.value}</p>
+          <p><strong>Count:</strong> {selectedHeatmapCell.value}</p>
         </div>
         <div className="sidebar-client-list">
           {heatmapClients.map((c: any) => <ClientChip key={c.id} client={c} />)}
@@ -1164,7 +1218,7 @@ const ClientDetailCard = ({ client }: { client: any }) => (
       </div>
     </div>
     <div className="detail-item">
-      <span className="detail-label">Confiance</span>
+      <span className="detail-label">Confidence</span>
       <span className="detail-value">{((client.confidence || 0) * 100).toFixed(0)}%</span>
     </div>
     <div className="client-concepts">
@@ -1175,7 +1229,7 @@ const ClientDetailCard = ({ client }: { client: any }) => (
     </div>
     {client.fullText && (
       <div className="client-note">
-        <h4>Note Originale</h4>
+        <h4>Original Note</h4>
         <p>{client.fullText}</p>
       </div>
     )}
@@ -1190,9 +1244,157 @@ const ClientChip = ({ client }: { client: any }) => (
     <span>{client.id}</span>
   </div>
 )
-// ... existing code ...
+// Admin Page (admin-only) — DB status, upload history, user management
+const AdminPage = ({ data }: { data: DashboardData | null }) => {
+  const { user } = useAuth()
+  const [dbStatus, setDbStatus] = useState<any>(null)
+  const [uploadHistory, setUploadHistory] = useState<any[]>([])
+  const [dbLoading, setDbLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchAdminData = async () => {
+      setDbLoading(true)
+      try {
+        const [statusRes, historyRes] = await Promise.all([
+          fetch(`${API_CONFIG.BASE_URL}/api/db/status`).then(r => r.json()).catch(() => null),
+          fetch(`${API_CONFIG.BASE_URL}/api/upload-history`).then(r => r.json()).catch(() => []),
+        ])
+        setDbStatus(statusRes)
+        setUploadHistory(Array.isArray(historyRes) ? historyRes : [])
+      } catch (e) {
+        console.error('Failed to fetch admin data', e)
+      } finally {
+        setDbLoading(false)
+      }
+    }
+    fetchAdminData()
+  }, [])
+
+  const handleSyncDb = async () => {
+    try {
+      const res = await fetch(`${API_CONFIG.BASE_URL}/api/db/sync`, { method: 'POST' })
+      const result = await res.json()
+      alert(result.message || 'Sync complete')
+    } catch (e: any) {
+      alert('Sync failed: ' + e.message)
+    }
+  }
+
+  if (user?.role !== 'admin') {
+    return (
+      <div className="page">
+        <div className="page-header"><div><h1>Access Denied</h1><p>Administrator access required.</p></div></div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="page">
+      <div className="page-header">
+        <div>
+          <h1>Administration</h1>
+          <p>Database status, upload history, and system management.</p>
+        </div>
+      </div>
+
+      <div className="admin-grid">
+        {/* DB Status */}
+        <div className="admin-card">
+          <h3>{Icons.cube} Database</h3>
+          {dbLoading ? (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Loading…</p>
+          ) : dbStatus ? (
+            <>
+              <div className="admin-stat-row">
+                <span className="admin-stat-label">Status</span>
+                <span className="admin-stat-value">
+                  <span className={`db-status-dot ${dbStatus.connected ? 'connected' : 'disconnected'}`} />
+                  {dbStatus.connected ? 'Connected' : 'Disconnected'}
+                </span>
+              </div>
+              {dbStatus.stats && Object.entries(dbStatus.stats).map(([key, val]) => (
+                <div className="admin-stat-row" key={key}>
+                  <span className="admin-stat-label" style={{ textTransform: 'capitalize' }}>{key}</span>
+                  <span className="admin-stat-value">{String(val)}</span>
+                </div>
+              ))}
+              <button className="admin-btn primary" onClick={handleSyncDb}>Sync Files → DB</button>
+            </>
+          ) : (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>
+              <span className="db-status-dot disconnected" />
+              Database not configured. Set DATABASE_URL in .env
+            </p>
+          )}
+        </div>
+
+        {/* Pipeline Info */}
+        <div className="admin-card">
+          <h3>{Icons.timer} Pipeline</h3>
+          <div className="admin-stat-row">
+            <span className="admin-stat-label">Total Clients</span>
+            <span className="admin-stat-value">{data?.metrics?.clients || 0}</span>
+          </div>
+          <div className="admin-stat-row">
+            <span className="admin-stat-label">Total Segments</span>
+            <span className="admin-stat-value">{data?.metrics?.segments || 0}</span>
+          </div>
+          {data?.processingInfo?.pipelineTimings && (
+            <div className="admin-stat-row">
+              <span className="admin-stat-label">Last Pipeline Time</span>
+              <span className="admin-stat-value">{data.processingInfo.pipelineTimings.total}s</span>
+            </div>
+          )}
+          {data?.processingInfo?.timestamp && (
+            <div className="admin-stat-row">
+              <span className="admin-stat-label">Last Run</span>
+              <span className="admin-stat-value">{new Date(data.processingInfo.timestamp).toLocaleString()}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Upload History */}
+        <div className="admin-card" style={{ gridColumn: '1 / -1' }}>
+          <h3>{Icons.tag} Upload History</h3>
+          {uploadHistory.length === 0 ? (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>No uploads recorded yet.</p>
+          ) : (
+            <div style={{ overflowX: 'auto' }}>
+              <table className="upload-history-table">
+                <thead>
+                  <tr>
+                    <th>File</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Added</th>
+                    <th>Updated</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {uploadHistory.map((h: any, i: number) => (
+                    <tr key={i}>
+                      <td>{h.filename}</td>
+                      <td>{h.username || h.user_id || '—'}</td>
+                      <td><span className={`status-badge ${h.status}`}>{h.status}</span></td>
+                      <td>{h.records_added ?? '—'}</td>
+                      <td>{h.records_updated ?? '—'}</td>
+                      <td>{h.created_at ? new Date(h.created_at).toLocaleString() : '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // Main App Component
 function App() {
+  const { user, isLoading: authLoading } = useAuth()
   const [activePage, setActivePage] = useState('clients')
   const [data, setData] = useState<DashboardData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -1201,14 +1403,12 @@ function App() {
   const fetchData = async () => {
       try {
         setLoading(true)
-        // Using the API_CONFIG to connect to the backend server
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data`)
+        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data?t=${Date.now()}`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         const result = await response.json()
         
-        // Data validation and cleaning
         if (!result.clients || !Array.isArray(result.clients)) {
           throw new Error("Invalid or missing 'clients' data")
         }
@@ -1219,9 +1419,8 @@ function App() {
           segment: typeof c.segment === 'number' ? c.segment : 0,
         }))
 
-        // Remap radar data to ensure 'subject' key exists
         const cleanedRadar = result.radar?.map((item: any) => ({
-          subject: item.subject || item.dimension, // Use dimension as fallback
+          subject: item.subject || item.dimension,
           ...item
         })) || []
 
@@ -1231,14 +1430,12 @@ function App() {
         console.error("Failed to fetch or process dashboard data:", e)
         setError(`Failed to load data: ${e.message}. Is the backend server running?`)
         
-        // Fallback to local data on API error
         try {
           const localData = await import('./data.json')
           const localRadar = localData.default.radar.map((item: any) => ({
             subject: item.subject || item.dimension,
             ...item
           }))
-          // Make sure to cast to DashboardData to avoid type errors
           setData({...localData.default, radar: localRadar } as unknown as DashboardData)
           setError("API failed. Displaying local fallback data.")
         } catch (localErr) {
@@ -1251,14 +1448,25 @@ function App() {
     }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (user) {
+      fetchData()
+    }
+  }, [user])
+
+  // Show nothing while checking stored session
+  if (authLoading) {
+    return <div className="login-backdrop"><div className="loading-spinner"><div></div><div></div><div></div></div></div>
+  }
+
+  // If not logged in, show login screen
+  if (!user) {
+    return <LoginScreen />
+  }
 
   const renderPage = () => {
     if (loading) {
       return <div className="loading-spinner"><div></div><div></div><div></div></div>
     }
-    // Show error banner but still try to render with potentially partial/fallback data
     if (error && !data) {
       return <div className="error-banner">{error}</div>
     }
@@ -1277,13 +1485,26 @@ function App() {
       case 'data':
         pageToRender = <DataPage data={data} />;
         break;
+      case 'admin':
+        pageToRender = <AdminPage data={data} />;
+        break;
       case 'upload':
         pageToRender = (
           <div className="page">
             <div className="page-header">
-              <div><h1>Upload New Data</h1><p>Upload a CSV file to process and analyze</p></div>
+              <div><h1>Import Data</h1><p>Upload a CSV file with client notes or record a voice memo.</p></div>
             </div>
-            <FileUpload onUploadSuccess={() => fetchData()} />
+            <div className="upload-grid">
+              <div className="upload-section">
+                <FileUpload onUploadSuccess={() => fetchData()} userId={user.id} />
+              </div>
+              <div className="upload-section">
+                <VoiceRecorder onRecordingComplete={() => {
+                  console.log('Voice memo recorded and uploaded')
+                  fetchData()
+                }} />
+              </div>
+            </div>
           </div>
         );
         break;

@@ -1,5 +1,6 @@
 """
 FastAPI server for LVMH Dashboard - Remote access to data and pipeline execution.
+Now with Neon PostgreSQL for persistent storage and multi-user support.
 
 Usage:
     python -m server.api_server
@@ -7,7 +8,7 @@ Usage:
     Or with custom host/port:
     python -m server.api_server --host 0.0.0.0 --port 8000
 """
-from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Depends, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
@@ -19,6 +20,7 @@ from typing import Optional
 import logging
 import shutil
 from datetime import datetime
+from contextlib import asynccontextmanager
 
 from server.shared.config import BASE_DIR, DATA_OUTPUTS, TAXONOMY_DIR, DATA_INPUT, DATA_PROCESSED
 from server.run_all import run_pipeline
@@ -27,10 +29,55 @@ from server.run_all import run_pipeline
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# ---------------------------------------------------------------------------
+# DB availability flag — if DATABASE_URL is not set, fall back to file-based
+# ---------------------------------------------------------------------------
+DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", ""))
+
+# Try loading .env
+try:
+    from dotenv import load_dotenv
+    _env = Path(__file__).resolve().parent.parent / ".env"
+    if _env.exists():
+        load_dotenv(_env)
+        DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", ""))
+except ImportError:
+    pass
+
+# ---------------------------------------------------------------------------
+# App lifecycle: init DB on startup, close pool on shutdown
+# ---------------------------------------------------------------------------
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Startup and shutdown logic."""
+    if DB_AVAILABLE:
+        try:
+            from server.db.schema import init_database
+            from server.db.connection import get_async_pool
+            init_database()  # create tables if needed (sync)
+            await get_async_pool()  # warm up async pool
+            logger.info("✅ Database connected and schema initialized")
+        except Exception as e:
+            logger.warning(f"⚠️  Database init failed: {e}. Falling back to file-based mode.")
+    else:
+        logger.info("ℹ️  No DATABASE_URL set — running in file-only mode")
+    
+    yield  # app runs here
+    
+    if DB_AVAILABLE:
+        try:
+            from server.db.connection import close_async_pool, close_sync_connection
+            await close_async_pool()
+            close_sync_connection()
+        except Exception:
+            pass
+
+
 app = FastAPI(
     title="LVMH Voice-to-Tag API",
     description="API for accessing LVMH client intelligence data and running the pipeline",
-    version="1.0.0"
+    version="2.0.0",
+    lifespan=lifespan,
 )
 
 # Configure CORS - Allow dashboard to connect from any origin
@@ -56,12 +103,15 @@ async def root():
     return {
         "service": "LVMH Voice-to-Tag API",
         "status": "running",
-        "version": "1.0.0",
+        "version": "2.0.0",
+        "database": "connected" if DB_AVAILABLE else "file-only",
         "endpoints": {
             "data": "/api/data",
             "pipeline_status": "/api/pipeline/status",
             "run_pipeline": "/api/pipeline/run",
-            "outputs": "/api/outputs/{filename}"
+            "outputs": "/api/outputs/{filename}",
+            "auth": "/api/auth/login",
+            "users": "/api/users",
         }
     }
 
@@ -69,7 +119,24 @@ async def root():
 @app.get("/api/data")
 @app.get("/api/dashboard-data")
 async def get_dashboard_data():
-    """Get the main dashboard data (data.json)."""
+    """
+    Get the main dashboard data.
+    If DB is available, reads from Neon PostgreSQL.
+    Otherwise falls back to data.json on disk.
+    """
+    # --- DB path ---
+    if DB_AVAILABLE:
+        try:
+            from server.db.crud import async_get_dashboard_data
+            data = await async_get_dashboard_data()
+            if data.get("clients"):
+                return data
+            # If DB has no clients yet, fall through to file
+            logger.info("DB has no clients — falling back to data.json")
+        except Exception as e:
+            logger.warning(f"DB read failed, falling back to file: {e}")
+
+    # --- File path (fallback) ---
     data_path = BASE_DIR / "dashboard" / "src" / "data.json"
     
     if not data_path.exists():
@@ -230,18 +297,87 @@ async def run_pipeline_endpoint(
     }
 
 
+@app.post("/api/upload-voice-memo")
+async def upload_voice_memo(
+    audio: UploadFile = File(...),
+    transcript: Optional[str] = None,
+    client_id: Optional[str] = None
+):
+    """
+    Upload a voice memo with optional transcript and client ID.
+    
+    Parameters:
+    - audio: Audio file (webm, mp3, wav, etc.)
+    - transcript: Optional text transcript of the audio
+    - client_id: Optional client ID to associate the memo with
+    """
+    # Create voice_memos directory if it doesn't exist
+    voice_memos_dir = DATA_INPUT / "voice_memos"
+    voice_memos_dir.mkdir(exist_ok=True)
+    
+    # Create unique filename with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_ext = Path(audio.filename).suffix or '.webm'
+    audio_filename = f"voice_memo_{timestamp}{file_ext}"
+    audio_path = voice_memos_dir / audio_filename
+    
+    # Save uploaded audio file
+    try:
+        with open(audio_path, "wb") as buffer:
+            shutil.copyfileobj(audio.file, buffer)
+        logger.info(f"Voice memo saved to: {audio_path}")
+    except Exception as e:
+        logger.error(f"Failed to save voice memo: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to save audio: {str(e)}")
+    
+    # Save transcript if provided
+    transcript_data = {
+        "timestamp": timestamp,
+        "audio_file": audio_filename,
+        "transcript": transcript or "",
+        "client_id": client_id,
+        "uploaded_at": datetime.now().isoformat()
+    }
+    
+    # Save transcript to JSON file
+    transcript_filename = f"transcript_{timestamp}.json"
+    transcript_path = voice_memos_dir / transcript_filename
+    
+    try:
+        with open(transcript_path, 'w', encoding='utf-8') as f:
+            json.dump(transcript_data, f, indent=2, ensure_ascii=False)
+        logger.info(f"Transcript saved to: {transcript_path}")
+    except Exception as e:
+        logger.error(f"Failed to save transcript: {e}")
+    
+    # Optionally: Convert voice memo to text for processing
+    # You could add speech-to-text processing here if needed
+    
+    return {
+        "status": "success",
+        "audio_file": audio_filename,
+        "transcript_file": transcript_filename,
+        "message": "Voice memo uploaded successfully",
+        "has_transcript": bool(transcript),
+        "client_id": client_id
+    }
+
+
 @app.post("/api/upload-csv")
 async def upload_csv(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
-    run_pipeline_after: bool = True
+    run_pipeline_after: bool = True,
+    user_id: Optional[int] = None
 ):
     """
     Upload a CSV file and optionally run the pipeline.
+    With DB enabled, creates an upload session and syncs results after pipeline.
     
     Parameters:
     - file: CSV file to upload
     - run_pipeline_after: If true, automatically run pipeline after upload
+    - user_id: Optional user ID (from auth) who is uploading
     """
     # Validate file type
     if not file.filename.endswith('.csv'):
@@ -274,6 +410,20 @@ async def upload_csv(
                 logger.info(f"Cleaned up old upload: {old_csv.name}")
     except Exception as e:
         logger.warning(f"Cleanup warning: {e}")
+
+    # --- Create upload session in DB ---
+    upload_session_id = None
+    if DB_AVAILABLE:
+        try:
+            from server.db.connection import get_connection
+            async with get_connection() as conn:
+                upload_session_id = await conn.fetchval("""
+                    INSERT INTO upload_sessions (user_id, filename, upload_type, status)
+                    VALUES ($1, $2, 'csv', 'uploaded')
+                    RETURNING id
+                """, user_id, new_filename)
+        except Exception as e:
+            logger.warning(f"Could not create upload session: {e}")
     
     # Optionally run pipeline
     if run_pipeline_after:
@@ -283,7 +433,8 @@ async def upload_csv(
                 "filename": new_filename,
                 "path": str(file_path),
                 "message": "File uploaded but pipeline is already running. Please try running it manually later.",
-                "pipeline_status": "busy"
+                "pipeline_status": "busy",
+                "upload_session_id": upload_session_id
             }
         
         # Run pipeline with the uploaded file
@@ -291,18 +442,58 @@ async def upload_csv(
         pipeline_status["last_error"] = None
         
         def run_pipeline_task():
-            """Background task to run the pipeline."""
+            """Background task: run pipeline then sync results to DB."""
             try:
                 logger.info(f"Running pipeline with uploaded file: {file_path}")
                 run_pipeline(csv_path=str(file_path))
                 pipeline_status["running"] = False
                 pipeline_status["last_run"] = "success"
                 logger.info("Pipeline completed successfully")
+
+                # --- Sync results to DB ---
+                if DB_AVAILABLE:
+                    try:
+                        from server.db.sync import sync_results_to_db
+                        result = sync_results_to_db(
+                            user_id=user_id,
+                            upload_session_id=upload_session_id
+                        )
+                        logger.info(f"DB sync: {result}")
+
+                        # Update upload session
+                        from server.db.connection import get_sync_connection, sync_cursor
+                        with sync_cursor() as cur:
+                            cur.execute("""
+                                UPDATE upload_sessions
+                                SET status = 'completed',
+                                    records_added = %s,
+                                    records_updated = %s
+                                WHERE id = %s
+                            """, (
+                                result.get("new_clients", 0),
+                                result.get("updated_clients", 0),
+                                upload_session_id,
+                            ))
+                    except Exception as db_err:
+                        logger.error(f"DB sync failed (pipeline still OK): {db_err}")
+
             except Exception as e:
                 logger.error(f"Pipeline failed: {e}")
                 pipeline_status["running"] = False
                 pipeline_status["last_error"] = str(e)
                 pipeline_status["last_run"] = "error"
+
+                # Update upload session on failure
+                if DB_AVAILABLE and upload_session_id:
+                    try:
+                        from server.db.connection import sync_cursor
+                        with sync_cursor() as cur:
+                            cur.execute("""
+                                UPDATE upload_sessions SET status = 'failed', error_message = %s
+                                WHERE id = %s
+                            """, (str(e), upload_session_id))
+                    except Exception:
+                        pass
         
         background_tasks.add_task(run_pipeline_task)
         
@@ -311,7 +502,8 @@ async def upload_csv(
             "filename": new_filename,
             "path": str(file_path),
             "message": "File uploaded and pipeline started",
-            "pipeline_status": "running"
+            "pipeline_status": "running",
+            "upload_session_id": upload_session_id
         }
     else:
         return {
@@ -319,7 +511,8 @@ async def upload_csv(
             "filename": new_filename,
             "path": str(file_path),
             "message": "File uploaded successfully. Run pipeline manually when ready.",
-            "pipeline_status": "idle"
+            "pipeline_status": "idle",
+            "upload_session_id": upload_session_id
         }
 
 
@@ -567,6 +760,190 @@ async def rgpd_config():
     }
 
 
+# ===================================================================
+# Authentication & User Management
+# ===================================================================
+
+@app.post("/api/auth/login")
+async def login(body: dict = Body(...)):
+    """
+    Authenticate a user. Returns user info + token placeholder.
+    Body: { "username": "...", "password": "..." }
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not configured. Auth requires DATABASE_URL.")
+
+    username = body.get("username", "")
+    password = body.get("password", "")
+
+    if not username or not password:
+        raise HTTPException(status_code=400, detail="Username and password required")
+
+    from server.db.crud import async_authenticate_user
+    user = await async_authenticate_user(username, password)
+
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    # In production, issue a JWT token here.
+    # For now, return user info with a simple session indicator.
+    return {
+        "status": "success",
+        "user": user,
+        "message": f"Welcome, {user['displayName']}"
+    }
+
+
+@app.post("/api/auth/register")
+async def register(body: dict = Body(...)):
+    """
+    Register a new user. Admin-only in production.
+    Body: { "username": "...", "displayName": "...", "email": "...", "password": "...", "role": "sales" }
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not configured")
+
+    import bcrypt
+    from server.db.crud import async_create_user
+
+    username = body.get("username", "").strip()
+    display_name = body.get("displayName", "").strip()
+    email = body.get("email", "").strip()
+    password = body.get("password", "")
+    role = body.get("role", "sales")
+
+    if not username or not password or not display_name:
+        raise HTTPException(status_code=400, detail="username, displayName, and password are required")
+
+    if role not in ("admin", "sales", "manager", "viewer"):
+        raise HTTPException(status_code=400, detail="Invalid role")
+
+    # Hash password
+    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    try:
+        user = await async_create_user(username, display_name, email, password_hash, role)
+        if not user:
+            raise HTTPException(status_code=409, detail="Username or email already exists")
+        return {"status": "created", "user": user}
+    except Exception as e:
+        if "unique" in str(e).lower() or "duplicate" in str(e).lower():
+            raise HTTPException(status_code=409, detail="Username or email already exists")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/users")
+async def get_users():
+    """Get all users (admin endpoint)."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not configured")
+
+    from server.db.crud import async_get_users
+    users = await async_get_users()
+    # Sanitize: never return password hashes
+    for u in users:
+        u.pop("password_hash", None)
+    return users
+
+
+@app.get("/api/upload-history")
+async def get_upload_history(user_id: Optional[int] = None, limit: int = 20):
+    """Get recent upload history."""
+    if not DB_AVAILABLE:
+        return []
+
+    from server.db.crud import async_get_upload_history
+    return await async_get_upload_history(user_id=user_id, limit=limit)
+
+
+@app.delete("/api/clients/{client_id}")
+async def delete_client(client_id: str, hard_delete: bool = False):
+    """
+    Delete a client. Soft-delete by default (sets is_deleted=TRUE).
+    Use hard_delete=true for GDPR Article 17 erasure.
+    Also removes from file-based storage for consistency.
+    """
+    if DB_AVAILABLE:
+        from server.db.crud import sync_soft_delete_client, sync_hard_delete_client
+        if hard_delete:
+            success = sync_hard_delete_client(client_id)
+        else:
+            success = sync_soft_delete_client(client_id)
+        if not success:
+            raise HTTPException(status_code=404, detail=f"Client {client_id} not found")
+
+    # Also call existing file-based GDPR erasure
+    try:
+        await rgpd_erase_client(client_id)
+    except HTTPException:
+        pass  # Client might not be in files
+
+    return {"status": "deleted", "client_id": client_id, "hard_delete": hard_delete}
+
+
+@app.get("/api/db/status")
+async def db_status():
+    """Check database connection status and stats."""
+    if not DB_AVAILABLE:
+        return {"connected": False, "mode": "file-only", "message": "DATABASE_URL not configured"}
+
+    try:
+        from server.db.connection import get_connection
+        async with get_connection() as conn:
+            client_count = await conn.fetchval("SELECT COUNT(*) FROM clients WHERE is_deleted = FALSE")
+            segment_count = await conn.fetchval("SELECT COUNT(*) FROM segments")
+            user_count = await conn.fetchval("SELECT COUNT(*) FROM users")
+            last_upload = await conn.fetchrow(
+                "SELECT filename, status, created_at FROM upload_sessions ORDER BY created_at DESC LIMIT 1"
+            )
+            last_run = await conn.fetchrow(
+                "SELECT status, total_time, completed_at FROM pipeline_runs ORDER BY started_at DESC LIMIT 1"
+            )
+
+        return {
+            "connected": True,
+            "mode": "neon-postgres",
+            "stats": {
+                "clients": client_count,
+                "segments": segment_count,
+                "users": user_count,
+            },
+            "lastUpload": dict(last_upload) if last_upload else None,
+            "lastPipelineRun": dict(last_run) if last_run else None,
+        }
+    except Exception as e:
+        return {"connected": False, "mode": "error", "message": str(e)}
+
+
+@app.post("/api/db/init")
+async def db_init_endpoint():
+    """Manually trigger database schema initialization."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="DATABASE_URL not configured")
+    try:
+        from server.db.schema import init_database
+        init_database()
+        return {"status": "success", "message": "Database schema initialized"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/db/sync")
+async def db_sync_endpoint(user_id: Optional[int] = None):
+    """
+    Manually sync current file-based pipeline outputs to the database.
+    Useful for initial migration or after manual pipeline runs.
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="DATABASE_URL not configured")
+    try:
+        from server.db.sync import sync_results_to_db
+        result = sync_results_to_db(user_id=user_id)
+        return {"status": "success", "result": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 def main():
     """Start the API server."""
     parser = argparse.ArgumentParser(description="LVMH API Server")
@@ -577,6 +954,7 @@ def main():
     args = parser.parse_args()
     
     logger.info(f"Starting LVMH API Server on {args.host}:{args.port}")
+    logger.info(f"Database: {'Neon PostgreSQL' if DB_AVAILABLE else 'File-only mode'}")
     logger.info("Dashboard can connect via:")
     logger.info(f"  - Local: http://localhost:{args.port}")
     logger.info(f"  - Network: http://{args.host}:{args.port}")
