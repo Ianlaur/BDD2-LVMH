@@ -32,17 +32,17 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # DB availability flag — if DATABASE_URL is not set, fall back to file-based
 # ---------------------------------------------------------------------------
-DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", ""))
-
-# Try loading .env
+# Load .env FIRST, before checking DATABASE_URL
 try:
     from dotenv import load_dotenv
     _env = Path(__file__).resolve().parent.parent / ".env"
     if _env.exists():
-        load_dotenv(_env)
-        DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", ""))
+        load_dotenv(_env, override=True)
+        logger.info(f"Loaded .env from {_env}")
 except ImportError:
     pass
+
+DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", "").strip("'\""))
 
 # ---------------------------------------------------------------------------
 # App lifecycle: init DB on startup, close pool on shutdown

@@ -3,6 +3,8 @@ Database CRUD operations for the LVMH pipeline.
 
 Provides both sync (for pipeline stages) and async (for FastAPI) methods.
 All writes go through here so we have a single source of truth.
+
+Uses psycopg2.extras.execute_values for fast bulk inserts over Neon.
 """
 import json
 import logging
@@ -20,25 +22,10 @@ def sync_upsert_clients(profiles_df, concepts_df, notes_df=None, actions_df=None
                         user_id: Optional[int] = None):
     """
     Upsert client profiles into the database after a pipeline run.
-    
-    This is the main "write results to DB" function called at the end
-    of the pipeline. It:
-      1. Upserts clients (insert new, update existing)
-      2. Replaces client_concepts for processed clients
-      3. Replaces client_actions for processed clients
-      4. Returns counts of new vs updated clients
-    
-    Args:
-        profiles_df: DataFrame with columns [client_id, cluster_id, confidence, profile_type, top_concepts]
-        concepts_df: DataFrame with columns [client_id, concept_id, label, matched_alias, span_start, span_end]
-        notes_df: Optional DataFrame with [client_id/note_id, text, date, language, duration]
-        actions_df: Optional DataFrame with [client_id, action_id, title, channel, priority, kpi, triggers, rationale]
-        user_id: Optional user who triggered the upload
-    
-    Returns:
-        dict with keys: new_clients, updated_clients, total
+    Uses bulk operations for speed over remote Neon connections.
     """
     from server.db.connection import sync_cursor
+    from psycopg2.extras import execute_values
     import pandas as pd
 
     # Build lookup for transcript data
@@ -53,39 +40,83 @@ def sync_upsert_clients(profiles_df, concepts_df, notes_df=None, actions_df=None
                 "duration": str(row.get("duration", "")),
             }
 
-    new_count = 0
-    updated_count = 0
+    # ---- Prepare client rows ----
+    client_values = []
     processed_client_ids = []
 
+    for _, row in profiles_df.iterrows():
+        client_id = str(row["client_id"])
+        processed_client_ids.append(client_id)
+        cluster_id = int(row.get("cluster_id", 0))
+        confidence = float(row.get("confidence", 0.5))
+        profile_type = str(row.get("profile_type", ""))
+        top_concepts = str(row.get("top_concepts", ""))
+
+        t_info = transcript_lookup.get(client_id, {})
+        full_text = t_info.get("text", "")
+        language = t_info.get("language", "FR")
+        note_date_str = t_info.get("date", "")
+        note_duration = t_info.get("duration", "")
+
+        note_date = None
+        if note_date_str:
+            try:
+                note_date = pd.to_datetime(note_date_str).date()
+            except Exception:
+                note_date = None
+
+        client_values.append((
+            client_id, cluster_id, confidence, profile_type, top_concepts,
+            full_text, language, note_date, note_duration, user_id
+        ))
+
+    # ---- Prepare concept rows ----
+    concept_values = []
+    if concepts_df is not None and not concepts_df.empty:
+        processed_set = set(processed_client_ids)
+        for _, row in concepts_df.iterrows():
+            cid = str(row.get("client_id", ""))
+            if cid not in processed_set:
+                continue
+            concept_values.append((
+                cid,
+                str(row.get("concept_id", "")),
+                str(row.get("label", "")),
+                str(row.get("matched_alias", "")),
+                int(row.get("span_start", 0)) if pd.notna(row.get("span_start")) else 0,
+                int(row.get("span_end", 0)) if pd.notna(row.get("span_end")) else 0,
+            ))
+
+    # ---- Prepare action rows ----
+    action_values = []
+    if actions_df is not None and not actions_df.empty:
+        processed_set = set(processed_client_ids)
+        for _, row in actions_df.iterrows():
+            cid = str(row.get("client_id", ""))
+            if cid not in processed_set:
+                continue
+            action_values.append((
+                cid,
+                str(row.get("action_id", "")),
+                str(row.get("title", "")),
+                str(row.get("channel", "")),
+                str(row.get("priority", "low")).lower(),
+                str(row.get("kpi", "")),
+                str(row.get("triggers", "")),
+                str(row.get("rationale", "")),
+            ))
+
+    # ---- Execute everything in one transaction ----
+    new_count = 0
+    updated_count = 0
+
     with sync_cursor() as cur:
-        for _, row in profiles_df.iterrows():
-            client_id = str(row["client_id"])
-            processed_client_ids.append(client_id)
-            cluster_id = int(row.get("cluster_id", 0))
-            confidence = float(row.get("confidence", 0.5))
-            profile_type = str(row.get("profile_type", ""))
-            top_concepts = str(row.get("top_concepts", ""))
-
-            # Get transcript info
-            t_info = transcript_lookup.get(client_id, {})
-            full_text = t_info.get("text", "")
-            language = t_info.get("language", "FR")
-            note_date_str = t_info.get("date", "")
-            note_duration = t_info.get("duration", "")
-
-            # Parse date
-            note_date = None
-            if note_date_str:
-                try:
-                    note_date = pd.to_datetime(note_date_str).date()
-                except Exception:
-                    note_date = None
-
-            # Upsert client
-            cur.execute("""
+        # 1. Bulk upsert clients
+        if client_values:
+            results = execute_values(cur, """
                 INSERT INTO clients (id, segment_id, confidence, profile_type, top_concepts,
                                      full_text, language, note_date, note_duration, created_by, updated_at)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())
+                VALUES %s
                 ON CONFLICT (id) DO UPDATE SET
                     segment_id = EXCLUDED.segment_id,
                     confidence = EXCLUDED.confidence,
@@ -98,65 +129,45 @@ def sync_upsert_clients(profiles_df, concepts_df, notes_df=None, actions_df=None
                     updated_at = NOW(),
                     is_deleted = FALSE
                 RETURNING (xmax = 0) AS is_insert
-            """, (client_id, cluster_id, confidence, profile_type, top_concepts,
-                  full_text, language, note_date, note_duration, user_id))
+            """, client_values, template="(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW())",
+                fetch=True, page_size=500)
 
-            result = cur.fetchone()
-            if result and result[0]:  # is_insert = True
-                new_count += 1
-            else:
-                updated_count += 1
+            for (is_insert,) in results:
+                if is_insert:
+                    new_count += 1
+                else:
+                    updated_count += 1
 
-        # --- Replace concepts for processed clients ---
-        if len(processed_client_ids) > 0:
-            # Delete old concepts for these clients
+            logger.info(f"Clients upserted: {new_count} new, {updated_count} updated")
+
+        # 2. Replace concepts for processed clients (bulk delete + bulk insert)
+        if processed_client_ids:
             cur.execute(
                 "DELETE FROM client_concepts WHERE client_id = ANY(%s)",
                 (processed_client_ids,)
             )
 
-            # Insert new concepts
-            if concepts_df is not None and not concepts_df.empty:
-                for _, row in concepts_df.iterrows():
-                    cid = str(row.get("client_id", ""))
-                    if cid not in processed_client_ids:
-                        continue
-                    cur.execute("""
-                        INSERT INTO client_concepts (client_id, concept_id, label, matched_alias, span_start, span_end)
-                        VALUES (%s, %s, %s, %s, %s, %s)
-                        ON CONFLICT (client_id, concept_id, span_start) DO NOTHING
-                    """, (
-                        cid,
-                        str(row.get("concept_id", "")),
-                        str(row.get("label", "")),
-                        str(row.get("matched_alias", "")),
-                        int(row.get("span_start", 0)) if pd.notna(row.get("span_start")) else 0,
-                        int(row.get("span_end", 0)) if pd.notna(row.get("span_end")) else 0,
-                    ))
+        if concept_values:
+            execute_values(cur, """
+                INSERT INTO client_concepts (client_id, concept_id, label, matched_alias, span_start, span_end)
+                VALUES %s
+                ON CONFLICT (client_id, concept_id, span_start) DO NOTHING
+            """, concept_values, page_size=1000)
+            logger.info(f"Concepts inserted: {len(concept_values)} rows")
 
-        # --- Replace actions for processed clients ---
-        if actions_df is not None and not actions_df.empty:
+        # 3. Replace actions for processed clients
+        if processed_client_ids:
             cur.execute(
                 "DELETE FROM client_actions WHERE client_id = ANY(%s) AND is_completed = FALSE",
                 (processed_client_ids,)
             )
-            for _, row in actions_df.iterrows():
-                cid = str(row.get("client_id", ""))
-                if cid not in processed_client_ids:
-                    continue
-                cur.execute("""
-                    INSERT INTO client_actions (client_id, action_id, title, channel, priority, kpi, triggers, rationale)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                """, (
-                    cid,
-                    str(row.get("action_id", "")),
-                    str(row.get("title", "")),
-                    str(row.get("channel", "")),
-                    str(row.get("priority", "low")).lower(),
-                    str(row.get("kpi", "")),
-                    str(row.get("triggers", "")),
-                    str(row.get("rationale", "")),
-                ))
+
+        if action_values:
+            execute_values(cur, """
+                INSERT INTO client_actions (client_id, action_id, title, channel, priority, kpi, triggers, rationale)
+                VALUES %s
+            """, action_values, page_size=1000)
+            logger.info(f"Actions inserted: {len(action_values)} rows")
 
     logger.info(f"DB upsert complete: {new_count} new, {updated_count} updated, {len(processed_client_ids)} total")
     return {"new_clients": new_count, "updated_clients": updated_count, "total": len(processed_client_ids)}
@@ -202,69 +213,87 @@ def sync_upsert_segments(profiles_df):
 
 
 def sync_upsert_vectors(vectors_df):
-    """Store client embeddings and 3D coordinates."""
+    """Store client embeddings and 3D coordinates (bulk)."""
     from server.db.connection import sync_cursor
+    from psycopg2.extras import execute_values
     import numpy as np
 
+    values = []
+    for _, row in vectors_df.iterrows():
+        client_id = str(row["client_id"])
+        embedding = row.get("embedding")
+        embedding_bytes = embedding.tobytes() if isinstance(embedding, np.ndarray) else None
+        values.append((client_id, embedding_bytes))
+
+    if not values:
+        return
+
     with sync_cursor() as cur:
-        for _, row in vectors_df.iterrows():
-            client_id = str(row["client_id"])
-            embedding = row.get("embedding")
-            embedding_bytes = embedding.tobytes() if isinstance(embedding, np.ndarray) else None
+        execute_values(cur, """
+            INSERT INTO client_vectors (client_id, embedding, updated_at)
+            VALUES %s
+            ON CONFLICT (client_id) DO UPDATE SET
+                embedding = EXCLUDED.embedding,
+                updated_at = NOW()
+        """, values, template="(%s, %s, NOW())", page_size=500)
 
-            cur.execute("""
-                INSERT INTO client_vectors (client_id, embedding, updated_at)
-                VALUES (%s, %s, NOW())
-                ON CONFLICT (client_id) DO UPDATE SET
-                    embedding = EXCLUDED.embedding,
-                    updated_at = NOW()
-            """, (client_id, embedding_bytes))
-
-    logger.info(f"Upserted {len(vectors_df)} client vectors")
+    logger.info(f"Upserted {len(values)} client vectors")
 
 
 def sync_update_3d_coords(scatter3d_list: list):
-    """Update 3D coordinates from UMAP projection."""
+    """Update 3D coordinates from UMAP projection (bulk)."""
     from server.db.connection import sync_cursor
+    from psycopg2.extras import execute_values
+
+    if not scatter3d_list:
+        return
+
+    values = [
+        (float(p["x"]), float(p["y"]), float(p["z"]), str(p["client"]))
+        for p in scatter3d_list
+    ]
 
     with sync_cursor() as cur:
-        for point in scatter3d_list:
-            cur.execute("""
-                UPDATE client_vectors
-                SET x_3d = %s, y_3d = %s, z_3d = %s, updated_at = NOW()
-                WHERE client_id = %s
-            """, (
-                float(point["x"]),
-                float(point["y"]),
-                float(point["z"]),
-                str(point["client"]),
-            ))
+        # Use a temp table approach for bulk update
+        execute_values(cur, """
+            UPDATE client_vectors AS cv SET
+                x_3d = v.x, y_3d = v.y, z_3d = v.z, updated_at = NOW()
+            FROM (VALUES %s) AS v(x, y, z, cid)
+            WHERE cv.client_id = v.cid
+        """, values, template="(%s::real, %s::real, %s::real, %s)")
 
     logger.info(f"Updated 3D coordinates for {len(scatter3d_list)} clients")
 
 
 def sync_upsert_lexicon(lexicon_df):
-    """Upsert the concept lexicon."""
+    """Upsert the concept lexicon (bulk)."""
     from server.db.connection import sync_cursor
+    from psycopg2.extras import execute_values
+
+    values = []
+    for _, row in lexicon_df.iterrows():
+        values.append((
+            str(row.get("concept_id", "")),
+            str(row.get("label", "")),
+            str(row.get("aliases", "")) if "aliases" in row else None,
+            str(row.get("category", "")) if "category" in row else None,
+        ))
+
+    if not values:
+        return
 
     with sync_cursor() as cur:
-        for _, row in lexicon_df.iterrows():
-            cur.execute("""
-                INSERT INTO lexicon (concept_id, label, aliases, category, updated_at)
-                VALUES (%s, %s, %s, %s, NOW())
-                ON CONFLICT (concept_id) DO UPDATE SET
-                    label = EXCLUDED.label,
-                    aliases = COALESCE(EXCLUDED.aliases, lexicon.aliases),
-                    category = COALESCE(EXCLUDED.category, lexicon.category),
-                    updated_at = NOW()
-            """, (
-                str(row.get("concept_id", "")),
-                str(row.get("label", "")),
-                str(row.get("aliases", "")) if "aliases" in row else None,
-                str(row.get("category", "")) if "category" in row else None,
-            ))
+        execute_values(cur, """
+            INSERT INTO lexicon (concept_id, label, aliases, category, updated_at)
+            VALUES %s
+            ON CONFLICT (concept_id) DO UPDATE SET
+                label = EXCLUDED.label,
+                aliases = COALESCE(EXCLUDED.aliases, lexicon.aliases),
+                category = COALESCE(EXCLUDED.category, lexicon.category),
+                updated_at = NOW()
+        """, values, template="(%s, %s, %s, %s, NOW())", page_size=500)
 
-    logger.info(f"Upserted {len(lexicon_df)} lexicon entries")
+    logger.info(f"Upserted {len(values)} lexicon entries")
 
 
 def sync_log_pipeline_run(upload_session_id=None, user_id=None, status="running"):
@@ -374,15 +403,18 @@ def sync_get_client_hashes() -> dict:
 # ===================================================================
 
 async def async_get_all_clients(include_deleted: bool = False):
-    """Get all clients with their concepts and actions."""
+    """Get all clients with their concepts and actions. Uses batch queries (not N+1)."""
     from server.db.connection import get_connection
 
     async with get_connection() as conn:
         if include_deleted:
             where = ""
+            where_c = ""
         else:
             where = "WHERE c.is_deleted = FALSE"
+            where_c = "AND c.is_deleted = FALSE"
 
+        # 1. Fetch all clients in one query
         rows = await conn.fetch(f"""
             SELECT c.id, c.segment_id, c.confidence, c.profile_type, c.top_concepts,
                    c.full_text, c.language, c.note_date, c.note_duration,
@@ -392,26 +424,61 @@ async def async_get_all_clients(include_deleted: bool = False):
             ORDER BY c.id
         """)
 
+        if not rows:
+            return []
+
+        # 2. Fetch ALL concepts in one query, group in Python
+        concept_rows = await conn.fetch(f"""
+            SELECT cc.client_id, cc.concept_id, cc.label, cc.matched_alias, cc.span_start, cc.span_end
+            FROM client_concepts cc
+            JOIN clients c ON c.id = cc.client_id
+            WHERE 1=1 {where_c}
+        """)
+
+        concepts_by_client: dict[str, list] = {}
+        for cr in concept_rows:
+            cid = cr["client_id"]
+            if cid not in concepts_by_client:
+                concepts_by_client[cid] = []
+            concepts_by_client[cid].append({
+                "concept": cr["label"] or cr["concept_id"],
+                "alias": cr["matched_alias"] or "",
+                "spanStart": cr["span_start"] or 0,
+                "spanEnd": cr["span_end"] or 0,
+            })
+
+        # 3. Fetch ALL actions in one query, group in Python
+        action_rows = await conn.fetch(f"""
+            SELECT ca.client_id, ca.action_id, ca.title, ca.channel, ca.priority,
+                   ca.kpi, ca.triggers, ca.rationale, ca.is_completed
+            FROM client_actions ca
+            JOIN clients c ON c.id = ca.client_id
+            WHERE 1=1 {where_c}
+            ORDER BY
+                CASE ca.priority WHEN 'high' THEN 0 WHEN 'medium' THEN 1 ELSE 2 END,
+                ca.created_at
+        """)
+
+        actions_by_client: dict[str, list] = {}
+        for ar in action_rows:
+            cid = ar["client_id"]
+            if cid not in actions_by_client:
+                actions_by_client[cid] = []
+            actions_by_client[cid].append({
+                "actionId": ar["action_id"] or "",
+                "title": ar["title"] or "",
+                "channel": ar["channel"] or "",
+                "priority": ar["priority"] or "low",
+                "kpi": ar["kpi"] or "",
+                "triggers": ar["triggers"] or "",
+                "rationale": ar["rationale"] or "",
+                "isCompleted": ar["is_completed"],
+            })
+
+        # 4. Assemble client objects
         clients = []
         for row in rows:
             client_id = row["id"]
-
-            # Get concepts
-            concept_rows = await conn.fetch("""
-                SELECT concept_id, label, matched_alias, span_start, span_end
-                FROM client_concepts WHERE client_id = $1
-            """, client_id)
-
-            # Get actions
-            action_rows = await conn.fetch("""
-                SELECT action_id, title, channel, priority, kpi, triggers, rationale,
-                       is_completed, completed_by, completed_at
-                FROM client_actions WHERE client_id = $1
-                ORDER BY
-                    CASE priority WHEN 'high' THEN 0 WHEN 'medium' THEN 1 ELSE 2 END,
-                    created_at
-            """, client_id)
-
             top_concepts = row["top_concepts"].split("|") if row["top_concepts"] else []
 
             clients.append({
@@ -425,28 +492,8 @@ async def async_get_all_clients(include_deleted: bool = False):
                 "date": str(row["note_date"]) if row["note_date"] else "",
                 "duration": row["note_duration"] or "",
                 "createdBy": row["created_by"],
-                "conceptEvidence": [
-                    {
-                        "concept": cr["label"] or cr["concept_id"],
-                        "alias": cr["matched_alias"] or "",
-                        "spanStart": cr["span_start"] or 0,
-                        "spanEnd": cr["span_end"] or 0,
-                    }
-                    for cr in concept_rows
-                ],
-                "actions": [
-                    {
-                        "actionId": ar["action_id"] or "",
-                        "title": ar["title"] or "",
-                        "channel": ar["channel"] or "",
-                        "priority": ar["priority"] or "low",
-                        "kpi": ar["kpi"] or "",
-                        "triggers": ar["triggers"] or "",
-                        "rationale": ar["rationale"] or "",
-                        "isCompleted": ar["is_completed"],
-                    }
-                    for ar in action_rows
-                ],
+                "conceptEvidence": concepts_by_client.get(client_id, []),
+                "actions": actions_by_client.get(client_id, []),
             })
 
         return clients
