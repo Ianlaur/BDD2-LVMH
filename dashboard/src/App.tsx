@@ -44,6 +44,16 @@ interface RadarData {
   [key: string]: string | number;
 }
 
+interface ClientAction {
+  actionId: string;
+  title: string;
+  channel: string;
+  priority: string;
+  kpi: string;
+  triggers: string;
+  rationale: string;
+}
+
 interface Client {
   id: string;
   segment: number;
@@ -52,6 +62,7 @@ interface Client {
   language?: string;
   date?: string;
   confidence?: number;
+  actions?: ClientAction[];
 }
 
 interface Scatter3DPoint {
@@ -190,43 +201,53 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
   const [filter, setFilter] = useState('all')
   const [selectedAction, setSelectedAction] = useState<any>(null)
 
+  // Channel → icon mapping
+  const channelIcons: Record<string, React.ReactNode> = {
+    'event': Icons.calendar,
+    'crm': Icons.clients,
+    'email': Icons.actions,
+    'client service': Icons.user,
+  }
+
   const actions = useMemo(() => {
     if (!data?.clients) return []
     
     const actionList: any[] = []
-    const actionTypes = {
-      'Visite Privée': { priority: 'high', type: 'appointment', label: 'Planifier visite privée', icon: Icons.calendar },
-      'Prêt à Acheter': { priority: 'high', type: 'sale', label: 'Finaliser vente', icon: Icons.tag },
-      'Virement': { priority: 'high', type: 'payment', label: 'Confirmer paiement', icon: Icons.globe },
-      'VIP': { priority: 'medium', type: 'vip', label: 'Attention VIP', icon: Icons.user },
-      'Joaillerie': { priority: 'medium', type: 'product', label: 'Présenter joaillerie', icon: Icons.tag },
-      'Couture': { priority: 'medium', type: 'product', label: 'Présenter couture', icon: Icons.tag },
-      'Corporate': { priority: 'medium', type: 'corporate', label: 'Solutions corporate', icon: Icons.clients },
-    }
     
     data.clients.forEach(client => {
-      const concepts = client.topConcepts || []
-      concepts.forEach(concept => {
-        const actionInfo = Object.entries(actionTypes).find(([key]) => 
-          concept.toLowerCase().includes(key.toLowerCase())
-        )
-        if (actionInfo) {
-          actionList.push({
-            id: `${client.id}-${actionInfo[0]}`,
-            client: client,
-            ...actionInfo[1],
-            concept: actionInfo[0],
-          })
-        }
+      (client.actions || []).forEach((act, idx) => {
+        const prio = (act.priority || 'low').toLowerCase()
+        const channelKey = (act.channel || '').toLowerCase()
+        actionList.push({
+          id: `${client.id}-${act.actionId}-${idx}`,
+          actionId: act.actionId,
+          client,
+          title: act.title,
+          channel: act.channel,
+          priority: prio,
+          kpi: act.kpi,
+          triggers: act.triggers,
+          rationale: act.rationale,
+          icon: channelIcons[channelKey] || Icons.actions,
+        })
       })
     })
     
-    return actionList.sort((a, b) => (b.client.confidence || 0) - (a.client.confidence || 0)).slice(0, 50)
+    // Sort: high → medium → low, then by confidence
+    const order: Record<string, number> = { high: 0, medium: 1, low: 2 }
+    return actionList.sort((a, b) => {
+      const pDiff = (order[a.priority] ?? 3) - (order[b.priority] ?? 3)
+      if (pDiff !== 0) return pDiff
+      return (b.client.confidence || 0) - (a.client.confidence || 0)
+    })
   }, [data])
 
   const filteredActions = filter === 'all' ? actions : actions.filter(a => a.priority === filter)
   const highCount = useMemo(() => actions.filter(a => a.priority === 'high').length, [actions])
   const mediumCount = useMemo(() => actions.filter(a => a.priority === 'medium').length, [actions])
+  const lowCount = useMemo(() => actions.filter(a => a.priority === 'low').length, [actions])
+
+  const uniqueClients = useMemo(() => new Set(actions.map(a => a.client.id)).size, [actions])
 
   const handleActionClick = (action: any) => {
     setSelectedAction(action)
@@ -237,7 +258,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
       <div className="page-header">
         <div>
           <h1>Actions Recommandées</h1>
-          <p>Priorisez vos interactions client pour maximiser l'impact.</p>
+          <p>{actions.length} actions pour {uniqueClients} clients — priorisez vos interactions.</p>
         </div>
         <div className="filter-group">
           <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>
@@ -248,6 +269,9 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
           </button>
           <button className={`filter-btn medium ${filter === 'medium' ? 'active' : ''}`} onClick={() => setFilter('medium')}>
             Moyennes ({mediumCount})
+          </button>
+          <button className={`filter-btn ${filter === 'low' ? 'active' : ''}`} onClick={() => setFilter('low')}>
+            Basses ({lowCount})
           </button>
         </div>
       </div>
@@ -263,22 +287,22 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
         <div className="stat-card accent-blue">
           <div className="stat-icon">{Icons.calendar}</div>
           <div className="stat-content">
-            <div className="stat-value">{actions.filter(a => a.type === 'appointment').length}</div>
-            <div className="stat-label">Visites à Planifier</div>
+            <div className="stat-value">{actions.filter(a => (a.channel || '').toLowerCase() === 'event').length}</div>
+            <div className="stat-label">Événements</div>
           </div>
         </div>
         <div className="stat-card accent-green">
           <div className="stat-icon">{Icons.tag}</div>
           <div className="stat-content">
-            <div className="stat-value">{actions.filter(a => a.type === 'sale').length}</div>
-            <div className="stat-label">Ventes Potentielles</div>
+            <div className="stat-value">{actions.filter(a => (a.channel || '').toLowerCase() === 'crm').length}</div>
+            <div className="stat-label">Actions CRM</div>
           </div>
         </div>
         <div className="stat-card accent-purple">
           <div className="stat-icon">{Icons.user}</div>
           <div className="stat-content">
-            <div className="stat-value">{actions.filter(a => a.type === 'vip').length}</div>
-            <div className="stat-label">Clients VIP</div>
+            <div className="stat-value">{uniqueClients}</div>
+            <div className="stat-label">Clients Concernés</div>
           </div>
         </div>
       </div>
@@ -302,8 +326,9 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
                     <span className="action-segment" style={{ backgroundColor: SEGMENT_COLORS[action.client.segment as keyof typeof SEGMENT_COLORS] }}>
                       Seg {action.client.segment}
                     </span>
+                    <span className="action-channel-tag">{action.channel}</span>
                   </div>
-                  <div className="action-label">{action.label}</div>
+                  <div className="action-label">{action.title}</div>
                 </div>
                 <div className="action-confidence">
                   <span>{((action.client.confidence || 0) * 100).toFixed(0)}%</span>
@@ -333,19 +358,37 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
               
               <div className="detail-item">
                 <span className="detail-label">Action</span>
-                <span className="detail-value">{selectedAction.label}</span>
+                <span className="detail-value">{selectedAction.title}</span>
+              </div>
+              <div className="detail-item">
+                <span className="detail-label">Canal</span>
+                <span className="detail-value">{selectedAction.channel}</span>
               </div>
               <div className="detail-item">
                 <span className="detail-label">Priorité</span>
                 <span className={`detail-value priority-tag ${selectedAction.priority}`}>{selectedAction.priority}</span>
               </div>
               <div className="detail-item">
+                <span className="detail-label">KPI</span>
+                <span className="detail-value">{selectedAction.kpi}</span>
+              </div>
+              <div className="detail-item">
                 <span className="detail-label">Confiance</span>
                 <span className="detail-value">{((selectedAction.client.confidence || 0) * 100).toFixed(0)}%</span>
               </div>
+
+              <div className="detail-item detail-rationale">
+                <span className="detail-label">Recommandation</span>
+                <span className="detail-value">{selectedAction.rationale}</span>
+              </div>
+
               <div className="detail-item">
-                <span className="detail-label">Concept Déclencheur</span>
-                <span className="detail-value concept-tag">{selectedAction.concept}</span>
+                <span className="detail-label">Déclencheurs</span>
+                <div className="trigger-tags">
+                  {(selectedAction.triggers || '').split('|').map((t: string, i: number) => (
+                    <span key={i} className="concept-badge" style={{ backgroundColor: '#f3f4f6', color: '#374151' }}>{t.trim()}</span>
+                  ))}
+                </div>
               </div>
 
               <div className="client-concepts">
@@ -355,10 +398,10 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
                 ))}
               </div>
 
-              {selectedAction.client.fullText && (
+              {selectedAction.client.originalNote && (
                 <div className="client-note">
                   <h4>Note Originale</h4>
-                  <p>{selectedAction.client.fullText}</p>
+                  <p>{selectedAction.client.originalNote}</p>
                 </div>
               )}
             </div>

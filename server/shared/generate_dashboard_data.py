@@ -197,6 +197,30 @@ def generate_dashboard_data(pipeline_timings: dict = None):
             'topConcepts': cc
         })
 
+    # ── Load recommended actions per client ────────────────────
+    actions_path = DATA_OUTPUTS / "recommended_actions.csv"
+    client_actions_map: dict[str, list[dict]] = {}
+    if actions_path.exists():
+        try:
+            actions_df = pd.read_csv(actions_path)
+            actions_df["client_id"] = actions_df["client_id"].astype(str)
+            for cid, grp in actions_df.groupby("client_id"):
+                client_actions_map[str(cid)] = [
+                    {
+                        "actionId": row.get("action_id", ""),
+                        "title": row.get("title", ""),
+                        "channel": row.get("channel", ""),
+                        "priority": str(row.get("priority", "Low")).lower(),
+                        "kpi": row.get("kpi", ""),
+                        "triggers": str(row.get("triggers", "")),
+                        "rationale": row.get("rationale", ""),
+                    }
+                    for _, row in grp.iterrows()
+                ]
+            log_stage("dashboard", f"  Loaded {len(actions_df)} actions for {len(client_actions_map)} clients")
+        except Exception as e:
+            log_stage("dashboard", f"  Warning: Could not load actions: {e}")
+
     # Client list with transcript data
     # Use notes_clean.parquet as the single source of truth for transcripts.
     # This is the file produced by the pipeline (ingest or adaptive),
@@ -243,7 +267,8 @@ def generate_dashboard_data(pipeline_timings: dict = None):
             'originalNote': t_info.get('transcription', ''),
             'noteDate': t_info.get('date', ''),
             'noteLanguage': t_info.get('language', 'FR'),
-            'noteDuration': t_info.get('duration', '')
+            'noteDuration': t_info.get('duration', ''),
+            'actions': client_actions_map.get(client_id, []),
         })
 
     phase1_time = time.time() - start_time

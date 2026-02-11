@@ -352,11 +352,11 @@ class TextAnonymizer:
 
     # Context words that neutralise a match (product / geographic context)
     _ART9_FALSE_POS = re.compile(
-        r"\b(?:tissu|motif|bijou|style|imprimé|fabric|print|pattern|"
+        r"\b(?:tissu\w*|motif\w*|bijou\w*|style\w*|imprimé\w*|fabric\w*|print\w*|pattern\w*|"
         r"Amérique|America|hémisphère|hemisphere|du\s+Sud|d'Asie|"
-        r"tribunal\s+(?:supérieur|administratif|de\s+commerce)|"
+        r"tribunal\s+(?:supérieur\w*|administratif\w*|de\s+commerce)|"
         r"juge[za]?\s+tribunal|"
-        r"convictions?\s+(?:éthique|morale|religieu|personnelle|ethical|moral|personal))\b",
+        r"convictions?\s+(?:éthique\w*|morale\w*|religieu\w*|personnelle\w*|ethical\w*|moral\w*|personal\w*))\b",
         re.IGNORECASE,
     )
 
@@ -512,8 +512,12 @@ class TextAnonymizer:
         text = self._anonymize_names(text)
         text = self._anonymize_article9(text)
         
-        # ML safety net — final pass to catch anything regex missed
-        text, _ml_findings = self._ml_safety_net(text)
+        # ML safety net — final pass to catch anything regex missed.
+        # Only runs when article9_mode is "flag" or "redact" (not during
+        # high-volume "log"-only ingest, where regex alone suffices).
+        if (self.config.redact_article9
+                and self.config.article9_mode in ("flag", "redact")):
+            text, _ml_findings = self._ml_safety_net(text)
         
         # Clean up excessive whitespace
         text = re.sub(r'\s+', ' ', text).strip()

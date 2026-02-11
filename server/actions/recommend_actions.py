@@ -225,6 +225,66 @@ def get_client_concepts_and_buckets(
     return concept_ids, buckets, matched_aliases
 
 
+def _build_personalized_rationale(
+    action: Dict[str, Any],
+    client_id: str,
+    match_triggers: List[str],
+    client_profile: Dict[str, Any],
+    notes_text: str,
+) -> str:
+    """
+    Build a short, client-specific rationale that references the actual
+    evidence found in the note — no LLM required.
+
+    Strategy:
+    1. Start with the action's base description.
+    2. Append the matched keywords/buckets as evidence.
+    3. Pull a short snippet from the note that shows *why*.
+    """
+    base = action.get("description", action.get("title", ""))
+    trigger_keywords = action.get("triggers", {}).get("keywords", [])
+
+    # Collect keyword hits that were actually found in the text
+    text_lower = notes_text.lower()
+    evidence_words = [
+        kw for kw in trigger_keywords if kw.lower() in text_lower
+    ]
+
+    # Extract a short context snippet around the first keyword hit
+    snippet = ""
+    for kw in evidence_words[:1]:
+        idx = text_lower.find(kw.lower())
+        if idx >= 0:
+            start = max(0, idx - 40)
+            end = min(len(notes_text), idx + len(kw) + 60)
+            raw = notes_text[start:end].strip()
+            # Trim to sentence-ish boundaries
+            if start > 0:
+                raw = "…" + raw
+            if end < len(notes_text):
+                raw = raw + "…"
+            snippet = raw
+
+    # Top concepts for extra colour
+    top_concepts = [
+        c.strip()
+        for c in str(client_profile.get("top_concepts", "")).split("|")
+        if c.strip()
+    ][:3]
+
+    parts = [base]
+    if evidence_words:
+        parts.append(
+            f"Détecté chez {client_id}: {', '.join(evidence_words[:4])}."
+        )
+    if top_concepts:
+        parts.append(f"Profil : {', '.join(top_concepts)}.")
+    if snippet:
+        parts.append(f"Extrait : \"{snippet}\"")
+
+    return " ".join(parts)
+
+
 def match_action_to_client(
     action: Dict[str, Any],
     client_profile: Dict[str, Any],
@@ -393,6 +453,10 @@ def recommend_actions() -> pd.DataFrame:
             
             if match:
                 priority = action.get("priority", "Low")
+                rationale = _build_personalized_rationale(
+                    action, client_id, match["triggers"],
+                    client_profile, client_text,
+                )
                 client_actions.append({
                     "client_id": client_id,
                     "action_id": action.get("action_id", ""),
@@ -401,7 +465,7 @@ def recommend_actions() -> pd.DataFrame:
                     "priority": priority,
                     "kpi": action.get("kpi", ""),
                     "triggers": " | ".join(match["triggers"][:5]),  # Top 5 triggers
-                    "rationale": action.get("description", ""),
+                    "rationale": rationale,
                     "_priority_order": priority_order.get(priority, 3),
                     "_score": match["score"]
                 })
