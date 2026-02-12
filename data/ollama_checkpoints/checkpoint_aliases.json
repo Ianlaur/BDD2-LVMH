@@ -1,28 +1,155 @@
 {
-  "CONCEPT_0000_5fe29b": {
-    "label": "privata per",
-    "aliases": [
-      "privata per",
-      "private besichtigung",
-      "privada para",
-      "eine private",
-      "eine private besichtigung",
-      "um eine private",
-      "private besichtigung angefordert",
-      "private besichtigung for",
-      "privada para alta",
-      "uma privada",
-      "uma privada para",
-      "une visite privée",
-      "visite privée",
-      "presentazione privata",
-      "presentazione privata per",
-      "uma privata",
-      "uma privata per",
-      "une presentazione privata",
-      "privata per alta",
-      "privata per mala",
-      "présentation privée",
+  "completed": [
+    "CONCEPT_0000_5fe29b",
+    "CONCEPT_0001_5596ef",
+    "CONCEPT_0002_432eaa",
+    "CONCEPT_0003_2623f0",
+    "CONCEPT_0004_87d9c4",
+    "CONCEPT_0005_6a0685",
+    "CONCEPT_0006_d4f788",
+    "CONCEPT_0007_1931a4",
+    "CONCEPT_0008_10b7ff",
+    "CONCEPT_0009_460a34",
+    "CONCEPT_0010_232059",
+    "CONCEPT_0011_afc54f",
+    "CONCEPT_0012_101f47",
+    "CONCEPT_0013_b8d827",
+    "CONCEPT_0014_52a465",
+    "CONCEPT_0015_2c5f64",
+    "CONCEPT_0016_322688",
+    "CONCEPT_0017_9e7ebc",
+    "CONCEPT_0018_72f789",
+    "CONCEPT_0019_22d98c",
+    "CONCEPT_0020_b5241b",
+    "CONCEPT_0021_9e0653",
+    "CONCEPT_0022_88a76b",
+    "CONCEPT_0023_f07359",
+    "CONCEPT_0024_b275c9",
+    "CONCEPT_0025_6666e1",
+    "CONCEPT_0026_585cb9",
+    "CONCEPT_0027_ce4fc8",
+    "CONCEPT_0028_7b23b6",
+    "CONCEPT_0029_9281ef",
+    "CONCEPT_0030_476f57",
+    "CONCEPT_0031_237d74",
+    "CONCEPT_0032_60bb37",
+    "CONCEPT_0033_61607d",
+    "CONCEPT_0034_53b2f0",
+    "CONCEPT_0035_d63c7e",
+    "CONCEPT_0036_38c33b",
+    "CONCEPT_0037_316fb7",
+    "CONCEPT_0038_9fa974",
+    "CONCEPT_0039_2909f6",
+    "CONCEPT_0040_aa1609",
+    "CONCEPT_0041_854ef3",
+    "CONCEPT_0042_3b8d7b",
+    "CONCEPT_0043_7dcd60",
+    "CONCEPT_0044_8cbe66",
+    "CONCEPT_0045_50008b",
+    "CONCEPT_0046_55678c",
+    "CONCEPT_0047_033dd3",
+    "CONCEPT_0048_9a0724",
+    "CONCEPT_0049_cd9511",
+    "CONCEPT_0050_9904b9",
+    "CONCEPT_0051_7179b0",
+    "CONCEPT_0052_0088dc",
+    "CONCEPT_0053_4968d1",
+    "CONCEPT_0054_19557e",
+    "CONCEPT_0055_a7a189",
+    "CONCEPT_0056_f14812",
+    "CONCEPT_0057_32fbbf",
+    "CONCEPT_0058_7939a1",
+    "CONCEPT_0059_1c9789",
+    "CONCEPT_0060_713848",
+    "CONCEPT_0061_1d2ae9",
+    "CONCEPT_0062_0edb21",
+    "CONCEPT_0063_750028",
+    "CONCEPT_0064_ef5147",
+    "CONCEPT_0065_c4903a",
+    "CONCEPT_0066_436917",
+    "CONCEPT_0067_1c36b8",
+    "CONCEPT_0068_242aa6",
+    "CONCEPT_0069_c632bf",
+    "CONCEPT_0070_ab740d",
+    "CONCEPT_0071_a3eaf3",
+    "CONCEPT_0072_af8d5f",
+    "CONCEPT_0073_09a954",
+    "CONCEPT_0074_a4b460",
+    "CONCEPT_0075_949839",
+    "CONCEPT_0076_145af5",
+    "CONCEPT_0077_ce2267",
+    "CONCEPT_0078_b488e1",
+    "CONCEPT_0079_c6a6b1",
+    "CONCEPT_0080_997abb",
+    "CONCEPT_0081_a69446",
+    "CONCEPT_0082_7d83e5",
+    "CONCEPT_0083_f37ccb",
+    "CONCEPT_0084_2e5cfb",
+    "CONCEPT_0085_ed88dc",
+    "CONCEPT_0086_02674f",
+    "CONCEPT_0087_281385",
+    "CONCEPT_0088_44e22d",
+    "CONCEPT_0089_3082e6",
+    "CONCEPT_0090_9dd6db",
+    "CONCEPT_0091_3f63fe",
+    "CONCEPT_0092_365b8a",
+    "CONCEPT_0093_53375c",
+    "CONCEPT_0094_396c68",
+    "CONCEPT_0095_5fd98c",
+    "CONCEPT_0096_4ce17b",
+    "CONCEPT_0097_c2eb47",
+    "CONCEPT_0098_b735bd",
+    "CONCEPT_0099_350333",
+    "CONCEPT_0100_0a3597",
+    "CONCEPT_0101_3382ac",
+    "CONCEPT_0102_597607",
+    "CONCEPT_0103_69683f",
+    "CONCEPT_0104_1bd884",
+    "CONCEPT_0105_05a23d",
+    "CONCEPT_0106_5e1d1e",
+    "CONCEPT_0107_d6f7d1",
+    "CONCEPT_0108_256a3e",
+    "CONCEPT_0109_b5ab0d",
+    "CONCEPT_0110_0b4a7a",
+    "CONCEPT_0111_97daec",
+    "CONCEPT_0112_8446cb",
+    "CONCEPT_0113_1a3aa1",
+    "CONCEPT_0114_d1b3c8",
+    "CONCEPT_0115_665009",
+    "CONCEPT_0116_6b4dcb",
+    "CONCEPT_0117_3b6259",
+    "CONCEPT_0118_345aab",
+    "CONCEPT_0119_e4f03b",
+    "CONCEPT_0120_08c672",
+    "CONCEPT_0121_620c81",
+    "CONCEPT_0122_7a27b9",
+    "CONCEPT_0123_5efd9a",
+    "CONCEPT_0124_8de26d",
+    "CONCEPT_0125_4f4796",
+    "CONCEPT_0126_49c5c5",
+    "CONCEPT_0127_cf657d",
+    "CONCEPT_0128_e0af04",
+    "CONCEPT_0129_0523ad",
+    "CONCEPT_0130_e3dbb2",
+    "CONCEPT_0131_bd2683",
+    "CONCEPT_0132_ac224b",
+    "CONCEPT_0133_7c398d",
+    "CONCEPT_0134_477ef4",
+    "CONCEPT_0135_6cf010",
+    "CONCEPT_0136_b35918",
+    "CONCEPT_0137_6d4ffa",
+    "CONCEPT_0138_aefecd",
+    "CONCEPT_0139_e3c4ed",
+    "CONCEPT_0140_deb47a",
+    "CONCEPT_0141_ad1d1a",
+    "CONCEPT_0142_818bcb",
+    "CONCEPT_0143_9f0557",
+    "CONCEPT_0144_63cd41",
+    "CONCEPT_0145_c91c2a",
+    "CONCEPT_0146_247509"
+  ],
+  "results": {
+    "CONCEPT_0000_5fe29b": [
       "recherche privée",
       "visite privée pour",
       "privé pour recherche",
@@ -84,44 +211,7 @@
       "プライベート要求",
       "プライベート探求"
     ],
-    "languages": "DE|ES|FR|IT|PT",
-    "freq_notes": 138,
-    "examples": [
-      "SA_0286",
-      "SA_0168",
-      "SA_0368",
-      "SA_0395",
-      "SA_0244"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0001_5596ef": {
-    "label": "champagne",
-    "aliases": [
-      "champagne",
-      "champagne annata",
-      "champagne annata raro",
-      "champagne d'annata",
-      "champagne d'annata raro",
-      "vintage champagne",
-      "champagne millésimé",
-      "champagne millésimé rare",
-      "zeldzame vintage champagne",
-      "champaña vintage",
-      "champaña vintage rara",
-      "per champagne",
-      "privata per champagne",
-      "cerca champagne",
-      "cerca champagne d'annata",
-      "champanhe vintage",
-      "champanhe vintage raro",
-      "interessato a champagne",
-      "intéressé par champagne",
-      "procura champanhe",
-      "procura champanhe vintage",
-      "rare vintage champagne",
-      "recherche champagne",
-      "recherche champagne millésimé",
+    "CONCEPT_0001_5596ef": [
       "champagne annata personnalisé",
       "cherche champagne d'annata raro",
       "champagne millésimé personnalisé",
@@ -188,28 +278,7 @@
       "プライベートシャンパン",
       "アンナットシャンパン探求"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT",
-    "freq_notes": 126,
-    "examples": [
-      "SA_0376",
-      "SA_0068",
-      "SA_0059",
-      "SA_0251",
-      "SA_0397"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0002_432eaa": {
-    "label": "client vip",
-    "aliases": [
-      "client vip",
-      "vip client",
-      "cliente vip",
-      "cliente vip client",
-      "vip client interested",
-      "vip client interesado",
-      "vip client interessato",
-      "vip client requested",
+    "CONCEPT_0002_432eaa": [
       "client vip recherche",
       "client vip cherche",
       "client vip intéressé",
@@ -258,38 +327,7 @@
       "vip 客層要求する",
       "vip 客層見たい"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 50,
-    "examples": [
-      "CA_005",
-      "CA_004",
-      "CA_009",
-      "CA_095",
-      "CA_024"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0003_2623f0": {
-    "label": "geïnteresseerd in",
-    "aliases": [
-      "geïnteresseerd in",
-      "intéressé par",
-      "ceo interessato",
-      "interessado em",
-      "interessiert an",
-      "interessato sac in",
-      "interessato a alta",
-      "interessato alta",
-      "ceo geïnteresseerd",
-      "ceo geïnteresseerd in",
-      "interessert an",
-      "intéressé par haute",
-      "ceo interested",
-      "interessiert an feiner",
-      "mogul interessado",
-      "interessado em alta",
-      "interessado em mala",
-      "interessato a baule",
+    "CONCEPT_0003_2623f0": [
       "recherche haute couture",
       "cherche bijoux louis vuitton",
       "veut monogramme personnalisé",
@@ -359,34 +397,7 @@
       "ボッテガ・ヴェネタジュエリーに興味があります",
       "ティファニーの眼鏡を求めています"
     ],
-    "languages": "DE|EN|FR|IT|NL|PT",
-    "freq_notes": 93,
-    "examples": [
-      "SA_0371",
-      "SA_0264",
-      "SA_0089",
-      "SA_0184",
-      "SA_0206"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0004_87d9c4": {
-    "label": "vista privada",
-    "aliases": [
-      "vista privada",
-      "visione privata",
-      "una visione privata",
-      "visualização privada",
-      "una vista privada",
-      "visione privata per",
-      "vista privada para",
-      "visualização privata",
-      "solicitó vista privada",
-      "visualização privata per",
-      "solicitou visualização privada",
-      "solicitou visualização privata",
-      "vista privata",
-      "vista privata per",
+    "CONCEPT_0004_87d9c4": [
       "visione privée",
       "séance de dégustation privée",
       "consultation privée",
@@ -423,28 +434,7 @@
       "プライベートデグスターショー",
       "プライベートカウンセリング"
     ],
-    "languages": "ES|IT|PT",
-    "freq_notes": 84,
-    "examples": [
-      "SA_0244",
-      "SA_0066",
-      "SA_0103",
-      "SA_0076",
-      "SA_0186"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0005_6a0685": {
-    "label": "tech founder",
-    "aliases": [
-      "tech founder",
-      "cliente tech founder",
-      "tech founder cerca",
-      "tech founder interessato",
-      "tech founder interesado",
-      "tech founder interested",
-      "tech founder intéressé",
-      "tech founder requested",
+    "CONCEPT_0005_6a0685": [
       "tech founder recherche",
       "tech founder cherche",
       "tech founder intéressé par",
@@ -506,33 +496,7 @@
       "tech founder 購入する",
       "tech founder 求める"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU",
-    "freq_notes": 82,
-    "examples": [
-      "SA_0283",
-      "SA_0059",
-      "SA_0064",
-      "SA_0364",
-      "SA_0089"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0006_d4f788": {
-    "label": "after gala",
-    "aliases": [
-      "after gala",
-      "up after gala",
-      "suivi after gala",
-      "der gala",
-      "nach der gala",
-      "la gala",
-      "na gala",
-      "suivi na gala",
-      "après le gala",
-      "dopo il gala",
-      "il gala",
-      "le gala",
-      "tras la gala",
+    "CONCEPT_0006_d4f788": [
       "après la fête",
       "recherche après la fête",
       "cherche après la fête",
@@ -582,27 +546,7 @@
       "パーティー後の探求",
       "パーティー後の対応"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|NL|PT",
-    "freq_notes": 80,
-    "examples": [
-      "SA_012",
-      "SA_0076",
-      "SA_0199",
-      "SA_0240",
-      "SA_0167"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0007_1931a4": {
-    "label": "art collector",
-    "aliases": [
-      "art collector",
-      "cliente art collector",
-      "art collector solicitó",
-      "art collector interessert",
-      "art collector intéressé",
-      "art collector requested",
-      "art collector solicitou",
+    "CONCEPT_0007_1931a4": [
       "cherche collectionneur d'art",
       "collectionneur d'art recherché",
       "collectionneur d'art intéressé",
@@ -675,29 +619,7 @@
       "美術収集家のカスタマイズ",
       "美術収集家の利用可能"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|ZH",
-    "freq_notes": 68,
-    "examples": [
-      "SA_0218",
-      "SA_0244",
-      "SA_0076",
-      "SA_0186",
-      "SA_0123"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0008_10b7ff": {
-    "label": "exotic skin sac à main",
-    "aliases": [
-      "exotic skin sac à main",
-      "exotic skin",
-      "skin sac à main",
-      "in exotic skin",
-      "in pelle",
-      "in pelle esotica",
-      "pelle esotica",
-      "pele exótica",
-      "peau exotique",
+    "CONCEPT_0008_10b7ff": [
       "sac à main en peau exotique",
       "sac à main en peau de singe",
       "sac à main en peau de renard",
@@ -761,37 +683,7 @@
       "高級異種皮革バッグ",
       "異種風格手提袋"
     ],
-    "languages": "EN|FR|IT|PT",
-    "freq_notes": 63,
-    "examples": [
-      "SA_0056",
-      "SA_012",
-      "SA_0383",
-      "SA_0313",
-      "SA_0177"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0009_460a34": {
-    "label": "monogramma personalizzato",
-    "aliases": [
-      "monogramma personalizzato",
-      "benötigt individuelles monogramm",
-      "besoin un monogramme",
-      "individuelles monogramm",
-      "monogramme personnalisé",
-      "un monogramme",
-      "un monogramme personnalisé",
-      "di monogramma",
-      "di monogramma personalizzato",
-      "necessita di monogramma",
-      "necesita monogramma",
-      "besoin d'un monogramme",
-      "d'un monogramme",
-      "d'un monogramme personnalisé",
-      "monograma personalizado",
-      "monogramma personalizado",
-      "necesita monogramma personalizado",
+    "CONCEPT_0009_460a34": [
       "recherche monogramme personnalisé",
       "monogramme personnalisé pour événements spéciaux",
       "monogramme personnalisé pour collection",
@@ -853,21 +745,7 @@
       "殿様 personalized モノグラム",
       "旅行に合わせて personalized モノグラム"
     ],
-    "languages": "DE|ES|FR|IT|PT",
-    "freq_notes": 63,
-    "examples": [
-      "SA_0286",
-      "SA_0368",
-      "SA_0103",
-      "SA_0364",
-      "SA_0130"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0010_232059": {
-    "label": "vip",
-    "aliases": [
-      "vip",
+    "CONCEPT_0010_232059": [
       "vip client",
       "client privilégié",
       "client ultra-réservé",
@@ -903,28 +781,7 @@
       "高級顧客",
       "上質顧客"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH",
-    "freq_notes": 35,
-    "examples": [
-      "CA_005",
-      "CA_009",
-      "CA_006",
-      "CA_003",
-      "CA_010"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0011_afc54f": {
-    "label": "montre",
-    "aliases": [
-      "montre",
-      "cerca montre",
-      "cerca montre in",
-      "in gelimiteerd horloge",
-      "par montre",
-      "intéressé par montre",
-      "busca montre",
-      "per montre",
+    "CONCEPT_0011_afc54f": [
       "recherche montres luxe",
       "cherche montres personnalisées",
       "veut acheter montres en or",
@@ -962,31 +819,7 @@
       "personalized メンズ時計を探している",
       "金の時計を購入したいです"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL",
-    "freq_notes": 59,
-    "examples": [
-      "SA_0218",
-      "SA_0395",
-      "SA_0066",
-      "SA_0190",
-      "SA_0089"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0012_101f47": {
-    "label": "edizione limitata",
-    "aliases": [
-      "edizione limitata",
-      "limited edition",
-      "limited edition montre",
-      "de edizione limitata",
-      "edizione limitada",
-      "in edizione limitada",
-      "édition limitée",
-      "edición limitada",
-      "montre edizione limitata",
-      "montre édition limitée",
-      "edição limitada",
+    "CONCEPT_0012_101f47": [
       "édition limitée montres",
       "montres de collection",
       "collection limitée",
@@ -1059,26 +892,7 @@
       "稀有時計",
       "特別な時計"
     ],
-    "languages": "EN|ES|FR|IT|PT",
-    "freq_notes": 57,
-    "examples": [
-      "SA_0218",
-      "SA_0395",
-      "SA_0223",
-      "SA_0066",
-      "SA_0089"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0013_b8d827": {
-    "label": "een privébezichtiging aangevraagd",
-    "aliases": [
-      "een privébezichtiging aangevraagd",
-      "een privébezichtiging",
-      "heeft een privébezichtiging",
-      "privébezichtiging aangevraagd",
-      "privébezichtiging aangevraagd for",
-      "privébezichtiging aangevraagd voor",
+    "CONCEPT_0013_b8d827": [
       "privé visite privée demandée",
       "visite privée sollicitée",
       "demande de visite privée",
@@ -1086,6 +900,7 @@
       "personalized private tour sought",
       "exclusive private visit enquired about",
       "visita privata richiesta",
+      "richiedi visita privata",
       "sostiene visita privata",
       "visita privada solicitada",
       "requisición de visita privada",
@@ -1099,30 +914,16 @@
       "privébezoek aangevraagd",
       "aangewend privébezoek",
       "زيارة خاصة مطلوبة",
+      "طلب زيارة خاصة",
       "حاجة لزيارة خاصة",
+      "개인 방문 요청",
       "私人参观请求",
       "запрос на приватную посещение",
       "пожалуйста, запрос на приватную посещение",
       "просьба о приватной посещении",
       "プライベート訪問の依頼"
     ],
-    "languages": "NL",
-    "freq_notes": 55,
-    "examples": [
-      "SA_0225",
-      "SA_0136",
-      "SA_0078",
-      "SA_0135",
-      "SA_0209"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0014_52a465": {
-    "label": "real estate",
-    "aliases": [
-      "real estate",
-      "client real estate",
-      "cliente real estate",
+    "CONCEPT_0014_52a465": [
       "immobilier réel",
       "recherche immobilier",
       "investissement immobilier",
@@ -1160,21 +961,7 @@
       "不動産探求",
       "不動産投資"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 53,
-    "examples": [
-      "SA_0056",
-      "SA_0298",
-      "SA_0057",
-      "SA_0100",
-      "SA_003"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0015_2c5f64": {
-    "label": "art",
-    "aliases": [
-      "art",
+    "CONCEPT_0015_2c5f64": [
       "collection d'art",
       "amour de l'art",
       "expositions d'art",
@@ -1212,26 +999,7 @@
       "芸術愛好家",
       "芸術展"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|ZH",
-    "freq_notes": 33,
-    "examples": [
-      "CA_012",
-      "CA_005",
-      "CA_009",
-      "CA_003",
-      "CA_014"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0016_322688": {
-    "label": "cadeau",
-    "aliases": [
-      "cadeau",
-      "zakelijk cadeau",
-      "cadeau aziendale",
-      "cadeau corporativo",
-      "cadeau d'entreprise",
-      "cadeau entreprise",
+    "CONCEPT_0016_322688": [
       "cadeau personnalisé",
       "cadeau luxe",
       "cadeau d'affaires",
@@ -1280,27 +1048,7 @@
       "企業用ギフト",
       "ギフトを探しています"
     ],
-    "languages": "ES|FR|IT|NL",
-    "freq_notes": 62,
-    "examples": [
-      "CA_022",
-      "CA_087",
-      "CA_071",
-      "CA_088",
-      "CA_002"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0017_9e7ebc": {
-    "label": "bijoux",
-    "aliases": [
-      "bijoux",
-      "alta bijoux",
-      "feiner bijoux",
-      "an feiner bijoux",
-      "busca alta bijoux",
-      "fine bijoux",
-      "cerca alta gioielleria",
+    "CONCEPT_0017_9e7ebc": [
       "bijoux recherchés",
       "bijoux à collectionner",
       "bijoux personnalisés",
@@ -1338,21 +1086,7 @@
       "興味のあるジュエリーユニット",
       "カスタマイズされたジュエリーアイテム"
     ],
-    "languages": "DE|EN|ES|IT",
-    "freq_notes": 45,
-    "examples": [
-      "SA_0283",
-      "SA_0264",
-      "SA_0076",
-      "SA_0310",
-      "SA_0085"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0018_72f789": {
-    "label": "real estate mogul",
-    "aliases": [
-      "real estate mogul",
+    "CONCEPT_0018_72f789": [
       "mogol immobilier",
       "investisseur immobilier",
       "propriétaire immobilier",
@@ -1419,22 +1153,7 @@
       "不動産投資",
       "高級不動産 mogul"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 45,
-    "examples": [
-      "SA_0056",
-      "SA_0057",
-      "SA_003",
-      "SA_0069",
-      "SA_0079"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0019_22d98c": {
-    "label": "estate mogul",
-    "aliases": [
-      "estate mogul",
-      "estate mogul interessado",
+    "CONCEPT_0019_22d98c": [
       "mogol immobilier",
       "investisseur immobilier prestigieux",
       "propriétaire immobilier renommé",
@@ -1472,26 +1191,7 @@
       "高収入の不動産投資家",
       "有名な不動産所有者"
     ],
-    "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU",
-    "freq_notes": 43,
-    "examples": [
-      "SA_0056",
-      "SA_0057",
-      "SA_003",
-      "SA_0069",
-      "SA_0095"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0020_b5241b": {
-    "label": "sac",
-    "aliases": [
-      "sac",
-      "sac à main",
-      "interessato a sac",
-      "interessato sac",
-      "sac de",
-      "recherche sac",
+    "CONCEPT_0020_b5241b": [
       "sac à main luxe",
       "sac personnalisé",
       "sacs de marque",
@@ -1539,25 +1239,80 @@
       "personalized バッグ",
       "ブランド バッグ"
     ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 6,
-    "examples": [
-      "CA_012",
-      "CA_002",
-      "CA_001",
-      "CA_016",
-      "CA_006"
+    "CONCEPT_0021_9e0653": [
+      "con la concurrence",
+      "avec les concurrents",
+      "face à la concurrence",
+      "compétition avec concurrents",
+      "recherche de compétiteurs",
+      "compétition contre concurrents",
+      "with competition",
+      "in the market",
+      "against rivals",
+      "in comparison with competitors",
+      "seeking competition",
+      "competing against rivals",
+      "con la concorrenza",
+      "contro i concorrenti",
+      "dopo il concorrente",
+      "competizione con rivali",
+      "cerca di competere",
+      "competere contro concorrenti",
+      "con la competencia",
+      "contra los competidores",
+      "en el mercado",
+      "compañía de competidores",
+      "busca competencia",
+      "competir contra competidores",
+      "mit wettbewerben",
+      "gegen konkurrenten",
+      "in der konkurrenz",
+      "wettbewerb gegen competitors",
+      "konkurrenz suchen",
+      "competition mit konkurrenten",
+      "com concorrentes",
+      "contra os concorrentes",
+      "na competição",
+      "competir com concorrentes",
+      "busca de concorrentes",
+      "competir contra concorrentes",
+      "in de concurrentie",
+      "onder concurrenten",
+      "competing met concurrenten",
+      "concurrentie zoeken",
+      "competitie tegen concurrenten",
+      "مع المنافسين",
+      "في المنافسة",
+      "ضد المنافسين",
+      "منافسة مع المنافسين",
+      "بحث عن المنافسين",
+      "منافسة ضد المنافسين",
+      "경쟁자와 함께",
+      "경쟁자들에 대한",
+      "경쟁 상대로",
+      "경쟁자들과의 대결",
+      "경쟁자를 찾는",
+      "경쟁자들로부터 경쟁하는",
+      "与竞争对手一起",
+      "在竞争中",
+      "面对竞争对手",
+      "与竞争对手的竞争",
+      "寻找竞争对手",
+      "与竞争对手竞争",
+      "с конкурентами",
+      "в конкуренции",
+      "против конкурентов",
+      "конкуренты с которыми compete",
+      "поиск конкурентов",
+      "competir против конкурентов",
+      "競合者と一緒に",
+      "競争者に",
+      "競争相手に対して",
+      "競合者との競争",
+      "競合者の探求",
+      "競合者と競争する"
     ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0022_88a76b": {
-    "label": "suivi",
-    "aliases": [
-      "suivi",
-      "suivi après",
-      "suivi après le",
-      "suivi tras",
-      "suivi tras la",
+    "CONCEPT_0022_88a76b": [
       "suivi personnalisé",
       "suivi de qualité",
       "suivi après vente",
@@ -1619,27 +1374,7 @@
       "対応探求",
       "販売後対応対応"
     ],
-    "languages": "EN|ES|FR|IT|NL",
-    "freq_notes": 15,
-    "examples": [
-      "CA_033",
-      "CA_011",
-      "CA_020",
-      "CA_029",
-      "CA_006"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0023_f07359": {
-    "label": "baúl a medida",
-    "aliases": [
-      "baúl a medida",
-      "baúl medida",
-      "sob medida",
-      "baule su misura",
-      "op maat",
-      "su misura",
-      "malle sur mesure",
+    "CONCEPT_0023_f07359": [
       "sac mesure",
       "sac sur mesure",
       "sac à mesures",
@@ -1688,26 +1423,7 @@
       "カスタマイズされたボウル",
       "寸法に合わせたボウルを検索する"
     ],
-    "languages": "ES|FR|IT|NL|PT",
-    "freq_notes": 34,
-    "examples": [
-      "SA_0244",
-      "SA_0364",
-      "SA_0124",
-      "SA_0253",
-      "SA_0344"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0024_b275c9": {
-    "label": "solicitó una",
-    "aliases": [
-      "solicitó una",
-      "ha richiesto una",
-      "solicitou uma",
-      "ceo solicitou",
-      "ceo ha richiesto",
-      "mogul ha richiesto",
+    "CONCEPT_0024_b275c9": [
       "solicitó una montre",
       "solicitou uma bolsa",
       "cherche une baguette",
@@ -1745,25 +1461,8 @@
       "鞄を探しました",
       "ブレスレットを探しました"
     ],
-    "languages": "ES|IT|PT",
-    "freq_notes": 33,
-    "examples": [
-      "SA_0308",
-      "SA_0195",
-      "SA_007",
-      "SA_0244",
-      "SA_0103"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0025_6666e1": {
-    "label": "monogram",
-    "aliases": [
-      "monogram",
-      "aangepast monogram",
-      "aangepast monogram nodig",
-      "heeft aangepast monogram",
-      "monogram nodig",
+    "CONCEPT_0025_6666e1": [
+      "monogramme personnalisé",
       "recherche monogramme",
       "monogramme unique",
       "monogramme exclusif",
@@ -1781,6 +1480,7 @@
       "monogram esclusivo",
       "monogram a misura",
       "monogram richiesto",
+      "monograma personalizado",
       "busca monograma",
       "monograma único",
       "monograma exclusivo",
@@ -1834,29 +1534,10 @@
       "モノグラムオーダー",
       "モノグラム必要"
     ],
-    "languages": "EN|ES|NL",
-    "freq_notes": 32,
-    "examples": [
-      "SA_0282",
-      "SA_0225",
-      "SA_0136",
-      "SA_0190",
-      "SA_0058"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0026_585cb9": {
-    "label": "edition montre",
-    "aliases": [
-      "edition montre",
-      "montre in edizione",
-      "montre edizione",
-      "montre édition",
-      "montre de edición",
-      "montre de edizione",
-      "per montre edizione",
+    "CONCEPT_0026_585cb9": [
       "édition personnalisée montre",
       "montres édition spéciale",
+      "montres de collection",
       "custom edition watch",
       "limited edition timepiece",
       "exclusive edition piece",
@@ -1881,34 +1562,17 @@
       "편집 에디션 시계",
       "특별판 시계",
       "개인화된 에디션 시계",
+      "限量版手表",
       "限量款表",
       "个性化限量版表",
       "изделие эdition montre",
       "коллекционные часы",
       "уникальная эdition montre",
+      "限定版時計",
       "特別版時計",
       "個別編集版時計"
     ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 30,
-    "examples": [
-      "SA_0218",
-      "SA_0395",
-      "SA_0223",
-      "SA_0066",
-      "SA_0089"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0027_ce4fc8": {
-    "label": "pronto all'acquisto",
-    "aliases": [
-      "pronto all'acquisto",
-      "pronto all acquisto",
-      "ready to buy",
-      "pronto para comprar",
-      "listo para comprar",
-      "prêt à acheter",
+    "CONCEPT_0027_ce4fc8": [
       "acheter rapidement",
       "monogramme prêt à acheter",
       "chercher montres personnalisées",
@@ -1946,26 +1610,7 @@
       "ルイ・ヴィトン モノグラム 即時購入可能",
       "腕時計探している"
     ],
-    "languages": "EN|ES|FR|IT|PT",
-    "freq_notes": 30,
-    "examples": [
-      "SA_0223",
-      "SA_0089",
-      "SA_0344",
-      "SA_0138",
-      "SA_0185"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0028_7b23b6": {
-    "label": "vintage",
-    "aliases": [
-      "vintage",
-      "zeldzame vintage",
-      "vintage rara",
-      "vintage raro",
-      "rare vintage",
-      "zoekt zeldzame vintage",
+    "CONCEPT_0028_7b23b6": [
       "recherche de vintage",
       "vintage authentique",
       "vintage unique",
@@ -2026,24 +1671,7 @@
       "エレガントなvintage製品",
       "珍しいvintage"
     ],
-    "languages": "EN|ES|NL|PT",
-    "freq_notes": 8,
-    "examples": [
-      "CA_024",
-      "CA_001",
-      "CA_043",
-      "CA_064",
-      "CA_050"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0029_9281ef": {
-    "label": "solicitó una vista",
-    "aliases": [
-      "solicitó una vista",
-      "solicitou uma visualização",
-      "solicitou visualização",
-      "solicitó vista",
+    "CONCEPT_0029_9281ef": [
       "recherche une vue",
       "souhaite voir la boutique",
       "visiter l'ateliers",
@@ -2081,22 +1709,7 @@
       "店舗を見たいです",
       "工場見学"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 29,
-    "examples": [
-      "SA_0244",
-      "SA_0103",
-      "SA_0066",
-      "SA_0186",
-      "SA_0076"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0030_476f57": {
-    "label": "requested viewing",
-    "aliases": [
-      "requested viewing for",
-      "client requested viewing",
+    "CONCEPT_0030_476f57": [
       "vue demandée",
       "demande d'examen",
       "examen sollicité",
@@ -2133,23 +1746,7 @@
       "観察を求める",
       "顧客が求めた観察"
     ],
-    "languages": "EN",
-    "freq_notes": 26,
-    "examples": [
-      "SA_0187",
-      "SA_0077",
-      "SA_0262",
-      "SA_0354",
-      "SA_0199"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0031_237d74": {
-    "label": "una vista",
-    "aliases": [
-      "una vista",
-      "richiesto una visione",
-      "una visione",
+    "CONCEPT_0031_237d74": [
       "une vue privilégiée",
       "recherche une vue panoramique",
       "vision personnalisée",
@@ -2187,23 +1784,7 @@
       "パンoram的な視界を探しています",
       "個別化された視界"
     ],
-    "languages": "ES|IT",
-    "freq_notes": 26,
-    "examples": [
-      "SA_007",
-      "SA_0103",
-      "SA_0186",
-      "SA_0076",
-      "SA_0230"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0032_60bb37": {
-    "label": "demandé une",
-    "aliases": [
-      "demandé une",
-      "bat um eine",
-      "besoin un",
+    "CONCEPT_0032_60bb37": [
       "recherche une montre",
       "demande un sac louis vuitton",
       "cherche des chaussures dior",
@@ -2254,27 +1835,7 @@
       "モエ・ヘンシューズの香水を探す",
       "カルティエのブレスレットを探している"
     ],
-    "languages": "DE|FR",
-    "freq_notes": 25,
-    "examples": [
-      "SA_0191",
-      "SA_0081",
-      "SA_0334",
-      "SA_0168",
-      "SA_0100"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0033_61607d": {
-    "label": "client philanthropist",
-    "aliases": [
-      "client philanthropist",
-      "cliente philanthropist",
-      "philanthropist interessato",
-      "philanthropist interessiert",
-      "philanthropist geïnteresseerd",
-      "philanthropist requested",
-      "philanthropist solicitou",
+    "CONCEPT_0033_61607d": [
       "philanthrope client",
       "client engagé dans les causes",
       "client qui souhaite soutenir des initiatives caritatives",
@@ -2340,24 +1901,7 @@
       "クライアントがフィラントロピーに興味を持つ",
       "クライアントがフィラントロピーの機会を探している"
     ],
-    "languages": "DE|EN|ES|FR|IT|NL|PT",
-    "freq_notes": 22,
-    "examples": [
-      "SA_0376",
-      "SA_012",
-      "SA_0223",
-      "SA_0066",
-      "SA_0264"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0034_53b2f0": {
-    "label": "montre in",
-    "aliases": [
-      "montre in",
-      "bonifico in",
-      "bonifico in sospeso",
-      "montre de",
+    "CONCEPT_0034_53b2f0": [
       "montres in personnalisées",
       "recherche montres in",
       "montres in classiques",
@@ -2395,28 +1939,11 @@
       "イン ワッチを探しています",
       "イン オーガニックウォッチ"
     ],
-    "languages": "ES|IT",
-    "freq_notes": 22,
-    "examples": [
-      "SA_0218",
-      "SA_0309",
-      "SA_0170",
-      "SA_0059",
-      "SA_0066"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0035_d63c7e": {
-    "label": "limited",
-    "aliases": [
-      "limited",
-      "in limited",
-      "interested in limited",
-      "for limitierte",
-      "sucht limitierte",
+    "CONCEPT_0035_d63c7e": [
       "recherche limité",
       "monogramme limité",
       "limited edition personnalisé",
+      "limited edition",
       "limited collection",
       "limited release",
       "limited time offer",
@@ -2425,6 +1952,7 @@
       "limitato edizione limitata",
       "limited edition personalizzata",
       "limited access versione",
+      "edición limitada",
       "reloj limited",
       "limited edición exclusiva",
       "limited edición especial",
@@ -2432,6 +1960,7 @@
       "limited edition modell",
       "begrenzte ediktionsversion",
       "begrenzte ediktionsausgabe",
+      "edição limitada",
       "edição limitado",
       "edição limitação exclusiva",
       "edição limitada personalizada",
@@ -2459,26 +1988,7 @@
       "限定特別版",
       "限定特集"
     ],
-    "languages": "DE|EN|NL",
-    "freq_notes": 21,
-    "examples": [
-      "SA_0311",
-      "SA_0191",
-      "SA_0187",
-      "SA_0216",
-      "SA_038"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0036_38c33b": {
-    "label": "collector solicitó",
-    "aliases": [
-      "collector solicitó",
-      "collector solicitó una",
-      "collector interessert",
-      "collector intéressé",
-      "collector requested",
-      "collector solicitou",
+    "CONCEPT_0036_38c33b": [
       "cherche collectionneurs",
       "cherche monogramme personnalisé",
       "solicite voir bijoux collector",
@@ -2516,21 +2026,7 @@
       "カスタマイズされたモノグラムに興味があります",
       "高級品の視察を要求します"
     ],
-    "languages": "DE|EN|ES|FR|PT",
-    "freq_notes": 20,
-    "examples": [
-      "SA_0321",
-      "SA_0187",
-      "SA_0391",
-      "SA_0160",
-      "SA_0253"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0037_316fb7": {
-    "label": "haute couture",
-    "aliases": [
-      "haute couture",
+    "CONCEPT_0037_316fb7": [
       "haute couture mode",
       "mode haute couture personnalisée",
       "mode haute couture recherche",
@@ -2567,22 +2063,9 @@
       "高級ファッション探求",
       "高級ファッション探し"
     ],
-    "languages": "DE|EN|FR|NL",
-    "freq_notes": 20,
-    "examples": [
-      "SA_0081",
-      "SA_0078",
-      "SA_0098",
-      "SA_0207",
-      "SA_011"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0038_9fa974": {
-    "label": "follow up after",
-    "aliases": [
-      "approx follow up",
-      "follow up dopo",
+    "CONCEPT_0038_9fa974": [
+      "suivi après",
+      "recherche suivi",
       "suivie suite",
       "follow up after",
       "next action plan",
@@ -2617,22 +2100,7 @@
       "次のアクション",
       "後続のステップ"
     ],
-    "languages": "EN|IT",
-    "freq_notes": 19,
-    "examples": [
-      "SA_0077",
-      "SA_012",
-      "SA_0098",
-      "SA_0354",
-      "SA_0267"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0039_2909f6": {
-    "label": "annata raro",
-    "aliases": [
-      "annata raro",
-      "d'annata raro",
+    "CONCEPT_0039_2909f6": [
       "années rares",
       "bijoux anciens",
       "bijoux anciens recherchés",
@@ -2667,23 +2135,7 @@
       "希少の古着宝石",
       "古着宝石を探している"
     ],
-    "languages": "IT",
-    "freq_notes": 18,
-    "examples": [
-      "SA_0059",
-      "SA_0086",
-      "SA_0242",
-      "SA_0254",
-      "SA_0055"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0040_aa1609": {
-    "label": "besichtigung angefordert",
-    "aliases": [
-      "besichtigung angefordert",
-      "besichtigung for",
-      "demandé une visite",
+    "CONCEPT_0040_aa1609": [
       "recherche besichtigung",
       "besichtigung demande",
       "visite privée requise",
@@ -2707,6 +2159,7 @@
       "specifieke bezoek aanvraag",
       "هناك اهتمام بزيارة",
       "طلب زيارة",
+      "زيارة خاصة مطلوبة",
       "보기를 요청한 방문",
       "관심 있는 방문",
       "특별한 방문 요구됨",
@@ -2720,21 +2173,7 @@
       "視察の要望",
       "特別な見学を求める"
     ],
-    "languages": "DE|FR",
-    "freq_notes": 18,
-    "examples": [
-      "SA_0087",
-      "SA_0191",
-      "SA_0286",
-      "SA_0168",
-      "SA_0100"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0041_854ef3": {
-    "label": "couture",
-    "aliases": [
-      "couture",
+    "CONCEPT_0041_854ef3": [
       "couture personnalisée",
       "mode couturier",
       "sélections coutures",
@@ -2763,6 +2202,7 @@
       "모던 코트 드르프",
       "코트 드르프 선택",
       "定制时装",
+      "高级时装",
       "时装精选",
       "вышиванье",
       "шикарная ткань",
@@ -2771,24 +2211,7 @@
       "高級服飾品",
       "服飾品選択"
     ],
-    "languages": "DE|EN|FR|NL",
-    "freq_notes": 18,
-    "examples": [
-      "SA_0081",
-      "SA_0078",
-      "SA_0098",
-      "SA_011",
-      "SA_0073"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0042_3b8d7b": {
-    "label": "maßgefertigter koffer",
-    "aliases": [
-      "maßgefertigter koffer",
-      "gemaakte koffer",
-      "maat gemaakte koffer",
-      "for maßgefertigter koffer",
+    "CONCEPT_0042_3b8d7b": [
       "koffer personnalisé",
       "maât-gemaakte koffer",
       "recherche bagages",
@@ -2826,24 +2249,7 @@
       "手作りバッグ",
       "特別なバッグを探しています"
     ],
-    "languages": "DE|NL",
-    "freq_notes": 17,
-    "examples": [
-      "SA_0168",
-      "SA_008",
-      "SA_0160",
-      "SA_0358",
-      "SA_0082"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0043_7dcd60": {
-    "label": "para alta",
-    "aliases": [
-      "para alta",
-      "alta joalharia",
-      "par haute",
-      "cerca alta",
+    "CONCEPT_0043_7dcd60": [
       "recherche haute joaillerie",
       "par recherche haute",
       "joailleries recherchées",
@@ -2881,26 +2287,9 @@
       "高級ジュエリーを探している",
       "高級アクセサリーより探しています"
     ],
-    "languages": "ES|FR|IT|PT",
-    "freq_notes": 17,
-    "examples": [
-      "SA_0214",
-      "SA_0308",
-      "SA_007",
-      "SA_0117",
-      "SA_0076"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0044_8cbe66": {
-    "label": "relógio de",
-    "aliases": [
-      "relógio de",
-      "relógio de edizione",
-      "relógio de edição",
-      "interessado em relógio",
-      "procura relógio",
+    "CONCEPT_0044_8cbe66": [
       "montre de personnalisé",
+      "montres de collection",
       "cherche montre répétition",
       "montres de luxe",
       "personalized watch",
@@ -2914,6 +2303,7 @@
       "reloj de edición",
       "relojes de lujo",
       "interés reloj cuarto",
+      "relojes de colección",
       "montre monogramm",
       "luxusuhren",
       "sucht auf chronometer",
@@ -2946,31 +2336,19 @@
       "時計カレンダー探求",
       "高級時計コレクション"
     ],
-    "languages": "PT",
-    "freq_notes": 17,
-    "examples": [
-      "SA_0195",
-      "SA_0188",
-      "SA_0294",
-      "SA_0165",
-      "SA_0126"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0045_50008b": {
-    "label": "confronto con",
-    "aliases": [
-      "confronto con",
-      "confronto con la",
+    "CONCEPT_0045_50008b": [
       "confronto avec la monogramme",
       "recherche de l'élégance",
+      "monogramme personnalisé",
       "confronto with the monogram",
       "elegance search",
       "monogram personalization",
       "confronto con la monogramma",
       "cerca dell'eleganza",
+      "monogramma personalizzato",
       "confronto con la monograma",
       "busca de elegancia",
+      "monograma personalizado",
       "konfrontierung mit dem monogramm",
       "eleganzsucht",
       "monogramm personalisiert",
@@ -2996,24 +2374,7 @@
       "エレガント探求",
       "モンログラン プロフィール"
     ],
-    "languages": "IT",
-    "freq_notes": 16,
-    "examples": [
-      "SA_0307",
-      "SA_0184",
-      "SA_0052",
-      "SA_0230",
-      "SA_0265"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0046_55678c": {
-    "label": "cuir exótica",
-    "aliases": [
-      "cuir exótica",
-      "cuir",
-      "de cuir",
-      "de cuir exótica",
+    "CONCEPT_0046_55678c": [
       "cuir exotique recherché",
       "cuir de singe personnalisé",
       "cuir exotique élégant",
@@ -3051,24 +2412,7 @@
       "蛇皮の個別化",
       "異国情緒の革高級"
     ],
-    "languages": "ES",
-    "freq_notes": 16,
-    "examples": [
-      "SA_0291",
-      "SA_0103",
-      "SA_0217",
-      "SA_0366"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0047_033dd3": {
-    "label": "founder cerca",
-    "aliases": [
-      "founder cerca",
-      "founder interessato",
-      "founder interesado",
-      "founder interested",
-      "founder intéressé",
+    "CONCEPT_0047_033dd3": [
       "recherche de fondation",
       "fondatrice recherchée",
       "fondatrice intéressante",
@@ -3105,24 +2449,7 @@
       "創業者の興味",
       "創業者を求める"
     ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 16,
-    "examples": [
-      "SA_0202",
-      "SA_0119",
-      "SA_0059",
-      "SA_0196",
-      "SA_0385"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0048_9a0724": {
-    "label": "sac in pelle",
-    "aliases": [
-      "sac in pelle",
-      "sac de cuir",
-      "bolsa de pele",
-      "sac en peau",
+    "CONCEPT_0048_9a0724": [
       "sac en cuir de cheval",
       "sac monogramme cuir",
       "bolsa cuir élégant",
@@ -3158,23 +2485,7 @@
       "革製モンゴルハット",
       "革製シンプルポーチ"
     ],
-    "languages": "ES|FR|IT|PT",
-    "freq_notes": 16,
-    "examples": [
-      "SA_0056",
-      "SA_0383",
-      "SA_0236",
-      "SA_0313",
-      "SA_0103"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0049_cd9511": {
-    "label": "seltener jahrgangschampagner",
-    "aliases": [
-      "seltener jahrgangschampagner",
-      "sucht seltener jahrgangschampagner",
-      "for seltener jahrgangschampagner",
+    "CONCEPT_0049_cd9511": [
       "surtinage unique champagnes",
       "champagne rare annee",
       "surtinage special champagne",
@@ -3236,22 +2547,7 @@
       "希少な年式シャンパン探しています",
       "希少な年式シャンパンを探す"
     ],
-    "languages": "DE",
-    "freq_notes": 16,
-    "examples": [
-      "SA_0213",
-      "SA_0286",
-      "SA_0193",
-      "SA_0327",
-      "SA_0158"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0050_9904b9": {
-    "label": "viewing for",
-    "aliases": [
-      "viewing for",
-      "viewing for bespoke",
+    "CONCEPT_0050_9904b9": [
       "recherche de vue",
       "vue personnalisée",
       "vue sur mesure",
@@ -3288,22 +2584,7 @@
       "カスタマイズされた視察",
       "個人向け視察"
     ],
-    "languages": "EN",
-    "freq_notes": 15,
-    "examples": [
-      "SA_0187",
-      "SA_0077",
-      "SA_0199",
-      "SA_0123",
-      "SA_0174"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0051_7179b0": {
-    "label": "bespoke trunk",
-    "aliases": [
-      "bespoke trunk",
-      "trunk",
+    "CONCEPT_0051_7179b0": [
       "sac à main personnalisé",
       "trousse sur mesure",
       "sacs à main en cuir",
@@ -3341,22 +2622,7 @@
       "手作りトロシー",
       "革のバッグ"
     ],
-    "languages": "EN",
-    "freq_notes": 14,
-    "examples": [
-      "SA_0077",
-      "SA_0238",
-      "SA_0123",
-      "SA_0153",
-      "SA_0229"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0052_0088dc": {
-    "label": "corporate gifting",
-    "aliases": [
-      "corporate gifting",
-      "approx corporate gifting",
+    "CONCEPT_0052_0088dc": [
       "cadeaux d'entreprise recherchés",
       "cadeaux d'entreprise personnalisés",
       "cadeaux d'entreprise à la demande",
@@ -3394,22 +2660,7 @@
       "カスタマイズされた企業ギフトを探している",
       "企業ギフトの注文"
     ],
-    "languages": "EN",
-    "freq_notes": 14,
-    "examples": [
-      "SA_0106",
-      "SA_0119",
-      "SA_0285",
-      "SA_0392",
-      "SA_0123"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0053_4968d1": {
-    "label": "in exotic",
-    "aliases": [
-      "in exotic",
-      "interested in exotic",
+    "CONCEPT_0053_4968d1": [
       "recherche d'exotisme",
       "exotisme recherché",
       "exoticité recherchée",
@@ -3447,28 +2698,17 @@
       "exoticに興味のある",
       "exotic探求"
     ],
-    "languages": "EN",
-    "freq_notes": 14,
-    "examples": [
-      "SA_0110",
-      "SA_0235",
-      "SA_0079",
-      "SA_0094",
-      "SA_0232"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0054_19557e": {
-    "label": "needs custom monogram",
-    "aliases": [
-      "needs custom monogram",
+    "CONCEPT_0054_19557e": [
+      "monogramme personnalisé",
       "recherche monogramme personnalisé",
       "monogramme sur mesure",
       "custom monogram design",
       "searches for custom monogram",
       "monogram customization needed",
+      "monogramma personalizzato",
       "cerca monogramma personalizzato",
       "monogrammato su misura",
+      "monograma personalizado",
       "busca monograma personalizado",
       "monograma a medida",
       "personalisierter monogramm",
@@ -3482,6 +2722,7 @@
       "مونوغرام مخصص",
       "يبحث عن مونوغرام مخصص",
       "مونوغرام مقاس متخصص",
+      "개인화된 모노그램",
       "개인화된 모노그램을 찾습니다",
       "맞춤형 모노그램 필요",
       "定制的 monogram",
@@ -3490,25 +2731,11 @@
       "уточненное монограмма",
       "ищет уточненное монограмма",
       "монограмма по индивидуальному заказу",
+      "カスタマイズされたモノグラム",
       "カスタマイズされたモノグラムを探しています",
       "個別に作成したモノグラム"
     ],
-    "languages": "EN|ES",
-    "freq_notes": 14,
-    "examples": [
-      "SA_0187",
-      "SA_0153",
-      "SA_0088",
-      "SA_0154",
-      "SA_0110"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0055_a7a189": {
-    "label": "rare",
-    "aliases": [
-      "rare",
-      "millésimé rare",
+    "CONCEPT_0055_a7a189": [
       "rareté recherchée",
       "exceptionnelle rareté",
       "exquise rarité",
@@ -3545,24 +2772,7 @@
       "希少の貴重品",
       "希少な逸品"
     ],
-    "languages": "EN|FR",
-    "freq_notes": 6,
-    "examples": [
-      "CA_037",
-      "CA_068",
-      "CA_080",
-      "CA_092",
-      "CA_066"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0056_f14812": {
-    "label": "for exotische",
-    "aliases": [
-      "for exotische",
-      "aangevraagd for exotische",
-      "aangevraagd voor exotische",
-      "geïnteresseerd in exotische",
+    "CONCEPT_0056_f14812": [
       "exotiques personnalisés",
       "exotiques recherchées",
       "exotiques tendance",
@@ -3599,23 +2809,7 @@
       "異国情操探求",
       "異国情操トレンド"
     ],
-    "languages": "DE|NL",
-    "freq_notes": 13,
-    "examples": [
-      "SA_0282",
-      "SA_0225",
-      "SA_0389",
-      "SA_0382",
-      "SA_0135"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0057_32fbbf": {
-    "label": "interesado en",
-    "aliases": [
-      "interesado en",
-      "interesado en baúl",
-      "interesado en montre",
+    "CONCEPT_0057_32fbbf": [
       "recherche montres louis vuitton",
       "interessé en sac monogramme",
       "cherche bijoux bulgari",
@@ -3653,23 +2847,7 @@
       "ディオールバッグに興味あり",
       "ティファニージュエリーに興味あり"
     ],
-    "languages": "ES",
-    "freq_notes": 13,
-    "examples": [
-      "SA_0202",
-      "SA_0093",
-      "SA_0399",
-      "SA_0279",
-      "SA_0185"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0058_7939a1": {
-    "label": "transferência pendente",
-    "aliases": [
-      "transferência pendente",
-      "transfer pending",
-      "transferencia pendiente",
+    "CONCEPT_0058_7939a1": [
       "transfer en cours",
       "attente transfert",
       "attente de la transaction",
@@ -3702,22 +2880,44 @@
       "移転の準備中",
       "準備中の移転"
     ],
-    "languages": "EN|ES|PT",
-    "freq_notes": 13,
-    "examples": [
-      "SA_0287",
-      "SA_0068",
-      "SA_0294",
-      "SA_0244",
-      "SA_0186"
+    "CONCEPT_0059_1c9789": [
+      "accessoires de mode",
+      "sacs à main",
+      "accessoires personnalisés",
+      "luxury accessories",
+      "handbags and wallets",
+      "customized items",
+      "oggetti di accesso,",
+      "portafogli e borse",
+      "oggetti personalizzati",
+      "accesorios de moda",
+      "bolsas y carteras",
+      "objetos personalizados",
+      "modeaccessoires",
+      "handtaschen und taschentücher",
+      "personalisierte gegenstände",
+      "acessórios de luxo",
+      "mochilas e bolsas",
+      "luxuzaandet",
+      "handbags en tasjes",
+      "persoonlijks geregistreerde items",
+      "م accessoris",
+      "حقائب وغواصات",
+      "أجزاء شخصية",
+      "리무진 액세서리",
+      "가방과 가방지갑",
+      "개인화된 아이템",
+      "时尚配饰",
+      "手提包和钱包",
+      "个性化物品",
+      "аксессуары для моды",
+      "портфели и сумки",
+      "индивидуально оформленные предметы",
+      "高級アクセサリー",
+      "バッグと財布",
+      "個別化されたアイテム"
     ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0060_713848": {
-    "label": "exotische handtas",
-    "aliases": [
-      "exotische handtas",
-      "for exotische handtas",
+    "CONCEPT_0060_713848": [
       "tasques exotiques",
       "tasques personnalisées",
       "sacs de voyage exotiques",
@@ -3767,22 +2967,7 @@
       "旅行用異国情緒鞄",
       "異国情緒鞄を探しています"
     ],
-    "languages": "NL",
-    "freq_notes": 12,
-    "examples": [
-      "SA_0225",
-      "SA_0389",
-      "SA_0135",
-      "SA_0209",
-      "SA_0221"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0061_1d2ae9": {
-    "label": "nachbereitung nach der",
-    "aliases": [
-      "nachbereitung nach der",
-      "nachbereitung nach",
+    "CONCEPT_0061_1d2ae9": [
       "préparation après",
       "suite de l'après",
       "répondre à l'après",
@@ -3820,21 +3005,7 @@
       "販売後のサービス",
       "販売後のサポート"
     ],
-    "languages": "DE",
-    "freq_notes": 12,
-    "examples": [
-      "SA_0191",
-      "SA_0156",
-      "SA_0240",
-      "SA_0351",
-      "SA_0085"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0062_0edb21": {
-    "label": "value approx",
-    "aliases": [
-      "value approx",
+    "CONCEPT_0062_0edb21": [
       "prix approximatif",
       "estimationnement",
       "tarif approximé",
@@ -3871,29 +3042,132 @@
       "推定価格",
       "概算価格"
     ],
-    "languages": "EN",
-    "freq_notes": 12,
-    "examples": [
-      "SA_0187",
-      "SA_0077",
-      "SA_0199",
-      "SA_0123",
-      "SA_0174"
+    "CONCEPT_0063_750028": [
+      "aangevraagd pour moi",
+      "pour mon achat",
+      "pour un cadeau",
+      "for me too",
+      "on my behalf",
+      "as a gift for someone",
+      "per il mio acquisto",
+      "in nome mio",
+      "come regalo per qualcuno",
+      "para mi compra",
+      "en nombre mío",
+      "como regalo para alguien",
+      "für mich",
+      "auf meinen namen",
+      "als geschenk für jemanden",
+      "para minha compra",
+      "em meu nome",
+      "como presente para alguém",
+      "voor mijzelf",
+      "op mijn naam",
+      "als cadeau voor iemand",
+      "لحسابي",
+      "في اسمى",
+      "كهدية لشخص ما",
+      "미해당",
+      "나의 구매에 대한",
+      "누군가에게 선물로",
+      "供我使用",
+      "在我的名字下",
+      "作为给某人的礼物",
+      "для меня",
+      "в моем имени",
+      "как подарок для кого-то",
+      "私用に",
+      "私の名前で",
+      "誰かへのプレゼントとして"
     ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0066_436917": {
-    "label": "busca alta",
-    "aliases": [
-      "busca alta",
-      "procura alta",
+    "CONCEPT_0064_ef5147": [
+      "recherche monogramme personnalisé",
+      "cherche bijoux exclusifs",
+      "veut des accessoires de luxe",
+      "seeks personalized monogram",
+      "looks for exclusive jewelry",
+      "wants luxury accessories",
+      "cerca monogramma personalizzato",
+      "vuole gioielli di lusso",
+      "desidera accessori di lusso",
+      "reconoce monogramme exclusivo",
+      "busca joyas de lujo",
+      "quisiera accesorios de lujo",
+      "sucht monogramm spezialisiert",
+      "braucht exklusive armbanduhr",
+      "möchte luxusaccessoires",
+      "procura monograma personalizado",
+      "quer relógios de luxo",
+      "deseja acessórios de luxo",
+      "zoekt monogramm personifieerd",
+      "zocht exclusieve horloges",
+      "wil luxe accessoires",
+      "يبحث عن مونوغرام شخصي",
+      "يريد المجوهرات الفاخرة",
+      "يرغب في الأثاث الفاخر",
+      "몬로그램 개인화 찾음",
+      "고급 가방 원함",
+      "고급 액세서리 원함",
+      "寻找个性化马格码",
+      "想要高级珠宝",
+      "想买奢侈品配件",
+      "ищет персонализированный монограмм",
+      "хотел бы эксклюзивные часы",
+      "хочу люкс аксессуары",
+      "personalized モノグラム探す",
+      "高級時計探します",
+      "高級アクセサリー求めます"
+    ],
+    "CONCEPT_0065_c4903a": [
+      "recherche après",
+      "cherche ensuite",
+      "suit de près",
+      "up after",
+      "follows up",
+      "continues next",
+      "segue poi",
+      "prosegue subito dopo",
+      "segue immediatamente",
+      "sigue después",
+      "sigue inmediatamente",
+      "sigue luego",
+      "danach suchen",
+      "weiter suchen",
+      "nächste suchen",
+      "segue em seguida",
+      "segue imediatamente",
+      "segue logo",
+      "naar naartijd",
+      "volgt vervolging",
+      "volgt direct na",
+      "بعد ذلك يبحث",
+      "يستمر بعد ذلك",
+      "يجري التحقيق التالي",
+      "다음에 찾습니다",
+      "다음으로 찾아갑니다",
+      "다음에 계속합니다",
+      "随后寻找",
+      "继续之后",
+      "接着寻找",
+      "следующим образом ищет",
+      "продолжает затем",
+      "после этого продолжает поиск",
+      "その後探します",
+      "次に探します",
+      "その後続きます"
+    ],
+    "CONCEPT_0066_436917": [
       "recherche haute mode",
+      "monogramme personnalisé",
       "accessoires de luxe",
       "high-end fashion search",
+      "custom monogram",
       "luxury accessories interest",
       "ricerca alta moda",
+      "monogramma personalizzato",
       "oggetti di lusso desiderati",
       "busca alta calidad",
+      "monograma personalizado",
       "relojes de lujo interés",
       "hochwertige modeinteresse",
       "monogramm eingerichtet",
@@ -3907,6 +3181,7 @@
       "مونولوجم مخصص",
       "أثاث فاخر اهتمام",
       "고급 패션 탐색",
+      "개인화된 모노그램",
       "상품 량 유의미한",
       "高端时尚搜索",
       "定制的摩纳哥",
@@ -3915,23 +3190,10 @@
       "монограмма настроена",
       "лайфстайл интересы",
       "高級ファッション探求",
+      "カスタマイズされたモノグラム",
       "高級品の興味"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 10,
-    "examples": [
-      "SA_0080",
-      "SA_0287",
-      "SA_0053",
-      "SA_015",
-      "SA_0198"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0067_1c36b8": {
-    "label": "cliente tech",
-    "aliases": [
-      "cliente tech",
+    "CONCEPT_0067_1c36b8": [
       "client technophile",
       "client digitaliste",
       "client de luxe moderne",
@@ -3967,23 +3229,7 @@
       "デジタル高級顧客",
       "モダンテック高級接点"
     ],
-    "languages": "ES|IT|PT",
-    "freq_notes": 10,
-    "examples": [
-      "SA_0283",
-      "SA_0059",
-      "SA_0177",
-      "SA_015",
-      "SA_0196"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0068_242aa6": {
-    "label": "demandé une presentazione",
-    "aliases": [
-      "demandé une presentazione",
-      "une presentazione",
-      "demandé une présentation",
+    "CONCEPT_0068_242aa6": [
       "recherche une présentation",
       "s'occupe de la présentation",
       "organise une présentation",
@@ -4020,22 +3266,46 @@
       "プレゼンテーションの準備をする",
       "説明会を予約する"
     ],
-    "languages": "FR",
-    "freq_notes": 10,
-    "examples": [
-      "SA_0334",
-      "SA_0368",
-      "SA_0128",
-      "SA_0395",
-      "SA_0293"
+    "CONCEPT_0069_c632bf": [
+      "recherche de comparaison",
+      "comparer avec",
+      "se comparer à",
+      "compare to",
+      "look at alternatives",
+      "contrast with",
+      "comparare con",
+      "visto alternativa",
+      "cercare simili",
+      "comparar con",
+      "ver alternativas",
+      "encontrar similaridades",
+      "mit vergleichen",
+      "alternativen sehen",
+      "gleichsetzen mit",
+      "comparar com",
+      "ver opções alternativas",
+      "encontrar semelhantes",
+      "met vergelijken",
+      "alternatieven bekijken",
+      "zelfde producten zoeken",
+      "مقارنة مع",
+      "مراجعات أخرى",
+      "العثور على م imilar",
+      "비교하기 위한",
+      "다른 옵션을 살펴보기",
+      "유사 제품 찾기",
+      "比较一下",
+      "看看其他选择",
+      "寻找相似产品",
+      "сравнить с",
+      "другие варианты",
+      "поиск похожих товаров",
+      "比較する",
+      "他の選択肢を見る",
+      "類似品を探す"
     ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0070_ab740d": {
-    "label": "alta costura",
-    "aliases": [
-      "alta costura",
-      "busca alta costura",
+    "CONCEPT_0070_ab740d": [
+      "recherche haute couture",
       "monogramme personnalisé haute costura",
       "cerca alta costura",
       "interested in haute couture",
@@ -4070,22 +3340,7 @@
       "モノグラム モノグラム haute costura",
       "haute costura 求める"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 9,
-    "examples": [
-      "SA_0214",
-      "SA_0053",
-      "SA_0186",
-      "SA_0095",
-      "SA_0198"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0071_a3eaf3": {
-    "label": "mala sob",
-    "aliases": [
-      "mala sob",
-      "per mala",
+    "CONCEPT_0071_a3eaf3": [
       "mala personnalisée",
       "sob exclusif",
       "mala unique",
@@ -4121,21 +3376,7 @@
       "高級マラ",
       "マラ限定仕様"
     ],
-    "languages": "PT",
-    "freq_notes": 9,
-    "examples": [
-      "SA_0244",
-      "SA_0332",
-      "SA_0290",
-      "SA_0138",
-      "SA_0349"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0072_af8d5f": {
-    "label": "sac in",
-    "aliases": [
-      "sac in",
+    "CONCEPT_0072_af8d5f": [
       "sacs en cuir exotique",
       "sacs personnalisés monogramme",
       "sacs rose doré minimalistes",
@@ -4185,22 +3426,45 @@
       "ロゼゴールド スタイル,",
       "軽量な皮製品のバッグを検索する"
     ],
-    "languages": "IT",
-    "freq_notes": 9,
-    "examples": [
-      "SA_0056",
-      "SA_0084",
-      "SA_0267",
-      "SA_029",
-      "SA_013"
+    "CONCEPT_0073_09a954": [
+      "une occasion",
+      "une affaire privée",
+      "un secret de mode",
+      "a private affair",
+      "an exclusive piece",
+      "a bespoke option",
+      "una occasione speciale",
+      "un pezzo di moda",
+      "un'opportunità privata",
+      "una oportunidad privada",
+      "un pieza de alta costura",
+      "un secreto de lujo",
+      "ein privatstück",
+      "eine modegeheimnis",
+      "ein exklusivstück",
+      "uma ocasião especial",
+      "um item de luxo",
+      "uma oportunidade privada",
+      "een privé-aanbod",
+      "een modegeheimzins",
+      "een exclusief option",
+      "حدث خاص",
+      "أحلى إكسسوار",
+      "فرصة خاصة بالخياطة",
+      "개인적인 기회",
+      "고급 가방",
+      "특별한 모델",
+      "私人机会",
+      "高级手表",
+      "特别款式",
+      "частная сделка",
+      "шикарный аксессуар",
+      "особая модель",
+      "プライベートオプション",
+      "高級時計",
+      "特別モデル"
     ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0074_a4b460": {
-    "label": "approx corporate",
-    "aliases": [
-      "approx corporate",
-      "value approx corporate",
+    "CONCEPT_0074_a4b460": [
       "approximate corporate needs",
       "bespoke corporate solutions",
       "corporate luxe approché",
@@ -4238,21 +3502,7 @@
       "カスタマイズされたビジネスオファリング",
       "ビジネス向けラグジュアリー"
     ],
-    "languages": "EN",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0285",
-      "SA_0123",
-      "SA_0392",
-      "SA_0269"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0075_949839": {
-    "label": "approx follow",
-    "aliases": [
-      "approx follow",
-      "value approx follow",
+    "CONCEPT_0075_949839": [
       "suivi approximatif",
       "suivie approximative",
       "suivi approx",
@@ -4289,20 +3539,7 @@
       "概略的にフォロー",
       "フォローアップ概略"
     ],
-    "languages": "EN",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0199",
-      "SA_0077",
-      "SA_0354",
-      "SA_0174"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0076_145af5": {
-    "label": "bespoke",
-    "aliases": [
-      "bespoke",
+    "CONCEPT_0076_145af5": [
       "personnalisé sur mesure",
       "taille unique",
       "artisanal",
@@ -4337,24 +3574,7 @@
       "個別サイズ",
       "手作り"
     ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_014",
-      "CA_100",
-      "CA_027",
-      "CA_092",
-      "CA_066"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0077_ce2267": {
-    "label": "client interessato",
-    "aliases": [
-      "client interessato",
-      "client ha richiesto",
-      "client interesado",
-      "client requested",
+    "CONCEPT_0077_ce2267": [
       "client cherche montres",
       "client recherche bijoux louis vuitton",
       "client veut lunettes de soleil",
@@ -4392,22 +3612,7 @@
       "顧客ディオールのジュエリーに興味があります",
       "顧客プレゼント用のバッグを探しています"
     ],
-    "languages": "EN|ES|IT",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0093",
-      "SA_0322",
-      "SA_0344",
-      "SA_0313",
-      "SA_0262"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0078_b488e1": {
-    "label": "client real",
-    "aliases": [
-      "client real",
-      "cliente real",
+    "CONCEPT_0078_b488e1": [
       "client unique",
       "client privilégiée",
       "client recherchée",
@@ -4445,23 +3650,7 @@
       "優待顧客",
       "探している顧客"
     ],
-    "languages": "EN|ES|FR|IT|PT",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0298",
-      "SA_0100",
-      "SA_0294",
-      "SA_0345",
-      "SA_0069"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0079_c6a6b1": {
-    "label": "for haute",
-    "aliases": [
-      "for haute",
-      "interessiert an haute",
-      "interested in haute",
+    "CONCEPT_0079_c6a6b1": [
       "recherche haute accessoires",
       "cherche produits haute couture",
       "s'interesse à haute mode",
@@ -4499,22 +3688,7 @@
       "高級品を観察したい",
       "高級品に興味がある"
     ],
-    "languages": "DE|EN|NL",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0245",
-      "SA_0119",
-      "SA_0252",
-      "SA_0262",
-      "SA_0320"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0080_997abb": {
-    "label": "geïnteresseerd in gelimiteerd",
-    "aliases": [
-      "geïnteresseerd in gelimiteerd",
-      "in gelimiteerd",
+    "CONCEPT_0080_997abb": [
       "gelimiteerd accessoires",
       "accessoires gelimiteerd",
       "gelimiteerd bijoux",
@@ -4544,26 +3718,14 @@
       "제한된 제품들",
       "限量版商品",
       "限量精品",
+      "限量版配饰",
       "ограниченные товары",
       "ограниченная коллекция",
       "ограниченный ассортимент",
       "限定品",
       "限定アイテム"
     ],
-    "languages": "NL",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0190",
-      "SA_0316",
-      "SA_0386",
-      "SA_0058"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0081_a69446": {
-    "label": "ha richiesto",
-    "aliases": [
-      "ha richiesto",
+    "CONCEPT_0081_a69446": [
       "ha recherché bijoux",
       "cherchait bagues",
       "a cherché montres",
@@ -4601,22 +3763,7 @@
       "時計を探しています",
       "鞄を探しています"
     ],
-    "languages": "IT",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0230",
-      "SA_0133",
-      "SA_0242",
-      "SA_0091",
-      "SA_0254"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0082_7d83e5": {
-    "label": "maat gemaakte",
-    "aliases": [
-      "maat gemaakte",
-      "op maat gemaakte",
+    "CONCEPT_0082_7d83e5": [
       "artisanal maat gemaakte",
       "maat gemaakte créations",
       "artisanale création maat gemaakte",
@@ -4653,20 +3800,45 @@
       "手仕事のマート ガメカイテ",
       "職人の技マート ガメカイテ"
     ],
-    "languages": "NL",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0134",
-      "SA_0201",
-      "SA_0124",
-      "SA_0246"
+    "CONCEPT_0083_f37ccb": [
+      "recherche de",
+      "en recherche de",
+      "désire trouver",
+      "ready to find",
+      "interested in finding",
+      "seeking out",
+      "pronta a trovare",
+      "interessata alla ricerca di",
+      "cerca di",
+      "listo para encontrar",
+      "dispuesto a buscar",
+      "en busca de",
+      "bereits aufsuchend",
+      "bereit, zu finden",
+      "sucht nach",
+      "pronta para encontrar",
+      "interessado em encontrar",
+      "em busca de",
+      "bereid om te vinden",
+      "bereid zich voor op te vinden",
+      "zocht naar",
+      "مُعدة للعثور عليها",
+      "هادفة إلى العثور عليها",
+      "تبحث عن",
+      "찾으려는 준비가 되었음",
+      "찾고자 하는 준비가 되었음",
+      "찾아보려는 준비가 되었음",
+      "准备寻找",
+      "有兴趣寻找",
+      "在寻找",
+      "готов к поиску",
+      "интересуется поиском",
+      "в поисках",
+      "探求する準備ができている",
+      "探求したい",
+      "探している"
     ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0084_2e5cfb": {
-    "label": "richiesto una",
-    "aliases": [
-      "richiesto una",
+    "CONCEPT_0084_2e5cfb": [
       "richieste bijoux",
       "recherche montres",
       "besoin de luxe",
@@ -4674,6 +3846,7 @@
       "watch inquiries",
       "luxury needs",
       "richieste accessori",
+      "cerca orologi",
       "desiderio di lusso",
       "solicitudes joyas",
       "consultas relojes",
@@ -4703,22 +3876,7 @@
       "時計の問い合わせ",
       "高級への欲求"
     ],
-    "languages": "IT",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0230",
-      "SA_0133",
-      "SA_0242",
-      "SA_0091",
-      "SA_0254"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0085_ed88dc": {
-    "label": "solicitou uma privata",
-    "aliases": [
-      "solicitou uma privata",
-      "solicitou uma privada",
+    "CONCEPT_0085_ed88dc": [
       "privauté recherchée",
       "privatisation demandée",
       "privatisation recherchée",
@@ -4755,22 +3913,7 @@
       "プライベートカウンセリングの要請",
       "プライベートサービスの要求"
     ],
-    "languages": "PT",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0308",
-      "SA_0195",
-      "SA_0244",
-      "SA_0165",
-      "SA_0274"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0086_02674f": {
-    "label": "wire transfer pending",
-    "aliases": [
-      "wire transfer pending",
-      "wire transfer",
+    "CONCEPT_0086_02674f": [
       "paiement en attente",
       "enregistrement de virement bancaire",
       "attente du virement",
@@ -4801,33 +3944,21 @@
       "汇款待确认中",
       "银行转账等待中",
       "银行转账处理中",
+      "перевод в ожидании",
       "банковая перекупка в ожидании",
       "ожидание банковского перевода",
       "振込の確認待ち",
       "銀行振替の待機中",
       "銀行振替の手続き中"
     ],
-    "languages": "EN",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0337",
-      "SA_0361",
-      "SA_0069",
-      "SA_002"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0087_281385": {
-    "label": "überweisung ausstehend",
-    "aliases": [
-      "besichtigung for maßgefertigter",
-      "interessert an maßgefertigter",
+    "CONCEPT_0087_281385": [
       "paiement en attente",
       "paiement à suivre",
       "paiement attendu",
       "paiement prévu",
       "paiement en cours",
       "paiement à régler",
+      "pending transfer",
       "outstanding payment",
       "awaiting payment",
       "payment pending",
@@ -4875,6 +4006,8 @@
       "未处理转账",
       "等待支付的转账",
       "待支付的转账",
+      "ожидание перевода",
+      "перевод в ожидании",
       "перевод на рассмотрении",
       "перевод подлежащий исполнению",
       "перевод в процессе",
@@ -4884,27 +4017,15 @@
       "振込待つ",
       "振込待ち"
     ],
-    "languages": "DE",
-    "freq_notes": 8,
-    "examples": [
-      "SA_0391",
-      "SA_0168",
-      "SA_0160",
-      "SA_0358",
-      "SA_0327"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0088_44e22d": {
-    "label": "all acquisto",
-    "aliases": [
-      "all acquisto",
+    "CONCEPT_0088_44e22d": [
       "achat complet",
       "recherche montres",
       "acquisto ensemble",
       "full purchase",
+      "interested in watches",
       "complete acquisition",
       "acquisto completo",
+      "cerca orologi",
       "acquisto integrale",
       "todo el pedido",
       "interés relojes",
@@ -4933,24 +4054,12 @@
       "腕時計に興味あり",
       "完全購入"
     ],
-    "languages": "IT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0344",
-      "SA_0074",
-      "SA_0133",
-      "SA_0091",
-      "SA_0055"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0089_3082e6": {
-    "label": "alta gioielleria",
-    "aliases": [
-      "alta gioielleria",
+    "CONCEPT_0089_3082e6": [
       "bijoux exclusifs",
       "jouets de luxe",
+      "bijoux personnalisés",
       "bijoux d'alta qualité",
+      "bijoux à collectionner",
       "high-end jewelry",
       "luxury accessories",
       "exclusive jewelry pieces",
@@ -4961,8 +4070,11 @@
       "collier di valore",
       "jewelry collection",
       "accessori di lusso",
+      "relojes de lujo",
       "joyas de alta gama",
+      "relojes personalizados",
       "joyas exclusivas",
+      "relojes de colección",
       "exklusive juwelen",
       "luxusaccessoires",
       "personalisierte juwelen",
@@ -4977,6 +4089,7 @@
       "personaliseerde juwelen",
       "exclusieve schmiedetekenen",
       "مجوهرات عالية الجودة",
+      "ساعات فاخرة",
       "مجوهرات مخصصة",
       "مجوهرات فاخرة",
       "مجوهرات لل收藏",
@@ -5000,21 +4113,7 @@
       "高級コレクション",
       "高級アクセサリーセレクト"
     ],
-    "languages": "IT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0196",
-      "SA_0074",
-      "SA_0184",
-      "SA_004",
-      "SA_0230"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0090_9dd6db": {
-    "label": "cliente art",
-    "aliases": [
-      "cliente art",
+    "CONCEPT_0090_9dd6db": [
       "client collectionneur d'art",
       "client passionné par l'art",
       "client yachtsman et collectionneur d'art",
@@ -5088,37 +4187,27 @@
       "慈善活動家の顧客",
       "芸術コレクターの顧客の豪邸"
     ],
-    "languages": "ES|IT|PT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0080",
-      "SA_0218",
-      "SA_0053",
-      "SA_0219",
-      "SA_0055"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0091_3f63fe": {
-    "label": "in edizione",
-    "aliases": [
-      "in edizione",
+    "CONCEPT_0091_3f63fe": [
       "edition unique",
       "editions limitees",
       "edition personnalisée",
+      "limited edition",
       "exclusive edition",
       "custom edition",
       "edizione speciale",
       "edizioni limitate",
       "edizione personalizzata",
+      "edición limitada",
       "ediciones especiales",
       "edición personalizada",
       "einzelfassung",
       "besonderer edikt",
       "personalisierte edition",
+      "edição limitada",
       "edições especiais",
       "edição personalizada",
       "unieke editie",
+      "beperkte editie",
       "persoonlijks aangepaste editie",
       "إصدار محدودة",
       "editions خاصية",
@@ -5126,29 +4215,17 @@
       "제限된 에디션",
       "특별 에디션",
       "개인화 에디션",
+      "限量版",
       "特别版",
       "定制版",
       "уникальная версия",
+      "ограниченная серия",
       "персонализированная версия",
       "限定版",
       "特別版",
       "カスタマイズされた版"
     ],
-    "languages": "IT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0218",
-      "SA_029",
-      "SA_0114",
-      "SA_0276",
-      "SA_0133"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0092_365b8a": {
-    "label": "needs custom",
-    "aliases": [
-      "needs custom",
+    "CONCEPT_0092_365b8a": [
       "besoin de personnalisation",
       "besoin personnalisé",
       "besoin à la demande",
@@ -5185,21 +4262,7 @@
       "カスタマイズ必要性",
       "特別な要件"
     ],
-    "languages": "EN|ES",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0187",
-      "SA_0153",
-      "SA_0088",
-      "SA_0154",
-      "SA_0110"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0093_53375c": {
-    "label": "para comprar",
-    "aliases": [
-      "para comprar",
+    "CONCEPT_0093_53375c": [
       "cherchez des montres louis vuitton",
       "cherchez des bijoux dior",
       "recherche cadeaux pour noel",
@@ -5238,23 +4301,7 @@
       "デオの腕時計が気になります",
       "エルローゼの personalized アクセサリーを検討しています"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0195",
-      "SA_0217",
-      "SA_0095",
-      "SA_0138",
-      "SA_0185"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0094_396c68": {
-    "label": "privata per montre",
-    "aliases": [
-      "privata per montre",
-      "privada para relógio",
-      "privée pour montre",
+    "CONCEPT_0094_396c68": [
       "montres privées",
       "montres en privé",
       "montres pour particuliers",
@@ -5292,22 +4339,44 @@
       "プライベート専用時計",
       "プライベート限定時計"
     ],
-    "languages": "ES|FR|IT|PT",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0195",
-      "SA_0334",
-      "SA_0395",
-      "SA_0165",
-      "SA_0192"
+    "CONCEPT_0095_5fd98c": [
+      "pronto à l'achat",
+      "prêt pour l'achat",
+      "acheter rapidement",
+      "ready for purchase",
+      "quickly ready to buy",
+      "purchase immediately",
+      "pronti per acquisto",
+      "preparato all'acquisto",
+      "acquisto veloce",
+      "listo para comprar",
+      "rápido listo para comprar",
+      "compra rápida",
+      "bereit zum kauf",
+      "schnell bereit für den kauf",
+      "kauf schnell",
+      "pronto para a compra",
+      "rápido pronto para comprar",
+      "opzet voor de kopen",
+      "breekbaar voor het kopen",
+      "kopen snel",
+      "مُعد للشراء",
+      "مستعجل للاستثمار",
+      "استثمار سريع",
+      "구매 준비가 되었음",
+      "즉시 구매 가능",
+      "빠른 구매 준비",
+      "准备购买",
+      "立即购买",
+      "快速购买",
+      "готов к покупке",
+      "быстро готов к покупке",
+      "быстрый покупок",
+      "購入準備が整いました",
+      "即時購入可能",
+      "速やかな購入準備"
     ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0096_4ce17b": {
-    "label": "sucht seltener",
-    "aliases": [
-      "sucht seltener",
-      "for seltener",
+    "CONCEPT_0096_4ce17b": [
       "cherche rare",
       "recherche sélénite",
       "surtout cherché",
@@ -5345,21 +4414,7 @@
       "ユニークなアイテムに興味がある",
       "顧客から人気のある"
     ],
-    "languages": "DE",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0213",
-      "SA_0286",
-      "SA_0193",
-      "SA_0327",
-      "SA_0351"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0097_c2eb47": {
-    "label": "to buy",
-    "aliases": [
-      "to buy",
+    "CONCEPT_0097_c2eb47": [
       "chercher à acheter",
       "recherche de bijoux",
       "chercher des montres",
@@ -5367,12 +4422,14 @@
       "chercher des accessoires",
       "chercher des sacs",
       "looking to purchase",
+      "interested in watches",
       "wants to buy jewelry",
       "seeks luxury clothing",
       "searches for accessories",
       "looks for bags",
       "cerca di acquisto",
       "interessato ai gioielli",
+      "cerca orologi",
       "cerca abiti",
       "cerca accessori",
       "cerca borse",
@@ -5431,22 +4488,9 @@
       "アクセサリーを探しています",
       "バッグを探しています"
     ],
-    "languages": "EN",
-    "freq_notes": 7,
-    "examples": [
-      "SA_0228",
-      "SA_0223",
-      "SA_0159",
-      "SA_022",
-      "SA_0079"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0098_b735bd": {
-    "label": "mala sob medida",
-    "aliases": [
-      "mala sob medida",
+    "CONCEPT_0098_b735bd": [
       "bijoux mala",
+      "bijoux personnalisés",
       "bijoux sur mesure",
       "bracelets mala",
       "bracelets sur mesure",
@@ -5464,6 +4508,7 @@
       "pendente mala surmisura",
       "mala per mano",
       "relojes mala medida",
+      "relojes personalizados",
       "relojes sob medida",
       "anillos mala",
       "anillos de malas",
@@ -5517,21 +4562,7 @@
       "マラカスタマイズピアス",
       "マラカスタマイズリング"
     ],
-    "languages": "PT",
-    "freq_notes": 6,
-    "examples": [
-      "SA_0244",
-      "SA_0332",
-      "SA_0290",
-      "SA_0138",
-      "SA_0349"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0099_350333": {
-    "label": "benötigt individuelles",
-    "aliases": [
-      "benötigt individuelles",
+    "CONCEPT_0099_350333": [
       "benötigt des personnalisation",
       "cherche un design unique",
       "a besoin d'un motif personnalisé",
@@ -5569,27 +4600,15 @@
       "ユニークなデザインソリューションを探しています",
       "個別化されたモチーフが必要"
     ],
-    "languages": "DE",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0286",
-      "SA_008",
-      "SA_0130",
-      "SA_0102",
-      "SA_0120"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0100_0a3597": {
-    "label": "de edizione",
-    "aliases": [
-      "de edizione",
+    "CONCEPT_0100_0a3597": [
       "de édition",
       "édition spéciale",
       "défi de l'édition",
       "edition editioned",
+      "limited edition",
       "edition exclusive",
       "edizione speciale",
+      "edizione limitata",
       "edizione monogramma",
       "edición especial",
       "colección edición",
@@ -5604,8 +4623,10 @@
       "speciale uitgave",
       "monogram uitgave",
       "إصدار خاص",
+      "إصدار محدود",
       "موديل إصدار",
       "특별판",
+      "限量版",
       "모노그램 판",
       "特别版",
       "摩登版",
@@ -5616,23 +4637,10 @@
       "限定版",
       "モノグラム 版"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0294",
-      "SA_0165",
-      "SA_0399",
-      "SA_0243",
-      "SA_0200"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0101_3382ac": {
-    "label": "fijne sieraden",
-    "aliases": [
-      "fijne sieraden",
+    "CONCEPT_0101_3382ac": [
       "bijoux de qualité",
       "accessoires précieux",
+      "bijoux personnalisés",
       "bijoux élégants",
       "bijoux de luxe",
       "fine jewelry",
@@ -5642,6 +4650,7 @@
       "exclusive adornments",
       "gioielli di alta qualità",
       "accessori preziosi",
+      "gioielli personalizzati",
       "gioielli eleganti",
       "gioielli di lusso",
       "joyas de calidad",
@@ -5653,6 +4662,7 @@
       "prezioso accessoires",
       "schmuckstücke mit personalisierung",
       "exklusive juwelen",
+      "luxusaccessoires",
       "brincos de qualidade",
       "acessórios preciosos",
       "brincos personalizados",
@@ -5663,6 +4673,7 @@
       "juwelen met personalisatie",
       "exclusieve juwelen",
       "luxueuze accessoires",
+      "ساعات فاخرة",
       "مجوهرات عالية الجودة",
       "مجوهرات مخصصة",
       "مجوهرات أنيقة",
@@ -5680,26 +4691,16 @@
       "украшения с личной подпись",
       "элегантные украшения",
       "люксовые аксессуары",
+      "高級時計",
+      "高級アクセサリー",
       "personalized チェーン",
       "高級装飾品"
     ],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0125",
-      "SA_0352",
-      "SA_0312",
-      "SA_0233",
-      "SA_0167"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0102_597607": {
-    "label": "follow up na",
-    "aliases": [
-      "follow up na",
+    "CONCEPT_0102_597607": [
       "suivi suivant",
+      "recherche suivi",
       "contact à venir",
+      "suivi après vente",
       "suivre prochainement",
       "rechercher suite",
       "follow up next step",
@@ -5769,26 +4770,13 @@
       "近い将来のフォローアップを設定する",
       "新しい連絡を探している"
     ],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0105",
-      "SA_0078",
-      "SA_0135",
-      "SA_0167",
-      "SA_0201"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0103_69683f": {
-    "label": "gelimiteerd horloge",
-    "aliases": [
-      "gelimiteerd horloge",
+    "CONCEPT_0103_69683f": [
       "heure limitée",
       "montre limitée",
       "horloge personnalisée",
       "limited edition watch",
       "limited time watch",
+      "personalized watch",
       "orologio limitato",
       "orologio personalizzato",
       "oralettino specializzato",
@@ -5799,12 +4787,14 @@
       "personalisierte uhr",
       "spezialuhr",
       "relógio limitado",
+      "relógio personalizado",
       "cronômetro especial",
       "beperkte horloge",
       "persoonlijk gemaakte horloge",
       "speciaalhorloge",
       "ساعة محدودة",
       "ساعة شخصية",
+      "ساعات خاصة",
       "제한된 시계",
       "개인화된 시계",
       "특별한 시계",
@@ -5815,23 +4805,10 @@
       "персонализированная часы",
       "специальная часы",
       "制限付き時計",
-      "personalized 時計"
+      "personalized 時計",
+      "特別な時計"
     ],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0105",
-      "SA_0190",
-      "SA_0386",
-      "SA_0316",
-      "SA_0058"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0104_1bd884": {
-    "label": "heeft aangepast",
-    "aliases": [
-      "heeft aangepast",
+    "CONCEPT_0104_1bd884": [
       "recherche aangepasst montres",
       "montres aangepast intéressante",
       "aangepaste montures recherchées",
@@ -5869,20 +4846,44 @@
       "カスタマイズされたアイテム興味",
       "調整した時計探している"
     ],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0282",
-      "SA_0225",
-      "SA_0136",
-      "SA_0190",
-      "SA_0058"
+    "CONCEPT_0105_05a23d": [
+      "en attente",
+      "suspendu",
+      "suspensif",
+      "on hold",
+      "pending",
+      "in suspense",
+      "in sospeso",
+      "sospettato",
+      "incerto",
+      "pendiente",
+      "suspenso",
+      "dudoso",
+      "auf eis",
+      "zu verfolgen",
+      "unsicher",
+      "em suspensão",
+      "suspendido",
+      "in afwachings",
+      "opgezette",
+      "onduidelijk",
+      "في انتظار",
+      "معلق",
+      "منقسم",
+      "대기중",
+      "미확인",
+      "불확실한",
+      "待定",
+      "悬而未决",
+      "不确定的",
+      "в ожидании",
+      "под вопросом",
+      "неуверенный",
+      "猶豫中",
+      "疑問の余地あり",
+      "不確実な"
     ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0106_5e1d1e": {
-    "label": "pronto para",
-    "aliases": [
+    "CONCEPT_0106_5e1d1e": [
       "pronto pour",
       "à l'écoute",
       "prêt à écouter",
@@ -5920,32 +4921,20 @@
       "聴くために",
       "準備万全の状態で"
     ],
-    "languages": "PT",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0195",
-      "SA_015",
-      "SA_0095",
-      "SA_0138",
-      "SA_0377"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0107_d6f7d1": {
-    "label": "une visite",
-    "aliases": [
-      "une visite",
+    "CONCEPT_0107_d6f7d1": [
       "visite privée",
       "consultation de luxe",
       "recherche d'accessoire",
       "visite personnalisée",
       "consulter bijoux",
       "visionner collection",
+      "private viewing",
       "luxury consultation",
       "watches of interest",
       "personalized tour",
       "explore jewelry",
       "view luxury collection",
+      "visita privata",
       "consulter accessori",
       "cerca oggetti preziosi",
       "visione di collezione",
@@ -6005,21 +4994,7 @@
       "コレクションを探索する",
       "モードを見る"
     ],
-    "languages": "FR",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0100",
-      "SA_0206",
-      "SA_0330",
-      "SA_0121",
-      "SA_0251"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0108_256a3e": {
-    "label": "up na gala",
-    "aliases": [
-      "up na gala",
+    "CONCEPT_0108_256a3e": [
       "accessoires pour gala",
       "vêtements de gala personnalisés",
       "bijoux pour événements spéciaux",
@@ -6055,25 +5030,14 @@
       "特別イベントの服",
       "特別な行事の宝石"
     ],
-    "languages": "NL",
-    "freq_notes": 5,
-    "examples": [
-      "SA_0105",
-      "SA_0078",
-      "SA_0135",
-      "SA_0167",
-      "SA_0201"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0109_b5ab0d": {
-    "label": "alta moda",
-    "aliases": [
+    "CONCEPT_0109_b5ab0d": [
+      "haute couture",
       "vêtements de luxe",
       "accessoires d'alta moda",
       "mode élégante",
       "élégance vestimentaire",
       "bijoux haute mode",
+      "high fashion",
       "luxury clothing",
       "accessories for high fashion",
       "elegant attire",
@@ -6090,10 +5054,12 @@
       "relojes de alta moda",
       "accesorios de alta moda",
       "elegante vestuario",
+      "relojes de lujo",
       "hochmoderne kleidung",
       "luxusbekleidung",
       "accessoires für hochmoderne",
       "elegantes outfit",
+      "luxusaccessoires",
       "hochmodenrelojes",
       "alta moda roupas",
       "vestuário de luxo",
@@ -6111,37 +5077,32 @@
       "ساعات عالية المستوى",
       "أحذية عالي المستوى",
       "موضة فاخرة",
+      "ساعات فاخرة",
       "고급 패션 의류",
       "상품 브랜드 의류",
       "고급 시계",
+      "고급 가방",
+      "고급 패션",
       "고급 액세서리",
       "高级时尚服装",
       "高端配饰",
       "高级手表",
       "高端服饰",
+      "高级珠宝",
       "高级配饰",
       "высокодоходная одежда",
       "шикарные аксессуары",
       "высокодоходные часы",
       "шикарные сумки",
       "шикарная одежда",
+      "шикарные часы",
       "高級ファッション衣装",
-      "高級服飾品"
+      "高級アクセサリー",
+      "高級時計",
+      "高級服飾品",
+      "高級ジュエリー"
     ],
-    "languages": "IT|PT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0091",
-      "SA_037",
-      "SA_0265",
-      "SA_0052"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0110_0b4a7a": {
-    "label": "an feiner",
-    "aliases": [
-      "an feiner",
+    "CONCEPT_0110_0b4a7a": [
       "une fine qualité",
       "un luxe élégant",
       "des accessoires an feiner",
@@ -6190,27 +5151,16 @@
       "アン フェイナー スタイル",
       "ラグジュアリー アナフェイナー スタイル"
     ],
-    "languages": "DE",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0087",
-      "SA_0264",
-      "SA_0271",
-      "SA_0085"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0111_97daec": {
-    "label": "baule su",
-    "aliases": [
-      "baule su",
+    "CONCEPT_0111_97daec": [
       "sac de voyage suisse",
       "sacs en cuir personnalisés",
+      "sac à main luxe",
       "swiss leather tote bag",
       "customized luxury wallets",
       "luxury travel bags",
       "borsa di viaggio specializzata",
       "portafogli personalizzati in pelle",
+      "borse di lusso",
       "maletas de viaje exclusivas",
       "relojes personalizados en joyería",
       "bolsos de lujo",
@@ -6239,20 +5189,9 @@
       "personalized レディースジュエリー",
       "高級財布"
     ],
-    "languages": "IT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0322",
-      "SA_0208",
-      "SA_0364",
-      "SA_0344"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0112_8446cb": {
-    "label": "bolsa de",
-    "aliases": [
-      "bolsa de",
+    "CONCEPT_0112_8446cb": [
+      "sac à main",
+      "sacs de marque",
       "sac en cuir",
       "handbag",
       "designer bags",
@@ -6266,11 +5205,13 @@
       "handtasche",
       "markenhandtaschen",
       "leather handtaschen",
+      "sac de luxo",
       "págs de marcas",
       "mochilas em couro",
       "zakken van markt",
       "modezakken",
       "leestassen",
+      "حقيبة فاخرة",
       "حقائب علامات تجارية",
       "حقيبة في الجلد",
       "상류 브랜드 가방",
@@ -6286,21 +5227,7 @@
       "ブランドバッグ",
       "革製のバッグ"
     ],
-    "languages": "PT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0383",
-      "SA_0177",
-      "SA_0292",
-      "SA_0274"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0113_1a3aa1": {
-    "label": "busca baúl",
-    "aliases": [
-      "busca baúl",
-      "busca sac",
+    "CONCEPT_0113_1a3aa1": [
       "recherche sac à main",
       "sac à main intéressante",
       "cherche coffret cadeau",
@@ -6338,20 +5265,7 @@
       "贈呈用の箱に興味があります",
       "貴重品入れを探しています"
     ],
-    "languages": "ES",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0266",
-      "SA_0217",
-      "SA_018",
-      "SA_0366"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0114_d1b3c8": {
-    "label": "comparando con",
-    "aliases": [
-      "comparando con",
+    "CONCEPT_0114_d1b3c8": [
       "comparaison avec",
       "recherche de comparaisons",
       "connaissance des modèles",
@@ -6389,20 +5303,7 @@
       "モデルの調査",
       "モデル比較"
     ],
-    "languages": "ES|PT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0126",
-      "SA_0321",
-      "SA_0283",
-      "SA_0366"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0115_665009": {
-    "label": "exotische handtasche",
-    "aliases": [
-      "exotische handtasche",
+    "CONCEPT_0115_665009": [
       "tasques exotiques personnalisées",
       "sac en cuir exotique rose doré",
       "sacs de luxe minimalistes avec monogramme",
@@ -6439,26 +5340,16 @@
       "ローズゴールド モノグラム時計",
       "シンプルな高級デザイン"
     ],
-    "languages": "DE",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0382",
-      "SA_0166",
-      "SA_0130",
-      "SA_0371"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0116_6b4dcb": {
-    "label": "for haute couture",
-    "aliases": [
-      "for haute couture",
+    "CONCEPT_0116_6b4dcb": [
+      "haute couture mode",
       "mode haute couture",
       "couture haute recherche",
       "high fashion clothing",
       "fashion high couture",
       "couture haute seeks",
+      "alta moda abbigliamento",
       "abbigliamento alta moda",
+      "moda alta ricerca",
       "alta costura ropa",
       "costura alta ropa",
       "vestimenta alta busca",
@@ -6467,11 +5358,14 @@
       "modenschön sucht",
       "alta costura roupa",
       "roupa alta costura",
+      "costura alta busca",
       "hoogteken mode",
       "mode hoogteken",
       "mode hoogteken zoeken",
+      "موضة عالي المستوى",
       "عالية المستوي موضة",
       "مستوى عالي البحث عن",
+      "고급 패션 의류",
       "패션 고급 의류",
       "의류 고급 찾기",
       "高级时装服装",
@@ -6484,21 +5378,7 @@
       "服飾品高級衣類",
       "衣類高級探求"
     ],
-    "languages": "EN|NL",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0252",
-      "SA_0245",
-      "SA_0269",
-      "SA_0262"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0117_3b6259": {
-    "label": "founder bat",
-    "aliases": [
-      "founder bat",
-      "tech founder bat",
+    "CONCEPT_0117_3b6259": [
       "bat de fondateur",
       "bat du créateur",
       "bat de l'initiateur",
@@ -6536,18 +5416,7 @@
       "創設者シンボル",
       "創設者の象徴"
     ],
-    "languages": "DE",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0240",
-      "SA_0130"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0118_345aab": {
-    "label": "limitierte montre",
-    "aliases": [
-      "limitierte montre",
+    "CONCEPT_0118_345aab": [
       "montre limitée",
       "montres limitées personnalisées",
       "montres limitées en or",
@@ -6585,20 +5454,7 @@
       "限定の personalized メンズ時計",
       "ゴールドの限定時計"
     ],
-    "languages": "DE",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0216",
-      "SA_0191",
-      "SA_0241",
-      "SA_0156"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0119_e4f03b": {
-    "label": "necessita di",
-    "aliases": [
-      "necessita di",
+    "CONCEPT_0119_e4f03b": [
       "necessite de lunettes",
       "cherche bijoux",
       "recherche sacs",
@@ -6648,19 +5504,7 @@
       "バッグが必要です",
       "アクセサリーが欲しいです"
     ],
-    "languages": "IT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0056",
-      "SA_0364",
-      "SA_0362",
-      "SA_0086"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0120_08c672": {
-    "label": "presente corporativo",
-    "aliases": [
+    "CONCEPT_0120_08c672": [
       "présent pour entreprise",
       "présent professionnel",
       "présent d'entreprise personnalisé",
@@ -6700,6 +5544,7 @@
       "bedrijfs-geschenk advies",
       "bedrijfs-geschenk voor bedrijven",
       "تقديم للشركة",
+      "هدية أعمال",
       "إقتراح هدية عملاء",
       "هدية أعمال شخصية",
       "هدية الأعمال",
@@ -6710,6 +5555,7 @@
       "비즈니스 선물 제안",
       "비즈니스 상품권 제안",
       "비즈니스 선물 권장",
+      "企业礼品",
       "商务礼品建议",
       "企业定制礼品",
       "企业专属礼品",
@@ -6720,24 +5566,48 @@
       "предложение бизнес-подарка",
       "бизнес подарок рекомендация",
       "бизнес подарок подсказка",
+      "企業用ギフト",
       "ビジネスプレゼンテーション",
       "ビジネスギフト提案"
     ],
-    "languages": "PT",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0274",
-      "SA_0349",
-      "SA_0107",
-      "SA_0188"
+    "CONCEPT_0121_620c81": [
+      "recherche de style",
+      "style recherché",
+      "style unique",
+      "style sought after",
+      "unique look sought",
+      "distinctive style",
+      "stile cercato",
+      "look specifico",
+      "stil elegante",
+      "estilo buscado",
+      "look exclusivo",
+      "estilo singular",
+      "gesucht nach stil",
+      "exklusive look",
+      "eleganter stil",
+      "estilo procurado",
+      "estilo elegante",
+      "gezocht naar stijl",
+      "exclusief look",
+      "elegantieke stijl",
+      "بحث عن طراز",
+      "مظهر مميز",
+      "طراز فاخر",
+      "시각 찾기",
+      "특이한 스타일",
+      "경치 좋은 스타일",
+      "风格搜寻",
+      "独特款式",
+      "精致风格",
+      "поиск стиля",
+      "уникальный стиль",
+      "элегантный стиль",
+      "スタイル探求",
+      "ユニークなスタイル",
+      "エレガントなスタイル"
     ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0122_7a27b9": {
-    "label": "zoekt zeldzame",
-    "aliases": [
-      "zoekt zeldzame",
-      "geïnteresseerd in zeldzame",
+    "CONCEPT_0122_7a27b9": [
       "zeldzaam bijzonder zoeken",
       "bijzondere accessoires zoeken",
       "zoeken naar unieke horloges",
@@ -6775,20 +5645,7 @@
       "希少なアクセサリー探す",
       "希少な時計探す"
     ],
-    "languages": "NL",
-    "freq_notes": 4,
-    "examples": [
-      "SA_0099",
-      "SA_0183",
-      "SA_0397",
-      "SA_0149"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0123_5efd9a": {
-    "label": "besoin d'un",
-    "aliases": [
-      "besoin d'un",
+    "CONCEPT_0123_5efd9a": [
       "besoin d'un cadeau",
       "besoin d'une montre",
       "besoin d'un sac",
@@ -6850,30 +5707,21 @@
       "香りを探している",
       "靴を探す"
     ],
-    "languages": "FR",
-    "freq_notes": 3,
-    "examples": [
-      "SA_0081",
-      "SA_0359",
-      "SA_0368"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0124_8de26d": {
-    "label": "geïnteresseerd in fijne",
-    "aliases": [
-      "geïnteresseerd in fijne",
+    "CONCEPT_0124_8de26d": [
       "fonds de commerce personnalisé",
       "bijou personnalisé",
       "recherche bijoux",
       "custom jewelry",
       "luxury accessories search",
       "fine jewelry enquiry",
+      "gioielli personalizzati",
       "accessori di lusso ricerca",
       "monogramme custom",
       "relojes de lujo en busca",
+      "joyas personalizadas",
       "objetos de colección",
       "luxury accessoires suchen",
+      "personalisierte juwelen",
       "fachsachen suchen",
       "jóias personalizadas em busca",
       "brincos de luxo procurando",
@@ -6897,19 +5745,7 @@
       "特別なジュエリーを検索",
       "高級アクセサリーの探求"
     ],
-    "languages": "NL",
-    "freq_notes": 3,
-    "examples": [
-      "SA_0233",
-      "SA_0352",
-      "SA_0312"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0125_4f4796": {
-    "label": "overschrijving in behandeling",
-    "aliases": [
-      "overschrijving in behandeling",
+    "CONCEPT_0125_4f4796": [
       "recherche de nouvelles tendances en mode",
       "mode personnalisée pour homme et femme",
       "tendance sur mesure en cuir",
@@ -6971,19 +5807,7 @@
       "ファッションスタイルを向上させるモノグラム",
       "ファッションの個別的なトレンド"
     ],
-    "languages": "NL",
-    "freq_notes": 3,
-    "examples": [
-      "SA_0386",
-      "SA_0233",
-      "SA_0124"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0126_49c5c5": {
-    "label": "viewing for haute",
-    "aliases": [
-      "viewing for haute",
+    "CONCEPT_0126_49c5c5": [
       "vision haute",
       "regard haute",
       "vue haute",
@@ -7021,19 +5845,7 @@
       "上からの眺め",
       "高視線"
     ],
-    "languages": "EN",
-    "freq_notes": 3,
-    "examples": [
-      "SA_0252",
-      "SA_0269",
-      "SA_0262"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0127_cf657d": {
-    "label": "viewing for limited",
-    "aliases": [
-      "viewing for limited",
+    "CONCEPT_0127_cf657d": [
       "vue sur limité",
       "vue privée limitée",
       "offre limitée à la vue",
@@ -7095,19 +5907,7 @@
       "限定特別見解",
       "限定特別視点"
     ],
-    "languages": "EN",
-    "freq_notes": 3,
-    "examples": [
-      "SA_0285",
-      "SA_0223",
-      "SA_0187"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0128_e0af04": {
-    "label": "besichtigung for seltener",
-    "aliases": [
-      "besichtigung for seltener",
+    "CONCEPT_0128_e0af04": [
       "bijoux sélèniques",
       "bijoux rares et précieux",
       "montres de luxe sélèniques",
@@ -7155,18 +5955,7 @@
       "稀有な高級宝石",
       "高級時計と宝石"
     ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0240",
-      "SA_0286"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0129_0523ad": {
-    "label": "ceo requested",
-    "aliases": [
-      "ceo requested",
+    "CONCEPT_0129_0523ad": [
       "demande de ceo",
       "recherche d'acquisition",
       "besoin de ceo",
@@ -7201,17 +5990,7 @@
       "投資関心",
       "ceo の要求"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0077",
-      "SA_0269"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0130_e3dbb2": {
-    "label": "ceo requested viewing",
-    "aliases": [
+    "CONCEPT_0130_e3dbb2": [
       "vue demandée par le ceo",
       "consultation requise par le ceo",
       "visionnage souhaité par le ceo",
@@ -7249,18 +6028,7 @@
       "ceoからの視察要求",
       "ceoによる視察要請"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0077",
-      "SA_0269"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0131_bd2683": {
-    "label": "cerca sac",
-    "aliases": [
-      "cerca sac",
+    "CONCEPT_0131_bd2683": [
       "sacs louis vuitton",
       "sac monogramme personnalisé",
       "sacs dionysos",
@@ -7297,17 +6065,7 @@
       "モノグラム personalized バッグ",
       "ディオニシス バッグ"
     ],
-    "languages": "IT",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0345",
-      "SA_029"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0132_ac224b": {
-    "label": "collector requested viewing",
-    "aliases": [
+    "CONCEPT_0132_ac224b": [
       "vue collector demandée",
       "demande vue collectionneur",
       "consultation demande collectionneur",
@@ -7350,17 +6108,7 @@
       "просьба посетить коллекционер",
       "コレクターの要求観察"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0123",
-      "SA_0187"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0133_7c398d": {
-    "label": "estate mogul interested",
-    "aliases": [
+    "CONCEPT_0133_7c398d": [
       "mogol immobilier cherche",
       "estates moguls intéressés",
       "immobilier recherche",
@@ -7398,18 +6146,7 @@
       "mogul の 不動産 寻求中",
       "mogul が 不動産 を探している"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0153",
-      "SA_0079"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0134_477ef4": {
-    "label": "for maßgefertigter",
-    "aliases": [
-      "for maßgefertigter",
+    "CONCEPT_0134_477ef4": [
       "maßgefertigter accessoire",
       "personnalisé maßgefertigt",
       "maßgefertigte montre",
@@ -7447,18 +6184,7 @@
       "カスタマイズされた時計",
       "個別製作アクセサリー"
     ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0358",
-      "SA_0168"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0135_6cf010": {
-    "label": "founder requested",
-    "aliases": [
-      "founder requested",
+    "CONCEPT_0135_6cf010": [
       "demande du fondateur",
       "requête du fondateur",
       "souhaite le fondateur",
@@ -7490,18 +6216,7 @@
       "創業者の要望",
       "創業者要請"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0199",
-      "SA_0252"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0136_b35918": {
-    "label": "founder requested viewing",
-    "aliases": [
-      "founder requested viewing",
+    "CONCEPT_0136_b35918": [
       "recherche du fondateur",
       "vendu par le fondateur",
       "visionnage pour le fondateur",
@@ -7539,18 +6254,7 @@
       "創業者の視察を希望する",
       "創業者による視察の要求"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0199",
-      "SA_0252"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0137_6d4ffa": {
-    "label": "haute joaillerie",
-    "aliases": [
-      "haute joaillerie",
+    "CONCEPT_0137_6d4ffa": [
       "haute joaillerie personnalisée",
       "bijoux de haute joaillerie",
       "bijoux de prestige",
@@ -7566,6 +6270,7 @@
       "alta gioielleria personalizzata",
       "gioielli di alta costura",
       "costumizzato gioielli di alta costura",
+      "gioielli di lusso",
       "gioielli di alta costura customizzato",
       "gioielli di lusso personalizzati",
       "jewelry de alta joyería",
@@ -7577,6 +6282,7 @@
       "hochjuwespersonalisiert",
       "pompier juwelen",
       "pompier juwelen personalisiert",
+      "luxusjuwelen",
       "pompier juwelen customisiert",
       "luxusjuwelen personalisiert",
       "joalheria de alta joalheria",
@@ -7615,18 +6321,7 @@
       "高級ジュエリー個別化",
       "高級ジュエリー精品"
     ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0368",
-      "SA_0060"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0138_aefecd": {
-    "label": "interested in bespoke",
-    "aliases": [
-      "interested in bespoke",
+    "CONCEPT_0138_aefecd": [
       "recherche de création personnalisée",
       "bespoke mode d'emploi",
       "mode d'emploi sur mesure",
@@ -7664,18 +6359,7 @@
       "bespoke 需求",
       "bespoke 要求"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0153",
-      "SA_0238"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0139_e3c4ed": {
-    "label": "mogul interested",
-    "aliases": [
-      "mogul interested",
+    "CONCEPT_0139_e3c4ed": [
       "recherche de mogul",
       "mogul en recherche",
       "moguls intéressés",
@@ -7713,18 +6397,7 @@
       "mogul の探求",
       "mogul 先生に興味"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0153",
-      "SA_0079"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0140_deb47a": {
-    "label": "philanthropist requested viewing",
-    "aliases": [
-      "philanthropist requested viewing",
+    "CONCEPT_0140_deb47a": [
       "philanthrope demande visionnage",
       "philanthrope recherche visionnage",
       "philanthrope souhaite voir",
@@ -7762,18 +6435,7 @@
       "フィランthropist 观察の機会を求め",
       "フィランthropist 見たい"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0285",
-      "SA_0223"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0141_ad1d1a": {
-    "label": "privada para bolsa",
-    "aliases": [
-      "privada para bolsa",
+    "CONCEPT_0141_ad1d1a": [
       "bolsa privée",
       "bolses privées",
       "bourse privée",
@@ -7810,21 +6472,11 @@
       "プライベートバッグ",
       "プライベートバッグ メンズ"
     ],
-    "languages": "PT",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0274",
-      "SA_0292"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0142_818bcb": {
-    "label": "procura alta joalharia",
-    "aliases": [
-      "procura alta joalharia",
+    "CONCEPT_0142_818bcb": [
       "joaillerie luxueuse",
       "bijoux de prestige",
       "bijoux en or et diamants",
+      "bijoux personnalisés",
       "bijoux pour homme",
       "bijoux pour femme",
       "high-end jewelry",
@@ -7833,20 +6485,25 @@
       "personalized luxury pieces",
       "men's luxury jewelry",
       "women's luxury jewelry",
+      "gioielli di lusso",
       "accessori per uomo e donna",
       "gioielli in oro e diamanti",
+      "gioielli personalizzati",
       "gioielli da uomo",
       "gioielli da donna",
       "alta joyería",
       "relojes y accesorios de lujo",
       "joyas en oro y diamantes",
+      "joyas personalizadas",
       "relojes para hombre",
       "relojes para mujer",
+      "luxusjuwelen",
       "uhr- und luxusaccessoires",
       "gold- und diamantjuwelen",
       "personalisierte luxusstücke",
       "herrliches luxusjewelry",
       "frauenluxusjuwelen",
+      "alta joalharia",
       "relojes e acessórios de luxo",
       "joias em ouro e diamantes",
       "joias personalizadas",
@@ -7870,6 +6527,7 @@
       "개인화된 고급 상품",
       "남성용 고급 보석",
       "여성용 고급 보석",
+      "高级珠宝",
       "高档手表和配饰",
       "黄金和钻石珠宝",
       "个性化高端商品",
@@ -7881,24 +6539,14 @@
       "персонализированные дорогие товары",
       "мужские дорогие украшения",
       "женские дорогие украшения",
+      "高級ジュエリー",
       "高級時計とアクセサリー",
       "金とダイヤモンドのジュエリー",
       "personalized 高級商品",
       "男性用高級ジュエリー",
       "女性用高級ジュエリー"
     ],
-    "languages": "PT",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0219",
-      "SA_0107"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0143_9f0557": {
-    "label": "procura bolsa",
-    "aliases": [
-      "procura bolsa",
+    "CONCEPT_0143_9f0557": [
       "bourse recherchée",
       "sac à main recherche",
       "sacs personnalisés",
@@ -7936,18 +6584,7 @@
       "時計探している",
       "高級雑貨探している"
     ],
-    "languages": "PT",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0383",
-      "SA_0177"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0144_63cd41": {
-    "label": "recherche haute",
-    "aliases": [
-      "recherche haute",
+    "CONCEPT_0144_63cd41": [
       "recherche montres haute",
       "cherche bijoux luxe",
       "recherche sac louis vuitton",
@@ -8021,18 +6658,7 @@
       "高級香水を探す",
       "ファッションアクセサリを探しています"
     ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0081",
-      "SA_0207"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0145_c91c2a": {
-    "label": "viewing for exotic",
-    "aliases": [
-      "viewing for exotic",
+    "CONCEPT_0145_c91c2a": [
       "regard sur les animaux exotiques",
       "regard sur les animaux sauvages",
       "regard sur les animaux rares",
@@ -8070,21 +6696,11 @@
       "珍獣観察",
       "珍獣体験"
     ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0199",
-      "SA_0174"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0146_247509": {
-    "label": "virement en attente",
-    "aliases": [
-      "virement en attente",
+    "CONCEPT_0146_247509": [
       "attente de virement",
       "virement en cours",
       "recherche de virement",
+      "pending transfer",
       "awaiting virement",
       "search for virement",
       "attesa di rimborsamento",
@@ -8111,3748 +6727,13 @@
       "等待转账",
       "转账待处理",
       "查询转账",
+      "ожидание перевода",
+      "перевод в ожидании",
       "поиск перевода",
       "振込待ち",
       "振込の準備中",
       "振込の確認"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "SA_0298",
-      "SA_0374"
-    ],
-    "rule": "bucket=next_action"
+    ]
   },
-  "CONCEPT_0147_c78aa1": {
-    "label": "mariage",
-    "aliases": [
-      "mariage",
-      "mar",
-      "wedding",
-      "bride",
-      "matrimonio",
-      "sposa",
-      "casamiento",
-      "novia",
-      "heirat",
-      "frau",
-      "casamento",
-      "noivo",
-      "hof",
-      "الزواج",
-      "زوجة",
-      "결혼식",
-      "신부",
-      "婚礼",
-      "新娘",
-      "брачный банкет",
-      "невеста",
-      "結婚式",
-      "新婦"
-    ],
-    "languages": "ALL",
-    "freq_notes": 34,
-    "examples": [
-      "CA_012",
-      "CA_008",
-      "CA_024",
-      "CA_036",
-      "CA_021"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0148_d932cb": {
-    "label": "naissance",
-    "aliases": [
-      "naissance",
-      "naiss",
-      "bébé",
-      "birth",
-      "baby",
-      "nascita",
-      "bambino",
-      "nacimiento",
-      "bebé",
-      "geburt",
-      "nascimento",
-      "filho",
-      "geboorte",
-      "kind",
-      "ولادة",
-      "طفل",
-      "출생",
-      "아이",
-      "出生",
-      "婴儿",
-      "рождение",
-      "ребенок",
-      "出産"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0149_f69f21": {
-    "label": "anniversaire",
-    "aliases": [
-      "anniv",
-      "anniversaire",
-      "birthday",
-      "birth",
-      "anniversario",
-      "cumpleaños",
-      "geburtstag",
-      "aniversário",
-      "nascimento",
-      "achterdatum",
-      "geboorte",
-      "ذكرى ميلاد",
-      "عيد ميلاد",
-      "생일",
-      "출생일",
-      "生日",
-      "出生日",
-      "день рождения",
-      "рождение",
-      "誕生日",
-      "出産"
-    ],
-    "languages": "ALL",
-    "freq_notes": 35,
-    "examples": [
-      "CA_002",
-      "CA_004",
-      "CA_095",
-      "CA_001",
-      "CA_007"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0150_f8dcad": {
-    "label": "promotion",
-    "aliases": [
-      "promo",
-      "promotion",
-      "promozione",
-      "promoción",
-      "promoção",
-      "promotie",
-      "promotional",
-      "促销",
-      "предложение",
-      "プロモーション"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0151_b59d6a": {
-    "label": "réveillon",
-    "aliases": [
-      "réveil",
-      "noel",
-      "new year's eve",
-      "new years",
-      "natale",
-      "nochevieja",
-      "año nuevo",
-      "neujahrswende",
-      "weihnachten",
-      "réveillon",
-      "ano novo",
-      "revelen",
-      "jaarbegin",
-      "عيد الميلاد",
-      "عيد الأضحى",
-      "연말",
-      "추수감사절",
-      "跨年",
-      "春节",
-      "новый год",
-      "рождество",
-      "新年",
-      "クリスマス"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0152_2c737a": {
-    "label": "retraite",
-    "aliases": [
-      "retraite",
-      "pension",
-      "retirement",
-      "in pensione",
-      "pensione",
-      "retirada",
-      "pensión",
-      "ruhestand",
-      "aposentadoria",
-      "aposentado",
-      "تقاعد",
-      "퇴직",
-      "退休",
-      "отставка",
-      "пенсия",
-      "退職"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0153_c87a0e": {
-    "label": "awards ceremony",
-    "aliases": [
-      "awards ceremony",
-      "premi",
-      "prix",
-      "prize",
-      "award",
-      "premio",
-      "preis",
-      "prémio",
-      "prêmio",
-      "prijs",
-      "جائزة",
-      "جوائز",
-      "패키지",
-      "奖励",
-      "奖品",
-      "премия",
-      "приз"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0154_28aa6c": {
-    "label": "summer collection launch",
-    "aliases": [
-      "lancement collection estivale",
-      "lancement collection été",
-      "summer collection launch",
-      "summer collection event",
-      "launch collezione estate",
-      "evento lancio collezione estate",
-      "lanciamiento colección verano",
-      "evento lanzamiento colección verano",
-      "sommerkollektion-launch",
-      "sommerkollektion-ereignis",
-      "lançamento da coleção verão",
-      "evento lançamento coleção verão",
-      "zomercollectie-lancering",
-      "zomercollectie-evenement"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0155_d87e39": {
-    "label": "winter holidays",
-    "aliases": [
-      "winter holidays",
-      "fêtes de noël",
-      "week-end de vacances",
-      "winter holiday event",
-      "holiday season",
-      "festività invernali",
-      "tempo di vacanze",
-      "fiestas navideñas",
-      "vacaciones estivales",
-      "weihnachtsfeiertage",
-      "wintersommerferien",
-      "férias de fim do ano",
-      "verão das férias",
-      "wintervakantie",
-      "zomervakantie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0156_5c8d34": {
-    "label": "spring fashion week",
-    "aliases": [
-      "semaine de la mode de paris",
-      "fashion week",
-      "spring fashion week",
-      "paris fashion week",
-      "settimana della moda di parigi",
-      "semana de la moda de parís",
-      "modewoche in paris",
-      "modewochenend",
-      "semana da moda em paris",
-      "modeweek in parijs",
-      "paris mode week"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0157_49df5c": {
-    "label": "fall preview",
-    "aliases": [
-      "pré-visions automnales",
-      "pré-vues d'automne",
-      "fall preview",
-      "autumn preview",
-      "prospettive autunnali",
-      "previsioni autunnali",
-      "previsión otoñal",
-      "vista previa de otoño",
-      "herbstvorstellung",
-      "herbstvorschau",
-      "visão pré-final de outono",
-      "preview otoñal",
-      "zomervoorkijk",
-      "voorjaarvoorkijk"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0158_9673c0": {
-    "label": "honeymoon",
-    "aliases": [
-      "week-end de vacances en amoureux",
-      "vacances romantiques",
-      "honeymoon",
-      "couple getaway",
-      "viaggio di nozze",
-      "viaggio romantico",
-      "viaje de novios",
-      "vacaciones románticas",
-      "witweinschafft",
-      "ehe-reise",
-      "férias de casal",
-      "viagem de lua de mel",
-      "huwelijksvakantie",
-      "couple vakantie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0159_ef10d6": {
-    "label": "world cruise",
-    "aliases": [
-      "croisière mondiale",
-      "voyage en croisière",
-      "world cruise",
-      "global cruise",
-      "crociata mondiale",
-      "viaggio in crocevia",
-      "cruce mundial",
-      "viaje de crucero",
-      "weltkreisreise",
-      "große kreisfahrt",
-      "cruzeiro pelo mundo",
-      "viagem em cruzeiro",
-      "wereldreis",
-      "groot rondreizen"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0160_5a9502": {
-    "label": "ski season",
-    "aliases": [
-      "saison de ski",
-      "saison des neiges",
-      "ski season",
-      "winter sports season",
-      "serie di sci",
-      "tempo dei sci",
-      "temporada de esquí",
-      "temporada de nieve",
-      "schneeschlachtzeit",
-      "wintersportzeit",
-      "tempo de ski",
-      "tempo de neves",
-      "skiperijs",
-      "winter sportperiode"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0161_aab159": {
-    "label": "summer villa",
-    "aliases": [
-      "villa estivale",
-      "maison de vacances",
-      "summer villa",
-      "villa summer",
-      "villa estiva",
-      "casa di vacanza",
-      "villa verano",
-      "casa de vacaciones",
-      "sommervilla",
-      "wohnung sommer",
-      "vila verão",
-      "casal de férias",
-      "zomerwoning",
-      "vakantiewoning"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0162_947ff1": {
-    "label": "yacht week",
-    "aliases": [
-      "semaine du bateau",
-      "week-end de la voile",
-      "yacht week",
-      "boat week",
-      "settimana del battello",
-      "settimana della vela",
-      "semana en el yate",
-      "semana de barcos",
-      "jachtenwoche",
-      "seglerwoche",
-      "semana do yacht",
-      "semana da barca",
-      "jachtweek"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0163_5c1359": {
-    "label": "corporate gifting season",
-    "aliases": [
-      "saison des cadeaux d'entreprise",
-      "saison de la présentation",
-      "corporate gifting season",
-      "business gift season",
-      "serie di regali aziendali",
-      "tempo dei regali aziendali",
-      "temporada de regalos corporativos",
-      "temporada de presentaciones",
-      "geschenkzeit für unternehmen",
-      "unternehmensgeschenkzeit",
-      "tempo de presentações corporativas",
-      "tempo de regalos empresariais",
-      "bedrijfsgifstijd",
-      "bedrijfsregelingsperiode"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0164_2069d8": {
-    "label": "end-of-year gifts",
-    "aliases": [
-      "cadeaux de fin d'année",
-      "cadeaux de noël",
-      "end-of-year gifts",
-      "year-end gift season",
-      "regali alla fine dell'anno",
-      "tempo dei regali all'inizio dell'anno",
-      "presentaciones al final del año",
-      "geschenkzeit zum jahresende",
-      "endsaisongeschenke",
-      "presentações ao fim do ano",
-      "tempo de presentações",
-      "eindjaar-gifstijd",
-      "jaarafsluiting"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0165_6a3967": {
-    "label": "client appreciation",
-    "aliases": [
-      "appreciation client",
-      "cadeau de bienvenue",
-      "client appreciation",
-      "client recognition",
-      "apprezzamento cliente",
-      "tempo di apprezzamento",
-      "aprecio al cliente",
-      "kundenerkennung",
-      "kundenappretzment",
-      "apreciação do cliente",
-      "tempo de apresentação",
-      "client-applaudisering",
-      "appretheid"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0166_792fec": {
-    "label": "vegan",
-    "aliases": [
-      "vegan",
-      "vegane",
-      "vegetarian",
-      "veggiano",
-      "vegetarino",
-      "vegano",
-      "vegetariano",
-      "vegetarisch",
-      "wahlgemäß vegan",
-      "végano",
-      "vegetariër",
-      "فطير",
-      "فطر"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0167_14c30d": {
-    "label": "gluten-free",
-    "aliases": [
-      "sans gluten",
-      "sans-gluten",
-      "gluten-free",
-      "liberale",
-      "sin gluten",
-      "sin-gluten",
-      "glutenfrei",
-      "sem glúten",
-      "glúten-free",
-      "glutenvrij",
-      "بدون جلوتين",
-      "بدون-جلوتين"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0168_f1c2ab": {
-    "label": "lactose intolerant",
-    "aliases": [
-      "intolérance au lactose",
-      "intolérance-lactose",
-      "lactose intolerant",
-      "intollerante al latto",
-      "intollerante-latte",
-      "ináltrico lácteo",
-      "ináltrico-lácteo",
-      "laktoseunempfindlich",
-      "lactose intolerante",
-      "lactoseintolerant",
-      "حساس باللaktوز",
-      "حساس-باللaktوز"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0169_81133a": {
-    "label": "nut allergy",
-    "aliases": [
-      "allergie aux noix",
-      "allergie-noix",
-      "nut allergy",
-      "alloggiante alle noci",
-      "alloggiante-noci",
-      "alergia a las nueces",
-      "alergia-nuez",
-      "nussallergie",
-      "alergia às nozes",
-      "nuttelustigheid",
-      "حساس بالجوز",
-      "حساس-بالجوز"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0170_c54ade": {
-    "label": "fragrance sensitivity",
-    "aliases": [
-      "sensibilité aux parfums",
-      "sensible-parfum",
-      "fragrance sensitivity",
-      "sensibilità agli profumi",
-      "sensibile-profumo",
-      "sensibilidad a los perfumes",
-      "sensible-perfume",
-      "parfümsallergie",
-      "sensibilidade às fragrâncias",
-      "parfumvermoeidheid",
-      "حساس بالرائحة",
-      "حساس-بالرائحة"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0171_afe7b8": {
-    "label": "mobility issues",
-    "aliases": [
-      "problèmes de mobilité",
-      "handicap",
-      "mobility issues",
-      "difficoltà di movimento",
-      "disabilità",
-      "dificultades de movilidad",
-      "discapacidad",
-      "mobilitätsprobleme",
-      "limitações de mobilidade",
-      "deficiência",
-      "mobiele problemen",
-      "مشاكل التنقل",
-      "مشاكل-التنقل"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0172_59b2b3": {
-    "label": "visual impairment",
-    "aliases": [
-      "perte de vue",
-      "visuel",
-      "visual impairment",
-      "impotenza visiva",
-      "disabilità",
-      "visión limitada",
-      "discapacidad",
-      "sehstörung",
-      "restrição visual",
-      "deficiência",
-      "zichtprobleem",
-      "صعوبة في الرؤية",
-      "صعوبة-في-الرؤية"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0173_5ff76f": {
-    "label": "no alcohol",
-    "aliases": [
-      "pas d'alcool",
-      "sans-alcool",
-      "no alcohol",
-      "assoluto senza alcol",
-      "assolutamente-senza-alcol",
-      "sin alcohol",
-      "sin-alcohol",
-      "kein alkohol",
-      "sem álcool",
-      "geen drank",
-      "ممنوع الكحولية",
-      "ممنوع-الكحولية"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0174_841b9e": {
-    "label": "fasting period",
-    "aliases": [
-      "période de jeûne",
-      "jeûne",
-      "fasting period",
-      "periodo di abbandono",
-      "abbandono",
-      "período de ayuno",
-      "ayuno",
-      "festperiode",
-      "período de jejum",
-      "jejum",
-      "afslanktijd",
-      "فترة الصيام",
-      "فترة-الصيام"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0175_29f4c9": {
-    "label": "modest dress",
-    "aliases": [
-      "tenue modeste",
-      "mode",
-      "modest dress",
-      "indossamento modesto",
-      "modesto",
-      "vestimenta discreta",
-      "discreto",
-      "moderne kleidung",
-      "roupa discreta",
-      "modieuze kleding",
-      "الزي الديني, الحجاب",
-      "الزي-الديني"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0176_bf9d18": {
-    "label": "eco-friendly",
-    "aliases": [
-      "eco-friendly",
-      "sustainability - éco-conception",
-      "éco-conception",
-      "sécurité environnementale",
-      "eco-conception",
-      "environmental safety",
-      "concepzione ecolabile",
-      "ambiente sicuro",
-      "ecoconstrucción",
-      "seguridad ambiental",
-      "eco-konstruktion",
-      "umwelt-sicherheit",
-      "sustentabilidade - concepção ecológica",
-      "segurança ambiental",
-      "eco-construutie",
-      "milieu-sicherheid"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0177_b5fc7c": {
-    "label": "no fur",
-    "aliases": [
-      "animal welfare - non-fur",
-      "non-fur",
-      "sans fourrure",
-      "no fur",
-      "fur-free",
-      "senza peluche",
-      "fur free",
-      "sin pelo",
-      "sin piel de animales",
-      "keine pelage",
-      "furlos",
-      "sem pele",
-      "sem felpa",
-      "geen vacht",
-      "vachtloos"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0178_9d6c55": {
-    "label": "fair trade",
-    "aliases": [
-      "sourcing - fair trade",
-      "équitable",
-      "transparence",
-      "fair trade",
-      "transparency",
-      "equilibrio",
-      "trasparenza",
-      "justo comercio",
-      "transparencia",
-      "gerechtigter handel",
-      "transparenz",
-      "comércio justo",
-      "transparência",
-      "eenrechtshandel",
-      "transparantie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0179_5c3b76": {
-    "label": "minimal packaging",
-    "aliases": [
-      "minimal packaging",
-      "packaging - minimal",
-      "minimaliste",
-      "économique",
-      "minimalist",
-      "economic",
-      "minimale",
-      "economica",
-      "mínimalista",
-      "económico",
-      "minimalistisch",
-      "ökonomisch",
-      "minimalista",
-      "economisch"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0180_26de53": {
-    "label": "conflict-free diamonds",
-    "aliases": [
-      "conflict-free diamonds",
-      "sourcing - conflict-free",
-      "sans conflit",
-      "confiance",
-      "conflict free",
-      "trustworthiness",
-      "senza conflitto",
-      "riconoscimento",
-      "sin conflicto",
-      "seguridad",
-      "kein konflikt",
-      "vertrauen",
-      "sem conflito",
-      "confiança",
-      "geen conflict",
-      "vertrouwen"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0181_bb7990": {
-    "label": "ethically sourced",
-    "aliases": [
-      "ethically sourced",
-      "sourcing - ethical",
-      "éthique",
-      "transparence",
-      "ethical",
-      "transparency",
-      "etico",
-      "trasparenza",
-      "etnico",
-      "transparencia",
-      "ethik",
-      "transparenz",
-      "ético",
-      "transparência",
-      "ethiek",
-      "transparantie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0182_62b41e": {
-    "label": "sustainable materials",
-    "aliases": [
-      "sustainable materials",
-      "sourcing - sustainable",
-      "durable",
-      "éco-conception",
-      "eco-conception",
-      "durabile",
-      "concepzione ecolabile",
-      "sostenible",
-      "ecoconstrucción",
-      "nachhaltig",
-      "eco-konstruktion",
-      "sustentável",
-      "eco-construção",
-      "zinvol, eco-construutie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0183_4a162e": {
-    "label": "entrepreneur",
-    "aliases": [
-      "entrepreneur",
-      "impreventore",
-      "emprendedor",
-      "unternehmer",
-      "iniciador"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0184_4fd60e": {
-    "label": "fashion designer",
-    "aliases": [
-      "modeurteur",
-      "fashion designer",
-      "disegnatrice di moda",
-      "arquitecto de moda",
-      "modekonstrukteur",
-      "desenhador de moda"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0185_d91ddf": {
-    "label": "attorney",
-    "aliases": [
-      "avocat",
-      "attorney",
-      "avvocato",
-      "abogado",
-      "anwalt",
-      "advogado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0186_d84873": {
-    "label": "royal family",
-    "aliases": [
-      "royalite",
-      "royal family",
-      "cortigiana",
-      "realeza",
-      "königsfamilie",
-      "família real"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0187_b5e311": {
-    "label": "polo player",
-    "aliases": [
-      "pouliste",
-      "polo player",
-      "giocatore di polo",
-      "jugador de polo",
-      "polo spieler",
-      "jogador de polo"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0188_ca2a3c": {
-    "label": "family office",
-    "aliases": [
-      "office familial",
-      "family office",
-      "ufficio familiare",
-      "oficina familiar",
-      "familienfonds",
-      "fundo familiar"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0189_3ccb36": {
-    "label": "gallery owner",
-    "aliases": [
-      "galeriste",
-      "gallery owner",
-      "proprietario di galleria",
-      "dueño de galería",
-      "galerist",
-      "gerente de galeria"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0190_795687": {
-    "label": "thoroughbred owner",
-    "aliases": [
-      "proprietaire de cheval",
-      "thoroughbred owner",
-      "proprietario di cavalli da corsa",
-      "dueño de caballos de carreras",
-      "pferdebesitzer",
-      "proprietário de cavalos de corrida"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0191_bc39fc": {
-    "label": "socialite",
-    "aliases": [
-      "socialite",
-      "socialita",
-      "socialista",
-      "sozialitäre",
-      "sociedade"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0192_618f65": {
-    "label": "architect",
-    "aliases": [
-      "architecte",
-      "architect",
-      "arquiteto",
-      "arquitecto",
-      "architekt"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0193_b7cd0b": {
-    "label": "yacht sailing",
-    "aliases": [
-      "yacht sailing",
-      "sports - yacht",
-      "sports voile",
-      "voile",
-      "sailing",
-      "yacht",
-      "sport vela",
-      "vela",
-      "deportes yate",
-      "yate",
-      "sport segelschiff",
-      "segelschiff",
-      "desporto náutico",
-      "náutico",
-      "sport zeilboot",
-      "zeilboot"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0194_ff1f1a": {
-    "label": "opera",
-    "aliases": [
-      "culture - opera",
-      "opéra",
-      "opera",
-      "oper",
-      "teatro opera",
-      "orquesta teatro",
-      "teatro"
-    ],
-    "languages": "ALL",
-    "freq_notes": 4,
-    "examples": [
-      "CA_042",
-      "CA_017",
-      "CA_086",
-      "CA_052"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0195_3a7fc0": {
-    "label": "wine collecting",
-    "aliases": [
-      "leisure - wine collecting",
-      "vin collection",
-      "vins",
-      "wine collecting",
-      "wines",
-      "collezione vini",
-      "vini",
-      "colección vinos",
-      "vinos",
-      "wein sammlung",
-      "weine",
-      "coleção vinhos",
-      "vinhos",
-      "wijn collectie",
-      "wijnen"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0196_7f9ffd": {
-    "label": "car collecting",
-    "aliases": [
-      "collecting - car",
-      "voiture collection",
-      "voitures",
-      "car collecting",
-      "cars",
-      "collezione auto",
-      "auto",
-      "colección coches",
-      "coches",
-      "kfz sammlung",
-      "kfz",
-      "coleção automóveis",
-      "automóveis",
-      "wagen collectie",
-      "wagens"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0197_01746e": {
-    "label": "fine dining",
-    "aliases": [
-      "fine dining",
-      "leisure - michelin dining",
-      "dîner michelin",
-      "michelin",
-      "michelin dining",
-      "ristorazione michelin",
-      "cocina michelin",
-      "miklins essens",
-      "miklins",
-      "dinâm michelin",
-      "michelin eten"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0198_5df25c": {
-    "label": "watch collecting",
-    "aliases": [
-      "collecting - watch",
-      "montre collection",
-      "montres",
-      "watch collecting",
-      "watches",
-      "collezione orologi",
-      "orologi",
-      "colección relojos",
-      "relojes",
-      "uhr sammlung",
-      "uhren",
-      "coleção relógios",
-      "relógios",
-      "wacht collectie",
-      "wetten"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0199_c2f8e1": {
-    "label": "jewelry collecting",
-    "aliases": [
-      "collecting - jewelry",
-      "bijoux collection",
-      "jewelry collecting",
-      "jewelry",
-      "collezione accessori",
-      "accessori",
-      "colección joyas",
-      "joyas",
-      "juwelier sammlung",
-      "juweliere",
-      "coleção bijoux",
-      "oorzaak collectie",
-      "oorzaaken"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0200_47e783": {
-    "label": "antiques",
-    "aliases": [
-      "culture - antiques",
-      "antiquités",
-      "antique collecting",
-      "antiques",
-      "arte antica",
-      "arte",
-      "colección antiguos",
-      "antiguos",
-      "alte kunst",
-      "alt",
-      "coleção antigos",
-      "antigos",
-      "oud collectie",
-      "oude"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0201_b33474": {
-    "label": "cigar aficionado",
-    "aliases": [
-      "cigar aficionado",
-      "leisure - cigar",
-      "cigare collection",
-      "cigares",
-      "cigar collecting",
-      "cigars",
-      "collezione sigarette",
-      "sigarette",
-      "colección tabacos",
-      "tabaco",
-      "zigarren sammlung",
-      "zigarren",
-      "coleção cigarros",
-      "cigarros",
-      "koers collectie",
-      "koers"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0202_bfd13b": {
-    "label": "contemporary art",
-    "aliases": [
-      "contemporary art",
-      "culture - contemporary art",
-      "art contemporain",
-      "contemporain",
-      "contemporary art collecting",
-      "contemporary arts",
-      "arte contemporanea",
-      "contemporanea",
-      "colección arte contemporáneo",
-      "contemporáneo",
-      "moderne kunst",
-      "coleção arte contemporânea",
-      "contemporâneo",
-      "kunst moderne collectie"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0203_6b606f": {
-    "label": "private aviation",
-    "aliases": [
-      "leisure - private aviation",
-      "aviation privée",
-      "privé",
-      "private aviation",
-      "volo privato",
-      "privato",
-      "aviación privada",
-      "privada",
-      "privatflug",
-      "privat",
-      "aviação privada",
-      "privé vliegtuigen"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0204_f3c7b2": {
-    "label": "rare books",
-    "aliases": [
-      "collecting - rare books",
-      "livres rares",
-      "rares",
-      "rare book collecting",
-      "rare books",
-      "libri rari",
-      "rari",
-      "libros raros",
-      "raros",
-      "seltene bücher",
-      "seltene",
-      "livros excepcionais",
-      "excepcionais",
-      "rare boeken"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0205_b43f91": {
-    "label": "luxury materials",
-    "aliases": [
-      "luxury materials",
-      "matériaux et finitions - matériaux",
-      "mat",
-      "matt",
-      "materials",
-      "matte",
-      "materiali",
-      "matto",
-      "materiales",
-      "mate",
-      "materialien",
-      "glatzig",
-      "matérios",
-      "brilhante"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0206_c73ffa": {
-    "label": "luxury finishes",
-    "aliases": [
-      "luxury finishes",
-      "matériaux et finitions - finishes",
-      "fin",
-      "finition",
-      "finish",
-      "glossy",
-      "finitura",
-      "liscio",
-      "finishing",
-      "brillante",
-      "abschluss",
-      "glatt",
-      "brilhante"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0207_bc66e1": {
-    "label": "classic/timeless",
-    "aliases": [
-      "classic/timeless",
-      "classic",
-      "consistantes",
-      "timeless",
-      "classica",
-      "temporanea",
-      "clásico",
-      "temporal",
-      "klassisch",
-      "zeitlos",
-      "clássica",
-      "temporária"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0208_40966e": {
-    "label": "minimalist/modern",
-    "aliases": [
-      "minimalist/modern",
-      "modern",
-      "moderna",
-      "moderno",
-      "modernen"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0209_134285": {
-    "label": "bold/statement",
-    "aliases": [
-      "bold/statement",
-      "brutale",
-      "stéréotypique",
-      "bold",
-      "statement",
-      "forte",
-      "statunita",
-      "fuerte",
-      "estatua",
-      "kontrastiv",
-      "staufert",
-      "bruta",
-      "estatut"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0210_7142ac": {
-    "label": "bohemian",
-    "aliases": [
-      "bohème",
-      "indépendant",
-      "bohemian",
-      "independent",
-      "bohémio",
-      "indipendente",
-      "bohemia",
-      "independiente",
-      "bohemiens",
-      "unabhängig",
-      "boêmia",
-      "independente"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0211_3cda33": {
-    "label": "art deco",
-    "aliases": [
-      "art déco",
-      "déco",
-      "art deco",
-      "deco",
-      "arte decò",
-      "decò",
-      "arte deco",
-      "deko"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0212_d84b68": {
-    "label": "neutral tones",
-    "aliases": [
-      "neutral tones",
-      "nuancé",
-      "neutral",
-      "toneless",
-      "neutrale",
-      "tonale",
-      "neutro",
-      "tonal",
-      "tönig"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0213_89c083": {
-    "label": "jewel tones",
-    "aliases": [
-      "jewel tones",
-      "jolies",
-      "éclatantes",
-      "jewel",
-      "toneless",
-      "gioiellose",
-      "tonali",
-      "esplendorosas",
-      "juwelartige",
-      "tönig",
-      "joias"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0214_250c45": {
-    "label": "pastels",
-    "aliases": [
-      "pastels",
-      "pastel",
-      "pâle",
-      "pale",
-      "pastello",
-      "pallino",
-      "pálido",
-      "pastellfarben",
-      "pallfärbe"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0215_4e680f": {
-    "label": "monochrome",
-    "aliases": [
-      "monochome",
-      "uni",
-      "monochrome",
-      "monocromatica",
-      "unico",
-      "monocromático",
-      "monochromatisch",
-      "einzigartig"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0216_e280d6": {
-    "label": "colorful",
-    "aliases": [
-      "coloré",
-      "multicolore",
-      "colorful",
-      "multi-colored",
-      "colorato",
-      "multicoloro",
-      "colorido",
-      "múltiple",
-      "farbig",
-      "viele",
-      "múltiplo"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0217_47bbce": {
-    "label": "petite/small",
-    "aliases": [
-      "petite/small",
-      "petite",
-      "petit",
-      "small",
-      "piccola",
-      "piccolo",
-      "pequeña",
-      "chico",
-      "klein",
-      "pequena",
-      "pequeno"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0218_9226d6": {
-    "label": "oversized",
-    "aliases": [
-      "oversized",
-      "oversize",
-      "grand",
-      "large",
-      "grande",
-      "largo",
-      "groß"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0219_bb800c": {
-    "label": "custom/bespoke",
-    "aliases": [
-      "custom/bespoke",
-      "sur mesure",
-      "sur-mesure",
-      "custom",
-      "bespoke",
-      "a misura dell'utente",
-      "a misura del cliente",
-      "personalizado",
-      "tailoreado",
-      "anfertigiert",
-      "bespoken",
-      "especializado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0220_3d94af": {
-    "label": "made-to-measure",
-    "aliases": [
-      "made-to-measure",
-      "sur mesure",
-      "taille unique",
-      "custom",
-      "made to measure",
-      "a misura dell'utente",
-      "a misura del cliente",
-      "personalizado",
-      "medido a la medida",
-      "anfertigiert",
-      "auf maße angepasst",
-      "especializado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0221_50aa28": {
-    "label": "engraving",
-    "aliases": [
-      "gravure",
-      "marquage",
-      "engraving",
-      "marque",
-      "incisione",
-      "marca",
-      "grabado",
-      "geschliffen",
-      "marke",
-      "gravura"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0222_2fe476": {
-    "label": "hot stamping",
-    "aliases": [
-      "stamping chaud",
-      "stamping",
-      "hot stamping",
-      "marque",
-      "stamping caldo",
-      "stampa",
-      "estampado caliente",
-      "marca",
-      "feuerfestes drucken",
-      "druck",
-      "stampagem quente"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0223_bf83bd": {
-    "label": "custom color",
-    "aliases": [
-      "couleur personnalisée",
-      "color personalisé",
-      "custom color",
-      "personalized color",
-      "colore personalizzato",
-      "color personalizzato",
-      "color personalizado",
-      "eigener farbton",
-      "farbe personifiziert",
-      "cor personalizada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0224_6d0f34": {
-    "label": "special order",
-    "aliases": [
-      "commande spéciale",
-      "ordre spécial",
-      "special order",
-      "especial order",
-      "ordinazione speciale",
-      "ordine speciale",
-      "orden especial",
-      "sonderbestellung",
-      "besondere bestellung",
-      "encomenda especial",
-      "especial encomenda"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0225_85e908": {
-    "label": "schedule callback",
-    "aliases": [
-      "schedule callback",
-      "séance rappel",
-      "renvoi rappel",
-      "callback scheduled",
-      "reminder call set",
-      "appuntamento richiesta",
-      "richiamato",
-      "hora de llamada",
-      "revisión programada",
-      "anruf vereinbart",
-      "rückrufer festgelegt",
-      "agendado chamada",
-      "programado contato"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0226_be5ffd": {
-    "label": "send thank-you note",
-    "aliases": [
-      "send thank-you note",
-      "remerciement envoyé",
-      "note de remerciement envoyée",
-      "thank you sent",
-      "thank you email sent",
-      "ringraziamento inviato",
-      "agradecimiento enviado",
-      "danke gesendet",
-      "danke-e-mail gesendet",
-      "agradecimento enviado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0227_d9f434": {
-    "label": "email product photos",
-    "aliases": [
-      "email product photos",
-      "photos produits envoyées",
-      "photos produit envoyées",
-      "product images sent",
-      "product photo email sent",
-      "foto prodotti inviate",
-      "foto prodotto inviato",
-      "fotos productos enviadas",
-      "fotos producto enviado",
-      "produktbilder gesendet",
-      "produktbild-e-mail gesendet",
-      "imagens produtos enviadas",
-      "produtos imagens enviados"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0228_754c4e": {
-    "label": "arrange private viewing",
-    "aliases": [
-      "arrange private viewing",
-      "visite privée organisée",
-      "visite privée à l'organisation",
-      "private view arranged",
-      "private viewing set up",
-      "visita privata pianificata",
-      "visita privata pianificato",
-      "revisión privada programada",
-      "revisión privada organizada",
-      "privatansicht geplant",
-      "privater anschauungstermin geplant",
-      "visualização privada agendada",
-      "visitação privada programada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0229_7c7abd": {
-    "label": "book vip fitting",
-    "aliases": [
-      "book vip fitting",
-      "rendez-vous vip réservé",
-      "vip fitting booked",
-      "vip try-on booked",
-      "fittino vip prenotato",
-      "fitto vip prenotato",
-      "revisión vip reservada",
-      "revisión vip reservado",
-      "vip-probe gebucht",
-      "vip-probe geplant",
-      "visualização vip agendada",
-      "visualização vip programada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0230_a4134a": {
-    "label": "reserve item",
-    "aliases": [
-      "reserve item",
-      "article réservé",
-      "item reserved",
-      "product reserved",
-      "articolo riservato",
-      "artículo reservado",
-      "producto reservado",
-      "produkt gebucht",
-      "produkt reserviert",
-      "itens reservados",
-      "produtos reservados"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0231_64a266": {
-    "label": "send quote",
-    "aliases": [
-      "send quote",
-      "offre envoyée",
-      "quote sent",
-      "price offer sent",
-      "offerta inviata",
-      "oferta enviada",
-      "angebot gesendet",
-      "preisangebot gesendet",
-      "cotação enviada",
-      "cotização enviada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0232_b44ede": {
-    "label": "prepare special order",
-    "aliases": [
-      "prepare special order",
-      "commande spéciale préparée",
-      "commande spéciale préparation",
-      "special order prepared",
-      "custom order ready",
-      "ordinazione speciale preparata",
-      "ordinazione speciale pronta",
-      "orden especial preparada",
-      "orden especial lista",
-      "spezialbestellung vorbereitet",
-      "sonderbestellung bereitgestellt",
-      "encomenda especial preparada",
-      "encomenda especial listada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0233_cb53b2": {
-    "label": "arrange home delivery",
-    "aliases": [
-      "arrange home delivery",
-      "livraison à domicile organisée",
-      "livraison à domicile organisationnée",
-      "home delivery arranged",
-      "home delivery set up",
-      "trasporto a domicilio pianificato",
-      "entrega en casa programada",
-      "entrega en casa organizada",
-      "zuhause-lieferung geplant",
-      "heimlieferung geplant",
-      "entrega à residência agendada",
-      "entrega a residência programada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0234_36bac1": {
-    "label": "birthday reminder",
-    "aliases": [
-      "birthday reminder",
-      "anniversaire rappel",
-      "birthday reminder sent",
-      "birthdays reminder sent",
-      "anniversario ricordo inviato",
-      "cumpleaños recordatorio enviado",
-      "geburtstagserinnerung gesendet",
-      "geburtstagsanzeige gesendet",
-      "aniversário lembrança enviada"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0235_b40da4": {
-    "label": "anniversary follow-up",
-    "aliases": [
-      "anniversary follow-up",
-      "anniversaire suivi",
-      "anniversaire suivis",
-      "anniversary follow-up sent",
-      "anniversary follow-up email sent",
-      "compleanno seguito inviato",
-      "cumpleaños seguimiento enviado",
-      "geburtstagssicherung gesendet",
-      "geburtstagsanzeige gesendet",
-      "aniversário suporte enviado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0236_d215c4": {
-    "label": "welcome gift",
-    "aliases": [
-      "welcome gift",
-      "welcome gift sent",
-      "regalo di benvenuto inviato",
-      "regalo de bienvenida enviada",
-      "regalo de bienvenida enviado",
-      "willkommensgeschenk gesendet",
-      "presente de bem-vindo enviado"
-    ],
-    "languages": "ALL",
-    "freq_notes": 0,
-    "examples": [],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0000_56bc96": {
-    "label": "allergie",
-    "aliases": [
-      "allergie",
-      "allergie critical",
-      "allergie nichel",
-      "keine allergien",
-      "no allergies",
-      "allergie latex",
-      "allergie nut",
-      "allergie beachten"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 72,
-    "examples": [
-      "CA_034",
-      "CA_018",
-      "CA_072",
-      "CA_070",
-      "CA_061"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0002_3a517e": {
-    "label": "budget @0",
-    "aliases": [
-      "budget @0"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 59,
-    "examples": [
-      "CA_005",
-      "CA_002",
-      "CA_001",
-      "CA_007",
-      "CA_016"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0004_619b44": {
-    "label": "noir",
-    "aliases": [
-      "noir"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 50,
-    "examples": [
-      "CA_012",
-      "CA_002",
-      "CA_004",
-      "CA_001",
-      "CA_010"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0005_a71cc1": {
-    "label": "élégant",
-    "aliases": [
-      "élégant"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 48,
-    "examples": [
-      "CA_012",
-      "CA_002",
-      "CA_016",
-      "CA_013",
-      "CA_010"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0006_9ad690": {
-    "label": "cognac",
-    "aliases": [
-      "cognac"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 43,
-    "examples": [
-      "CA_012",
-      "CA_005",
-      "CA_003",
-      "CA_007",
-      "CA_001"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0007_66f7dd": {
-    "label": "voyage",
-    "aliases": [
-      "voyage"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 40,
-    "examples": [
-      "CA_002",
-      "CA_004",
-      "CA_005",
-      "CA_011",
-      "CA_010"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0008_fdbca2": {
-    "label": "classique",
-    "aliases": [
-      "classique"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 36,
-    "examples": [
-      "CA_012",
-      "CA_002",
-      "CA_004",
-      "CA_003",
-      "CA_006"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0009_ed81c0": {
-    "label": "famille",
-    "aliases": [
-      "famille",
-      "famille freunde",
-      "regali famille"
-    ],
-    "languages": "DE|EN|ES|IT",
-    "freq_notes": 36,
-    "examples": [
-      "CA_012",
-      "CA_024",
-      "CA_003",
-      "CA_098",
-      "CA_045"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0010_f1fd2c": {
-    "label": "fille",
-    "aliases": [
-      "fille",
-      "petite fille"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 36,
-    "examples": [
-      "CA_012",
-      "CA_005",
-      "CA_009",
-      "CA_062",
-      "CA_003"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0015_4ffd7b": {
-    "label": "cuir",
-    "aliases": [
-      "cuir",
-      "cuir noir"
-    ],
-    "languages": "DE|EN|FR|IT",
-    "freq_notes": 32,
-    "examples": [
-      "CA_002",
-      "CA_004",
-      "CA_005",
-      "CA_003",
-      "CA_001"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0016_f718fc": {
-    "label": "bleu marine",
-    "aliases": [
-      "bleu marine"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 31,
-    "examples": [
-      "CA_012",
-      "CA_002",
-      "CA_015",
-      "CA_016",
-      "CA_021"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0017_2e64f9": {
-    "label": "moderne",
-    "aliases": [
-      "moderne"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 30,
-    "examples": [
-      "CA_002",
-      "CA_003",
-      "CA_011",
-      "CA_013",
-      "CA_006"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0018_43921c": {
-    "label": "pescétarien",
-    "aliases": [
-      "pescétarien"
-    ],
-    "languages": "DE|ES|FR|IT",
-    "freq_notes": 23,
-    "examples": [
-      "CA_012",
-      "CA_024",
-      "CA_023",
-      "CA_026",
-      "CA_017"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0019_03fb2e": {
-    "label": "flexible",
-    "aliases": [
-      "flexible",
-      "very flexible"
-    ],
-    "languages": "EN|ES|FR",
-    "freq_notes": 22,
-    "examples": [
-      "CA_005",
-      "CA_009",
-      "CA_001",
-      "CA_014",
-      "CA_077"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0020_e07e81": {
-    "label": "gold",
-    "aliases": [
-      "gold"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 21,
-    "examples": [
-      "CA_005",
-      "CA_024",
-      "CA_015",
-      "CA_027",
-      "CA_032"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0021_f9915b": {
-    "label": "fils",
-    "aliases": [
-      "fils"
-    ],
-    "languages": "DE|ES|IT",
-    "freq_notes": 20,
-    "examples": [
-      "CA_030",
-      "CA_024",
-      "CA_015",
-      "CA_026",
-      "CA_017"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0022_efc5f4": {
-    "label": "beige",
-    "aliases": [
-      "beige"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 18,
-    "examples": [
-      "CA_005",
-      "CA_023",
-      "CA_026",
-      "CA_019",
-      "CA_017"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0023_c46b44": {
-    "label": "végan",
-    "aliases": [
-      "végan"
-    ],
-    "languages": "EN|ES|IT",
-    "freq_notes": 17,
-    "examples": [
-      "CA_005",
-      "CA_022",
-      "CA_014",
-      "CA_027",
-      "CA_011"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0024_db6d9b": {
-    "label": "collection",
-    "aliases": [
-      "collection"
-    ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 16,
-    "examples": [
-      "CA_012",
-      "CA_005",
-      "CA_003",
-      "CA_001",
-      "CA_010"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0025_24863c": {
-    "label": "marron",
-    "aliases": [
-      "marron"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 16,
-    "examples": [
-      "CA_030",
-      "CA_024",
-      "CA_001",
-      "CA_031",
-      "CA_017"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0027_b54d9a": {
-    "label": "épouse",
-    "aliases": [
-      "épouse"
-    ],
-    "languages": "DE|EN|ES|IT",
-    "freq_notes": 15,
-    "examples": [
-      "CA_002",
-      "CA_023",
-      "CA_027",
-      "CA_018",
-      "CA_026"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0028_3a4a6b": {
-    "label": "bordeaux",
-    "aliases": [
-      "bordeaux"
-    ],
-    "languages": "DE|EN|FR|IT",
-    "freq_notes": 13,
-    "examples": [
-      "CA_003",
-      "CA_018",
-      "CA_021",
-      "CA_019",
-      "CA_010"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0029_d40b91": {
-    "label": "mari",
-    "aliases": [
-      "mari"
-    ],
-    "languages": "EN|ES|IT",
-    "freq_notes": 13,
-    "examples": [
-      "CA_012",
-      "CA_005",
-      "CA_037",
-      "CA_032",
-      "CA_017"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0030_de5c03": {
-    "label": "mère",
-    "aliases": [
-      "mère"
-    ],
-    "languages": "DE|EN|ES|IT",
-    "freq_notes": 13,
-    "examples": [
-      "CA_012",
-      "CA_030",
-      "CA_003",
-      "CA_052",
-      "CA_037"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0031_fcdc7b": {
-    "label": "rose",
-    "aliases": [
-      "rose",
-      "pieces rose"
-    ],
-    "languages": "EN",
-    "freq_notes": 13,
-    "examples": [
-      "CA_005",
-      "CA_027",
-      "CA_052",
-      "CA_042",
-      "CA_086"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0032_d6e6d6": {
-    "label": "redes sociales",
-    "aliases": [
-      "redes sociales",
-      "social media"
-    ],
-    "languages": "EN|ES",
-    "freq_notes": 12,
-    "examples": [
-      "CA_033",
-      "CA_022",
-      "CA_014",
-      "CA_018",
-      "CA_064"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0033_6c488a": {
-    "label": "rosé gold",
-    "aliases": [
-      "rosé gold",
-      "pieces rose gold"
-    ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 11,
-    "examples": [
-      "CA_091",
-      "CA_027",
-      "CA_032",
-      "CA_059",
-      "CA_052"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0034_807659": {
-    "label": "yoga",
-    "aliases": [
-      "yoga"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 11,
-    "examples": [
-      "CA_009",
-      "CA_003",
-      "CA_028",
-      "CA_032",
-      "CA_020"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0035_d51b47": {
-    "label": "événement",
-    "aliases": [
-      "événement"
-    ],
-    "languages": "DE|EN|ES|IT",
-    "freq_notes": 11,
-    "examples": [
-      "CA_030",
-      "CA_003",
-      "CA_007",
-      "CA_042",
-      "CA_026"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0036_510373": {
-    "label": "budget combiné",
-    "aliases": [
-      "budget combiné",
-      "budget very"
-    ],
-    "languages": "EN|FR",
-    "freq_notes": 10,
-    "examples": [
-      "CA_009",
-      "CA_028",
-      "CA_077",
-      "CA_058",
-      "CA_040"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0037_418bf2": {
-    "label": "diplôme",
-    "aliases": [
-      "diplôme"
-    ],
-    "languages": "DE|EN|IT",
-    "freq_notes": 10,
-    "examples": [
-      "CA_005",
-      "CA_009",
-      "CA_030",
-      "CA_007",
-      "CA_027"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0038_1231eb": {
-    "label": "high potential",
-    "aliases": [
-      "high potential",
-      "exceptional potential",
-      "hohes potenzial"
-    ],
-    "languages": "DE|EN",
-    "freq_notes": 10,
-    "examples": [
-      "CA_009",
-      "CA_027",
-      "CA_018",
-      "CA_061",
-      "CA_077"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0039_222cfc": {
-    "label": "nouvelle cliente",
-    "aliases": [
-      "nouvelle cliente",
-      "nouvelle cliente potentiel",
-      "nuova cliente"
-    ],
-    "languages": "FR|IT",
-    "freq_notes": 10,
-    "examples": [
-      "CA_081",
-      "CA_025",
-      "CA_016",
-      "CA_067",
-      "CA_059"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0040_273c06": {
-    "label": "raffiné",
-    "aliases": [
-      "raffiné"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 10,
-    "examples": [
-      "CA_012",
-      "CA_048",
-      "CA_030",
-      "CA_037",
-      "CA_060"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0041_d9bebd": {
-    "label": "végétarien",
-    "aliases": [
-      "végétarien"
-    ],
-    "languages": "DE|EN|IT",
-    "freq_notes": 10,
-    "examples": [
-      "CA_007",
-      "CA_052",
-      "CA_073",
-      "CA_037",
-      "CA_032"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0042_2b11ba": {
-    "label": "beide leidenschaftlich",
-    "aliases": [
-      "beide leidenschaftlich",
-      "both passionate about"
-    ],
-    "languages": "DE|EN",
-    "freq_notes": 9,
-    "examples": [
-      "CA_009",
-      "CA_083",
-      "CA_065",
-      "CA_045",
-      "CA_070"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0043_a8bba0": {
-    "label": "burgundy",
-    "aliases": [
-      "burgundy"
-    ],
-    "languages": "EN",
-    "freq_notes": 9,
-    "examples": [
-      "CA_072",
-      "CA_052",
-      "CA_037",
-      "CA_042",
-      "CA_080"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0044_09b2af": {
-    "label": "excellents clients",
-    "aliases": [
-      "excellents clients",
-      "clientes excelentes",
-      "clients exceptional"
-    ],
-    "languages": "EN|ES|FR",
-    "freq_notes": 9,
-    "examples": [
-      "CA_066",
-      "CA_095",
-      "CA_090",
-      "CA_058",
-      "CA_040"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0045_c6cf64": {
-    "label": "golf",
-    "aliases": [
-      "golf"
-    ],
-    "languages": "DE|EN|ES|FR",
-    "freq_notes": 9,
-    "examples": [
-      "CA_005",
-      "CA_009",
-      "CA_015",
-      "CA_001",
-      "CA_026"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0046_1be021": {
-    "label": "person ans",
-    "aliases": [
-      "person ans"
-    ],
-    "languages": "FR",
-    "freq_notes": 9,
-    "examples": [
-      "CA_025",
-      "CA_016",
-      "CA_031",
-      "CA_046",
-      "CA_010"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0047_591eea": {
-    "label": "cadeau épouse",
-    "aliases": [
-      "cadeau épouse",
-      "cherche cadeau épouse",
-      "geschenke épouse"
-    ],
-    "languages": "DE|FR",
-    "freq_notes": 8,
-    "examples": [
-      "CA_099",
-      "CA_023",
-      "CA_041",
-      "CA_036",
-      "CA_045"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0048_a42939": {
-    "label": "exclusive",
-    "aliases": [
-      "exclusive"
-    ],
-    "languages": "EN|FR",
-    "freq_notes": 8,
-    "examples": [
-      "CA_009",
-      "CA_014",
-      "CA_027",
-      "CA_040",
-      "CA_019"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0050_0af4f2": {
-    "label": "voile",
-    "aliases": [
-      "voile"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 8,
-    "examples": [
-      "CA_012",
-      "CA_030",
-      "CA_022",
-      "CA_026",
-      "CA_019"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0051_77a14a": {
-    "label": "cliente ocasional",
-    "aliases": [
-      "cliente ocasional",
-      "cliente occasionale",
-      "cliente occasionnelle"
-    ],
-    "languages": "ES|FR|IT",
-    "freq_notes": 7,
-    "examples": [
-      "CA_084",
-      "CA_044",
-      "CA_001",
-      "CA_031",
-      "CA_079"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0052_628340": {
-    "label": "depuis achat",
-    "aliases": [
-      "depuis achat",
-      "since shopping for"
-    ],
-    "languages": "EN|FR",
-    "freq_notes": 7,
-    "examples": [
-      "CA_095",
-      "CA_072",
-      "CA_097",
-      "CA_058",
-      "CA_019"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0053_978f12": {
-    "label": "rappeler avril",
-    "aliases": [
-      "rappeler avril"
-    ],
-    "languages": "FR",
-    "freq_notes": 7,
-    "examples": [
-      "CA_062",
-      "CA_028",
-      "CA_031",
-      "CA_071",
-      "CA_019"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0054_cb19d0": {
-    "label": "anniversaire mariage",
-    "aliases": [
-      "anniversaire mariage"
-    ],
-    "languages": "FR",
-    "freq_notes": 6,
-    "examples": [
-      "CA_008",
-      "CA_058",
-      "CA_040",
-      "CA_019",
-      "CA_076"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0055_7799ab": {
-    "label": "cada año",
-    "aliases": [
-      "cada año"
-    ],
-    "languages": "ES",
-    "freq_notes": 6,
-    "examples": [
-      "CA_012",
-      "CA_038",
-      "CA_069",
-      "CA_026",
-      "CA_050"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0056_4c65ff": {
-    "label": "clients lifetime",
-    "aliases": [
-      "clients lifetime",
-      "clients lifetime value"
-    ],
-    "languages": "FR",
-    "freq_notes": 6,
-    "examples": [
-      "CA_076",
-      "CA_095",
-      "CA_040"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0057_7c1ed0": {
-    "label": "contemporary",
-    "aliases": [
-      "contemporary"
-    ],
-    "languages": "EN",
-    "freq_notes": 6,
-    "examples": [
-      "CA_005",
-      "CA_009",
-      "CA_014",
-      "CA_027",
-      "CA_032"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0058_bc9a3b": {
-    "label": "luxury",
-    "aliases": [
-      "luxury"
-    ],
-    "languages": "EN",
-    "freq_notes": 6,
-    "examples": [
-      "CA_014",
-      "CA_027",
-      "CA_052",
-      "CA_037",
-      "CA_061"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0059_e506fa": {
-    "label": "nachfassen märz",
-    "aliases": [
-      "nachfassen märz"
-    ],
-    "languages": "DE",
-    "freq_notes": 6,
-    "examples": [
-      "CA_015",
-      "CA_034",
-      "CA_023",
-      "CA_045",
-      "CA_051"
-    ],
-    "rule": "bucket=next_action"
-  },
-  "CONCEPT_0060_a92898": {
-    "label": "pilates",
-    "aliases": [
-      "pilates"
-    ],
-    "languages": "DE|EN|ES|FR|IT",
-    "freq_notes": 6,
-    "examples": [
-      "CA_003",
-      "CA_023",
-      "CA_046",
-      "CA_020",
-      "CA_066"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0062_c6ea9a": {
-    "label": "rouge",
-    "aliases": [
-      "rouge"
-    ],
-    "languages": "ES|FR",
-    "freq_notes": 6,
-    "examples": [
-      "CA_069",
-      "CA_085",
-      "CA_071",
-      "CA_026",
-      "CA_050"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0064_72e0c2": {
-    "label": "sehr interessiert",
-    "aliases": [
-      "sehr interessiert"
-    ],
-    "languages": "DE",
-    "freq_notes": 6,
-    "examples": [
-      "CA_083",
-      "CA_065",
-      "CA_070",
-      "CA_039",
-      "CA_029"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0065_3a4b5f": {
-    "label": "autumn",
-    "aliases": [
-      "autumn"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_009",
-      "CA_100",
-      "CA_082",
-      "CA_092",
-      "CA_066"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0067_734438": {
-    "label": "cliente potentiel",
-    "aliases": [
-      "cliente potentiel",
-      "cliente potencial"
-    ],
-    "languages": "ES|FR",
-    "freq_notes": 5,
-    "examples": [
-      "CA_081",
-      "CA_033",
-      "CA_067",
-      "CA_064",
-      "CA_046"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0068_4b5b40": {
-    "label": "deux passionnés",
-    "aliases": [
-      "deux passionnés"
-    ],
-    "languages": "FR",
-    "freq_notes": 5,
-    "examples": [
-      "CA_095",
-      "CA_058",
-      "CA_040",
-      "CA_019",
-      "CA_076"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0069_acf7c1": {
-    "label": "fidèle",
-    "aliases": [
-      "fidèle"
-    ],
-    "languages": "FR",
-    "freq_notes": 5,
-    "examples": [
-      "CA_004",
-      "CA_099",
-      "CA_062",
-      "CA_049",
-      "CA_013"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0070_4dfd26": {
-    "label": "fille 25 ans",
-    "aliases": [
-      "fille 25 ans",
-      "fille 28 ans"
-    ],
-    "languages": "DE|FR|IT",
-    "freq_notes": 5,
-    "examples": [
-      "CA_065",
-      "CA_003",
-      "CA_013",
-      "CA_094",
-      "CA_035"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0071_9eb0de": {
-    "label": "he plays",
-    "aliases": [
-      "he plays"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_002",
-      "CA_009",
-      "CA_005",
-      "CA_027",
-      "CA_066"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0072_0f0ddf": {
-    "label": "hedge fund",
-    "aliases": [
-      "hedge fund",
-      "hedge fund manager"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_009",
-      "CA_082",
-      "CA_027"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0073_4c3942": {
-    "label": "lifestyle choice",
-    "aliases": [
-      "lifestyle choice"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_022",
-      "CA_072",
-      "CA_061",
-      "CA_097",
-      "CA_077"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0074_4bca5a": {
-    "label": "noir bleu marine",
-    "aliases": [
-      "noir bleu marine"
-    ],
-    "languages": "DE",
-    "freq_notes": 5,
-    "examples": [
-      "CA_015",
-      "CA_098",
-      "CA_070",
-      "CA_051",
-      "CA_039"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0075_5cc100": {
-    "label": "professional pieces",
-    "aliases": [
-      "professional pieces"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_047",
-      "CA_018",
-      "CA_077",
-      "CA_086",
-      "CA_032"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0076_9a0dcf": {
-    "label": "père",
-    "aliases": [
-      "père"
-    ],
-    "languages": "DE|IT",
-    "freq_notes": 5,
-    "examples": [
-      "CA_030",
-      "CA_015",
-      "CA_098",
-      "CA_073",
-      "CA_054"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0077_2a2d59": {
-    "label": "spring",
-    "aliases": [
-      "spring"
-    ],
-    "languages": "EN",
-    "freq_notes": 5,
-    "examples": [
-      "CA_005",
-      "CA_100",
-      "CA_037",
-      "CA_042",
-      "CA_097"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0078_840252": {
-    "label": "stil bevorzugt",
-    "aliases": [
-      "stil bevorzugt"
-    ],
-    "languages": "DE",
-    "freq_notes": 5,
-    "examples": [
-      "CA_083",
-      "CA_034",
-      "CA_007",
-      "CA_098",
-      "CA_039"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0079_693a49": {
-    "label": "zwei kinder",
-    "aliases": [
-      "zwei kinder"
-    ],
-    "languages": "DE",
-    "freq_notes": 5,
-    "examples": [
-      "CA_083",
-      "CA_034",
-      "CA_045",
-      "CA_075",
-      "CA_039"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0080_7170f2": {
-    "label": "50-52 ans",
-    "aliases": [
-      "50-52 ans",
-      "anniversario 50 ans"
-    ],
-    "languages": "FR|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_073",
-      "CA_095",
-      "CA_054",
-      "CA_058"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0081_e5f9bb": {
-    "label": "acquisto multiplo",
-    "aliases": [
-      "acquisto multiplo",
-      "achat multiple"
-    ],
-    "languages": "FR|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_063",
-      "CA_040",
-      "CA_024",
-      "CA_019"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0082_d83d61": {
-    "label": "asked about",
-    "aliases": [
-      "asked about"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_014",
-      "CA_047",
-      "CA_077",
-      "CA_022"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0083_5b7894": {
-    "label": "clients exceptional potential",
-    "aliases": [
-      "clients exceptional potential",
-      "client high potential"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_018",
-      "CA_032",
-      "CA_077",
-      "CA_066"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0084_3ae268": {
-    "label": "clients since",
-    "aliases": [
-      "clients since"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_080",
-      "CA_005",
-      "CA_100",
-      "CA_052"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0085_3e6241": {
-    "label": "couple 50-52",
-    "aliases": [
-      "couple 50-52",
-      "couple 50-52 ans"
-    ],
-    "languages": "FR",
-    "freq_notes": 4,
-    "examples": [
-      "CA_095",
-      "CA_058"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0086_230ace": {
-    "label": "designer",
-    "aliases": [
-      "designer"
-    ],
-    "languages": "EN|FR|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_009",
-      "CA_027",
-      "CA_091",
-      "CA_035"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0087_fe7f6b": {
-    "label": "events she",
-    "aliases": [
-      "events she"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_066",
-      "CA_080",
-      "CA_032",
-      "CA_052"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0088_c842f1": {
-    "label": "long-time vip",
-    "aliases": [
-      "long-time vip",
-      "long-time vip clients"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_092",
-      "CA_052"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0089_faaaac": {
-    "label": "marathon",
-    "aliases": [
-      "marathon"
-    ],
-    "languages": "DE|EN|FR",
-    "freq_notes": 4,
-    "examples": [
-      "CA_070",
-      "CA_037",
-      "CA_097",
-      "CA_008"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0091_75101d": {
-    "label": "running",
-    "aliases": [
-      "running"
-    ],
-    "languages": "EN|ES|FR",
-    "freq_notes": 4,
-    "examples": [
-      "CA_037",
-      "CA_016",
-      "CA_097",
-      "CA_090"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0092_60190c": {
-    "label": "safari",
-    "aliases": [
-      "safari"
-    ],
-    "languages": "DE|EN|FR|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_005",
-      "CA_083",
-      "CA_058",
-      "CA_024"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0093_b41338": {
-    "label": "shopping for",
-    "aliases": [
-      "shopping for"
-    ],
-    "languages": "EN",
-    "freq_notes": 4,
-    "examples": [
-      "CA_042",
-      "CA_097",
-      "CA_082",
-      "CA_072"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0094_1fbfb2": {
-    "label": "tennis",
-    "aliases": [
-      "tennis"
-    ],
-    "languages": "EN|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_002",
-      "CA_024",
-      "CA_077",
-      "CA_018"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0095_62911a": {
-    "label": "vin",
-    "aliases": [
-      "vin"
-    ],
-    "languages": "EN|ES|FR|IT",
-    "freq_notes": 4,
-    "examples": [
-      "CA_087",
-      "CA_018",
-      "CA_050",
-      "CA_068"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0096_0ab3e5": {
-    "label": "allergie shellfish",
-    "aliases": [
-      "allergie shellfish"
-    ],
-    "languages": "EN",
-    "freq_notes": 3,
-    "examples": [
-      "CA_009",
-      "CA_022",
-      "CA_066"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0097_7ef709": {
-    "label": "cherche pièces",
-    "aliases": [
-      "cherche pièces"
-    ],
-    "languages": "FR",
-    "freq_notes": 3,
-    "examples": [
-      "CA_081",
-      "CA_046",
-      "CA_067"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0098_027baa": {
-    "label": "client occasionnel",
-    "aliases": [
-      "client occasionnel"
-    ],
-    "languages": "FR",
-    "freq_notes": 3,
-    "examples": [
-      "CA_021",
-      "CA_036",
-      "CA_071"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0099_5db931": {
-    "label": "heritage",
-    "aliases": [
-      "heritage"
-    ],
-    "languages": "EN",
-    "freq_notes": 3,
-    "examples": [
-      "CA_080",
-      "CA_100",
-      "CA_086"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0100_d16e08": {
-    "label": "achat rapide",
-    "aliases": [
-      "achat rapide"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_004",
-      "CA_091"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0101_119ae1": {
-    "label": "acquista regali",
-    "aliases": [
-      "acquista regali"
-    ],
-    "languages": "IT",
-    "freq_notes": 2,
-    "examples": [
-      "CA_089",
-      "CA_035"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0102_b55691": {
-    "label": "allergie fruits",
-    "aliases": [
-      "allergie fruits"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_019",
-      "CA_076"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0103_da72bc": {
-    "label": "allergie peanut",
-    "aliases": [
-      "allergie peanut"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_100",
-      "CA_032"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0104_d53326": {
-    "label": "amérique sud",
-    "aliases": [
-      "amérique sud"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_076",
-      "CA_004"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0105_f425ab": {
-    "label": "attends art basel",
-    "aliases": [
-      "attends art basel"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_005",
-      "CA_014"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0106_9075ba": {
-    "label": "basel miami",
-    "aliases": [
-      "basel miami"
-    ],
-    "languages": "EN|ES",
-    "freq_notes": 2,
-    "examples": [
-      "CA_014",
-      "CA_026"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0107_df3a3c": {
-    "label": "blanc",
-    "aliases": [
-      "blanc"
-    ],
-    "languages": "FR|IT",
-    "freq_notes": 2,
-    "examples": [
-      "CA_087",
-      "CA_063"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0108_12bbd9": {
-    "label": "bleu",
-    "aliases": [
-      "bleu"
-    ],
-    "languages": "ES|IT",
-    "freq_notes": 2,
-    "examples": [
-      "CA_063",
-      "CA_085"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0109_b767e1": {
-    "label": "busca piezas",
-    "aliases": [
-      "busca piezas"
-    ],
-    "languages": "ES",
-    "freq_notes": 2,
-    "examples": [
-      "CA_033",
-      "CA_064"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0110_98cfb6": {
-    "label": "cadeau geschäftspartnerin",
-    "aliases": [
-      "cadeau geschäftspartnerin"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_007",
-      "CA_051"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0111_943a2b": {
-    "label": "client fidèle",
-    "aliases": [
-      "client fidèle"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_099",
-      "CA_013"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0112_d54acf": {
-    "label": "client high",
-    "aliases": [
-      "client high"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_018",
-      "CA_077"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0113_644c74": {
-    "label": "cliente regolare",
-    "aliases": [
-      "cliente regolare"
-    ],
-    "languages": "IT",
-    "freq_notes": 2,
-    "examples": [
-      "CA_089",
-      "CA_035"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0114_2cda2b": {
-    "label": "for events",
-    "aliases": [
-      "for events"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_042",
-      "CA_022"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0115_eb5d02": {
-    "label": "fund manager",
-    "aliases": [
-      "fund manager"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_009",
-      "CA_027"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0116_73264a": {
-    "label": "galeristin zeitgenössische",
-    "aliases": [
-      "galeristin zeitgenössische"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_039",
-      "CA_075"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0117_abf21e": {
-    "label": "gluten",
-    "aliases": [
-      "gluten"
-    ],
-    "languages": "ES|FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_085",
-      "CA_008"
-    ],
-    "rule": "bucket=constraints"
-  },
-  "CONCEPT_0118_b3f2ca": {
-    "label": "kauft geschenke",
-    "aliases": [
-      "kauft geschenke"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_023",
-      "CA_065"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0119_c5e843": {
-    "label": "neuer kunde",
-    "aliases": [
-      "neuer kunde"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_093",
-      "CA_045"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0120_4fa6ca": {
-    "label": "nächsten monat",
-    "aliases": [
-      "nächsten monat"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_007",
-      "CA_034"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0121_6ad40d": {
-    "label": "portefeuille",
-    "aliases": [
-      "portefeuille"
-    ],
-    "languages": "FR",
-    "freq_notes": 2,
-    "examples": [
-      "CA_004",
-      "CA_001"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0122_1db3e9": {
-    "label": "rechtsanwalt partner",
-    "aliases": [
-      "rechtsanwalt partner"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_098",
-      "CA_057"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0123_43e549": {
-    "label": "regelmäßige kundin",
-    "aliases": [
-      "regelmäßige kundin"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_051",
-      "CA_075"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0124_49d800": {
-    "label": "seguidores instagram",
-    "aliases": [
-      "seguidores instagram"
-    ],
-    "languages": "ES",
-    "freq_notes": 2,
-    "examples": [
-      "CA_020",
-      "CA_006"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0125_6bbdfe": {
-    "label": "silicon valley",
-    "aliases": [
-      "silicon valley"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_014",
-      "CA_077"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0126_34d8a0": {
-    "label": "since shopping",
-    "aliases": [
-      "since shopping"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_072",
-      "CA_097"
-    ],
-    "rule": "bucket=intent"
-  },
-  "CONCEPT_0127_6b1628": {
-    "label": "summer",
-    "aliases": [
-      "summer"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_086",
-      "CA_022"
-    ],
-    "rule": "bucket=occasion"
-  },
-  "CONCEPT_0128_49a31d": {
-    "label": "sustainable",
-    "aliases": [
-      "sustainable"
-    ],
-    "languages": "EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_037",
-      "CA_052"
-    ],
-    "rule": "bucket=preferences"
-  },
-  "CONCEPT_0129_729f1b": {
-    "label": "tech entrepreneur",
-    "aliases": [
-      "tech entrepreneur"
-    ],
-    "languages": "DE|EN",
-    "freq_notes": 2,
-    "examples": [
-      "CA_014",
-      "CA_029"
-    ],
-    "rule": "bucket=lifestyle"
-  },
-  "CONCEPT_0130_25f749": {
-    "label": "treue kunden",
-    "aliases": [
-      "treue kunden"
-    ],
-    "languages": "DE",
-    "freq_notes": 2,
-    "examples": [
-      "CA_098",
-      "CA_034"
-    ],
-    "rule": "bucket=intent"
-  }
+  "started_at": "2026-02-12T09:43:58.301635"
 }

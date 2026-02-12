@@ -460,6 +460,15 @@ def main():
         return
         
     concepts_df = pd.read_csv(concepts_file)
+    
+    # Join client_id from notes_clean if missing
+    if 'client_id' not in concepts_df.columns and 'note_id' in concepts_df.columns:
+        notes_path = Path("data/processed/notes_clean.parquet")
+        if notes_path.exists():
+            notes_df = pd.read_parquet(notes_path)[['note_id', 'client_id']]
+            concepts_df = concepts_df.merge(notes_df, on='note_id', how='left')
+            print(f"   Joined client_id from notes_clean.parquet")
+    
     print(f"\n📊 Loaded {len(concepts_df)} concept matches from {len(concepts_df['client_id'].unique())} clients")
     
     # Initialize trainer

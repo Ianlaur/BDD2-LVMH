@@ -1,0 +1,37 @@
+{
+  "completed": [
+    "cjk_batch_0",
+    "cjk_batch_5",
+    "cjk_batch_10",
+    "cjk_batch_15",
+    "cjk_batch_20",
+    "cjk_batch_25",
+    "cjk_batch_30",
+    "cjk_batch_35",
+    "cjk_batch_40",
+    "cjk_batch_45",
+    "cjk_batch_50",
+    "cjk_batch_55",
+    "cjk_batch_60",
+    "cjk_batch_65",
+    "cjk_batch_70"
+  ],
+  "results": {
+    "cjk_batch_0": {},
+    "cjk_batch_5": {},
+    "cjk_batch_10": {},
+    "cjk_batch_15": {},
+    "cjk_batch_20": {},
+    "cjk_batch_25": {},
+    "cjk_batch_30": {},
+    "cjk_batch_35": {},
+    "cjk_batch_40": {},
+    "cjk_batch_45": {},
+    "cjk_batch_50": {},
+    "cjk_batch_55": {},
+    "cjk_batch_60": {},
+    "cjk_batch_65": {},
+    "cjk_batch_70": {}
+  },
+  "started_at": "2026-02-12T10:41:12.615723"
+}

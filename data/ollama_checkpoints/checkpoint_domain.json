@@ -1,0 +1,1773 @@
+{
+  "completed": [
+    "occasion_celebrations",
+    "occasion_seasonal",
+    "constraints_dietary",
+    "constraints_ethical",
+    "lifestyle_professions",
+    "lifestyle_hobbies",
+    "preferences_materials",
+    "preferences_styles",
+    "next_action_followup",
+    "intent_purchase_signals"
+  ],
+  "results": {
+    "occasion_celebrations": [
+      {
+        "label": "mariage",
+        "bucket": "next_action",
+        "aliases": [
+          "mariage",
+          "mar",
+          "mari",
+          "wedding",
+          "bride",
+          "matrimonio",
+          "sposa",
+          "casamiento",
+          "novia",
+          "heirat",
+          "frau",
+          "casamento",
+          "noivo",
+          "hof",
+          "الزواج",
+          "زوجة",
+          "결혼식",
+          "신부",
+          "婚礼",
+          "新娘",
+          "брачный банкет",
+          "невеста",
+          "結婚式",
+          "新婦"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "naissance",
+        "bucket": "next_action",
+        "aliases": [
+          "naissance",
+          "naiss",
+          "bébé",
+          "birth",
+          "baby",
+          "nascita",
+          "bambino",
+          "nacimiento",
+          "bebé",
+          "geburt",
+          "nascimento",
+          "filho",
+          "geboorte",
+          "kind",
+          "ولادة",
+          "طفل",
+          "출생",
+          "아이",
+          "出生",
+          "婴儿",
+          "рождение",
+          "ребенок",
+          "出産"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "anniversaire",
+        "bucket": "next_action",
+        "aliases": [
+          "anniv",
+          "anniversaire",
+          "birthday",
+          "birth",
+          "anniversario",
+          "cumpleaños",
+          "geburtstag",
+          "aniversário",
+          "nascimento",
+          "achterdatum",
+          "geboorte",
+          "ذكرى ميلاد",
+          "عيد ميلاد",
+          "생일",
+          "출생일",
+          "生日",
+          "出生日",
+          "день рождения",
+          "рождение",
+          "誕生日",
+          "出産"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "promotion",
+        "bucket": "next_action",
+        "aliases": [
+          "promo",
+          "promotion",
+          "promozione",
+          "promoción",
+          "promoção",
+          "promotie",
+          "promotional",
+          "促销",
+          "предложение",
+          "プロモーション"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "réveillon",
+        "bucket": "next_action",
+        "aliases": [
+          "réveil",
+          "noel",
+          "new year's eve",
+          "new years",
+          "natale",
+          "nochevieja",
+          "año nuevo",
+          "neujahrswende",
+          "weihnachten",
+          "réveillon",
+          "ano novo",
+          "revelen",
+          "jaarbegin",
+          "عيد الميلاد",
+          "عيد الأضحى",
+          "연말",
+          "추수감사절",
+          "跨年",
+          "春节",
+          "новый год",
+          "рождество",
+          "新年",
+          "クリスマス"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "retraite",
+        "bucket": "next_action",
+        "aliases": [
+          "retraite",
+          "pension",
+          "retirement",
+          "in pensione",
+          "pensione",
+          "retirada",
+          "pensión",
+          "ruhestand",
+          "aposentadoria",
+          "aposentado",
+          "تقاعد",
+          "퇴직",
+          "退休",
+          "отставка",
+          "пенсия",
+          "退職"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|JA|KO|NL|PT|RU|ZH"
+      },
+      {
+        "label": "premi",
+        "bucket": "next_action",
+        "aliases": [
+          "premi",
+          "prix",
+          "prize",
+          "award",
+          "premio",
+          "preis",
+          "prémio",
+          "prêmio",
+          "prijs",
+          "جائزة",
+          "جوائز",
+          "패키지",
+          "상품권",
+          "奖励",
+          "奖品",
+          "премия",
+          "приз"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|KO|NL|PT|RU|ZH"
+      }
+    ],
+    "occasion_seasonal": [
+      {
+        "label": "summer collection launch",
+        "bucket": "occasion",
+        "aliases": [
+          "lancement collection estivale",
+          "lancement collection été",
+          "summer collection launch",
+          "summer collection event",
+          "launch collezione estate",
+          "evento lancio collezione estate",
+          "lanciamiento colección verano",
+          "evento lanzamiento colección verano",
+          "sommerkollektion-launch",
+          "sommerkollektion-ereignis",
+          "lançamento da coleção verão",
+          "evento lançamento coleção verão",
+          "zomercollectie-lancering",
+          "zomercollectie-evenement"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "winter holidays",
+        "bucket": "occasion",
+        "aliases": [
+          "winter holidays",
+          "fêtes de noël",
+          "week-end de vacances",
+          "winter holiday event",
+          "holiday season",
+          "festività invernali",
+          "tempo di vacanze",
+          "fiestas navideñas",
+          "vacaciones estivales",
+          "weihnachtsfeiertage",
+          "wintersommerferien",
+          "férias de fim do ano",
+          "verão das férias",
+          "wintervakantie",
+          "zomervakantie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "spring fashion week",
+        "bucket": "occasion",
+        "aliases": [
+          "semaine de la mode de paris",
+          "fashion week",
+          "spring fashion week",
+          "paris fashion week",
+          "settimana della moda di parigi",
+          "semana de la moda de parís",
+          "modewoche in paris",
+          "modewochenend",
+          "semana da moda em paris",
+          "modeweek in parijs",
+          "paris mode week"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "fall preview",
+        "bucket": "occasion",
+        "aliases": [
+          "pré-visions automnales",
+          "pré-vues d'automne",
+          "fall preview",
+          "autumn preview",
+          "prospettive autunnali",
+          "previsioni autunnali",
+          "previsión otoñal",
+          "vista previa de otoño",
+          "herbstvorstellung",
+          "herbstvorschau",
+          "visão pré-final de outono",
+          "preview otoñal",
+          "zomervoorkijk",
+          "voorjaarvoorkijk"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "honeymoon",
+        "bucket": "occasion",
+        "aliases": [
+          "week-end de vacances en amoureux",
+          "vacances romantiques",
+          "honeymoon",
+          "couple getaway",
+          "viaggio di nozze",
+          "viaggio romantico",
+          "viaje de novios",
+          "vacaciones románticas",
+          "witweinschafft",
+          "ehe-reise",
+          "férias de casal",
+          "viagem de lua de mel",
+          "huwelijksvakantie",
+          "couple vakantie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "world cruise",
+        "bucket": "occasion",
+        "aliases": [
+          "croisière mondiale",
+          "voyage en croisière",
+          "world cruise",
+          "global cruise",
+          "crociata mondiale",
+          "viaggio in crocevia",
+          "cruce mundial",
+          "viaje de crucero",
+          "weltkreisreise",
+          "große kreisfahrt",
+          "cruzeiro pelo mundo",
+          "viagem em cruzeiro",
+          "wereldreis",
+          "groot rondreizen"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "ski season",
+        "bucket": "occasion",
+        "aliases": [
+          "saison de ski",
+          "saison des neiges",
+          "ski season",
+          "winter sports season",
+          "serie di sci",
+          "tempo dei sci",
+          "temporada de esquí",
+          "temporada de nieve",
+          "schneeschlachtzeit",
+          "wintersportzeit",
+          "tempo de ski",
+          "tempo de neves",
+          "skiperijs",
+          "winter sportperiode"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "summer villa",
+        "bucket": "occasion",
+        "aliases": [
+          "villa estivale",
+          "maison de vacances",
+          "summer villa",
+          "villa summer",
+          "villa estiva",
+          "casa di vacanza",
+          "villa verano",
+          "casa de vacaciones",
+          "sommervilla",
+          "wohnung sommer",
+          "vila verão",
+          "casal de férias",
+          "zomerwoning",
+          "vakantiewoning"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "yacht week",
+        "bucket": "occasion",
+        "aliases": [
+          "semaine du bateau",
+          "week-end de la voile",
+          "yacht week",
+          "boat week",
+          "settimana del battello",
+          "settimana della vela",
+          "semana en el yate",
+          "semana de barcos",
+          "jachtenwoche",
+          "seglerwoche",
+          "semana do yacht",
+          "semana da barca",
+          "jachtweek"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "corporate gifting season",
+        "bucket": "occasion",
+        "aliases": [
+          "saison des cadeaux d'entreprise",
+          "saison de la présentation",
+          "corporate gifting season",
+          "business gift season",
+          "serie di regali aziendali",
+          "tempo dei regali aziendali",
+          "temporada de regalos corporativos",
+          "temporada de presentaciones",
+          "geschenkzeit für unternehmen",
+          "unternehmensgeschenkzeit",
+          "tempo de presentações corporativas",
+          "tempo de regalos empresariais",
+          "bedrijfsgifstijd",
+          "bedrijfsregelingsperiode"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "end-of-year gifts",
+        "bucket": "occasion",
+        "aliases": [
+          "cadeaux de fin d'année",
+          "cadeaux de noël",
+          "end-of-year gifts",
+          "year-end gift season",
+          "regali alla fine dell'anno",
+          "tempo dei regali all'inizio dell'anno",
+          "presentaciones al final del año",
+          "temporada de presentaciones",
+          "geschenkzeit zum jahresende",
+          "endsaisongeschenke",
+          "presentações ao fim do ano",
+          "tempo de presentações",
+          "eindjaar-gifstijd",
+          "jaarafsluiting"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "client appreciation",
+        "bucket": "occasion",
+        "aliases": [
+          "appreciation client",
+          "cadeau de bienvenue",
+          "client appreciation",
+          "client recognition",
+          "apprezzamento cliente",
+          "tempo di apprezzamento",
+          "aprecio al cliente",
+          "temporada de presentaciones",
+          "kundenerkennung",
+          "kundenappretzment",
+          "apreciação do cliente",
+          "tempo de apresentação",
+          "client-applaudisering",
+          "appretheid"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      }
+    ],
+    "constraints_dietary": [
+      {
+        "label": "vegan",
+        "bucket": "lifestyle",
+        "aliases": [
+          "vegan",
+          "vegane",
+          "vegetarian",
+          "veggiano",
+          "vegetarino",
+          "vegano",
+          "vegetariano",
+          "vegetarisch",
+          "wahlgemäß vegan",
+          "végano",
+          "vegetariër",
+          "فطير",
+          "فطر"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "gluten-free",
+        "bucket": "lifestyle",
+        "aliases": [
+          "sans gluten",
+          "sans-gluten",
+          "gluten-free",
+          "wahlgemäß vegan",
+          "liberale",
+          "sin gluten",
+          "sin-gluten",
+          "glutenfrei",
+          "sem glúten",
+          "glúten-free",
+          "glutenvrij",
+          "بدون جلوتين",
+          "بدون-جلوتين"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "lactose intolerant",
+        "bucket": "lifestyle",
+        "aliases": [
+          "intolérance au lactose",
+          "intolérance-lactose",
+          "lactose intolerant",
+          "wahlgemäß vegan",
+          "intollerante al latto",
+          "intollerante-latte",
+          "ináltrico lácteo",
+          "ináltrico-lácteo",
+          "laktoseunempfindlich",
+          "lactose intolerante",
+          "glúten-free",
+          "lactoseintolerant",
+          "حساس باللaktوز",
+          "حساس-باللaktوز"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "nut allergy",
+        "bucket": "lifestyle",
+        "aliases": [
+          "allergie aux noix",
+          "allergie-noix",
+          "nut allergy",
+          "wahlgemäß vegan",
+          "alloggiante alle noci",
+          "alloggiante-noci",
+          "alergia a las nueces",
+          "alergia-nuez",
+          "nussallergie",
+          "alergia às nozes",
+          "glúten-free",
+          "nuttelustigheid",
+          "حساس بالجوز",
+          "حساس-بالجوز"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "fragrance sensitivity",
+        "bucket": "lifestyle",
+        "aliases": [
+          "sensibilité aux parfums",
+          "sensible-parfum",
+          "fragrance sensitivity",
+          "wahlgemäß vegan",
+          "sensibilità agli profumi",
+          "sensibile-profumo",
+          "sensibilidad a los perfumes",
+          "sensible-perfume",
+          "parfümsallergie",
+          "sensibilidade às fragrâncias",
+          "glúten-free",
+          "parfumvermoeidheid",
+          "حساس بالرائحة",
+          "حساس-بالرائحة"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "mobility issues",
+        "bucket": "lifestyle",
+        "aliases": [
+          "problèmes de mobilité",
+          "handicap",
+          "mobility issues",
+          "wahlgemäß vegan",
+          "difficoltà di movimento",
+          "disabilità",
+          "dificultades de movilidad",
+          "discapacidad",
+          "mobilitätsprobleme",
+          "limitações de mobilidade",
+          "deficiência",
+          "mobiele problemen",
+          "مشاكل التنقل",
+          "مشاكل-التنقل"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "visual impairment",
+        "bucket": "lifestyle",
+        "aliases": [
+          "perte de vue",
+          "visuel",
+          "visual impairment",
+          "wahlgemäß vegan",
+          "impotenza visiva",
+          "disabilità",
+          "visión limitada",
+          "discapacidad",
+          "sehstörung",
+          "restrição visual",
+          "deficiência",
+          "zichtprobleem",
+          "handicap",
+          "صعوبة في الرؤية",
+          "صعوبة-في-الرؤية"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "no alcohol",
+        "bucket": "lifestyle",
+        "aliases": [
+          "pas d'alcool",
+          "sans-alcool",
+          "no alcohol",
+          "wahlgemäß vegan",
+          "assoluto senza alcol",
+          "assolutamente-senza-alcol",
+          "sin alcohol",
+          "sin-alcohol",
+          "kein alkohol",
+          "sem álcool",
+          "glúten-free",
+          "geen drank",
+          "handicap",
+          "ممنوع الكحولية",
+          "ممنوع-الكحولية"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "fasting period",
+        "bucket": "lifestyle",
+        "aliases": [
+          "période de jeûne",
+          "jeûne",
+          "fasting period",
+          "wahlgemäß vegan",
+          "periodo di abbandono",
+          "abbandono",
+          "período de ayuno",
+          "ayuno",
+          "festperiode",
+          "período de jejum",
+          "jejum",
+          "afslanktijd",
+          "handicap",
+          "فترة الصيام",
+          "فترة-الصيام"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "modest dress",
+        "bucket": "lifestyle",
+        "aliases": [
+          "tenue modeste",
+          "mode",
+          "modest dress",
+          "wahlgemäß vegan",
+          "indossamento modesto",
+          "modesto",
+          "vestimenta discreta",
+          "discreto",
+          "moderne kleidung",
+          "roupa discreta",
+          "modieuze kleding",
+          "handicap",
+          "الزي الديني, الحجاب",
+          "الزي-الديني"
+        ],
+        "languages": "AR|DE|EN|ES|FR|IT|NL|PT"
+      }
+    ],
+    "constraints_ethical": [
+      {
+        "label": "sustainability - éco-conception",
+        "bucket": "constraints",
+        "aliases": [
+          "sustainability - éco-conception",
+          "éco-conception",
+          "sécurité environnementale",
+          "eco-conception",
+          "environmental safety",
+          "concepzione ecolabile",
+          "ambiente sicuro",
+          "ecoconstrucción",
+          "seguridad ambiental",
+          "eco-konstruktion",
+          "umwelt-sicherheit",
+          "sustentabilidade - concepção ecológica",
+          "segurança ambiental",
+          "eco-construutie",
+          "milieu-sicherheid"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "animal welfare - non-fur",
+        "bucket": "constraints",
+        "aliases": [
+          "animal welfare - non-fur",
+          "non-fur",
+          "sans fourrure",
+          "no fur",
+          "fur-free",
+          "senza peluche",
+          "fur free",
+          "sin pelo",
+          "sin piel de animales",
+          "keine pelage",
+          "furlos",
+          "sem pele",
+          "sem felpa",
+          "geen vacht",
+          "vachtloos"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "sourcing - fair trade",
+        "bucket": "constraints",
+        "aliases": [
+          "sourcing - fair trade",
+          "équitable",
+          "transparence",
+          "fair trade",
+          "transparency",
+          "equilibrio",
+          "trasparenza",
+          "justo comercio",
+          "transparencia",
+          "gerechtigter handel",
+          "transparenz",
+          "comércio justo",
+          "transparência",
+          "eenrechtshandel",
+          "transparantie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "packaging - minimal",
+        "bucket": "constraints",
+        "aliases": [
+          "packaging - minimal",
+          "minimaliste",
+          "économique",
+          "minimalist",
+          "economic",
+          "minimale",
+          "economica",
+          "mínimalista",
+          "económico",
+          "minimalistisch",
+          "ökonomisch",
+          "minimalista",
+          "economisch"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "sourcing - conflict-free",
+        "bucket": "constraints",
+        "aliases": [
+          "sourcing - conflict-free",
+          "sans conflit",
+          "confiance",
+          "conflict free",
+          "trustworthiness",
+          "senza conflitto",
+          "riconoscimento",
+          "sin conflicto",
+          "seguridad",
+          "kein konflikt",
+          "vertrauen",
+          "sem conflito",
+          "confiança",
+          "geen conflict",
+          "vertrouwen"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "sourcing - ethical",
+        "bucket": "constraints",
+        "aliases": [
+          "sourcing - ethical",
+          "éthique",
+          "transparence",
+          "ethical",
+          "transparency",
+          "etico",
+          "trasparenza",
+          "etnico",
+          "transparencia",
+          "ethik",
+          "transparenz",
+          "ético",
+          "transparência",
+          "ethiek",
+          "transparantie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "sourcing - sustainable",
+        "bucket": "constraints",
+        "aliases": [
+          "sourcing - sustainable",
+          "durable",
+          "éco-conception",
+          "sustainable",
+          "eco-conception",
+          "durabile",
+          "concepzione ecolabile",
+          "sostenible",
+          "ecoconstrucción",
+          "nachhaltig",
+          "eco-konstruktion",
+          "sustentável",
+          "eco-construção",
+          "zinvol, eco-construutie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      }
+    ],
+    "lifestyle_professions": [
+      {
+        "label": "entrepreneur",
+        "bucket": "intent",
+        "aliases": [
+          "entrepreneur",
+          "impreventore",
+          "emprendedor",
+          "unternehmer",
+          "iniciador"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "fashion designer",
+        "bucket": "constraints",
+        "aliases": [
+          "modeurteur",
+          "fashion designer",
+          "disegnatrice di moda",
+          "arquitecto de moda",
+          "modekonstrukteur",
+          "desenhador de moda"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "attorney",
+        "bucket": "constraints",
+        "aliases": [
+          "avocat",
+          "attorney",
+          "avvocato",
+          "abogado",
+          "anwalt",
+          "advogado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "royal family",
+        "bucket": "constraints",
+        "aliases": [
+          "royalite",
+          "royal family",
+          "cortigiana",
+          "realeza",
+          "königsfamilie",
+          "família real"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "polo player",
+        "bucket": "constraints",
+        "aliases": [
+          "pouliste",
+          "polo player",
+          "giocatore di polo",
+          "jugador de polo",
+          "polo spieler",
+          "jogador de polo"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "family office",
+        "bucket": "constraints",
+        "aliases": [
+          "office familial",
+          "family office",
+          "ufficio familiare",
+          "oficina familiar",
+          "familienfonds",
+          "fundo familiar"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "gallery owner",
+        "bucket": "constraints",
+        "aliases": [
+          "galeriste",
+          "gallery owner",
+          "proprietario di galleria",
+          "dueño de galería",
+          "galerist",
+          "gerente de galeria"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "thoroughbred owner",
+        "bucket": "constraints",
+        "aliases": [
+          "proprietaire de cheval",
+          "thoroughbred owner",
+          "proprietario di cavalli da corsa",
+          "dueño de caballos de carreras",
+          "pferdebesitzer",
+          "proprietário de cavalos de corrida"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "socialite",
+        "bucket": "constraints",
+        "aliases": [
+          "socialite",
+          "socialita",
+          "socialista",
+          "sozialitäre",
+          "sociedade"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "architect",
+        "bucket": "constraints",
+        "aliases": [
+          "architecte",
+          "architect",
+          "arquiteto",
+          "arquitecto",
+          "architekt"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      }
+    ],
+    "lifestyle_hobbies": [
+      {
+        "label": "sports - yacht",
+        "bucket": "lifestyle",
+        "aliases": [
+          "sports - yacht",
+          "sports voile",
+          "voile",
+          "sailing",
+          "yacht",
+          "sport vela",
+          "vela",
+          "deportes yate",
+          "yate",
+          "sport segelschiff",
+          "segelschiff",
+          "desporto náutico",
+          "náutico",
+          "sport zeilboot",
+          "zeilboot"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "culture - opera",
+        "bucket": "lifestyle",
+        "aliases": [
+          "culture - opera",
+          "opéra",
+          "opera",
+          "oper",
+          "teatro opera",
+          "orquesta teatro",
+          "teatro"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "leisure - wine collecting",
+        "bucket": "lifestyle",
+        "aliases": [
+          "leisure - wine collecting",
+          "vin collection",
+          "vins",
+          "wine collecting",
+          "wines",
+          "collezione vini",
+          "vini",
+          "colección vinos",
+          "vinos",
+          "wein sammlung",
+          "weine",
+          "coleção vinhos",
+          "vinhos",
+          "wijn collectie",
+          "wijnen"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "collecting - car",
+        "bucket": "lifestyle",
+        "aliases": [
+          "collecting - car",
+          "voiture collection",
+          "voitures",
+          "car collecting",
+          "cars",
+          "collezione auto",
+          "auto",
+          "colección coches",
+          "coches",
+          "kfz sammlung",
+          "kfz",
+          "coleção automóveis",
+          "automóveis",
+          "wagen collectie",
+          "wagens"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "leisure - michelin dining",
+        "bucket": "lifestyle",
+        "aliases": [
+          "leisure - michelin dining",
+          "dîner michelin",
+          "michelin",
+          "michelin dining",
+          "ristorazione michelin",
+          "cocina michelin",
+          "miklins essens",
+          "miklins",
+          "dinâm michelin",
+          "michelin eten"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "collecting - watch",
+        "bucket": "lifestyle",
+        "aliases": [
+          "collecting - watch",
+          "montre collection",
+          "montres",
+          "watch collecting",
+          "watches",
+          "collezione orologi",
+          "orologi",
+          "colección relojos",
+          "relojes",
+          "uhr sammlung",
+          "uhren",
+          "coleção relógios",
+          "relógios",
+          "wacht collectie",
+          "wetten"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "collecting - jewelry",
+        "bucket": "lifestyle",
+        "aliases": [
+          "collecting - jewelry",
+          "bijoux collection",
+          "bijoux",
+          "jewelry collecting",
+          "jewelry",
+          "collezione accessori",
+          "accessori",
+          "colección joyas",
+          "joyas",
+          "juwelier sammlung",
+          "juweliere",
+          "coleção bijoux",
+          "oorzaak collectie",
+          "oorzaaken"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "culture - antiques",
+        "bucket": "lifestyle",
+        "aliases": [
+          "culture - antiques",
+          "antiquités",
+          "antique collecting",
+          "antiques",
+          "arte antica",
+          "arte",
+          "colección antiguos",
+          "antiguos",
+          "alte kunst",
+          "alt",
+          "coleção antigos",
+          "antigos",
+          "oud collectie",
+          "oude"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "leisure - cigar",
+        "bucket": "lifestyle",
+        "aliases": [
+          "leisure - cigar",
+          "cigare collection",
+          "cigares",
+          "cigar collecting",
+          "cigars",
+          "collezione sigarette",
+          "sigarette",
+          "colección tabacos",
+          "tabaco",
+          "zigarren sammlung",
+          "zigarren",
+          "coleção cigarros",
+          "cigarros",
+          "koers collectie",
+          "koers"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "culture - contemporary art",
+        "bucket": "lifestyle",
+        "aliases": [
+          "culture - contemporary art",
+          "art contemporain",
+          "contemporain",
+          "contemporary art collecting",
+          "contemporary arts",
+          "arte contemporanea",
+          "contemporanea",
+          "colección arte contemporáneo",
+          "contemporáneo",
+          "moderne kunst",
+          "moderne",
+          "coleção arte contemporânea",
+          "contemporâneo",
+          "kunst moderne collectie"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "leisure - private aviation",
+        "bucket": "lifestyle",
+        "aliases": [
+          "leisure - private aviation",
+          "aviation privée",
+          "privé",
+          "private aviation",
+          "volo privato",
+          "privato",
+          "aviación privada",
+          "privada",
+          "privatflug",
+          "privat",
+          "aviação privada",
+          "privé vliegtuigen"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      },
+      {
+        "label": "collecting - rare books",
+        "bucket": "lifestyle",
+        "aliases": [
+          "collecting - rare books",
+          "livres rares",
+          "rares",
+          "rare book collecting",
+          "rare books",
+          "libri rari",
+          "rari",
+          "libros raros",
+          "raros",
+          "seltene bücher",
+          "seltene",
+          "livros excepcionais",
+          "excepcionais",
+          "rare boeken",
+          "rare"
+        ],
+        "languages": "DE|EN|ES|FR|IT|NL|PT"
+      }
+    ],
+    "preferences_materials": [
+      {
+        "label": "matériaux et finitions - matériaux",
+        "bucket": "constraints",
+        "aliases": [
+          "matériaux et finitions - matériaux",
+          "mat",
+          "matt",
+          "materials",
+          "matte",
+          "materiali",
+          "matto",
+          "materiales",
+          "mate",
+          "materialien",
+          "glatzig",
+          "matérios",
+          "brilhante"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "matériaux et finitions - finishes",
+        "bucket": "constraints",
+        "aliases": [
+          "matériaux et finitions - finishes",
+          "fin",
+          "finition",
+          "finish",
+          "glossy",
+          "finitura",
+          "liscio",
+          "finishing",
+          "brillante",
+          "abschluss",
+          "glatt",
+          "brilhante"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      }
+    ],
+    "preferences_styles": [
+      {
+        "label": "classic/timeless",
+        "bucket": "constraints",
+        "aliases": [
+          "classic/timeless",
+          "classic",
+          "consistantes",
+          "timeless",
+          "classica",
+          "temporanea",
+          "clásico",
+          "temporal",
+          "klassisch",
+          "zeitlos",
+          "clássica",
+          "temporária"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "minimalist/modern",
+        "bucket": "constraints",
+        "aliases": [
+          "minimalist/modern",
+          "minimaliste",
+          "moderne",
+          "minimalist",
+          "modern",
+          "minimalista",
+          "moderna",
+          "moderno",
+          "minimalistisch",
+          "modernen"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "bold/statement",
+        "bucket": "constraints",
+        "aliases": [
+          "bold/statement",
+          "brutale",
+          "stéréotypique",
+          "bold",
+          "statement",
+          "forte",
+          "statunita",
+          "fuerte",
+          "estatua",
+          "kontrastiv",
+          "staufert",
+          "bruta",
+          "estatut"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "bohemian",
+        "bucket": "constraints",
+        "aliases": [
+          "bohème",
+          "indépendant",
+          "bohemian",
+          "independent",
+          "bohémio",
+          "indipendente",
+          "bohemia",
+          "independiente",
+          "bohemiens",
+          "unabhängig",
+          "boêmia",
+          "independente"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "art deco",
+        "bucket": "constraints",
+        "aliases": [
+          "art déco",
+          "déco",
+          "art deco",
+          "deco",
+          "arte decò",
+          "decò",
+          "arte deco",
+          "deko"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "neutral tones",
+        "bucket": "constraints",
+        "aliases": [
+          "neutral tones",
+          "nuancé",
+          "neutral",
+          "toneless",
+          "neutrale",
+          "tonale",
+          "neutro",
+          "tonal",
+          "tönig"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "jewel tones",
+        "bucket": "constraints",
+        "aliases": [
+          "jewel tones",
+          "jolies",
+          "éclatantes",
+          "jewel",
+          "toneless",
+          "gioiellose",
+          "tonali",
+          "joyas",
+          "esplendorosas",
+          "juwelartige",
+          "tönig",
+          "joias"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "pastels",
+        "bucket": "constraints",
+        "aliases": [
+          "pastels",
+          "pastel",
+          "pâle",
+          "pale",
+          "pastello",
+          "pallino",
+          "pálido",
+          "pastellfarben",
+          "pallfärbe"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "monochrome",
+        "bucket": "constraints",
+        "aliases": [
+          "monochome",
+          "uni",
+          "monochrome",
+          "monocromatica",
+          "unico",
+          "monocromático",
+          "monochromatisch",
+          "einzigartig"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "colorful",
+        "bucket": "constraints",
+        "aliases": [
+          "coloré",
+          "multicolore",
+          "colorful",
+          "multi-colored",
+          "colorato",
+          "multicoloro",
+          "colorido",
+          "múltiple",
+          "farbig",
+          "viele",
+          "múltiplo"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "petite/small",
+        "bucket": "constraints",
+        "aliases": [
+          "petite/small",
+          "petite",
+          "petit",
+          "small",
+          "piccola",
+          "piccolo",
+          "pequeña",
+          "chico",
+          "klein",
+          "pequena",
+          "pequeno"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "oversized",
+        "bucket": "constraints",
+        "aliases": [
+          "oversized",
+          "oversize",
+          "grand",
+          "large",
+          "grande",
+          "largo",
+          "groß"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "custom/bespoke",
+        "bucket": "constraints",
+        "aliases": [
+          "custom/bespoke",
+          "sur mesure",
+          "sur-mesure",
+          "custom",
+          "bespoke",
+          "a misura dell'utente",
+          "a misura del cliente",
+          "personalizado",
+          "tailoreado",
+          "anfertigiert",
+          "bespoken",
+          "especializado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "made-to-measure",
+        "bucket": "constraints",
+        "aliases": [
+          "made-to-measure",
+          "sur mesure",
+          "taille unique",
+          "custom",
+          "made to measure",
+          "a misura dell'utente",
+          "a misura del cliente",
+          "personalizado",
+          "medido a la medida",
+          "anfertigiert",
+          "auf maße angepasst",
+          "especializado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "engraving",
+        "bucket": "constraints",
+        "aliases": [
+          "gravure",
+          "marquage",
+          "engraving",
+          "marque",
+          "incisione",
+          "marca",
+          "grabado",
+          "geschliffen",
+          "marke",
+          "gravura"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "hot stamping",
+        "bucket": "constraints",
+        "aliases": [
+          "stamping chaud",
+          "stamping",
+          "hot stamping",
+          "marque",
+          "stamping caldo",
+          "stampa",
+          "estampado caliente",
+          "marca",
+          "feuerfestes drucken",
+          "druck",
+          "stampagem quente"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "custom color",
+        "bucket": "constraints",
+        "aliases": [
+          "couleur personnalisée",
+          "color personalisé",
+          "custom color",
+          "personalized color",
+          "colore personalizzato",
+          "color personalizzato",
+          "color personalizado",
+          "eigener farbton",
+          "farbe personifiziert",
+          "cor personalizada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "special order",
+        "bucket": "constraints",
+        "aliases": [
+          "commande spéciale",
+          "ordre spécial",
+          "special order",
+          "especial order",
+          "ordinazione speciale",
+          "ordine speciale",
+          "orden especial",
+          "sonderbestellung",
+          "besondere bestellung",
+          "encomenda especial",
+          "especial encomenda"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      }
+    ],
+    "next_action_followup": [
+      {
+        "label": "schedule callback",
+        "bucket": "next_action",
+        "aliases": [
+          "schedule callback",
+          "séance rappel",
+          "renvoi rappel",
+          "callback scheduled",
+          "reminder call set",
+          "appuntamento richiesta",
+          "richiamato",
+          "hora de llamada",
+          "revisión programada",
+          "anruf vereinbart",
+          "rückrufer festgelegt",
+          "agendado chamada",
+          "programado contato"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "send thank-you note",
+        "bucket": "next_action",
+        "aliases": [
+          "send thank-you note",
+          "remerciement envoyé",
+          "note de remerciement envoyée",
+          "thank you sent",
+          "thank you email sent",
+          "ringraziamento inviato",
+          "agradecimiento enviado",
+          "danke gesendet",
+          "danke-e-mail gesendet",
+          "agradecimento enviado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "email product photos",
+        "bucket": "next_action",
+        "aliases": [
+          "email product photos",
+          "photos produits envoyées",
+          "photos produit envoyées",
+          "product images sent",
+          "product photo email sent",
+          "foto prodotti inviate",
+          "foto prodotto inviato",
+          "fotos productos enviadas",
+          "fotos producto enviado",
+          "produktbilder gesendet",
+          "produktbild-e-mail gesendet",
+          "imagens produtos enviadas",
+          "produtos imagens enviados"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "arrange private viewing",
+        "bucket": "next_action",
+        "aliases": [
+          "arrange private viewing",
+          "visite privée organisée",
+          "visite privée à l'organisation",
+          "private view arranged",
+          "private viewing set up",
+          "visita privata pianificata",
+          "visita privata pianificato",
+          "revisión privada programada",
+          "revisión privada organizada",
+          "privatansicht geplant",
+          "privater anschauungstermin geplant",
+          "visualização privada agendada",
+          "visitação privada programada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "book vip fitting",
+        "bucket": "next_action",
+        "aliases": [
+          "book vip fitting",
+          "rendez-vous vip réservé",
+          "vip fitting booked",
+          "vip try-on booked",
+          "fittino vip prenotato",
+          "fitto vip prenotato",
+          "revisión vip reservada",
+          "revisión vip reservado",
+          "vip-probe gebucht",
+          "vip-probe geplant",
+          "visualização vip agendada",
+          "visualização vip programada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "reserve item",
+        "bucket": "next_action",
+        "aliases": [
+          "reserve item",
+          "article réservé",
+          "item reserved",
+          "product reserved",
+          "articolo riservato",
+          "artículo reservado",
+          "producto reservado",
+          "produkt gebucht",
+          "produkt reserviert",
+          "itens reservados",
+          "produtos reservados"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "send quote",
+        "bucket": "next_action",
+        "aliases": [
+          "send quote",
+          "offre envoyée",
+          "quote sent",
+          "price offer sent",
+          "offerta inviata",
+          "oferta enviada",
+          "angebot gesendet",
+          "preisangebot gesendet",
+          "cotação enviada",
+          "cotização enviada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "prepare special order",
+        "bucket": "next_action",
+        "aliases": [
+          "prepare special order",
+          "commande spéciale préparée",
+          "commande spéciale préparation",
+          "special order prepared",
+          "custom order ready",
+          "ordinazione speciale preparata",
+          "ordinazione speciale pronta",
+          "orden especial preparada",
+          "orden especial lista",
+          "spezialbestellung vorbereitet",
+          "sonderbestellung bereitgestellt",
+          "encomenda especial preparada",
+          "encomenda especial listada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "arrange home delivery",
+        "bucket": "next_action",
+        "aliases": [
+          "arrange home delivery",
+          "livraison à domicile organisée",
+          "livraison à domicile organisationnée",
+          "home delivery arranged",
+          "home delivery set up",
+          "trasporto a domicilio pianificato",
+          "entrega en casa programada",
+          "entrega en casa organizada",
+          "zuhause-lieferung geplant",
+          "heimlieferung geplant",
+          "entrega à residência agendada",
+          "entrega a residência programada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "birthday reminder",
+        "bucket": "next_action",
+        "aliases": [
+          "birthday reminder",
+          "anniversaire rappel",
+          "birthday reminder sent",
+          "birthdays reminder sent",
+          "anniversario ricordo inviato",
+          "cumpleaños recordatorio enviado",
+          "geburtstagserinnerung gesendet",
+          "geburtstagsanzeige gesendet",
+          "aniversário lembrança enviada"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "anniversary follow-up",
+        "bucket": "next_action",
+        "aliases": [
+          "anniversary follow-up",
+          "anniversaire suivi",
+          "anniversaire suivis",
+          "anniversary follow-up sent",
+          "anniversary follow-up email sent",
+          "compleanno seguito inviato",
+          "cumpleaños seguimiento enviado",
+          "geburtstagssicherung gesendet",
+          "geburtstagsanzeige gesendet",
+          "aniversário suporte enviado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      },
+      {
+        "label": "welcome gift",
+        "bucket": "next_action",
+        "aliases": [
+          "welcome gift",
+          "cadeau de bienvenue",
+          "welcome gift sent",
+          "regalo di benvenuto inviato",
+          "regalo de bienvenida enviada",
+          "regalo de bienvenida enviado",
+          "willkommensgeschenk gesendet",
+          "presente de bem-vindo enviado"
+        ],
+        "languages": "DE|EN|ES|FR|IT|PT"
+      }
+    ],
+    "intent_purchase_signals": []
+  },
+  "started_at": "2026-02-12T10:27:09.488782"
+}

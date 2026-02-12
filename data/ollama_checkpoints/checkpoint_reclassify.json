@@ -1,0 +1,583 @@
+{
+  "completed": [
+    "CONCEPT_0004_87d9c4",
+    "CONCEPT_0006_d4f788",
+    "CONCEPT_0010_232059",
+    "CONCEPT_0012_101f47",
+    "CONCEPT_0013_b8d827",
+    "CONCEPT_0014_52a465",
+    "CONCEPT_0018_72f789",
+    "CONCEPT_0019_22d98c",
+    "CONCEPT_0021_9e0653",
+    "CONCEPT_0022_88a76b",
+    "CONCEPT_0023_f07359",
+    "CONCEPT_0024_b275c9",
+    "CONCEPT_0025_6666e1",
+    "CONCEPT_0026_585cb9",
+    "CONCEPT_0029_9281ef",
+    "CONCEPT_0030_476f57",
+    "CONCEPT_0031_237d74",
+    "CONCEPT_0032_60bb37",
+    "CONCEPT_0034_53b2f0",
+    "CONCEPT_0039_2909f6",
+    "CONCEPT_0041_854ef3",
+    "CONCEPT_0042_3b8d7b",
+    "CONCEPT_0044_8cbe66",
+    "CONCEPT_0045_50008b",
+    "CONCEPT_0050_9904b9",
+    "CONCEPT_0051_7179b0",
+    "CONCEPT_0054_19557e",
+    "CONCEPT_0055_a7a189",
+    "CONCEPT_0056_f14812",
+    "CONCEPT_0058_7939a1",
+    "CONCEPT_0059_1c9789",
+    "CONCEPT_0060_713848",
+    "CONCEPT_0061_1d2ae9",
+    "CONCEPT_0062_0edb21",
+    "CONCEPT_0063_750028",
+    "CONCEPT_0064_ef5147",
+    "CONCEPT_0065_c4903a",
+    "CONCEPT_0067_1c36b8",
+    "CONCEPT_0069_c632bf",
+    "CONCEPT_0071_a3eaf3",
+    "CONCEPT_0073_09a954",
+    "CONCEPT_0074_a4b460",
+    "CONCEPT_0075_949839",
+    "CONCEPT_0076_145af5",
+    "CONCEPT_0078_b488e1",
+    "CONCEPT_0080_997abb",
+    "CONCEPT_0081_a69446",
+    "CONCEPT_0082_7d83e5",
+    "CONCEPT_0083_f37ccb",
+    "CONCEPT_0084_2e5cfb",
+    "CONCEPT_0085_ed88dc",
+    "CONCEPT_0086_02674f",
+    "CONCEPT_0087_281385",
+    "CONCEPT_0089_3082e6",
+    "CONCEPT_0091_3f63fe",
+    "CONCEPT_0092_365b8a",
+    "CONCEPT_0094_396c68",
+    "CONCEPT_0095_5fd98c",
+    "CONCEPT_0098_b735bd",
+    "CONCEPT_0099_350333",
+    "CONCEPT_0100_0a3597",
+    "CONCEPT_0101_3382ac",
+    "CONCEPT_0103_69683f",
+    "CONCEPT_0104_1bd884",
+    "CONCEPT_0105_05a23d",
+    "CONCEPT_0106_5e1d1e",
+    "CONCEPT_0108_256a3e",
+    "CONCEPT_0109_b5ab0d",
+    "CONCEPT_0110_0b4a7a",
+    "CONCEPT_0111_97daec",
+    "CONCEPT_0112_8446cb",
+    "CONCEPT_0114_d1b3c8",
+    "CONCEPT_0116_6b4dcb",
+    "CONCEPT_0117_3b6259",
+    "CONCEPT_0118_345aab",
+    "CONCEPT_0119_e4f03b",
+    "CONCEPT_0121_620c81",
+    "CONCEPT_0122_7a27b9",
+    "CONCEPT_0123_5efd9a",
+    "CONCEPT_0124_8de26d",
+    "CONCEPT_0126_49c5c5",
+    "CONCEPT_0127_cf657d",
+    "CONCEPT_0128_e0af04",
+    "CONCEPT_0129_0523ad",
+    "CONCEPT_0130_e3dbb2",
+    "CONCEPT_0132_ac224b",
+    "CONCEPT_0134_477ef4",
+    "CONCEPT_0135_6cf010",
+    "CONCEPT_0136_b35918",
+    "CONCEPT_0137_6d4ffa",
+    "CONCEPT_0140_deb47a",
+    "CONCEPT_0141_ad1d1a",
+    "CONCEPT_0142_818bcb",
+    "CONCEPT_0143_9f0557",
+    "CONCEPT_0145_c91c2a",
+    "CONCEPT_0146_247509"
+  ],
+  "results": {
+    "CONCEPT_0004_87d9c4": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'vista privada' translates to 'private view' or 'private vista,' which is commonly associated with exclusive events, such as viewing private collections, art exhibitions, or luxury properties. This aligns most closely with the concept of a life event or celebration where a private viewing might be requested."
+    },
+    "CONCEPT_0006_d4f788": {
+      "bucket": "occasion",
+      "confidence": 1.0,
+      "reasoning": "The term 'after gala' refers to a post-event occasion following a formal or high-profile gathering, which falls under the category of life events and celebrations."
+    },
+    "CONCEPT_0010_232059": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'vip' typically refers to a very important person or organization that is invited to special events, often for purchasing luxury goods. This aligns with the concept of purchase intent or interest signals."
+    },
+    "CONCEPT_0012_101f47": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'edizione limitata' refers to limited edition products which are often associated with special occasions, celebrations, and gift occasions in the luxury retail context."
+    },
+    "CONCEPT_0013_b8d827": {
+      "bucket": "occasion",
+      "confidence": 1,
+      "reasoning": "The concept 'een privébezichtiging aangevraagd' translates to 'requested private viewing' in English. This clearly falls under the category of an occasion where a client is requesting a special event or service, such as attending a private viewing or exhibition."
+    },
+    "CONCEPT_0014_52a465": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The concept 'real estate' is unrelated to the other given buckets and should be classified as 'other'."
+    },
+    "CONCEPT_0018_72f789": {
+      "bucket": "lifestyle",
+      "confidence": 1.0,
+      "reasoning": "A 'real estate mogul' is a lifestyle marker indicating a high-end and influential client who likely has interests in luxury real estate, which falls under the category of lifestyle markers."
+    },
+    "CONCEPT_0019_22d98c": {
+      "bucket": "lifestyle",
+      "confidence": 1,
+      "reasoning": "The term 'estate mogul' refers to a high-net-worth individual who owns or manages large estates. This lifestyle marker aligns with the definition of lifestyle markers, making it the most appropriate classification."
+    },
+    "CONCEPT_0021_9e0653": {
+      "bucket": "other",
+      "confidence": 1.0,
+      "reasoning": "The provided concept 'con la concorrenza' (literally meaning 'with the competition') is a phrase used in marketing or business contexts, typically indicating a comparison with competitors. It does not fit into any of the specified buckets such as preferences, intent, lifestyle, occasion, constraints, or next_action."
+    },
+    "CONCEPT_0022_88a76b": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'suivi' and its aliases are related to tracking or monitoring services that may be offered by luxury brands for their clients, such as after-sales service, warranty management, or personalized care. This type of service is typically aligned with client preferences regarding the level of attention and support they desire from a brand."
+    },
+    "CONCEPT_0023_f07359": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'baúl a medida' refers to custom-made luggage, which aligns with preferences for product-type and style customization. It suggests that the client is looking for a personalized luxury item."
+    },
+    "CONCEPT_0024_b275c9": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The phrase 'solicitó una' and its aliases indicate a request or solicitation for something, which aligns with the intent bucket. This could be interpreted as a purchase intention or interest signal."
+    },
+    "CONCEPT_0025_6666e1": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'monogram' is commonly associated with design preferences and product type in the luxury retail context, particularly for Louis Vuitton products. It refers to a specific branding or pattern that clients might have preferences for."
+    },
+    "CONCEPT_0026_585cb9": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'edition montre' refers to a limited edition watch product type preference. It is not related to lifestyle markers, purchase intent, life events, or any other occasion-specific context. The concept revolves around the specific type of product (limited edition watches) and its design attributes."
+    },
+    "CONCEPT_0029_9281ef": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The phrase 'solicitó una vista' translates to 'requested a viewing' in English, which is an indication of interest or intent to purchase. This aligns most closely with the 'intent' bucket as it represents a customer's expressed desire to see a product."
+    },
+    "CONCEPT_0030_476f57": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "A 'requested viewing' typically relates to a specific occasion such as attending an exhibition or preview of a new product line, which falls under the category of life events and celebrations."
+    },
+    "CONCEPT_0031_237d74": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'una vista' and its aliases are typically used in the context of a private viewing or an invitation to see something exclusive, which aligns with gift occasions or life events such as a gala or a birthday celebration."
+    },
+    "CONCEPT_0032_60bb37": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The phrase 'demandé une' and its aliases are indicative of a request or an inquiry for something, which aligns with the intent bucket where purchase signals or requests to view products are categorized."
+    },
+    "CONCEPT_0034_53b2f0": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'montre in' and its aliases are related to luxury watches, specifically indicating a particular type of watch (possibly an automatic or self-winding watch). This falls under the category of product-type preferences within the preferences bucket."
+    },
+    "CONCEPT_0039_2909f6": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "The term 'annata raro' is Italian and could be related to a rare or unique item, which might indicate a client interested in high-end, exclusive products that align with their lifestyle as an art collector, wine connoisseur, or other luxury enthusiast."
+    },
+    "CONCEPT_0041_854ef3": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'couture' refers to high-end fashion design and is often associated with luxury brands like Dior or Chanel. It typically pertains to the style, quality, and craftsmanship of a product rather than an intent to purchase or a specific lifestyle marker."
+    },
+    "CONCEPT_0042_3b8d7b": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'maßgefertigter koffer' refers to a custom-made suitcase, which aligns with preferences for product-type (custom-made items) and possibly style or design preferences."
+    },
+    "CONCEPT_0044_8cbe66": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The concept 'relógio de' and its aliases indicate interest in a watch (product-type preference), specifically an edition or limited-edition watch ('edizione', 'editio'). The language being Portuguese does not change the intent classification, as it is related to a product category that can be expressed in any language. The term suggests a purchase intention or interest signal."
+    },
+    "CONCEPT_0045_50008b": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "The term 'confronto con' is Italian and can be translated as 'meeting with' or 'opposition.' Without more context, it does not clearly fit into any of the other buckets such as preferences, intent, occasion, constraints, or next_action. Given its ambiguous nature and lack of specific context, it could relate to a client's lifestyle markers or interests."
+    },
+    "CONCEPT_0050_9904b9": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'viewing for' suggests a specific occasion where a client is interested in seeing or experiencing something bespoke, which typically aligns with gift occasions or life events such as weddings, anniversaries, or other celebrations."
+    },
+    "CONCEPT_0051_7179b0": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "A 'bespoke trunk' falls under product-type preferences as it refers to a custom-made luxury item, which is typically tailored to the client's style and material preferences."
+    },
+    "CONCEPT_0054_19557e": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The concept 'needs custom monogram' relates to the client's preference for a specific design feature on their products, which falls under the preferences bucket."
+    },
+    "CONCEPT_0055_a7a189": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'rare' or 'millésimé rare' typically refers to high-end, limited-edition products that are highly valued and sought after by clients who appreciate exclusivity and quality. This aligns with preferences for product-type (e.g., exotic leather, rose gold) as it pertains to the type of items a client might be interested in purchasing."
+    },
+    "CONCEPT_0056_f14812": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'for exotische' and its aliases indicate interest or intent towards exotic items. This aligns most closely with the 'intent' bucket, as it represents a purchase intention related to specific preferences (exotic)."
+    },
+    "CONCEPT_0058_7939a1": {
+      "bucket": "constraints",
+      "confidence": 0.95,
+      "reasoning": "The term 'transferência pendente' and its aliases 'transfer pending' and 'transferencia pendiente' are related to a pending transfer or transaction, which is typically not aligned with any of the other buckets provided. The concept does not relate to preferences, intent, lifestyle, occasion, constraints, or next_action in the context of luxury retail."
+    },
+    "CONCEPT_0059_1c9789": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The concept 'bat um' and its alias 'ceo bat' do not fit into any of the provided buckets. They appear to be a made-up term or acronym that does not relate to preferences, intent, lifestyle markers, occasions, constraints, or follow-up actions."
+    },
+    "CONCEPT_0060_713848": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'exotische handtas' translates to 'exotic handbag' in English, which is a product-type preference for luxury goods. It refers to the type of bag (handbag) and its material ('exotic leather'), aligning with the preferences bucket."
+    },
+    "CONCEPT_0061_1d2ae9": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'nachbereitung nach der' translates to 'aftercare' in English and is commonly used for post-event services or care, which falls under the category of life events and celebrations."
+    },
+    "CONCEPT_0062_0edb21": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'value approx' is too vague and does not clearly fit into any of the provided buckets. It does not indicate a preference, intent, lifestyle marker, occasion, constraint, or follow-up action."
+    },
+    "CONCEPT_0063_750028": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'aangevraagd for' is a Dutch phrase that translates to English as 'requested for.' This implies an intent or request, but it does not clearly fit into any of the other specific categories provided such as preferences, lifestyle, occasion, constraints, or next_action."
+    },
+    "CONCEPT_0064_ef5147": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'heeft een' is a Dutch phrase that translates to English as 'has one,' which does not clearly fit into any of the provided buckets. It lacks specificity regarding preferences, intent, lifestyle markers, occasion, constraints, or follow-up actions."
+    },
+    "CONCEPT_0065_c4903a": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'up after' is not clearly related to any of the provided buckets and appears to be a placeholder or an incomplete concept."
+    },
+    "CONCEPT_0067_1c36b8": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'cliente tech' suggests a preference for technology or digital products within the luxury context. It could be related to high-end electronic devices, smart watches, or other tech-related items that align with the lifestyle of a tech-savvy client."
+    },
+    "CONCEPT_0069_c632bf": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The concept 'vergelijken met' translates to 'compare with' in English. This term is more related to the intent of comparing products or services rather than any specific preference, lifestyle marker, occasion, constraint, or follow-up action."
+    },
+    "CONCEPT_0071_a3eaf3": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "The term 'mala sob' and its alias 'per mala' are related to jewelry, specifically pendants or necklaces. Given that this concept does not fit into the other provided buckets (preferences, intent, occasion, constraints, next_action), it is most likely a lifestyle marker associated with luxury jewelry."
+    },
+    "CONCEPT_0073_09a954": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'um eine' is a German phrase that appears to be an incomplete or misspelled word and does not fit into any of the provided buckets in a meaningful way."
+    },
+    "CONCEPT_0074_a4b460": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "The term 'approx corporate' suggests a focus on corporate clients or companies, which is more aligned with lifestyle markers such as the type of clientele (e.g., high-net-worth individuals who are part of corporations) rather than preferences, intent, occasion, constraints, or next actions."
+    },
+    "CONCEPT_0075_949839": {
+      "bucket": "next_action",
+      "confidence": 100,
+      "reasoning": "The term 'approx follow' suggests a next action for the sales associate such as scheduling a callback or sending a catalog, which falls under the category of follow-up actions."
+    },
+    "CONCEPT_0076_145af5": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "Bespoke items are typically tailored to the client's specific preferences and requirements, such as material choices, style, color, finish, and product type. This aligns most closely with the 'preferences' bucket."
+    },
+    "CONCEPT_0078_b488e1": {
+      "bucket": "lifestyle",
+      "confidence": 1,
+      "reasoning": "The term 'cliente real' or 'client real' is often used in luxury retail to describe high-end clients who are considered the most important and influential. This concept aligns with lifestyle markers as it refers to a category of clients rather than specific preferences, intent, occasion, constraints, or follow-up actions."
+    },
+    "CONCEPT_0080_997abb": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'geïnteresseerd in gelimiteerd' translates to 'interested in limited edition' in English, which indicates a purchase intent related to a specific product category (limited editions). This aligns most closely with the 'intent' bucket as it pertains to the client's interest or desire to explore such products."
+    },
+    "CONCEPT_0081_a69446": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The phrase 'ha richiesto' in Italian translates to 'requested' or 'asked for,' which is a clear indication of a purchase intent or interest signal."
+    },
+    "CONCEPT_0082_7d83e5": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'maat gemaakte' and its alias 'op maat gemaakte' are Dutch terms often used in the context of craftsmanship, particularly related to artisanal or handcrafted products. This suggests a preference for items made by hand or with high-quality materials, which aligns with preferences for client material, style, color, finish, and product-type preferences."
+    },
+    "CONCEPT_0083_f37ccb": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'ready to' is too vague and doesn't clearly indicate preferences, intent, lifestyle markers, occasion-specific needs, constraints, or follow-up actions. It does not fit into any of the provided buckets."
+    },
+    "CONCEPT_0084_2e5cfb": {
+      "bucket": "intent",
+      "confidence": 1,
+      "reasoning": "The phrase 'richiesto una' in Italian translates to 'requested a' or 'needed a', indicating that the client is seeking something. This aligns with having a purchase intent or interest signal, which fits best under the 'intent' bucket."
+    },
+    "CONCEPT_0085_ed88dc": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The phrase 'solicitou uma privata' translates to 'requested a private' in English, which is indicative of a purchase intent or interest signal related to viewing or purchasing a product in a private setting."
+    },
+    "CONCEPT_0086_02674f": {
+      "bucket": "constraints",
+      "confidence": 0.95,
+      "reasoning": "A 'wire transfer pending' typically indicates a transactional status rather than a preference, lifestyle marker, occasion, or follow-up action. It is more related to the current state of an order and can be considered a constraint on when the purchase might become final."
+    },
+    "CONCEPT_0087_281385": {
+      "bucket": "constraints",
+      "confidence": 0.95,
+      "reasoning": "The term 'überweisung ausstehend' and its alias 'besichtigung for maßgefertigter' indicate a pending payment or viewing request, which suggests a scheduling constraint related to the client's ability to proceed with an appointment."
+    },
+    "CONCEPT_0089_3082e6": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "Alta Gioielleria is a high-end jewelry brand associated with luxury and fashion. The term 'alta' in Italian translates to 'high' or 'upper class,' suggesting that the concept aligns more closely with lifestyle markers such as being part of an elite, fashionable clientele."
+    },
+    "CONCEPT_0091_3f63fe": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'in edizione' is often used in the context of high-end watches and luxury goods, particularly by brands like Patek Philippe or Audemars Piguet. It refers to a special edition or limited production run of a product. This concept aligns with preferences as it pertains to specific editions or styles within a product line."
+    },
+    "CONCEPT_0092_365b8a": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'needs custom' suggests a preference for customization or bespoke products, which aligns with the 'preferences' category where client material, style, color, finish, and product-type preferences are categorized."
+    },
+    "CONCEPT_0094_396c68": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'privata per montre' translates to 'private for watch' in English and is likely referring to a client's preference for viewing or purchasing a specific type of watch in private. This aligns with the concept of product-type preferences, as it pertains to the type of luxury item (watch) and how the customer prefers to view or purchase it."
+    },
+    "CONCEPT_0095_5fd98c": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'pronto all' is not commonly associated with any of the provided buckets and appears to be a unique or proprietary term within LVMH's context."
+    },
+    "CONCEPT_0098_b735bd": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'mala sob medida' is related to a custom-made necklace or bracelet in Portuguese, which falls under the category of product-type preferences such as bespoke items."
+    },
+    "CONCEPT_0099_350333": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'benötigt individuelles' translates to 'needs individualized' in English, which suggests a client's interest or need for personalized products or services. This aligns most closely with the intent bucket as it indicates a purchase intention rather than lifestyle markers, an occasion, dietary constraints, accessibility issues, or scheduling needs."
+    },
+    "CONCEPT_0100_0a3597": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'de edizione' is often used in luxury fashion and design contexts to refer to high-end, exclusive items or collections. It aligns with preferences for product-type (e.g., de edizione handbags, watches) rather than lifestyle markers, purchase intent, life events, dietary constraints, accessibility, or religious considerations."
+    },
+    "CONCEPT_0101_3382ac": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'fijne sieraden' translates to 'fine jewelry' in English, which falls under the category of product-type preferences related to accessories and personal adornment."
+    },
+    "CONCEPT_0103_69683f": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'gelimiteerd horloge' translates to 'limited edition watch' in English, which typically falls under product-type preferences related to specific design and limited availability of a luxury item."
+    },
+    "CONCEPT_0104_1bd884": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'heeft aangepast' is Dutch and could be translated as 'has been customized.' In the context of luxury retail, this concept likely refers to client preferences for custom-made or personalized products, which falls under the 'preferences' bucket."
+    },
+    "CONCEPT_0105_05a23d": {
+      "bucket": "other",
+      "confidence": 1.0,
+      "reasoning": "The term 'in sospeso' is Italian and translates to 'on hold' or 'pending' in English, which does not clearly fit into any of the provided buckets."
+    },
+    "CONCEPT_0106_5e1d1e": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'pronto para' is commonly used in Portuguese-speaking countries as a colloquial way of saying 'ready for purchase' or 'prepared to buy'. This aligns with the concept of having a purchasing intent, making it fit best under the 'intent' bucket."
+    },
+    "CONCEPT_0108_256a3e": {
+      "bucket": "occasion",
+      "confidence": 1,
+      "reasoning": "The term 'up na gala' suggests a formal event or celebration, which falls under the category of an occasion in luxury retail."
+    },
+    "CONCEPT_0109_b5ab0d": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "The term 'alta moda' translates to 'high fashion' in English and is often used to describe high-end, fashionable clothing or accessories. This concept aligns with lifestyle markers such as being interested in high-end fashion, which falls under the category of lifestyle preferences."
+    },
+    "CONCEPT_0110_0b4a7a": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'an feiner' is a German phrase often used in luxury retail contexts to express appreciation or admiration for something fine, elegant, or of high quality. This aligns most closely with preferences related to client material and style."
+    },
+    "CONCEPT_0111_97daec": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'baule su' is a French phrase often used in the context of Louis Vuitton's custom-made luggage, which aligns with product-type preferences related to luxury travel accessories."
+    },
+    "CONCEPT_0112_8446cb": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'bolsa de' is commonly used in Portuguese-speaking countries for a small handbag or clutch, which falls under the category of product-type preferences within the luxury retail taxonomy."
+    },
+    "CONCEPT_0114_d1b3c8": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'comparando con' is a Spanish phrase meaning 'compared with,' which could be related to client preferences, such as comparing different products or styles."
+    },
+    "CONCEPT_0116_6b4dcb": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "Haute couture is often associated with high-end fashion and luxury goods, which can be linked to lifestyle markers such as art collector or equestrian. It also aligns with the concept of a specific client's interest in high-end fashion products."
+    },
+    "CONCEPT_0117_3b6259": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'founder bat' is likely referring to a product type or design preference related to luxury items, which falls under the preferences bucket."
+    },
+    "CONCEPT_0118_345aab": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'limitierte montre' is a German phrase often used for limited edition watches by luxury brands, which typically aligns with preferences such as product-type preferences (e.g., limited edition watches). It does not clearly fit into intent, lifestyle, occasion, constraints, or next_action categories."
+    },
+    "CONCEPT_0119_e4f03b": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'necessita di' is Italian and often used in luxury retail contexts to indicate a client's specific need or desire for a particular product or service, which aligns with the concept of purchase intent or interest signals."
+    },
+    "CONCEPT_0121_620c81": {
+      "bucket": "other",
+      "confidence": 1,
+      "reasoning": "The term 'tras la' is not commonly associated with any specific preference, intent, lifestyle marker, occasion, constraint, or follow-up action in the luxury retail context. It does not clearly fit into any of the provided buckets."
+    },
+    "CONCEPT_0122_7a27b9": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'zoekt zeldzame' and its alias 'geïnteresseerd in zeldzame' indicate that the client is seeking out or interested in rare items, which aligns with having a purchase intent related to luxury goods."
+    },
+    "CONCEPT_0123_5efd9a": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'besoin d'un' is a French phrase often used in luxury retail contexts and can be interpreted as a preference for an item that suits or complements the individual's needs, style, or taste. It aligns well with preferences such as material, style, color, finish, and product-type preferences."
+    },
+    "CONCEPT_0124_8de26d": {
+      "bucket": "intent",
+      "confidence": 0.95,
+      "reasoning": "The term 'geïnteresseerd in fijne' translates to 'interested in fine' in English, which aligns with the intent bucket as it indicates a level of interest or curiosity about luxury goods."
+    },
+    "CONCEPT_0126_49c5c5": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'viewing for haute' suggests a high-end or exclusive experience, which is often associated with special occasions such as gala events or private viewings of art collections."
+    },
+    "CONCEPT_0127_cf657d": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'viewing for limited' suggests a special or exclusive viewing opportunity, which is typically associated with an occasion such as a preview of a new product line or an exclusive event. This aligns most closely with the concept of an occasion."
+    },
+    "CONCEPT_0128_e0af04": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'besichtigung for seltener' translates to 'special viewing' in English, which is typically associated with a special occasion or event such as a private viewing of an exclusive product or piece."
+    },
+    "CONCEPT_0129_0523ad": {
+      "bucket": "intent",
+      "confidence": 1,
+      "reasoning": "The term 'ceo requested' indicates a purchase intent or interest signal. It suggests that the CEO has requested something, which is typically associated with a desire to make a purchase."
+    },
+    "CONCEPT_0130_e3dbb2": {
+      "bucket": "occasion",
+      "confidence": 1,
+      "reasoning": "A CEO requesting a viewing typically aligns with an occasion such as a business event or product launch. This is not related to preferences, lifestyle markers, dietary constraints, health concerns, accessibility issues, or scheduling follow-ups."
+    },
+    "CONCEPT_0132_ac224b": {
+      "bucket": "occasion",
+      "confidence": 1,
+      "reasoning": "The concept 'collector requested viewing' refers to a specific occasion where a collector has requested a viewing of an item. This aligns with the category of life events and celebrations, as it is related to a significant event in the context of collecting."
+    },
+    "CONCEPT_0134_477ef4": {
+      "bucket": "constraints",
+      "confidence": 0.95,
+      "reasoning": "The term 'maßgefertigter' is a German word that translates to 'custom-made' in English. This implies a constraint related to the client's preference for bespoke or custom products, which falls under dietary, health, accessibility, religious, or scheduling constraints."
+    },
+    "CONCEPT_0135_6cf010": {
+      "bucket": "intent",
+      "confidence": 1,
+      "reasoning": "The term 'founder requested' implies a request or directive from the founder of a company, which aligns with a purchase intent signal. It suggests that there is interest in purchasing or viewing products and requires action by the sales associate."
+    },
+    "CONCEPT_0136_b35918": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'founder requested viewing' suggests a special request or invitation for a viewing of products, which is typically associated with an occasion such as a product launch, anniversary celebration, or other significant event."
+    },
+    "CONCEPT_0137_6d4ffa": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "Haute joaillerie typically refers to high-end jewelry designs and craftsmanship. It is often associated with style, design preferences, and product-type choices such as precious metals (gold, platinum), gemstones, and intricate designs. This aligns most closely with the 'preferences' bucket."
+    },
+    "CONCEPT_0140_deb47a": {
+      "bucket": "lifestyle",
+      "confidence": 0.95,
+      "reasoning": "Philanthropist is a lifestyle marker indicating the client's social and charitable activities, which aligns with the 'lifestyle' bucket."
+    },
+    "CONCEPT_0141_ad1d1a": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'privada para bolsa' is related to a specific type of Louis Vuitton bag, indicating a preference for the product type and possibly style or material preferences."
+    },
+    "CONCEPT_0142_818bcb": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'procura alta joalharia' translates to 'high-end jewelry search' in English, which clearly falls under the category of product-type preferences. The client is looking for specific types of high-end jewelry (e.g., precious stones, gold settings, intricate designs)."
+    },
+    "CONCEPT_0143_9f0557": {
+      "bucket": "preferences",
+      "confidence": 0.95,
+      "reasoning": "The term 'procura bolsa' is Portuguese and translates to 'search for bag' in English, which indicates a client's interest or intent to find a specific type of product (bolsa being the Portuguese word for bag). This aligns most closely with the 'intent' bucket as it suggests a purchase intention rather than lifestyle markers or other preferences."
+    },
+    "CONCEPT_0145_c91c2a": {
+      "bucket": "occasion",
+      "confidence": 0.95,
+      "reasoning": "The term 'viewing for exotic' suggests a specific occasion or life event where an item is being viewed, which aligns most closely with gift occasions or celebrations."
+    },
+    "CONCEPT_0146_247509": {
+      "bucket": "constraints",
+      "confidence": 0.95,
+      "reasoning": "The term 'virement en attente' is French and translates to 'pending transfer' or 'waiting list'. This concept does not fit into the other buckets as it pertains to a state of being rather than preferences, intent, lifestyle markers, occasion-specific needs, dietary or health constraints, or follow-up actions. It best fits under constraints related to waiting for availability."
+    }
+  },
+  "started_at": "2026-02-12T08:43:57.999679"
+}

@@ -452,27 +452,84 @@ def build_lexicon() -> Tuple[pd.DataFrame, Dict]:
     
     lexicon_df = pd.DataFrame(lexicon_rows)
     
-    # Write outputs
-    lexicon_path = TAXONOMY_DIR / "lexicon_v1.csv"
-    lexicon_df.to_csv(lexicon_path, index=False)
-    log_stage("lexicon", f"Wrote {len(lexicon_df)} concepts to {lexicon_path}")
-    
-    # Also write JSON version for knowledge graph
-    lexicon_json = {}
-    for row in lexicon_rows:
-        lexicon_json[row["concept_id"]] = {
-            "label": row["label"],
-            "aliases": row["aliases"].split("|") if row["aliases"] else [],
-            "languages": row["languages"],
-            "freq_notes": row["freq_notes"],
-            "examples": row["examples"].split("|") if row["examples"] else [],
-            "rule": row["rule"]
-        }
-    
+    # ── Merge with existing enriched vocabulary (preserve enriched concepts) ──
     lexicon_json_path = TAXONOMY_DIR / "lexicon_v1.json"
+    existing_vocab = {}
+    if lexicon_json_path.exists():
+        try:
+            with open(lexicon_json_path, "r", encoding="utf-8") as f:
+                existing_vocab = json.load(f)
+        except Exception:
+            existing_vocab = {}
+    
+    # Build lookup from pipeline-discovered concepts (by label)
+    pipeline_by_label = {}
+    for row in lexicon_rows:
+        pipeline_by_label[row["label"].lower()] = row
+    
+    # Start with existing enriched vocabulary, update freq_notes/examples from pipeline
+    merged_json = {}
+    for cid, entry in existing_vocab.items():
+        label = entry.get("label", "").lower()
+        merged_json[cid] = dict(entry)
+        # Update freq_notes and examples if pipeline found this concept
+        if label in pipeline_by_label:
+            prow = pipeline_by_label[label]
+            merged_json[cid]["freq_notes"] = prow["freq_notes"]
+            merged_json[cid]["examples"] = prow["examples"].split("|") if prow["examples"] else []
+    
+    # Add any NEW concepts discovered by pipeline that aren't in enriched vocabulary
+    existing_labels = {e.get("label", "").lower() for e in existing_vocab.values()}
+    new_from_pipeline = 0
+    for row in lexicon_rows:
+        if row["label"].lower() not in existing_labels:
+            merged_json[row["concept_id"]] = {
+                "label": row["label"],
+                "aliases": row["aliases"].split("|") if row["aliases"] else [],
+                "languages": row["languages"],
+                "freq_notes": row["freq_notes"],
+                "examples": row["examples"].split("|") if row["examples"] else [],
+                "rule": row["rule"]
+            }
+            new_from_pipeline += 1
+    
+    if existing_vocab:
+        log_stage("lexicon", f"Merged: {len(existing_vocab)} enriched + {new_from_pipeline} new from pipeline = {len(merged_json)} total")
+    
+    # Write merged JSON
     with open(lexicon_json_path, "w", encoding="utf-8") as f:
-        json.dump(lexicon_json, f, indent=2, ensure_ascii=False)
-    log_stage("lexicon", f"Wrote {len(lexicon_json)} concepts to {lexicon_json_path}")
+        json.dump(merged_json, f, indent=2, ensure_ascii=False)
+    log_stage("lexicon", f"Wrote {len(merged_json)} concepts to {lexicon_json_path}")
+    
+    # Write merged CSV
+    merged_rows = []
+    for cid, entry in merged_json.items():
+        aliases = entry.get("aliases", [])
+        examples = entry.get("examples", [])
+        merged_rows.append({
+            "concept_id": cid,
+            "label": entry.get("label", ""),
+            "aliases": "|".join(aliases) if isinstance(aliases, list) else str(aliases),
+            "languages": entry.get("languages", "ALL"),
+            "freq_notes": entry.get("freq_notes", 0),
+            "examples": "|".join(examples) if isinstance(examples, list) else str(examples),
+            "rule": entry.get("rule", "bucket=other")
+        })
+    merged_df = pd.DataFrame(merged_rows)
+    lexicon_path = TAXONOMY_DIR / "lexicon_v1.csv"
+    merged_df.to_csv(lexicon_path, index=False)
+    log_stage("lexicon", f"Wrote {len(merged_df)} concepts to {lexicon_path}")
+    
+    # Rebuild taxonomy from merged vocabulary
+    taxonomy = {
+        "intent": [], "occasion": [], "preferences": [],
+        "constraints": [], "lifestyle": [], "next_action": [], "other": []
+    }
+    for cid, entry in merged_json.items():
+        bucket = entry.get("rule", "bucket=other").replace("bucket=", "")
+        if bucket not in taxonomy:
+            bucket = "other"
+        taxonomy[bucket].append(cid)
     
     taxonomy_path = TAXONOMY_DIR / "taxonomy_v1.json"
     with open(taxonomy_path, "w", encoding="utf-8") as f:
