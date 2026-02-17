@@ -4,6 +4,7 @@ import API_CONFIG from './config'
 interface VoiceRecorderProps {
   onRecordingComplete?: (audioBlob: Blob, transcript: string) => void;
   clientId?: string;
+  userId?: number;
 }
 
 const Icons = {
@@ -16,7 +17,7 @@ const Icons = {
   wave: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M8 6v12M16 6v12M4 10v4M20 10v4"/></svg>,
 }
 
-export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRecorderProps) {
+export default function VoiceRecorder({ onRecordingComplete, clientId, userId }: VoiceRecorderProps) {
   const [isRecording, setIsRecording] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
@@ -28,6 +29,9 @@ export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRe
   const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const [clientIdInput, setClientIdInput] = useState(clientId || '')
+  const [language, setLanguage] = useState('FR')
+  const [pipelineRunning, setPipelineRunning] = useState(false)
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
@@ -42,7 +46,7 @@ export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRe
       recognitionRef.current = new SpeechRecognition()
       recognitionRef.current.continuous = true
       recognitionRef.current.interimResults = true
-      recognitionRef.current.lang = 'en-US'
+      recognitionRef.current.lang = language === 'EN' ? 'en-US' : language === 'FR' ? 'fr-FR' : language === 'IT' ? 'it-IT' : language === 'ES' ? 'es-ES' : language === 'DE' ? 'de-DE' : 'fr-FR'
 
       recognitionRef.current.onresult = (event: any) => {
         let finalTranscript = ''
@@ -202,41 +206,131 @@ export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRe
   const uploadRecording = async () => {
     if (!audioBlob) return
 
+    if (!transcript.trim()) {
+      setError('No transcript detected. Please speak clearly before uploading.')
+      return
+    }
+
     setUploading(true)
     setError('')
     setMessage('')
+    setPipelineRunning(false)
 
     try {
       const formData = new FormData()
       const filename = `voice_memo_${Date.now()}.webm`
       formData.append('audio', audioBlob, filename)
       formData.append('transcript', transcript)
-      if (clientId) {
-        formData.append('client_id', clientId)
+      formData.append('language', language)
+      formData.append('duration_seconds', String(duration))
+      if (clientIdInput.trim()) {
+        formData.append('client_id', clientIdInput.trim())
       }
 
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/upload-voice-memo`, {
+      const url = new URL(`${API_CONFIG.BASE_URL}/api/upload-voice-memo`)
+      if (userId) url.searchParams.set('user_id', String(userId))
+      url.searchParams.set('run_pipeline_after', 'true')
+
+      const response = await fetch(url.toString(), {
         method: 'POST',
         body: formData
       })
 
       if (!response.ok) {
-        throw new Error(`Upload failed: ${response.statusText}`)
+        const errData = await response.json().catch(() => null)
+        throw new Error(errData?.detail || `Upload failed: ${response.statusText}`)
       }
 
       const result = await response.json()
-      setMessage('✓ Voice memo uploaded successfully!')
-      
-      // Clear after successful upload
-      setTimeout(() => {
-        deleteRecording()
-      }, 2000)
+      const cid = result.client_id || clientIdInput || '?'
+
+      if (result.pipeline_status === 'running' || result.pipeline_status === 'queued') {
+        setPipelineRunning(true)
+        const isKafka = result.pipeline_status === 'queued'
+        setMessage(`✓ Voice memo for ${cid} uploaded — ${isKafka ? 'queued' : 'pipeline processing'}…`)
+
+        if (isKafka) {
+          // Use SSE (Server-Sent Events) for real-time Kafka updates
+          const es = new EventSource(`${API_CONFIG.BASE_URL}/api/events`)
+
+          const handleEvent = (e: MessageEvent) => {
+            try {
+              const data = JSON.parse(e.data)
+              if (data.client_id === cid || data.upload_session_id === String(result.upload_session_id)) {
+                if (data.type === 'pipeline_stage') {
+                  setMessage(`✓ ${cid}: ${data.stage}…`)
+                } else if (data.type === 'pipeline_completed') {
+                  es.close()
+                  setPipelineRunning(false)
+                  setMessage(`✓ Client ${cid} processed and saved! (${data.total_time}s)`)
+                  if (onRecordingComplete) onRecordingComplete(audioBlob!, transcript)
+                } else if (data.type === 'pipeline_failed') {
+                  es.close()
+                  setPipelineRunning(false)
+                  setError(`Pipeline failed: ${data.error || 'unknown'}`)
+                }
+              }
+            } catch { /* ignore parse errors */ }
+          }
+
+          es.onmessage = handleEvent
+          es.onerror = () => {
+            // SSE connection lost — fall back to polling
+            es.close()
+            startPolling(cid, result.upload_session_id)
+          }
+
+          // Safety timeout
+          setTimeout(() => {
+            es.close()
+            setPipelineRunning(false)
+            setMessage(`✓ Memo uploaded — processing may still be running.`)
+          }, 300_000)
+        } else {
+          // Direct mode — poll pipeline status
+          startPolling(cid, result.upload_session_id)
+        }
+      } else {
+        setMessage(`✓ Voice memo for ${cid} uploaded!`)
+        if (onRecordingComplete) {
+          onRecordingComplete(audioBlob!, transcript)
+        }
+      }
     } catch (err: any) {
       console.error('Upload error:', err)
       setError(err.message || 'Failed to upload voice memo')
     } finally {
       setUploading(false)
     }
+  }
+
+  const startPolling = (cid: string, _uploadSessionId?: number) => {
+    const pollInterval = setInterval(async () => {
+      try {
+        const statusRes = await fetch(`${API_CONFIG.BASE_URL}/api/pipeline/status`)
+        const statusData = await statusRes.json()
+        if (!statusData.running) {
+          clearInterval(pollInterval)
+          setPipelineRunning(false)
+          if (statusData.last_run === 'success') {
+            setMessage(`✓ Client ${cid} processed and saved to database!`)
+          } else {
+            setError(`Pipeline finished with error: ${statusData.last_error || 'unknown'}`)
+          }
+          if (onRecordingComplete && audioBlob) {
+            onRecordingComplete(audioBlob, transcript)
+          }
+        }
+      } catch {
+        // keep polling
+      }
+    }, 2000)
+
+    setTimeout(() => {
+      clearInterval(pollInterval)
+      setPipelineRunning(false)
+      setMessage(`✓ Memo uploaded — pipeline may still be running in background.`)
+    }, 300_000)
   }
 
   const formatTime = (seconds: number) => {
@@ -460,11 +554,99 @@ export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRe
         .audio-player {
           display: none;
         }
+
+        .voice-fields {
+          display: grid;
+          grid-template-columns: 1fr 120px;
+          gap: 0.75rem;
+          margin-bottom: 1rem;
+        }
+
+        .voice-field label {
+          display: block;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.25rem;
+        }
+
+        .voice-field input,
+        .voice-field select {
+          width: 100%;
+          padding: 0.5rem 0.75rem;
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-md);
+          background: var(--bg-tertiary);
+          color: var(--text-primary);
+          font-size: 0.875rem;
+        }
+
+        .voice-field input:focus,
+        .voice-field select:focus {
+          outline: none;
+          border-color: var(--accent-primary);
+          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+        }
+
+        .voice-field input::placeholder {
+          color: var(--text-muted);
+        }
+
+        .pipeline-indicator {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1rem;
+          border-radius: var(--radius-md);
+          background: rgba(99, 102, 241, 0.1);
+          border: 1px solid rgba(99, 102, 241, 0.2);
+          color: var(--accent-primary);
+          font-size: 0.875rem;
+          margin-top: 0.75rem;
+        }
+
+        .pipeline-indicator .spinner {
+          width: 16px;
+          height: 16px;
+          border: 2px solid rgba(99, 102, 241, 0.3);
+          border-top-color: var(--accent-primary);
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
       `}</style>
 
       <div className="recorder-header">
         {Icons.mic}
         <h3>Voice Memo Recorder</h3>
+      </div>
+
+      <div className="voice-fields">
+        <div className="voice-field">
+          <label>Client ID (optional)</label>
+          <input
+            type="text"
+            placeholder="Auto-generated if empty (e.g. VM001)"
+            value={clientIdInput}
+            onChange={e => setClientIdInput(e.target.value)}
+            disabled={isRecording || uploading}
+          />
+        </div>
+        <div className="voice-field">
+          <label>Language</label>
+          <select value={language} onChange={e => setLanguage(e.target.value)} disabled={isRecording || uploading}>
+            <option value="FR">French</option>
+            <option value="EN">English</option>
+            <option value="IT">Italian</option>
+            <option value="ES">Spanish</option>
+            <option value="DE">German</option>
+          </select>
+        </div>
       </div>
 
       <div className="recording-controls">
@@ -552,6 +734,12 @@ export default function VoiceRecorder({ onRecordingComplete, clientId }: VoiceRe
 
         {message && <div className="message-box success">{message}</div>}
         {error && <div className="message-box error">{error}</div>}
+        {pipelineRunning && (
+          <div className="pipeline-indicator">
+            <div className="spinner" />
+            Processing through pipeline — segmenting, extracting concepts, generating actions…
+          </div>
+        )}
       </div>
 
       {audioUrl && (

@@ -14,6 +14,9 @@ Usage:
     # Create a sales user
     python -m server.db.setup create-user --username john --name "John Doe" --email john@lvmh.com --role sales
     
+    # Create a data scientist
+    python -m server.db.setup create-user --username marie --name "Marie Curie" --email marie@lvmh.com --role data-scientist
+    
     # Reset database (DESTRUCTIVE)
     python -m server.db.setup reset
     
@@ -159,7 +162,7 @@ def main():
     user_p.add_argument("--username", required=True)
     user_p.add_argument("--name", required=True, help="Display name")
     user_p.add_argument("--email", default="")
-    user_p.add_argument("--role", default="sales", choices=["admin", "sales", "manager", "viewer"])
+    user_p.add_argument("--role", default="sales", choices=["admin", "sales", "manager", "viewer", "data-scientist", "data-analyst"])
     user_p.add_argument("--password", default=None, help="Password (prompted if not provided)")
 
     args = parser.parse_args()

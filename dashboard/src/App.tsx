@@ -8,10 +8,17 @@ import Plot from 'react-plotly.js'
 import Graph from "react-graph-vis";
 import { HeatMapGrid } from "react-heatmap-grid";
 import API_CONFIG from './config'
+import { getData, invalidateCache } from './services/apiService'
 import FileUpload from './FileUpload'
 import VoiceRecorder from './VoiceRecorder'
 import { useAuth } from './auth/AuthContext'
 import LoginScreen from './auth/LoginScreen'
+import CalendarPage from './CalendarPage'
+import Client360Page from './Client360Page'
+import KPIDashboard from './KPIDashboard'
+import PlaybooksPage from './PlaybooksPage'
+import AdvisorsPage from './AdvisorsPage'
+import ExportPage from './ExportPage'
 import './App.css'
 
 // Type Definitions
@@ -124,27 +131,34 @@ const Icons = {
 }
 
 // Navigation Component - Modern Top Navigation
-const Navigation = ({ activePage, setActivePage, data }: { 
+const Navigation = ({ activePage, setActivePage, data, onClearClient }: { 
   activePage: string; 
   setActivePage: (page: string) => void; 
   data: DashboardData | null;
+  onClearClient?: () => void;
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const { user, logout } = useAuth()
   
   const pages = [
+    { id: 'dashboard', label: 'Dashboard', icon: Icons.barchart },
     { id: 'clients', label: 'Clients', icon: Icons.clients },
     { id: 'segments', label: 'Segments', icon: Icons.segments },
     { id: 'actions', label: 'Actions', icon: Icons.actions },
     { id: 'data', label: 'Analytics', icon: Icons.chart },
+    { id: 'calendar', label: 'Calendar', icon: Icons.calendar },
+    { id: 'playbooks', label: 'Playbooks', icon: Icons.grid },
+    { id: 'advisors', label: 'Advisors', icon: Icons.user },
+    { id: 'reports', label: 'Reports', icon: Icons.share },
     { id: 'upload', label: 'Import', icon: Icons.tag },
-    ...(user?.role === 'admin' ? [{ id: 'admin', label: 'Admin', icon: Icons.settings }] : []),
+    ...((['admin', 'data-scientist', 'data-analyst'] as string[]).includes(user?.role || '') ? [{ id: 'admin', label: 'Admin', icon: Icons.settings }] : []),
   ]
 
   const handleNavClick = (pageId: string) => {
     setActivePage(pageId)
     setMobileMenuOpen(false)
+    onClearClient?.()
   }
 
   const initials = user?.display_name
@@ -631,7 +645,7 @@ const segmentColors: Record<number, string> = {
   7: "#db2777",
 }
 
-const ClientsPage = ({ data }: { data: DashboardData | null }) => {
+const ClientsPage = ({ data, onClientClick }: { data: DashboardData | null; onClientClick?: (id: string) => void }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterSegment, setFilterSegment] = useState<string>("all")
   const [sortOrder, setSortOrder] = useState<string>("confidence_desc")
@@ -718,7 +732,8 @@ const ClientsPage = ({ data }: { data: DashboardData | null }) => {
             <div
               key={client.id}
               className="client-card"
-              style={{ '--segment-color': color } as any}
+              style={{ '--segment-color': color, cursor: 'pointer' } as any}
+              onClick={() => onClientClick?.(client.id)}
             >
               <div className="client-header">
                 <div
@@ -797,20 +812,19 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
   const knowledgeGraphData = useMemo(() => {
     if (!selectedKGClient) return null
     
-    const client = clients.find(c => c.id === selectedKGClient)
+    const client = clients.find((c: Client) => c.id === selectedKGClient)
     if (!client) return null
     
     const nodes: any[] = []
-    const links: any[] = []
+    const edges: any[] = []
     
     // Central client node
     nodes.push({
       id: client.id,
-      type: 'client',
       label: client.id,
-      segment: client.segment,
       size: 30,
-      color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS]
+      color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS],
+      font: { color: '#fff', strokeWidth: 3, strokeColor: '#222' },
     })
     
     // Add concept nodes
@@ -820,42 +834,33 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
       if (!nodes.find(n => n.id === conceptId)) {
         nodes.push({
           id: conceptId,
-          type: 'concept',
           label: concept,
           size: 20,
-          color: '#64748b'
+          color: '#64748b',
+          font: { color: '#fff', strokeWidth: 3, strokeColor: '#222' },
         })
       }
-      links.push({
-        source: client.id,
-        target: conceptId,
-        type: 'has_concept'
-      })
+      edges.push({ from: client.id, to: conceptId })
       
       // If depth >= 2, find other clients with same concept
       if (kgDepth >= 2) {
-        const relatedClients = clients.filter(c => 
+        const relatedClients = clients.filter((c: Client) => 
           c.id !== client.id && 
           c.topConcepts?.includes(concept)
         ).slice(0, 3) // Limit to 3 per concept
         
-        relatedClients.forEach(rc => {
+        relatedClients.forEach((rc: Client) => {
           if (!nodes.find(n => n.id === rc.id)) {
             nodes.push({
               id: rc.id,
-              type: 'related-client',
               label: rc.id,
-              segment: rc.segment,
               size: 18,
-              color: SEGMENT_COLORS[rc.segment as keyof typeof SEGMENT_COLORS]
+              color: SEGMENT_COLORS[rc.segment as keyof typeof SEGMENT_COLORS],
+              font: { color: '#fff', strokeWidth: 3, strokeColor: '#222' },
             })
           }
-          if (!links.find(l => l.source === conceptId && l.target === rc.id)) {
-            links.push({
-              source: conceptId,
-              target: rc.id,
-              type: 'shared_by'
-            })
+          if (!edges.find((e: any) => e.from === conceptId && e.to === rc.id)) {
+            edges.push({ from: conceptId, to: rc.id })
           }
         })
       }
@@ -866,20 +871,16 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     if (!nodes.find(n => n.id === segmentId)) {
       nodes.push({
         id: segmentId,
-        type: 'segment',
         label: `Segment ${client.segment}`,
-        segment: client.segment,
         size: 25,
-        color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS]
+        color: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS],
+        shape: 'diamond',
+        font: { color: '#fff', strokeWidth: 3, strokeColor: '#222' },
       })
     }
-    links.push({
-      source: client.id,
-      target: segmentId,
-      type: 'belongs_to'
-    })
+    edges.push({ from: client.id, to: segmentId })
     
-    return { nodes, links, client }
+    return { nodes, edges, client }
   }, [selectedKGClient, clients, kgDepth])
 
   // Get clients for selected concept
@@ -1255,10 +1256,13 @@ const AdminPage = ({ data }: { data: DashboardData | null }) => {
     const fetchAdminData = async () => {
       setDbLoading(true)
       try {
+        const controller = new AbortController()
+        const timeout = setTimeout(() => controller.abort(), 4000)
         const [statusRes, historyRes] = await Promise.all([
-          fetch(`${API_CONFIG.BASE_URL}/api/db/status`).then(r => r.json()).catch(() => null),
-          fetch(`${API_CONFIG.BASE_URL}/api/upload-history`).then(r => r.json()).catch(() => []),
+          fetch(`${API_CONFIG.BASE_URL}/api/db/status`, { signal: controller.signal }).then(r => r.json()).catch(() => null),
+          fetch(`${API_CONFIG.BASE_URL}/api/upload-history`, { signal: controller.signal }).then(r => r.json()).catch(() => []),
         ])
+        clearTimeout(timeout)
         setDbStatus(statusRes)
         setUploadHistory(Array.isArray(historyRes) ? historyRes : [])
       } catch (e) {
@@ -1272,18 +1276,21 @@ const AdminPage = ({ data }: { data: DashboardData | null }) => {
 
   const handleSyncDb = async () => {
     try {
-      const res = await fetch(`${API_CONFIG.BASE_URL}/api/db/sync`, { method: 'POST' })
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 10000)
+      const res = await fetch(`${API_CONFIG.BASE_URL}/api/db/sync`, { method: 'POST', signal: controller.signal })
+      clearTimeout(timeout)
       const result = await res.json()
       alert(result.message || 'Sync complete')
     } catch (e: any) {
-      alert('Sync failed: ' + e.message)
+      alert('Sync failed: ' + (e.name === 'AbortError' ? 'Server not reachable (timeout)' : e.message))
     }
   }
 
-  if (user?.role !== 'admin') {
+  if (!(['admin', 'data-scientist', 'data-analyst'] as string[]).includes(user?.role || '')) {
     return (
       <div className="page">
-        <div className="page-header"><div><h1>Access Denied</h1><p>Administrator access required.</p></div></div>
+        <div className="page-header"><div><h1>Access Denied</h1><p>Administrator or data team access required.</p></div></div>
       </div>
     )
   }
@@ -1395,63 +1402,98 @@ const AdminPage = ({ data }: { data: DashboardData | null }) => {
 // Main App Component
 function App() {
   const { user, isLoading: authLoading } = useAuth()
-  const [activePage, setActivePage] = useState('clients')
+  const [activePage, setActivePage] = useState('dashboard')
   const [data, setData] = useState<DashboardData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [selectedClientId, setSelectedClientId] = useState<string | null>(null)
+  const [dbDebug, setDbDebug] = useState<string>('Testing DB...')
+
+  // DB diagnostic — runs once on mount, shows result in header
+  useEffect(() => {
+    import('./services/db').then(mod => {
+      const sql = mod.default
+      sql`SELECT COUNT(*) as cnt FROM clients WHERE is_deleted = FALSE`
+        .then((r: any) => setDbDebug(`✅ DB OK: ${r[0]?.cnt} clients`))
+        .catch((e: any) => setDbDebug(`❌ DB FAIL: ${e?.message || e}`))
+    }).catch((e: any) => setDbDebug(`❌ import fail: ${e?.message}`))
+  }, [])
+
+  /** Clean raw data from any source */
+  const cleanData = (result: any): DashboardData => {
+    const cleanedClients = (result.clients || []).map((c: any) => ({
+      ...c,
+      confidence: typeof c.confidence === 'number' ? c.confidence : 0,
+      segment: typeof c.segment === 'number' ? c.segment : 0,
+    }))
+    const cleanedRadar = (result.radar || []).map((item: any) => ({
+      subject: item.subject || item.dimension, ...item
+    }))
+    return { ...result, clients: cleanedClients, radar: cleanedRadar }
+  }
 
   const fetchData = async () => {
-      try {
-        setLoading(true)
-        const response = await fetch(`${API_CONFIG.BASE_URL}/api/data?t=${Date.now()}`)
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        const result = await response.json()
-        
-        if (!result.clients || !Array.isArray(result.clients)) {
-          throw new Error("Invalid or missing 'clients' data")
-        }
-        
-        const cleanedClients = result.clients.map((c: any) => ({
-          ...c,
-          confidence: typeof c.confidence === 'number' ? c.confidence : 0,
-          segment: typeof c.segment === 'number' ? c.segment : 0,
-        }))
+    try {
+      setLoading(true)
+      console.time('[Dashboard] fetchData')
+      const { data: result, source } = await getData()
+      console.timeEnd('[Dashboard] fetchData')
+      console.info(`[Dashboard] Data loaded from ${source}`, {
+        clients: result.clients?.length,
+        segments: result.segments?.length,
+        concepts: result.concepts?.length,
+      })
 
-        const cleanedRadar = result.radar?.map((item: any) => ({
-          subject: item.subject || item.dimension,
-          ...item
-        })) || []
-
-        setData({ ...result, clients: cleanedClients, radar: cleanedRadar })
-        setError(null)
-      } catch (e: any) {
-        console.error("Failed to fetch or process dashboard data:", e)
-        setError(`Failed to load data: ${e.message}. Is the backend server running?`)
-        
-        try {
-          const localData = await import('./data.json')
-          const localRadar = localData.default.radar.map((item: any) => ({
-            subject: item.subject || item.dimension,
-            ...item
-          }))
-          setData({...localData.default, radar: localRadar } as unknown as DashboardData)
-          setError("API failed. Displaying local fallback data.")
-        } catch (localErr) {
-          console.error("Failed to load local fallback data:", localErr)
-          setError("API failed and local fallback data is also unavailable.")
-        }
-      } finally {
-        setLoading(false)
+      if (!result.clients || !Array.isArray(result.clients)) {
+        throw new Error("Invalid or missing 'clients' data")
       }
+
+      setData(cleanData(result))
+      setError(null)
+    } catch (e: any) {
+      console.error('[Dashboard] Live data fetch failed:', e)
+      // Fall back to bundled local data.json only if live fetch fails
+      try {
+        const localData = await import('./data.json')
+        const localRadar = localData.default.radar?.map((item: any) => ({
+          subject: item.subject || item.dimension, ...item
+        })) || []
+        setData(cleanData({ ...localData.default, radar: localRadar }))
+        setError(`Live data unavailable (${e.message}). Showing local fallback.`)
+      } catch {
+        setError(`Failed to load data: ${e.message}`)
+      }
+    } finally {
+      setLoading(false)
     }
+  }
 
   useEffect(() => {
     if (user) {
       fetchData()
     }
   }, [user])
+
+  // Safety valve: if loading takes >10s, force-stop and show local data
+  useEffect(() => {
+    if (!loading) return
+    const safety = setTimeout(() => {
+      console.error('[Dashboard] Safety timeout — forcing loading=false after 10s')
+      setLoading(false)
+      if (!data) {
+        import('./data.json').then(localData => {
+          const localRadar = localData.default.radar?.map((item: any) => ({
+            subject: item.subject || item.dimension, ...item
+          })) || []
+          setData(cleanData({ ...localData.default, radar: localRadar }))
+          setError('Loading timed out. Showing local fallback data.')
+        }).catch(() => {
+          setError('Loading timed out and no fallback data available.')
+        })
+      }
+    }, 10_000)
+    return () => clearTimeout(safety)
+  }, [loading])
 
   // Show nothing while checking stored session
   if (authLoading) {
@@ -1471,8 +1513,19 @@ function App() {
       return <div className="error-banner">{error}</div>
     }
     
+    // If a client is selected, always show Client 360
+    if (selectedClientId) {
+      return <Client360Page
+        clientId={selectedClientId}
+        onBack={() => setSelectedClientId(null)}
+      />
+    }
+
     let pageToRender;
     switch (activePage) {
+      case 'dashboard':
+        pageToRender = <KPIDashboard />;
+        break;
       case 'actions':
         pageToRender = <ActionsPage data={data} />;
         break;
@@ -1480,13 +1533,25 @@ function App() {
         pageToRender = <SegmentsPage data={data} />;
         break;
       case 'clients':
-        pageToRender = <ClientsPage data={data} />;
+        pageToRender = <ClientsPage data={data} onClientClick={(id: string) => setSelectedClientId(id)} />;
         break;
       case 'data':
         pageToRender = <DataPage data={data} />;
         break;
       case 'admin':
         pageToRender = <AdminPage data={data} />;
+        break;
+      case 'calendar':
+        pageToRender = <CalendarPage userId={user.id} />;
+        break;
+      case 'playbooks':
+        pageToRender = <PlaybooksPage userId={user.id} onNavigateToCalendar={() => setActivePage('calendar')} />;
+        break;
+      case 'advisors':
+        pageToRender = <AdvisorsPage userId={user.id} />;
+        break;
+      case 'reports':
+        pageToRender = <ExportPage />;
         break;
       case 'upload':
         pageToRender = (
@@ -1496,20 +1561,21 @@ function App() {
             </div>
             <div className="upload-grid">
               <div className="upload-section">
-                <FileUpload onUploadSuccess={() => fetchData()} userId={user.id} />
+                <FileUpload onUploadSuccess={() => { invalidateCache(); fetchData() }} userId={user.id} />
               </div>
               <div className="upload-section">
                 <VoiceRecorder onRecordingComplete={() => {
                   console.log('Voice memo recorded and uploaded')
+                  invalidateCache()
                   fetchData()
-                }} />
+                }} userId={user.id} />
               </div>
             </div>
           </div>
         );
         break;
       default:
-        pageToRender = <ClientsPage data={data} />;
+        pageToRender = <KPIDashboard />;
     }
 
     return pageToRender;
@@ -1517,7 +1583,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navigation activePage={activePage} setActivePage={setActivePage} data={data} />
+      <Navigation activePage={activePage} setActivePage={setActivePage} data={data} onClearClient={() => setSelectedClientId(null)} />
       {error && <div className="error-banner">{error}</div>}
       <main className="main-content">
         {renderPage()}

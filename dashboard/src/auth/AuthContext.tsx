@@ -1,12 +1,12 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import API_CONFIG from '../config'
+import { login as apiLogin } from '../services/apiService'
 
 export interface User {
   id: number
   username: string
   display_name: string
   email: string
-  role: 'admin' | 'sales' | 'manager' | 'viewer'
+  role: 'admin' | 'sales' | 'manager' | 'viewer' | 'data-scientist' | 'data-analyst'
 }
 
 interface AuthContextType {
@@ -33,7 +33,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (stored) {
       try {
         const parsed = JSON.parse(stored) as User
-        setUser(parsed)
+        // Reject sessions with missing critical fields (e.g. from a previous bug)
+        if (parsed && parsed.id && parsed.username && parsed.display_name) {
+          setUser(parsed)
+        } else {
+          localStorage.removeItem(STORAGE_KEY)
+        }
       } catch {
         localStorage.removeItem(STORAGE_KEY)
       }
@@ -46,22 +51,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null)
 
     try {
-      const res = await fetch(`${API_CONFIG.BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      })
+      // Uses apiService which tries server first, falls back to direct DB
+      const data = await apiLogin(username, password)
 
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({ detail: 'Login failed' }))
-        throw new Error(body.detail || `Login failed (${res.status})`)
-      }
-
-      const data = await res.json()
       const loggedInUser: User = {
         id: data.user.id,
         username: data.user.username,
-        display_name: data.user.display_name,
+        display_name: data.user.displayName || data.user.display_name || data.user.username,
         email: data.user.email,
         role: data.user.role,
       }

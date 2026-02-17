@@ -8,7 +8,7 @@ Usage:
     Or with custom host/port:
     python -m server.api_server --host 0.0.0.0 --port 8000
 """
-from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Depends, Body
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Depends, Body, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
@@ -44,8 +44,14 @@ except ImportError:
 
 DB_AVAILABLE = bool(os.environ.get("DATABASE_URL", "").strip("'\""))
 
+# Kafka availability — if KAFKA_BOOTSTRAP_SERVERS is set, use event-driven mode
+try:
+    from server.kafka.config import KAFKA_ENABLED
+except ImportError:
+    KAFKA_ENABLED = False
+
 # ---------------------------------------------------------------------------
-# App lifecycle: init DB on startup, close pool on shutdown
+# App lifecycle: init DB + Kafka on startup, close on shutdown
 # ---------------------------------------------------------------------------
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -61,9 +67,28 @@ async def lifespan(app: FastAPI):
             logger.warning(f"⚠️  Database init failed: {e}. Falling back to file-based mode.")
     else:
         logger.info("ℹ️  No DATABASE_URL set — running in file-only mode")
-    
+
+    # Start Kafka producer if configured
+    if KAFKA_ENABLED:
+        try:
+            from server.kafka.producer import _get_producer
+            await _get_producer()
+            logger.info("✅ Kafka producer connected")
+        except Exception as e:
+            logger.warning(f"⚠️  Kafka producer init failed: {e}. Running without Kafka.")
+    else:
+        logger.info("ℹ️  No KAFKA_BOOTSTRAP_SERVERS set — running without Kafka")
+
     yield  # app runs here
-    
+
+    # Shutdown
+    if KAFKA_ENABLED:
+        try:
+            from server.kafka.producer import close_producer
+            await close_producer()
+        except Exception:
+            pass
+
     if DB_AVAILABLE:
         try:
             from server.db.connection import close_async_pool, close_sync_connection
@@ -105,10 +130,12 @@ async def root():
         "status": "running",
         "version": "2.0.0",
         "database": "connected" if DB_AVAILABLE else "file-only",
+        "kafka": "connected" if KAFKA_ENABLED else "disabled",
         "endpoints": {
             "data": "/api/data",
             "pipeline_status": "/api/pipeline/status",
             "run_pipeline": "/api/pipeline/run",
+            "events_sse": "/api/events",
             "outputs": "/api/outputs/{filename}",
             "auth": "/api/auth/login",
             "users": "/api/users",
@@ -181,11 +208,65 @@ async def get_clients():
 @app.get("/api/clients/{client_id}")
 async def get_client(client_id: str):
     """Get a specific client's profile."""
+    # If DB is available, use the full 360° view
+    if DB_AVAILABLE:
+        try:
+            from server.db.crud import async_get_client_360
+            result = await async_get_client_360(client_id)
+            if result:
+                return result
+        except Exception as e:
+            logger.warning(f"DB client 360 failed: {e}, falling back to file-based")
+
+    # Fallback to file-based
     clients = await get_clients()
     for client in clients:
         if str(client.get('client_id')) == client_id or str(client.get('id')) == client_id:
             return client
     raise HTTPException(status_code=404, detail=f"Client {client_id} not found")
+
+
+@app.get("/api/kpi")
+async def get_kpi_data():
+    """Get executive KPI dashboard data."""
+    if DB_AVAILABLE:
+        try:
+            from server.db.crud import async_get_kpi_data
+            return await async_get_kpi_data()
+        except Exception as e:
+            logger.error(f"KPI data fetch failed: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+    else:
+        raise HTTPException(status_code=503, detail="Database required for KPI data")
+
+
+@app.post("/api/scores/compute")
+async def compute_scores():
+    """Compute engagement + value scores for all clients."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database required")
+    try:
+        from server.db.crud import async_compute_client_scores
+        result = await async_compute_client_scores()
+        return result
+    except Exception as e:
+        logger.error(f"Score computation failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/scores")
+async def get_scores(tier: str = None, sort_by: str = "overall_score",
+                     limit: int = 50, offset: int = 0):
+    """Get client scores with optional tier filter and sorting."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database required")
+    try:
+        from server.db.crud import async_get_client_scores
+        return await async_get_client_scores(tier=tier, sort_by=sort_by,
+                                              limit=limit, offset=offset)
+    except Exception as e:
+        logger.error(f"Score fetch failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/api/predictions")
@@ -246,7 +327,72 @@ async def get_output_file(filename: str):
 @app.get("/api/pipeline/status")
 async def get_pipeline_status():
     """Get the current pipeline status."""
-    return pipeline_status
+    return {**pipeline_status, "kafka_enabled": KAFKA_ENABLED}
+
+
+@app.get("/api/events")
+async def pipeline_events():
+    """
+    Server-Sent Events (SSE) endpoint for real-time pipeline status.
+
+    If Kafka is enabled, consumes from lvmh.pipeline.status topic and
+    streams events to the dashboard. If Kafka is disabled, falls back to
+    polling pipeline_status dict.
+
+    Dashboard connects via:
+        const es = new EventSource('/api/events')
+        es.onmessage = (e) => console.log(JSON.parse(e.data))
+    """
+    from starlette.responses import StreamingResponse
+    import asyncio
+
+    async def event_stream():
+        if KAFKA_ENABLED:
+            # Stream from Kafka pipeline status topic
+            try:
+                from aiokafka import AIOKafkaConsumer
+                from server.kafka.config import (
+                    TOPIC_PIPELINE_STATUS, get_common_config,
+                )
+
+                cfg = get_common_config()
+                consumer = AIOKafkaConsumer(
+                    TOPIC_PIPELINE_STATUS,
+                    **cfg,
+                    group_id="lvmh-sse-dashboard",
+                    value_deserializer=lambda m: m.decode("utf-8"),
+                    auto_offset_reset="latest",
+                    enable_auto_commit=True,
+                )
+                await consumer.start()
+                try:
+                    async for msg in consumer:
+                        yield f"data: {msg.value}\n\n"
+                except asyncio.CancelledError:
+                    pass
+                finally:
+                    await consumer.stop()
+            except Exception as e:
+                # If Kafka connection fails, fall back to polling
+                logger.warning(f"SSE Kafka consumer failed: {e}, falling back to polling")
+                while True:
+                    yield f"data: {json.dumps(pipeline_status)}\n\n"
+                    await asyncio.sleep(2)
+        else:
+            # No Kafka — poll pipeline_status dict every 2 seconds
+            while True:
+                yield f"data: {json.dumps(pipeline_status)}\n\n"
+                await asyncio.sleep(2)
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 @app.post("/api/pipeline/run")
@@ -299,29 +445,45 @@ async def run_pipeline_endpoint(
 
 @app.post("/api/upload-voice-memo")
 async def upload_voice_memo(
+    background_tasks: BackgroundTasks,
     audio: UploadFile = File(...),
     transcript: Optional[str] = None,
-    client_id: Optional[str] = None
+    client_id: Optional[str] = None,
+    user_id: Optional[int] = None,
+    language: Optional[str] = "FR",
+    duration_seconds: Optional[int] = 0,
+    run_pipeline_after: bool = True,
 ):
     """
-    Upload a voice memo with optional transcript and client ID.
-    
+    Upload a voice memo, convert the transcript into a pipeline-compatible CSV,
+    run the pipeline, and sync results to the Neon database.
+
     Parameters:
     - audio: Audio file (webm, mp3, wav, etc.)
-    - transcript: Optional text transcript of the audio
-    - client_id: Optional client ID to associate the memo with
+    - transcript: Text transcript of the audio (from browser SpeechRecognition)
+    - client_id: Optional client ID — auto-generated if empty
+    - user_id: User who recorded this (from auth)
+    - language: Language code (FR, EN, etc.)
+    - duration_seconds: Recording length in seconds
+    - run_pipeline_after: Whether to trigger the pipeline automatically
     """
-    # Create voice_memos directory if it doesn't exist
+    import pandas as pd
+
+    if not transcript or not transcript.strip():
+        raise HTTPException(
+            status_code=400,
+            detail="A transcript is required. Please speak into the microphone before uploading."
+        )
+
+    # --- Save audio file ---
     voice_memos_dir = DATA_INPUT / "voice_memos"
     voice_memos_dir.mkdir(exist_ok=True)
-    
-    # Create unique filename with timestamp
+
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     file_ext = Path(audio.filename).suffix or '.webm'
     audio_filename = f"voice_memo_{timestamp}{file_ext}"
     audio_path = voice_memos_dir / audio_filename
-    
-    # Save uploaded audio file
+
     try:
         with open(audio_path, "wb") as buffer:
             shutil.copyfileobj(audio.file, buffer)
@@ -329,37 +491,193 @@ async def upload_voice_memo(
     except Exception as e:
         logger.error(f"Failed to save voice memo: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to save audio: {str(e)}")
-    
-    # Save transcript if provided
-    transcript_data = {
+
+    # --- Auto-generate client_id if not provided ---
+    if not client_id:
+        # Find next available VM*** id
+        try:
+            from server.db.connection import sync_cursor
+            with sync_cursor() as cur:
+                cur.execute("""
+                    SELECT id FROM clients WHERE id LIKE 'VM%%'
+                    ORDER BY id DESC LIMIT 1
+                """)
+                row = cur.fetchone()
+                if row:
+                    last_num = int(row[0].replace("VM", ""))
+                    client_id = f"VM{last_num + 1:03d}"
+                else:
+                    client_id = "VM001"
+        except Exception:
+            client_id = f"VM{timestamp}"
+
+    # --- Convert duration ---
+    dur_mins = duration_seconds // 60 if duration_seconds else 0
+    if dur_mins < 5:
+        dur_label = "Short"
+    elif dur_mins < 15:
+        dur_label = "Medium"
+    else:
+        dur_label = "Long"
+
+    # Estimate length from transcript word count
+    word_count = len(transcript.strip().split())
+    if word_count < 50:
+        length_label = "Short"
+    elif word_count < 150:
+        length_label = "Medium"
+    else:
+        length_label = "Long"
+
+    # --- Build pipeline-compatible CSV ---
+    csv_data = pd.DataFrame([{
+        "ID": client_id,
+        "Date": datetime.now().strftime("%Y-%m-%d"),
+        "Duration": dur_label,
+        "Language": language.upper()[:2] if language else "FR",
+        "Length": length_label,
+        "Transcription": transcript.strip(),
+    }])
+
+    csv_filename = f"voice_memo_{client_id}_{timestamp}.csv"
+    csv_path = DATA_INPUT / csv_filename
+    csv_data.to_csv(csv_path, index=False)
+    logger.info(f"Voice memo CSV created: {csv_path} (client={client_id}, {word_count} words)")
+
+    # --- Save metadata JSON ---
+    meta = {
         "timestamp": timestamp,
         "audio_file": audio_filename,
-        "transcript": transcript or "",
+        "csv_file": csv_filename,
         "client_id": client_id,
-        "uploaded_at": datetime.now().isoformat()
+        "user_id": user_id,
+        "transcript": transcript.strip(),
+        "language": language,
+        "duration_seconds": duration_seconds,
+        "word_count": word_count,
+        "uploaded_at": datetime.now().isoformat(),
     }
-    
-    # Save transcript to JSON file
-    transcript_filename = f"transcript_{timestamp}.json"
-    transcript_path = voice_memos_dir / transcript_filename
-    
-    try:
-        with open(transcript_path, 'w', encoding='utf-8') as f:
-            json.dump(transcript_data, f, indent=2, ensure_ascii=False)
-        logger.info(f"Transcript saved to: {transcript_path}")
-    except Exception as e:
-        logger.error(f"Failed to save transcript: {e}")
-    
-    # Optionally: Convert voice memo to text for processing
-    # You could add speech-to-text processing here if needed
-    
+    meta_path = voice_memos_dir / f"meta_{client_id}_{timestamp}.json"
+    with open(meta_path, 'w', encoding='utf-8') as f:
+        json.dump(meta, f, indent=2, ensure_ascii=False)
+
+    # --- Create upload session in DB ---
+    upload_session_id = None
+    if DB_AVAILABLE:
+        try:
+            from server.db.connection import get_connection
+            async with get_connection() as conn:
+                upload_session_id = await conn.fetchval("""
+                    INSERT INTO upload_sessions (user_id, filename, upload_type, status)
+                    VALUES ($1, $2, 'voice_memo', 'uploaded')
+                    RETURNING id
+                """, user_id, audio_filename)
+        except Exception as e:
+            logger.warning(f"Could not create upload session: {e}")
+
+    # --- Run pipeline (Kafka or direct) ---
+    if run_pipeline_after and KAFKA_ENABLED:
+        # Dispatch to Kafka — consumer worker handles pipeline + DB sync
+        from server.kafka.events import emit_upload
+        await emit_upload(
+            upload_type="voice_memo",
+            csv_path=str(csv_path),
+            user_id=user_id,
+            upload_session_id=upload_session_id,
+            client_id=client_id,
+            filename=audio_filename,
+        )
+        logger.info(f"Voice memo dispatched to Kafka: {client_id}")
+        return {
+            "status": "uploaded_and_queued",
+            "client_id": client_id,
+            "audio_file": audio_filename,
+            "message": f"Voice memo for {client_id} queued for processing.",
+            "pipeline_status": "queued",
+            "upload_session_id": upload_session_id,
+        }
+
+    if run_pipeline_after:
+        if pipeline_status["running"]:
+            return {
+                "status": "uploaded",
+                "client_id": client_id,
+                "audio_file": audio_filename,
+                "message": "Voice memo saved but pipeline is busy. It will be processed on next run.",
+                "pipeline_status": "busy",
+                "upload_session_id": upload_session_id,
+            }
+
+        pipeline_status["running"] = True
+        pipeline_status["last_error"] = None
+
+        def run_voice_pipeline():
+            """Background: run pipeline on the voice memo CSV, then sync to DB."""
+            try:
+                logger.info(f"Running pipeline for voice memo: {csv_path}")
+                run_pipeline(csv_path=str(csv_path))
+                pipeline_status["running"] = False
+                pipeline_status["last_run"] = "success"
+                logger.info("Voice memo pipeline completed")
+
+                # Sync to DB
+                if DB_AVAILABLE:
+                    try:
+                        from server.db.sync import sync_results_to_db
+                        result = sync_results_to_db(
+                            user_id=user_id,
+                            upload_session_id=upload_session_id,
+                        )
+                        logger.info(f"Voice memo DB sync: {result}")
+
+                        from server.db.connection import sync_cursor
+                        with sync_cursor() as cur:
+                            cur.execute("""
+                                UPDATE upload_sessions
+                                SET status = 'completed',
+                                    records_added = %s, records_updated = %s
+                                WHERE id = %s
+                            """, (
+                                result.get("new_clients", 0),
+                                result.get("updated_clients", 0),
+                                upload_session_id,
+                            ))
+                    except Exception as db_err:
+                        logger.error(f"Voice memo DB sync failed: {db_err}")
+            except Exception as e:
+                logger.error(f"Voice memo pipeline failed: {e}")
+                pipeline_status["running"] = False
+                pipeline_status["last_error"] = str(e)
+                pipeline_status["last_run"] = "error"
+                if DB_AVAILABLE and upload_session_id:
+                    try:
+                        from server.db.connection import sync_cursor
+                        with sync_cursor() as cur:
+                            cur.execute("""
+                                UPDATE upload_sessions SET status='failed', error_message=%s
+                                WHERE id=%s
+                            """, (str(e), upload_session_id))
+                    except Exception:
+                        pass
+
+        background_tasks.add_task(run_voice_pipeline)
+
+        return {
+            "status": "uploaded_and_running",
+            "client_id": client_id,
+            "audio_file": audio_filename,
+            "message": f"Voice memo for {client_id} uploaded — pipeline started.",
+            "pipeline_status": "running",
+            "upload_session_id": upload_session_id,
+        }
+
     return {
-        "status": "success",
+        "status": "uploaded",
+        "client_id": client_id,
         "audio_file": audio_filename,
-        "transcript_file": transcript_filename,
-        "message": "Voice memo uploaded successfully",
-        "has_transcript": bool(transcript),
-        "client_id": client_id
+        "message": f"Voice memo for {client_id} saved. Run pipeline manually to process.",
+        "pipeline_status": "idle",
+        "upload_session_id": upload_session_id,
     }
 
 
@@ -425,7 +743,27 @@ async def upload_csv(
         except Exception as e:
             logger.warning(f"Could not create upload session: {e}")
     
-    # Optionally run pipeline
+    # --- Dispatch to Kafka if enabled ---
+    if run_pipeline_after and KAFKA_ENABLED:
+        from server.kafka.events import emit_upload
+        await emit_upload(
+            upload_type="csv",
+            csv_path=str(file_path),
+            user_id=user_id,
+            upload_session_id=upload_session_id,
+            filename=new_filename,
+        )
+        logger.info(f"CSV upload dispatched to Kafka: {new_filename}")
+        return {
+            "status": "uploaded_and_queued",
+            "filename": new_filename,
+            "path": str(file_path),
+            "message": "File uploaded and queued for processing via Kafka.",
+            "pipeline_status": "queued",
+            "upload_session_id": upload_session_id,
+        }
+
+    # --- Direct pipeline execution (no Kafka) ---
     if run_pipeline_after:
         if pipeline_status["running"]:
             return {
@@ -815,7 +1153,7 @@ async def register(body: dict = Body(...)):
     if not username or not password or not display_name:
         raise HTTPException(status_code=400, detail="username, displayName, and password are required")
 
-    if role not in ("admin", "sales", "manager", "viewer"):
+    if role not in ("admin", "sales", "manager", "viewer", "data-scientist", "data-analyst"):
         raise HTTPException(status_code=400, detail="Invalid role")
 
     # Hash password
@@ -942,6 +1280,432 @@ async def db_sync_endpoint(user_id: Optional[int] = None):
         return {"status": "success", "result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ===================================================================
+# Calendar / Activation Events
+# ===================================================================
+
+@app.get("/api/calendar/events")
+async def list_calendar_events(month: Optional[int] = None, year: Optional[int] = None,
+                               status: Optional[str] = None):
+    """List activation events, optionally filtered by month/year and status."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_events
+    return await async_get_events(month=month, year=year, status=status)
+
+
+@app.get("/api/calendar/events/{event_id}")
+async def get_calendar_event(event_id: int):
+    """Get event detail with matched client targets."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_event_detail
+    event = await async_get_event_detail(event_id)
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+    return event
+
+
+@app.post("/api/calendar/events")
+async def create_calendar_event(request: Request):
+    """
+    Create a new activation event and auto-match clients.
+    Body: { title, description?, event_date, event_end_date?, concepts (pipe-separated),
+            channel, priority?, created_by? }
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+
+    body = await request.json()
+    title = body.get("title", "").strip()
+    if not title:
+        raise HTTPException(status_code=400, detail="title is required")
+
+    event_date_str = body.get("event_date", "").strip()
+    if not event_date_str:
+        raise HTTPException(status_code=400, detail="event_date is required")
+
+    from datetime import date as date_type
+
+    try:
+        event_date = date_type.fromisoformat(event_date_str)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="event_date must be YYYY-MM-DD")
+
+    event_end_date = None
+    if body.get("event_end_date"):
+        try:
+            event_end_date = date_type.fromisoformat(body["event_end_date"])
+        except ValueError:
+            raise HTTPException(status_code=400, detail="event_end_date must be YYYY-MM-DD")
+
+    concepts = body.get("concepts", "").strip()
+    channel = body.get("channel", "email").strip()
+    priority = body.get("priority", "medium").strip()
+    created_by = body.get("created_by")
+
+    from server.db.crud import async_create_event
+    event = await async_create_event(
+        title=title,
+        description=body.get("description", ""),
+        event_date=event_date,
+        event_end_date=event_end_date,
+        concepts=concepts,
+        channel=channel,
+        priority=priority,
+        created_by=created_by,
+    )
+    return event
+
+
+@app.put("/api/calendar/events/{event_id}")
+async def update_calendar_event(event_id: int, request: Request):
+    """Update an activation event. If concepts change, re-matches clients."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+
+    body = await request.json()
+
+    # Convert date strings to date objects if present
+    from datetime import date as date_type
+    if "event_date" in body and body["event_date"]:
+        try:
+            body["event_date"] = date_type.fromisoformat(body["event_date"])
+        except ValueError:
+            raise HTTPException(status_code=400, detail="event_date must be YYYY-MM-DD")
+    if "event_end_date" in body and body["event_end_date"]:
+        try:
+            body["event_end_date"] = date_type.fromisoformat(body["event_end_date"])
+        except ValueError:
+            raise HTTPException(status_code=400, detail="event_end_date must be YYYY-MM-DD")
+
+    from server.db.crud import async_update_event
+    event = await async_update_event(event_id, **body)
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+    return event
+
+
+@app.put("/api/calendar/events/{event_id}/targets/{client_id}")
+async def update_event_target(event_id: int, client_id: str, request: Request):
+    """Update a target client's status (pending → notified → responded | skipped)."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+
+    body = await request.json()
+    action_status = body.get("action_status", "").strip()
+    if action_status not in ("pending", "notified", "responded", "skipped"):
+        raise HTTPException(status_code=400, detail="action_status must be pending|notified|responded|skipped")
+
+    from server.db.crud import async_update_target_status
+    result = await async_update_target_status(event_id, client_id, action_status)
+    if not result:
+        raise HTTPException(status_code=404, detail="Target not found")
+    return result
+
+
+@app.put("/api/calendar/events/{event_id}/targets/{client_id}/outcome")
+async def update_event_target_outcome(event_id: int, client_id: str, request: Request):
+    """Record a business outcome for an activation target (visited, purchased, no_response)."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+
+    body = await request.json()
+    outcome = body.get("outcome", "").strip()
+    if outcome not in ("none", "visited", "purchased", "no_response"):
+        raise HTTPException(status_code=400, detail="outcome must be none|visited|purchased|no_response")
+
+    from server.db.crud import async_update_target_outcome
+    result = await async_update_target_outcome(
+        event_id, client_id, outcome,
+        float(body.get("outcome_value", 0)),
+        body.get("outcome_notes", "")
+    )
+    if not result:
+        raise HTTPException(status_code=404, detail="Target not found")
+    return result
+
+
+@app.get("/api/activation-metrics")
+async def get_activation_metrics():
+    """Get conversion tracking metrics across all activation events."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_activation_metrics
+    return await async_get_activation_metrics()
+
+
+@app.delete("/api/calendar/events/{event_id}")
+async def delete_calendar_event(event_id: int):
+    """Delete an activation event and its targets."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_delete_event
+    ok = await async_delete_event(event_id)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Event not found")
+    return {"status": "deleted", "event_id": event_id}
+
+
+@app.get("/api/calendar/concepts")
+async def list_available_concepts():
+    """
+    List all distinct concepts from the DB with client counts.
+    Used by the dashboard's concept picker when creating events.
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_concept_list
+    return await async_get_concept_list()
+
+
+# ===================================================================
+# PLAYBOOK TEMPLATES
+# ===================================================================
+
+@app.get("/api/playbooks")
+async def get_playbooks(category: str = None):
+    """Get all playbook templates, optionally filtered by category."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_playbooks
+    return await async_get_playbooks(category)
+
+
+@app.post("/api/playbooks")
+async def create_playbook(body: dict):
+    """Create a new playbook template."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_create_playbook
+    row = await async_create_playbook(
+        name=body["name"],
+        description=body.get("description", ""),
+        concepts=body.get("concepts", ""),
+        channel=body.get("channel", "email"),
+        priority=body.get("priority", "medium"),
+        message_template=body.get("messageTemplate", ""),
+        category=body.get("category", "custom"),
+        created_by=body.get("createdBy"),
+    )
+    if not row:
+        raise HTTPException(status_code=500, detail="Failed to create playbook")
+    return {"status": "created", "playbook": row}
+
+
+@app.post("/api/playbooks/seed")
+async def seed_playbooks():
+    """Seed default playbook templates (idempotent — skips if data exists)."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_seed_playbooks
+    return await async_seed_playbooks()
+
+
+@app.post("/api/playbooks/{playbook_id}/activate")
+async def activate_playbook(playbook_id: int, body: dict):
+    """
+    Create an activation event from a playbook template.
+    Body: { "eventName": "...", "eventDate": "YYYY-MM-DD", "matchLimit": 200 }
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_playbooks, async_create_event
+    # Fetch the playbook
+    playbooks = await async_get_playbooks()
+    playbook = next((p for p in playbooks if p["id"] == playbook_id), None)
+    if not playbook:
+        raise HTTPException(status_code=404, detail="Playbook not found")
+
+    event_name = body.get("eventName", playbook["name"])
+    event_date_str = body.get("eventDate")
+    if not event_date_str:
+        from datetime import datetime, timedelta
+        event_date_str = (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
+
+    from datetime import date as date_type
+    event_date = date_type.fromisoformat(event_date_str)
+
+    # Create event using the playbook's concepts
+    result = await async_create_event(
+        title=event_name,
+        description=playbook.get("description", ""),
+        event_date=event_date,
+        concepts=playbook["concepts"],
+        channel=playbook["channel"],
+        priority=playbook["priority"],
+    )
+    result["fromPlaybook"] = playbook["name"]
+    result["priority"] = playbook["priority"]
+    return result
+
+
+# ===================================================================
+# ADVISOR ASSIGNMENT
+# ===================================================================
+
+@app.get("/api/advisors")
+async def get_advisors():
+    """Get all available advisors (users with sales/manager/admin role)."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_advisors
+    return await async_get_advisors()
+
+
+@app.get("/api/advisors/workload")
+async def get_advisor_workload():
+    """Get workload breakdown per advisor: client counts, tier distribution."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_get_advisor_workload
+    return await async_get_advisor_workload()
+
+
+@app.put("/api/clients/{client_id}/advisor")
+async def assign_advisor(client_id: str, body: dict):
+    """Assign an advisor to a client. Body: { "advisorId": 1 }"""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    advisor_id = body.get("advisorId")
+    if not advisor_id:
+        raise HTTPException(status_code=400, detail="advisorId is required")
+    from server.db.crud import async_assign_advisor
+    result = await async_assign_advisor(client_id, advisor_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Client not found")
+    return result
+
+
+@app.delete("/api/clients/{client_id}/advisor")
+async def unassign_advisor(client_id: str):
+    """Remove advisor assignment from a client."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_unassign_advisor
+    return await async_unassign_advisor(client_id)
+
+
+@app.post("/api/advisors/bulk-assign")
+async def bulk_assign_advisor(body: dict):
+    """Assign an advisor to multiple clients. Body: { "clientIds": [...], "advisorId": 1 }"""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    client_ids = body.get("clientIds", [])
+    advisor_id = body.get("advisorId")
+    if not client_ids or not advisor_id:
+        raise HTTPException(status_code=400, detail="clientIds and advisorId are required")
+    from server.db.crud import async_bulk_assign_advisor
+    return await async_bulk_assign_advisor(client_ids, advisor_id)
+
+
+@app.post("/api/advisors/auto-assign")
+async def auto_assign_advisors(body: dict = {}):
+    """
+    Auto-assign unassigned clients to available advisors.
+    Body (optional): { "strategy": "round_robin" | "segment" }
+    """
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    strategy = body.get("strategy", "round_robin") if body else "round_robin"
+    from server.db.crud import async_auto_assign_advisors
+    return await async_auto_assign_advisors(strategy)
+
+
+# ===================================================================
+# EXPORT & REPORTING
+# ===================================================================
+
+@app.get("/api/export/clients")
+async def export_clients_csv():
+    """Export all clients as CSV download."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    import csv, io
+    from starlette.responses import StreamingResponse
+    from server.db.crud import async_export_clients_csv
+
+    rows = await async_export_clients_csv()
+    if not rows:
+        raise HTTPException(status_code=404, detail="No data to export")
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=rows[0].keys())
+    writer.writeheader()
+    for row in rows:
+        writer.writerow({k: (str(v) if v is not None else '') for k, v in row.items()})
+
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=clients_export.csv"},
+    )
+
+
+@app.get("/api/export/actions")
+async def export_actions_csv():
+    """Export all actions as CSV download."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    import csv, io
+    from starlette.responses import StreamingResponse
+    from server.db.crud import async_export_actions_csv
+
+    rows = await async_export_actions_csv()
+    if not rows:
+        raise HTTPException(status_code=404, detail="No data to export")
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=rows[0].keys())
+    writer.writeheader()
+    for row in rows:
+        writer.writerow({k: (str(v) if v is not None else '') for k, v in row.items()})
+
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=actions_export.csv"},
+    )
+
+
+@app.get("/api/export/scores")
+async def export_scores_csv():
+    """Export all client scores as CSV download."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    import csv, io
+    from starlette.responses import StreamingResponse
+    from server.db.crud import async_export_scores_csv
+
+    rows = await async_export_scores_csv()
+    if not rows:
+        raise HTTPException(status_code=404, detail="No data to export")
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=rows[0].keys())
+    writer.writeheader()
+    for row in rows:
+        writer.writerow({k: (str(v) if v is not None else '') for k, v in row.items()})
+
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=scores_export.csv"},
+    )
+
+
+@app.get("/api/report/summary")
+async def get_summary_report():
+    """Generate an executive summary report with all key metrics."""
+    if not DB_AVAILABLE:
+        raise HTTPException(status_code=503, detail="Database not available")
+    from server.db.crud import async_generate_summary_report
+    return await async_generate_summary_report()
 
 
 def main():

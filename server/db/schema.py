@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
     email           VARCHAR(255) UNIQUE,
     password_hash   VARCHAR(255) NOT NULL,
     role            VARCHAR(50) NOT NULL DEFAULT 'sales',
-    -- role: 'admin', 'sales', 'manager', 'viewer'
+    -- role: 'admin', 'sales', 'manager', 'viewer', 'data-scientist', 'data-analyst'
     is_active       BOOLEAN NOT NULL DEFAULT TRUE,
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -66,6 +66,8 @@ CREATE TABLE IF NOT EXISTS clients (
     note_duration   VARCHAR(50),
     created_by      INTEGER REFERENCES users(id) ON DELETE SET NULL,
     -- which user/salesperson created this client
+    assigned_advisor_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    -- assigned client advisor
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     is_deleted      BOOLEAN NOT NULL DEFAULT FALSE
@@ -192,6 +194,100 @@ CREATE TABLE IF NOT EXISTS pipeline_runs (
     started_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     completed_at    TIMESTAMPTZ
 );
+
+-- ============================================================
+-- Events / Activations Calendar
+-- ============================================================
+CREATE TABLE IF NOT EXISTS events (
+    id              SERIAL PRIMARY KEY,
+    title           VARCHAR(500) NOT NULL,
+    description     TEXT,
+    event_date      DATE NOT NULL,
+    event_end_date  DATE,
+    -- concepts this event relates to (pipe-separated, e.g. "new_products|collaboration|leather")
+    concepts        TEXT NOT NULL DEFAULT '',
+    -- outreach channel: 'email', 'sms', 'whatsapp', 'phone', 'in_store', 'multi'
+    channel         VARCHAR(100) NOT NULL DEFAULT 'email',
+    -- priority: 'high', 'medium', 'low'
+    priority        VARCHAR(50) NOT NULL DEFAULT 'medium',
+    -- status: 'draft', 'scheduled', 'active', 'completed', 'cancelled'
+    status          VARCHAR(50) NOT NULL DEFAULT 'draft',
+    -- how many clients were matched
+    matched_count   INTEGER DEFAULT 0,
+    notified_count  INTEGER DEFAULT 0,
+    created_by      INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_events_date ON events(event_date);
+CREATE INDEX IF NOT EXISTS idx_events_status ON events(status);
+
+-- ============================================================
+-- Event Targets (matched clients for each event)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS event_targets (
+    id              SERIAL PRIMARY KEY,
+    event_id        INTEGER NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+    client_id       VARCHAR(100) NOT NULL REFERENCES clients(id) ON DELETE CASCADE,
+    -- match_reason: which concept(s) caused the match
+    match_reason    TEXT,
+    -- match_score: how relevant (number of matching concepts)
+    match_score     REAL DEFAULT 1.0,
+    -- action: 'pending', 'notified', 'responded', 'skipped'
+    action_status   VARCHAR(50) NOT NULL DEFAULT 'pending',
+    -- outcome: 'none', 'visited', 'purchased', 'no_response'
+    outcome         VARCHAR(50) NOT NULL DEFAULT 'none',
+    outcome_value   REAL DEFAULT 0.0,
+    -- revenue attributed to this activation
+    outcome_notes   TEXT,
+    notified_at     TIMESTAMPTZ,
+    responded_at    TIMESTAMPTZ,
+    outcome_at      TIMESTAMPTZ,
+    UNIQUE(event_id, client_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_event_targets_event ON event_targets(event_id);
+CREATE INDEX IF NOT EXISTS idx_event_targets_client ON event_targets(client_id);
+CREATE INDEX IF NOT EXISTS idx_event_targets_status ON event_targets(action_status);
+
+-- ============================================================
+-- Client Scores (computed engagement & value scores)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS client_scores (
+    client_id       VARCHAR(100) PRIMARY KEY REFERENCES clients(id) ON DELETE CASCADE,
+    engagement_score REAL DEFAULT 0.0,
+    -- 0–100: based on concepts, actions, events, recency
+    value_score      REAL DEFAULT 0.0,
+    -- 0–100: based on confidence, segment, action priority
+    overall_score    REAL DEFAULT 0.0,
+    -- weighted combination of engagement + value
+    tier             VARCHAR(20) DEFAULT 'bronze',
+    -- 'platinum', 'gold', 'silver', 'bronze'
+    score_details    JSONB,
+    -- breakdown of how scores were computed
+    computed_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- ============================================================
+-- Playbook Templates (pre-built activation templates)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS playbooks (
+    id              SERIAL PRIMARY KEY,
+    name            VARCHAR(300) NOT NULL,
+    description     TEXT,
+    -- concepts to match (pipe-separated)
+    concepts        TEXT NOT NULL DEFAULT '',
+    channel         VARCHAR(100) NOT NULL DEFAULT 'email',
+    priority        VARCHAR(50) NOT NULL DEFAULT 'medium',
+    -- template message
+    message_template TEXT,
+    -- category: 'launch', 'birthday', 'reengagement', 'seasonal', 'vip', 'custom'
+    category        VARCHAR(100) NOT NULL DEFAULT 'custom',
+    is_active       BOOLEAN NOT NULL DEFAULT TRUE,
+    created_by      INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
 """
 
 # ---------------------------------------------------------------------------
@@ -217,6 +313,7 @@ def reset_database():
     """Drop and recreate all tables. DESTRUCTIVE — use only in development."""
     logger.warning("RESETTING DATABASE — all data will be lost!")
     tables = [
+        "event_targets", "events",
         "audit_log", "pipeline_runs", "client_actions",
         "client_concepts", "client_vectors", "clients",
         "upload_sessions", "segments", "lexicon", "users"
