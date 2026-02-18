@@ -1,0 +1,196 @@
+{
+  "generated": "20260210_195313",
+  "results": [
+    {
+      "label": "build_alias_to_concept_map | O(N) \u2013 Linear",
+      "expected": "O(N)",
+      "measured_exponent": 0.9958,
+      "sizes": [
+        50,
+        200,
+        500,
+        2000,
+        5000
+      ],
+      "times_ms": [
+        1.3511,
+        5.1763,
+        12.8812,
+        52.0585,
+        131.759
+      ]
+    },
+    {
+      "label": "find_matches_in_text | vs alias count \u2013 O(M)",
+      "expected": "O(N)",
+      "measured_exponent": 1.3544,
+      "sizes": [
+        50,
+        200,
+        500,
+        1000
+      ],
+      "times_ms": [
+        0.3174,
+        1.2681,
+        7.2888,
+        16.391
+      ]
+    },
+    {
+      "label": "find_matches_in_text | vs text length \u2013 O(N)",
+      "expected": "O(N)",
+      "measured_exponent": 0.9539,
+      "sizes": [
+        50,
+        200,
+        500,
+        2000
+      ],
+      "times_ms": [
+        0.3447,
+        1.193,
+        2.901,
+        11.5882
+      ]
+    },
+    {
+      "label": "aggregate_client_vectors | O(N) \u2013 Linear",
+      "expected": "O(N)",
+      "measured_exponent": 0.9561,
+      "sizes": [
+        100,
+        500,
+        2000,
+        5000
+      ],
+      "times_ms": [
+        0.8444,
+        3.4117,
+        13.2158,
+        36.0526
+      ]
+    },
+    {
+      "label": "KMeans.fit() | O(N\u00b7K\u00b7D\u00b7I) \u2013 Linear in N",
+      "expected": "O(N)",
+      "measured_exponent": 0.8484,
+      "sizes": [
+        100,
+        500,
+        2000,
+        5000
+      ],
+      "times_ms": [
+        0.8275,
+        1.122,
+        12.037,
+        15.7125
+      ]
+    },
+    {
+      "label": "silhouette_score | O(N\u00b2) \u2013 Quadratic",
+      "expected": "O(N\u00b2)",
+      "measured_exponent": 0.4993,
+      "sizes": [
+        100,
+        300,
+        800,
+        2000
+      ],
+      "times_ms": [
+        0.5377,
+        1.1758,
+        2.1622,
+        2.2623
+      ]
+    },
+    {
+      "label": "euclidean_distances | O(N\u00b2\u00b7D) \u2013 Quadratic",
+      "expected": "O(N\u00b2)",
+      "measured_exponent": 1.3775,
+      "sizes": [
+        100,
+        300,
+        800,
+        2000
+      ],
+      "times_ms": [
+        0.1477,
+        0.3145,
+        1.4697,
+        8.947
+      ]
+    },
+    {
+      "label": "sorted(aliases, key=len) | O(M log M) \u2013 Log-linear",
+      "expected": "O(N log N)",
+      "measured_exponent": 1.0326,
+      "sizes": [
+        500,
+        2000,
+        10000,
+        50000
+      ],
+      "times_ms": [
+        0.0302,
+        0.1377,
+        0.6736,
+        3.6136
+      ]
+    },
+    {
+      "label": "compute_k() | O(1) \u2013 Constant",
+      "expected": "O(1)",
+      "measured_exponent": 0.016,
+      "sizes": [
+        10,
+        100,
+        1000,
+        10000,
+        100000
+      ],
+      "times_ms": [
+        0.0002,
+        0.0002,
+        0.0002,
+        0.0002,
+        0.0002
+      ]
+    },
+    {
+      "label": "DataFrame.groupby().mean() | O(N) \u2013 Linear",
+      "expected": "O(N)",
+      "measured_exponent": 0.5411,
+      "sizes": [
+        500,
+        2000,
+        10000,
+        50000
+      ],
+      "times_ms": [
+        0.17,
+        0.2,
+        0.4865,
+        1.9868
+      ]
+    },
+    {
+      "label": "re.finditer() | O(N) \u2013 Linear",
+      "expected": "O(N)",
+      "measured_exponent": 1.0099,
+      "sizes": [
+        100,
+        1000,
+        10000,
+        50000
+      ],
+      "times_ms": [
+        0.0144,
+        0.1389,
+        1.7498,
+        7.0032
+      ]
+    }
+  ]
+}

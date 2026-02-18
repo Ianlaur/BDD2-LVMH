@@ -1,0 +1,401 @@
+ID,Date,Duration,Language,Length,Transcription
+SA_001,2025-10-12,45,FR,medium,Le client (Art Collector) recherche une Malle sur mesure. Prêt à acheter.
+SA_002,2025-05-14,12,EN,short,VIP Client interested in Limited Edition Watch. Wire transfer pending.
+SA_003,2025-12-01,78,KO,long,고객(Real Estate Mogul)이 희귀 빈티지 샴페인을 찾고 있음. 가격 협의 완료.
+SA_004,2025-03-24,33,IT,medium,CEO interessato a Alta Gioielleria. Richiesta visione privata.
+SA_005,2025-08-09,15,ZH,short,客户（VC）正在寻找限量版手表。已经发送发票.
+SA_006,2025-01-20,56,JA,long,Philanthropistは特注のトランクに興味を持っています。銀行振込待ち.
+SA_007,2025-11-11,22,ES,medium,Art Collector solicitó una vista privada para Alta Joyería.
+SA_008,2025-04-18,41,DE,medium,Tech Founder interessiert an Maßgefertigter Koffer. Benötigt individuelles Monogramm.
+SA_009,2025-07-22,19,RU,short,Клиент (Real Estate Mogul) ищет Ювелирные изделия. Готов к покупке.
+SA_010,2025-02-15,88,AR,long,العميل (CEO) يبحث عن ساعة إصدار محدود. تم تحويل المبلغ.
+SA_011,2025-09-30,12,FR,short,Boutique Paris. Client prêt pour Haute Couture. Paiement par virement.
+SA_012,2025-06-05,45,EN,medium,Client (Philanthropist) looking for Exotic Skin Handbag. Follow-up after gala.
+SA_013,2025-03-12,28,IT,medium,Interesse per borsa in coccodrillo. Cliente VIP dal Qatar.
+SA_014,2025-10-25,62,NL,long,Klant geïnteresseerd in Limited Watch. Factuur verzonden.
+SA_015,2025-12-14,18,PT,short,Cliente (Tech Founder) busca Alta Joalharia. Pronto para fechar.
+SA_016,2025-08-22,55,ZH,medium,VIP客户对酒庄 investment 感兴趣。正在审查合同.
+SA_017,2025-05-30,11,JA,short,銀座店。希少なウォッチの試着を希望.
+SA_018,2025-01-14,70,ES,long,Cliente busca Baúl a medida para colección privada. Alta prioridad.
+SA_019,2025-11-03,34,DE,medium,Sammler sucht seltene Flaschen Champagne. Direkter Kauf.
+SA_020,2025-04-20,25,KO,medium,고객이 한정판 시계 구매 희망. 계좌 번호 안내함.
+SA_021,2025-06-18,42,FR,medium,Demande de personnalisation pour Malle cabine. Monogramme or.
+SA_022,2025-09-12,16,EN,short,Ultra High Net Worth client. Ready to buy entire jewelry set.
+SA_023,2025-10-09,83,IT,long,Trattativa per acquisto orologio pezzo unico. Valore stimato 400k.
+SA_024,2025-03-05,22,AR,medium,طلب شراء حقيبة جلد نادرة. العميل في انتظار التأكيد.
+SA_025,2025-12-28,19,ZH,short,客户要求对高级定制进行私人展示.
+SA_026,2025-07-15,50,RU,medium,Запрос на изготовление уникального чемодана. Детали согласованы.
+SA_027,2025-04-02,38,JA,medium,オートクチュールのドレスの採寸を予約。特別な機会用.
+SA_028,2025-11-25,61,PT,long,Investidor interessado em ativos raros. Reunião marcada para amanhã.
+SA_029,2025-02-10,14,IT,short,Cliente cerca borsa in edizione speciale. Pronto al bonifico.
+SA_030,2025-08-27,47,NL,medium,Interesse in zeldzame cognac. Klant verwacht levering in Dubai.
+SA_031,2025-01-05,12,FR,short,Vente conclue. Montre en platine. Livraison hôtel Ritz.
+SA_032,2025-10-22,56,EN,long,Client requesting private vault viewing for high jewelry.
+SA_033,2025-05-11,33,KO,medium,고객이 비스포크 트렁크 주문. 송금 확인 중.
+SA_034,2025-12-05,18,ES,short,Venta de Champaña añejo para evento corporativo.
+SA_035,2025-07-28,72,ZH,long,艺术收藏家寻求购买全套定制行李箱.
+SA_036,2025-03-31,29,JA,medium,希少な宝石のプライベートオークションへの参加を希望.
+SA_037,2025-11-17,44,PT,medium,Cliente solicitou envio de catálogo de Alta Moda para o Brasil.
+SA_038,2025-04-09,16,DE,short,Kaufbestätigung for limitierte Handtasche.
+SA_039,2025-09-08,80,RU,long,Переговоры о покупке эксклюзивного набора украшений. Высокий приоритет.
+SA_040,2025-02-24,31,AR,medium,العميل مهتم بشراء صندوق مجوهرات فاخر. بانتظار العقد.
+SA_041,2025-10-18,21,IT,short,Vendita chiusa. Orologio in oro rosa.
+SA_042,2025-06-12,63,FR,long,Le client souhaite privatiser le salon pour une séance d'essayage.
+SA_043,2025-01-28,14,EN,short,Ready to purchase bespoke alligator shoes. Payment pending.
+SA_044,2025-11-22,49,KO,medium,고객이 전용 라운지에서 주얼리 감상 요청.
+SA_045,2025-04-15,37,NL,medium,Factuur voor luxe koffer betaald. Verzending naar Londen.
+SA_046,2025-12-10,15,ES,short,Cliente VIP. Compra de múltiples bolsos de seda.
+SA_047,2025-08-03,85,ZH,long,客户正在讨论为他的游艇定制的全套内饰.
+SA_048,2025-03-20,22,JA,short,限定シャンパン。まとめ買いの相談.
+SA_049,2025-09-25,58,PT,medium,Cliente em busca de diamantes certificados. Requer certificação GIA.
+SA_050,2025-02-05,13,RU,short,Интерес к новой коллекции аксессуаров. Срочный заказ.
+SA_0051,2025-12-16,72,KO,long,고객(VIP Client)이 한정판 시계를 찾고 있음. 경쟁사와 비교 중.
+SA_0052,2025-04-10,16,IT,short,CEO interessato a Alta Moda. Confronto con la concorrenza.
+SA_0053,2025-01-21,43,ES,medium,Cliente (Art Collector) busca Alta Costura. Seguimiento tras la gala.
+SA_0054,2025-05-17,30,KO,short,고객(VIP Client)이 한정판 시계를 찾고 있음. 프라이빗 뷰잉 요청.
+SA_0055,2025-12-19,62,IT,long,Cliente (Art Collector) cerca Champagne d'annata raro. Pronto all'acquisto.
+SA_0056,2025-10-15,83,IT,long,Real Estate Mogul interessato a Borsa in pelle esotica. Necessita di monogramma personalizzato.
+SA_0057,2025-11-11,24,AR,short,Real Estate Mogul طلب عرضًا خاصًا لـ مجوهرات فاخرة. هدية مؤسسية.
+SA_0058,2025-03-18,87,NL,long,CEO geïnteresseerd in Gelimiteerd horloge. Heeft aangepast monogram nodig.
+SA_0059,2025-09-08,16,IT,short,Cliente (Tech Founder) cerca Champagne d'annata raro. Bonifico in sospeso.
+SA_0060,2025-06-29,64,FR,long,Art Collector intéressé par Haute Joaillerie. Suivi après le gala.
+SA_0061,2025-11-13,40,RU,medium,Tech Founder интересуется Багаж на заказ. Готов к покупке.
+SA_0062,2025-05-22,23,ZH,short,VIP Client对定制行李箱感兴趣。电汇待定。
+SA_0063,2025-04-13,66,JA,long,クライアント（VIP Client）が限定版ウォッチを探しています。購入の準備ができています。
+SA_0064,2025-05-10,48,AR,medium,العميل (Tech Founder) يبحث عن مجوهرات فاخرة. مقارنة مع المنافسين.
+SA_0065,2025-11-24,44,AR,medium,VC مهتم بـ حقيبة جلد غريب. متابعة بعد الحفل.
+SA_0066,2025-06-05,76,ES,long,Cliente (Philanthropist) busca Reloj de edición limitada. Solicitó vista privada.
+SA_0067,2025-05-07,61,JA,long,VCは特注의 トランクに興味を持っています。プライベートビューイングを依頼。
+SA_0068,2025-08-07,56,PT,medium,Cliente (VIP Client) procura Champanhe vintage raro. Transferência pendente.
+SA_0069,2025-03-05,16,EN,short,Client (Real Estate Mogul) looking at Fine Jewelry. Wire transfer pending.
+SA_0070,2025-06-06,88,KO,long,고객(Art Collector)이 한정판 시계를 찾고 있음. 갈라 행사 후 후속 조치.
+SA_0071,2025-09-19,33,JA,medium,Philanthropistは特注のトランクのプライベートビューイングを依頼しました。カスタムモノグラムが必要.
+SA_0072,2025-06-03,30,ZH,short,客户（Philanthropist）正在寻找高级珠宝。正在与竞争对手比较。
+SA_0073,2025-03-12,23,FR,short,Art Collector intéressé par Haute Couture. Cadeau d'entreprise.
+SA_0074,2025-08-07,55,IT,medium,Cliente (VC) cerca Alta Gioielleria. Pronto all'acquisto.
+SA_0075,2025-04-24,19,AR,short,Tech Founder طلب عرضًا خاصًا لـ شامبانيا معتقة نادرة. متابعة بعد الحفل.
+SA_0076,2025-04-17,10,ES,short,Art Collector solicitó una vista privada para Alta Joyería. Seguimiento tras la gala.
+SA_0077,2025-02-26,77,EN,long,CEO requested viewing for Bespoke Trunk. Value approx $367k. Follow-up after gala.
+SA_0078,2025-12-03,84,NL,long,VC heeft een privébezichtiging aangevraagd voor Haute Couture. Follow-up na gala.
+SA_0079,2025-10-12,54,EN,medium,Real Estate Mogul interested in Exotic Skin Handbag. Ready to buy.
+SA_0080,2025-02-24,16,ES,short,Cliente (Art Collector) busca Alta Joyería. Comparando with competidores.
+SA_0081,2025-04-18,59,FR,medium,Le client (Philanthropist) recherche Haute Couture. Besoin d'un monogramme personnalisé.
+SA_0082,2025-04-27,58,DE,medium,Philanthropist bat um eine private Besichtigung für Maßgefertigter Koffer. Private Besichtigung angefordert.
+SA_0083,2025-12-01,85,AR,long,العميل (Real Estate Mogul) يبحث عن ساعة إصدار محدود. متابعة بعد الحفل.
+SA_0084,2025-03-16,37,IT,medium,Philanthropist interessato a Borsa in pelle esotica. Regalo aziendale.
+SA_0085,2025-05-29,14,DE,short,CEO interessato an Feiner Schmuck. Nachbereitung nach der Gala.
+SA_0086,2026-01-09,32,IT,medium,Philanthropist interessato a Champagne d'annata raro. Necessita di monogramma personalizzato.
+SA_0087,2025-09-02,31,DE,medium,Philanthropist interessiert an Feiner Schmuck. Private Besichtigung angefordert.
+SA_0088,2025-08-07,79,EN,long,CEO interested in Limited Edition Watch. Needs custom monogram.
+SA_0089,2025-10-04,32,FR,medium,Tech Founder intéressé par Montre édition limitée. Prêt à acheter.
+SA_0090,2025-05-17,13,NL,short,Real Estate Mogul heeft een privébezichtiging aangevraagd voor Exotische handtas. Zakelijk cadeau.
+SA_0091,2025-03-25,15,IT,short,CEO ha richiesto una visione privata per Alta Moda. Pronto all'acquisto.
+SA_0092,2025-01-15,80,JA,long,クライアント（VIP Client）が希少なヴィンテージシャンパンを探しています。銀行振込待ち。
+SA_0093,2025-12-14,83,ES,long,VIP Client interesado en Champaña vintage rara. Necesita monogramma personalizado.
+SA_0094,2025-06-20,66,EN,long,CEO interested in Exotic Skin Handbag. Follow-up after gala.
+SA_0095,2025-10-29,10,PT,short,Real Estate Mogul interessado em Alta Costura. Pronto para comprar.
+SA_0096,2026-01-02,44,AR,medium,VC مهتم بـ شامبانيا معتقة نادرة. هدية مؤسسية.
+SA_0097,2025-02-18,22,ZH,short,CEO要求私下查看高级定制。正在与竞争对手比较。
+SA_0098,2025-09-22,76,EN,long,Client (VC) looking at Haute Couture. Follow-up after gala.
+SA_0099,2025-06-27,11,NL,short,Klant (Art Collector) zoekt Zeldzame vintage champagne. Zakelijk cadeau.
+SA_0100,2025-10-31,61,FR,long,Le client (Real Estate Mogul) recherche Montre édition limitée. A demandé une visite privée.
+SA_0101,2025-04-05,56,KO,medium,VC님이 희귀 빈티지 샴페인 프라이빗 뷰잉을 요청함. 송금 대기 중.
+SA_0102,2025-02-06,72,DE,long,Real Estate Mogul bat um eine private Besichtigung für Seltener Jahrgangschampagner. Benötigt individuelles Monogramm.
+SA_0103,2025-10-28,88,ES,long,VC solicitó una vista privada para Bolso de piel exótica. Necesita monogramma personalizado.
+SA_0104,2025-04-26,25,KO,short,Tech Founder님이 오트쿠튀르에 관심을 보임. 맞춤형 이니셜 필요.
+SA_0105,2025-09-23,28,NL,short,Klant (Real Estate Mogul) zoekt Gelimiteerd horloge. Follow-up na gala.
+SA_0106,2025-10-28,42,EN,medium,VC interested in Fine Jewelry. Corporate gifting.
+SA_0107,2025-01-25,19,PT,short,Cliente (VIP Client) procura Alta Joalharia. Presente corporativo.
+SA_0108,2025-07-23,79,KO,long,고객(VIP Client)이 파인 주얼리를 찾고 있음. 송금 대기 중.
+SA_0109,2025-09-30,80,ZH,long,VIP Client对限量版手表感兴趣。电汇待定.
+SA_0110,2025-01-31,21,EN,short,Tech Founder interested in Exotic Skin Handbag. Needs custom monogram.
+SA_0111,2025-01-14,32,AR,medium,Philanthropist طلب عرضًا خاصًا لـ صندوق مخصص. جاهز للشراء.
+SA_0112,2025-09-19,11,KO,short,VC님이 희귀 빈티지 샴페인 프라이빗 뷰잉을 요청함. 맞춤형 이니셜 필요.
+SA_0113,2025-04-28,22,AR,short,Tech Founder طلب عرضًا خاصًا لـ صندوق مخصص. مقارنة مع المنافسين.
+SA_0114,2025-03-08,29,IT,short,Cliente (VC) cerca Orologio in edizione limitata. Bonifico in sospeso.
+SA_0115,2025-05-15,71,FR,long,CEO intéressé par Montre édition limitée. Cadeau d'entreprise.
+SA_0116,2025-09-13,89,RU,long,Клиент (CEO) ищет Редкое винтажное шампанское. Готов к покупке.
+SA_0117,2025-06-06,76,PT,long,VC solicitó uma visualização privada para Alta Joalharia. Acompanhamento após a gala.
+SA_0118,2025-03-23,57,FR,medium,Le client (VIP Client) recherche Sac en peau exotique. Compare avec la concurrence.
+SA_0119,2026-01-08,67,EN,long,Tech Founder interested in Haute Couture. Corporate gifting.
+SA_0120,2025-02-03,60,DE,medium,Kunde (CEO) sucht Seltener Jahrgangschampagner. Benötigt individuelles Monogramm.
+SA_0121,2025-01-18,21,FR,short,Art Collector intéressé par Haute Couture. A demandé une visite privée.
+SA_0122,2025-06-20,43,JA,medium,Art Collectorはオートクチュールに興味を持っています。銀行振込待ち.
+SA_0123,2025-04-20,50,EN,medium,Art Collector requested viewing for Bespoke Trunk. Value approx $67k. Corporate gifting.
+SA_0124,2025-04-04,52,NL,medium,Tech Founder geïnteresseerd in Op maat gemaakte koffer. Overschrijving in behandeling.
+SA_0125,2025-09-03,85,NL,long,Klant (CEO) zoekt Fijne sieraden. Zakelijk cadeau.
+SA_0126,2025-09-25,79,PT,long,Real Estate Mogul interessado em Relógio de édition limitée. Comparando con concorrentes.
+SA_0127,2026-01-04,68,KO,long,Real Estate Mogul님이 오트쿠튀르에 관심을 보임. 프라이빗 뷰잉 요청.
+SA_0128,2025-05-05,79,FR,long,VIP Client a demandé une présentation privée pour Champagne millésimé rare. Cadeau d'entreprise.
+SA_0129,2025-06-10,38,RU,medium,VIP Client интересуется От кутюр. Запрошен частный просмотр.
+SA_0130,2026-01-20,14,DE,short,Tech Founder bat um eine private Besichtigung für Exotische Handtasche. Benötigt individuelles Monogramm.
+SA_0131,2025-11-18,23,RU,short,CEO интересуется Багаж на заказ. Нужна индивидуальная монограмма.
+SA_0132,2025-03-14,63,RU,long,Philanthropist запросил частный просмотр Часы ограниченной серии. Корпоративный подарок.
+SA_0133,2025-07-10,16,IT,short,CEO ha richiesto una visione privata per Orologio in edizione limitata. Pronto all'acquisto.
+SA_0134,2025-01-26,12,NL,short,CEO geïnteresseerd in Op maat gemaakte koffer. Zakelijk cadeau.
+SA_0135,2025-01-31,26,NL,short,Tech Founder heeft een privébezichtiging aangevraagd voor Exotische handtas. Follow-up na gala.
+SA_0136,2025-07-30,32,NL,medium,CEO heeft een privébezichtiging aangevraagd voor Zeldzame vintage champagne. Heeft aangepast monogram nodig.
+SA_0137,2025-06-10,31,RU,medium,Клиент (VIP Client) ищет От кутюр. Запрошен частный просмотр.
+SA_0138,2025-05-08,46,PT,medium,Art Collector solicitou una visualização privata per Mala sob medida. Pronto para comprar.
+SA_0139,2025-07-18,72,KO,long,VIP Client님이 희귀 빈티지 샴페인에 관심을 보임. 맞춤형 이니셜 필요.
+SA_0140,2025-04-26,43,KO,medium,고객(VIP Client)이 오트쿠튀르를 찾고 있음. 구매 준비 완료.
+SA_0141,2025-12-23,76,ES,long,Philanthropist interesado en Reloj de edición limitada. Seguimiento tras la gala.
+SA_0142,2025-05-30,51,PT,medium,Real Estate Mogul interessado em Relógio de edição limitée. Acompanhamento après la gala.
+SA_0143,2025-02-18,50,DE,medium,Kunde (Real Estate Mogul) sucht Maßgefertigter Koffer. Vergleich mit Wettbewerbern.
+SA_0144,2025-12-29,62,PT,long,Cliente (Philanthropist) procura Champanhe vintage raro. Acompanhamento após a gala.
+SA_0145,2025-01-16,38,RU,medium,Клиент (Tech Founder) ищет Ювелирные изделия. Запрошен частный просмотр.
+SA_0146,2025-03-13,81,KO,long,고객(Real Estate Mogul)이 맞춤형 트렁크를 찾고 있음. 맞춤형 이니셜 필요.
+SA_0147,2025-07-18,39,AR,medium,CEO طلب عرضًا خاصًا لـ مجوهرات فاخرة. طلب عرضًا خاصًا.
+SA_0148,2025-12-23,42,ZH,medium,Art Collector要求私下查看稀有年份香槟。电汇待定.
+SA_0149,2025-11-26,41,NL,medium,Klant (Art Collector) zoekt Zeldzame vintage champagne. Vergelijken met concurrenten.
+SA_0150,2025-07-31,69,JA,long,Philanthropistは希少なヴィンテージシャンパンに興味を持っています。購入の準備ができています。
+SA_0151,2025-12-21,42,RU,medium,VIP Client запросил частный просмотр Часы ограниченной серии. Сравнение с конкурентами.
+SA_0152,2025-07-18,77,AR,long,العميل (CEO) يبحث عن صندوق مخصص. مقارنة مع المنافسين.
+SA_0153,2025-12-02,81,EN,long,Real Estate Mogul interested in Bespoke Trunk. Needs custom monogram.
+SA_0154,2025-12-26,22,ES,short,Cliente (Philanthropist) busca Alta Joyería. Needs custom monogram.
+SA_0155,2025-11-03,81,KO,long,고객(Art Collector)이 파인 주얼리를 찾고 있음. 구매 준비 완료.
+SA_0156,2025-03-07,80,DE,long,Kunde (Philanthropist) sucht Limitierte Uhr. Nachbereitung nach der Gala.
+SA_0157,2025-05-02,13,JA,short,Art Collectorは限定版ウォッチのプライベートビューイングを依頼しました。ガラ後のフォローアップ.
+SA_0158,2025-08-23,84,DE,long,Art Collector interessert an Seltener Jahrgangschampagner. Kaufbereit.
+SA_0159,2025-05-27,68,EN,long,Client (Philanthropist) looking at Fine Jewelry. Ready to buy.
+SA_0160,2025-08-31,84,DE,long,Art Collector interessert an Maßgefertigter Koffer. Vergleich mit Wettbewerbern.
+SA_0161,2025-02-19,73,ZH,long,VIP Client要求私下查看珍稀皮手袋。正在与竞争对手比较.
+SA_0162,2025-11-22,54,AR,medium,العميل (VC) يبحث عن صندوق مخصص. جاهز للشراء.
+SA_0163,2025-07-31,51,AR,medium,Philanthropist مهتم بـ ساعة إصدار محدود. مقارنة مع المنافسين.
+SA_0164,2025-04-29,87,JA,long,VCは限定版ウォッチ의 プライベートビューイングを依頼しました。ガラ後のフォローアップ.
+SA_0165,2025-01-07,53,PT,medium,Philanthropist solicitou uma visualização privada para Relógio de edizione limitata. Precisa de monogramma personalizzato.
+SA_0166,2025-11-28,77,DE,long,Real Estate Mogul interessiert an Exotische Handtasche. Private Besichtigung angefordert.
+SA_0167,2025-05-11,12,NL,short,Philanthropist heeft een privébezichtiging aangevraagd for Fijne sieraden. Follow-up na gala.
+SA_0168,2025-02-14,69,DE,long,VIP Client bat um eine private Besichtigung for Maßgefertigter Koffer. Überweisung ausstehend.
+SA_0169,2025-09-05,80,AR,long,VC طلب عرضًا خاصًا لـ مجوهرات فاخرة. متابعة بعد الحفل.
+SA_0170,2025-02-06,72,ES,long,Cliente (CEO) busca Reloj de edición limitada. Necesita monograma personalizado.
+SA_0171,2025-08-23,72,RU,long,CEO запросил частный просмотр От кутюр. Последующее наблюдение после гала-концерта.
+SA_0172,2026-01-10,29,JA,short,Art Collectorは希少なヴィンテージシャンパンのプライベートビューイングを依頼しました。法人向けギフト.
+SA_0173,2025-09-08,35,FR,medium,Tech Founder intéressé par Champagne millésimé rare. Compare avec la concurrence.
+SA_0174,2025-09-19,47,EN,medium,Real Estate Mogul requested viewing for Exotic Skin Handbag. Value approx $267k. Follow-up after gala.
+SA_0175,2025-03-31,21,DE,short,VIP Client interessiert an Haute Couture. Private Besichtigung angefordert.
+SA_0176,2025-09-16,44,JA,medium,クライアント（Real Estate Mogul）が高級ジュエリーを探しています。銀行振込待ち.
+SA_0177,2025-07-22,18,PT,short,Cliente (Tech Founder) procura Bolsa de pele exótica. Solicitou visualização privada.
+SA_0178,2026-01-18,35,ZH,medium,客户（Art Collector）正在寻找稀有年份香槟。公司送礼。
+SA_0179,2025-02-01,29,RU,short,Philanthropist интересуется Сумка из экзотической кожи. Корпоративный подарок.
+SA_0180,2025-07-21,33,KO,medium,고객(CEO)이 한정판 시계를 찾고 있음. 송금 대기 중.
+SA_0181,2025-06-25,90,AR,long,VIP Client مهتم بـ هوت كوتور. الحوالة معلقة.
+SA_0182,2025-02-02,61,ES,long,VIP Client interesado en Alta Joyería. Solicitó vista privada.
+SA_0183,2025-10-01,41,NL,medium,VC geïnteresseerd in Zeldzame vintage champagne. Zakelijk cadeau.
+SA_0184,2025-09-12,63,IT,long,VC interessato a Alta Gioielleria. Confronto con la concorrenza.
+SA_0185,2025-09-11,76,ES,long,Tech Founder interesado en Baúl a medida. Listo para comprar.
+SA_0186,2025-11-22,59,ES,medium,Art Collector solicitó una vista privada para Alta Costura. Transferencia pendiente.
+SA_0187,2025-08-22,76,EN,long,Art Collector requested viewing for Limited Edition Watch. Value approx $498k. Needs custom monogram.
+SA_0188,2025-11-25,79,PT,long,Cliente (VC) procura Relógio de edição limitada. Presente corporativo.
+SA_0189,2025-01-27,81,ZH,long,Philanthropist要求私下查看稀有年份香槟。电汇待定.
+SA_0190,2025-12-27,33,NL,medium,VC geïnteresseerd in Gelimiteerd horloge. Heeft aangepast monogram nodig.
+SA_0191,2025-09-12,11,DE,short,CEO bat um eine private Besichtigung for Limitierte Uhr. Nachbereitung nach der Gala.
+SA_0192,2025-12-02,12,FR,short,Art Collector a demandé une présentation privée pour Montre édition limitada. Suivi après le gala.
+SA_0193,2025-08-17,11,DE,short,Kunde (Art Collector) sucht Seltener Jahrgangschampagner. Kaufbereit.
+SA_0194,2025-06-21,50,KO,medium,VC님이 파인 주얼리에 관심을 보임. 프라이빗 뷰잉 요청.
+SA_0195,2025-04-21,83,PT,long,VIP Client solicitou uma visualização privada para Relógio de edição limitada. Pronto para comprar.
+SA_0196,2025-04-02,69,IT,long,Cliente (Tech Founder) cerca Alta Gioielleria. Bonifico in sospeso.
+SA_0197,2025-03-13,67,KO,long,VC님이 한정판 시계에 관심을 보임. 경쟁사와 비교 중.
+SA_0198,2025-02-28,53,ES,medium,Cliente (Real Estate Mogul) busca Alta Costura. Regalo corporativo.
+SA_0199,2025-05-11,79,EN,long,Tech Founder requested viewing for Exotic Skin Handbag. Value approx $52k. Follow-up after gala.
+SA_0200,2025-12-27,17,ES,short,Real Estate Mogul solicitó una vista privée pour Reloj de edizione limitata. Seguimiento tras la gala.
+SA_0201,2025-11-15,38,NL,medium,Philanthropist heeft een privébezichtiging aangevraagd for Op maat gemaakte koffer. Follow-up na gala.
+SA_0202,2025-07-04,44,ES,medium,Tech Founder interesado en Baúl a medida. Solicitó vista privada.
+SA_0203,2025-12-22,50,ZH,medium,VC要求私下查看珍稀皮手袋。需要定制缩写.
+SA_0204,2025-03-03,14,EN,short,VIP Client interested in Haute Couture. Needs custom monogram.
+SA_0205,2025-09-17,63,NL,long,Real Estate Mogul heeft een privébezichtiging aangevraagd for Exotische handtas. Zakelijk cadeau.
+SA_0206,2025-10-06,89,FR,long,VIP Client intéressé par Haute Couture. A demandé une visite privée.
+SA_0207,2025-10-30,12,FR,short,Le client (Philanthropist) recherche Haute Couture. Suivi après le gala.
+SA_0208,2025-10-30,14,IT,short,Tech Founder interessato a Baule su misura. Follow-up dopo il gala.
+SA_0209,2025-01-05,65,NL,long,Tech Founder heeft een privébezichtiging aangevraagd for Exotische handtas. Vergelijken met concurrenten.
+SA_0210,2025-10-19,79,RU,long,Tech Founder интересуется Ювелирные изделия. Готов к покупке.
+SA_0211,2025-05-18,89,AR,long,VIP Client طلب عرضًا خاصًا لـ مجوهرات فاخرة. يحتاج إلى مونوغرام مخصص.
+SA_0212,2025-05-04,23,RU,short,Клиент (Philanthropist) ищет Багаж на заказ. Запрошен частный просмотр.
+SA_0213,2025-05-03,23,DE,short,Kunde (Real Estate Mogul) sucht Seltener Jahrgangschampagner. Vergleich mit Wettbewerbern.
+SA_0214,2025-10-14,33,ES,medium,VIP Client solicitó una vista privada para Alta Costura. Regalo corporativo.
+SA_0215,2025-11-22,32,RU,medium,Клиент (Philanthropist) ищет От кутюр. Последующее наблюдение после гала-концерта.
+SA_0216,2025-07-15,51,DE,medium,Kunde (Real Estate Mogul) sucht Limitierte Uhr. Firmengeschenk.
+SA_0217,2025-08-29,78,ES,long,Cliente (Real Estate Mogul) busca Bolso de piel exótica. Listo para comprar.
+SA_0218,2025-10-13,70,IT,long,Cliente (Art Collector) cerca Orologio in edizione limitada. Bonifico in sospeso.
+SA_0219,2025-09-07,82,PT,long,Cliente (Art Collector) procura Alta Joalharia. Solicitou visualização privada.
+SA_0220,2025-10-22,37,ZH,medium,客户（CEO）正在寻找稀有年份香槟。准备购买.
+SA_0221,2025-06-14,50,NL,medium,Art Collector geïnteresseerd in Exotische handtas. Zakelijk cadeau.
+SA_0222,2025-06-04,65,KO,long,고객(VC)이 오트쿠튀르를 찾고 있음. 구매 준비 완료.
+SA_0223,2025-03-08,44,EN,medium,Philanthropist requested viewing for Limited Edition Watch. Value approx $150k. Ready to buy.
+SA_0224,2025-08-15,43,DE,medium,CEO interessato a Feiner Schmuck. Private Besichtigung angefordert.
+SA_0225,2025-12-30,17,NL,short,VC heeft een privébezichtiging aangevraagd for Exotische handtas. Heeft aangepast monogram nodig.
+SA_0226,2025-12-24,82,JA,long,Philanthropistはオートクチュールに興味を持っています。プライベートビューイングを依頼.
+SA_0227,2025-07-11,42,ZH,medium,VC对高级定制感兴趣。准备购买.
+SA_0228,2025-08-06,86,EN,long,Client (Philanthropist) looking at Limited Edition Watch. Ready to buy.
+SA_0229,2025-08-06,26,EN,short,Client (Tech Founder) looking at Bespoke Trunk. Follow-up after gala.
+SA_0230,2025-03-09,76,IT,long,Philanthropist ha richiesto una visione privata per Alta Gioielleria. Confronto con la concorrenza.
+SA_0231,2025-07-02,15,RU,short,Philanthropist интересуется От кутюр. Запрошен частный просмотр.
+SA_0232,2025-09-28,36,EN,medium,VC interested in Exotic Skin Handbag. Requested private viewing.
+SA_0233,2025-07-15,39,NL,medium,Real Estate Mogul geïnteresseerd in Fijne sieraden. Overschrijving in behandeling.
+SA_0234,2025-04-06,45,RU,medium,Tech Founder интересуется Багаж на заказ. Готов к покупке.
+SA_0235,2025-06-03,19,EN,short,Philanthropist interested in Exotic Skin Handbag. Corporate gifting.
+SA_0236,2025-05-17,57,FR,medium,Le client (VIP Client) recherche Sac en peau exotique. Cadeau d'entreprise.
+SA_0237,2025-09-23,68,RU,long,Tech Founder запросил частный просмотр Часы ограниченной серии. Готов к покупке.
+SA_0238,2025-12-26,21,EN,short,VIP Client interested in Bespoke Trunk. Follow-up after gala.
+SA_0239,2025-12-25,46,AR,medium,العميل (VIP Client) يبحث عن حقيبة جلد غريب. جاهز للشراء.
+SA_0240,2025-10-19,27,DE,short,Tech Founder bat um eine private Besichtigung for Seltener Jahrgangschampagner. Nachbereitung nach der Gala.
+SA_0241,2025-10-06,83,DE,long,CEO interessato an Limitierte Uhr. Private Besichtigung angefordert.
+SA_0242,2025-05-12,31,IT,medium,VIP Client ha richiesto una visione privata per Champagne d'annata raro. Ha richiesto una visione privata.
+SA_0243,2025-04-22,29,PT,short,CEO solicitou uma visualização privata per Relógio de edizione limitata. Solicitou visualização privata.
+SA_0244,2026-01-01,70,PT,long,Art Collector solicitou uma visualização privata per Mala sob medida. Transferência pendente.
+SA_0245,2025-03-04,67,NL,long,CEO heeft een privébezichtiging aangevraagd for Haute Couture. Klaar om te kopen.
+SA_0246,2025-12-21,66,NL,long,Klant (Real Estate Mogul) zoekt Op maat gemaakte koffer. Vergelijken met concurrenten.
+SA_0247,2025-07-21,66,AR,long,Art Collector طلب عرضًا خاصًا لـ ساعة إصدار محدود. يحتاج إلى مونوغرام مخصص.
+SA_0248,2025-07-16,48,RU,medium,Клиент (VC) ищет Сумка из экзотической кожи. Корпоративный подарок.
+SA_0249,2025-08-02,21,JA,short,CEOはエキゾチックレザーバッグに興味を持っています。プライベートビューイングを依頼.
+SA_0250,2025-06-21,79,RU,long,CEO интересуется Сумка из экзотической кожи. Перевод в ожидании.
+SA_0251,2025-08-03,35,FR,medium,Le client (Tech Founder) recherche Champagne millésimé rare. A demandé une visite privée.
+SA_0252,2025-09-11,35,EN,medium,Tech Founder requested viewing for Haute Couture. Value approx $111k. Ready to buy.
+SA_0253,2025-02-02,15,ES,short,Art Collector solicitó una vista privada para Baúl a medida. Solicitó vista privada.
+SA_0254,2025-02-07,56,IT,medium,Real Estate Mogul ha richiesto una visione privata per Champagne d'annata raro. Follow-up dopo il gala.
+SA_0255,2025-06-17,84,ZH,long,客户（VIP Client）正在寻找限量版手表。公司送礼。
+SA_0256,2025-01-13,49,ZH,medium,VIP Client要求私下查看珍稀皮手袋。需要定制缩写.
+SA_0257,2025-11-10,12,ZH,short,CEO要求私下查看高级定制。公司送礼。
+SA_0258,2025-12-02,41,ZH,medium,客户（CEO）正在寻找稀有年份香槟。电汇待定.
+SA_0259,2025-02-04,16,KO,short,고객(Tech Founder)이 오트쿠튀르를 찾고 있음. 프라이빗 뷰잉 요청.
+SA_0260,2025-05-10,35,NL,medium,Klant (VIP Client) zoekt Haute Couture. Vergelijken met concurrenten.
+SA_0261,2025-11-22,64,RU,long,Клиент (VC) ищет Ювелирные изделия. Готов к покупке.
+SA_0262,2025-10-21,79,EN,long,VIP Client requested viewing for Haute Couture. Value approx $205k. Ready to buy.
+SA_0263,2025-08-28,63,ZH,long,Art Collector要求私下查看高级定制。要求私下查看.
+SA_0264,2025-10-28,81,DE,long,Philanthropist interessiert an Feiner Schmuck. Private Besichtigung angefordert.
+SA_0265,2026-01-08,64,IT,long,Philanthropist interessato a Alta Moda. Confronto con la concorrenza.
+SA_0266,2025-12-15,87,ES,long,Cliente (CEO) busca Baúl a medida. Listo para comprar.
+SA_0267,2025-04-19,31,IT,medium,Tech Founder interessato a Borsa in pelle esotica. Follow-up dopo il gala.
+SA_0268,2025-09-05,23,JA,short,クライアント（VC）が高級ジュエリーを探しています。銀行振込待ち.
+SA_0269,2026-01-08,32,EN,medium,CEO requested viewing for Haute Couture. Value approx $496k. Corporate gifting.
+SA_0270,2025-06-25,55,ZH,medium,VIP Client要求私下查看稀有年份香槟。正在与竞争对手比较.
+SA_0271,2025-03-09,87,DE,long,CEO interessiert an Feiner Schmuck. Firmengeschenk.
+SA_0272,2025-10-28,65,ZH,long,客户（Philanthropist）正在寻找限量版手表。公司送礼.
+SA_0273,2025-12-15,10,ZH,short,Philanthropist对限量版手表感兴趣。晚宴后跟进.
+SA_0274,2025-09-13,13,PT,short,Philanthropist solicitou uma visualização privada para Bolsa de pelle exótica. Presente corporativo.
+SA_0275,2025-10-23,69,AR,long,Tech Founder مهتم بـ ساعة إصدار محدود. مقارنة مع المنافسين.
+SA_0276,2025-03-05,24,IT,short,Cliente (VIP Client) cerca Orologio in edizione limitada. Follow-up dopo il gala.
+SA_0277,2025-02-20,83,PT,long,VC interessado em Champanhe vintage raro. Precisa de monograma personalizado.
+SA_0278,2025-06-15,77,AR,long,Philanthropist مهتم بـ حقيبة جلد غريب. طلب عرضًا خاصًا.
+SA_0279,2025-01-06,82,ES,long,Tech Founder interesado en Baúl a medida. Solicitó vista privada.
+SA_0280,2025-01-23,24,RU,short,Клиент (Philanthropist) ищет Редкое винтажное шампанское. Готов к покупке.
+SA_0281,2025-04-29,13,AR,short,Tech Founder مهتم بـ حقيبة جلد غريب. متابعة بعد الحفل.
+SA_0282,2025-08-14,22,NL,short,VIP Client geïnteresseerd in Exotische handtas. Heeft aangepast monogram nodig.
+SA_0283,2025-04-18,70,ES,long,Cliente (Tech Founder) busca Alta Joyería. Comparando con competidores.
+SA_0284,2025-03-10,27,KO,short,VC님이 엑조틱 스킨 핸드백에 관심을 보임. 맞춤형 이니셜 필요.
+SA_0285,2025-07-10,39,EN,medium,Philanthropist requested viewing for Limited Edition Watch. Value approx $394k. Corporate gifting.
+SA_0286,2025-02-04,71,DE,long,CEO bat um eine private Besichtigung for Seltener Jahrgangschampagner. Benötigt individuelles Monogramm.
+SA_0287,2025-08-09,18,PT,short,Cliente (Tech Founder) procura Alta Costura. Transferência pendente.
+SA_0288,2025-10-20,58,ZH,medium,客户（VIP Client）正在寻找珍稀皮手袋。准备购买.
+SA_0289,2025-11-02,50,ES,medium,Tech Founder solicitó una vista privada para Champaña vintage rara. Transferencia pendiente.
+SA_0290,2025-11-20,90,PT,long,VC interessado em Mala sob medida. Solicitou visualização privada.
+SA_0291,2025-01-04,51,ES,medium,CEO interesado en Bolso de piel exótica. Regalo corporativo.
+SA_0292,2025-08-08,41,PT,medium,VC solicitou uma visualização privada para Bolsa de pele exótica. Comparando com concorrentes.
+SA_0293,2025-03-29,74,FR,long,Tech Founder a demandé une presentazione privata per Champagne millésimé rare. Besoin d'un monogramme personnalisé.
+SA_0294,2025-06-06,20,PT,short,Cliente (Real Estate Mogul) procura Relógio de edizione limitata. Transferência pendente.
+SA_0295,2025-08-09,23,AR,short,VC مهتم بـ ساعة إصدار محدود. طلب عرضًا خاصًا.
+SA_0296,2025-10-18,75,KO,long,고객(Art Collector)이 한정판 시계를 찾고 있음. 구매 준비 완료.
+SA_0297,2025-09-02,22,RU,short,Real Estate Mogul запросил частный просмотр Багаж на заказ. Готов к покупке.
+SA_0298,2025-04-16,20,FR,short,Le client (Real Estate Mogul) recherche Champagne millésimé rare. Virement en attente.
+SA_0299,2025-12-23,51,FR,medium,VC intéressé par Montre edizione limitada. Suivi après le gala.
+SA_0300,2025-11-27,47,ES,medium,Cliente (Art Collector) busca Champaña vintage rara. Transferencia pendiente.
+SA_0301,2025-08-09,75,KO,long,VIP Client님이 한정판 시계 프라이빗 뷰잉을 요청함. 경쟁사와 비교 중.
+SA_0302,2026-01-03,59,JA,medium,Real Estate Mogulは限定版ウォッチに興味を持っています。購入の準備ができています.
+SA_0303,2025-11-07,81,KO,long,Real Estate Mogul님이 희귀 빈티지 샴페인에 관심을 보임. 구매 준비 완료.
+SA_0304,2025-09-08,32,RU,medium,CEO интересуется От кутюр. Корпоративный подарок.
+SA_0305,2025-07-31,61,ZH,long,客户（VIP Client）正在寻找限量版手表。要求私下查看.
+SA_0306,2025-06-10,30,AR,short,العميل (Art Collector) يبحث عن صندوق مخصص. متابعة بعد الحفل.
+SA_0307,2025-09-29,84,IT,long,Tech Founder interessato a Borsa in pelle esotica. Confronto con la concorrenza.
+SA_0308,2025-10-12,76,PT,long,CEO solicitou uma visualização privata per Alta Joalharia. Comparando com concorrentes.
+SA_0309,2025-07-29,81,IT,long,CEO interessato a Orologio in edizione limitada. Regalo aziendale.
+SA_0310,2025-11-26,44,ES,medium,Cliente (Tech Founder) busca Alta Joyería. Transferencia pendiente.
+SA_0311,2025-05-20,50,EN,medium,CEO interested in Limited Edition Watch. Corporate gifting.
+SA_0312,2025-04-25,11,NL,short,CEO geïnteresseerd in Fijne sieraden. Vergelijken met concurrenten.
+SA_0313,2026-01-14,33,IT,medium,VIP Client interessato a Borsa in pelle esotica. Regalo aziendale.
+SA_0314,2025-01-08,21,PT,short,VIP Client interessado em Alta Costura. Solicitou visualização privata.
+SA_0315,2025-08-30,77,AR,long,Real Estate Mogul مهتم بـ صندوق مخصص. طلب عرضًا خاصًا.
+SA_0316,2025-08-14,21,NL,short,VC geïnteresseerd in Gelimiteerd horloge. Zakelijk cadeau.
+SA_0317,2025-01-14,29,AR,short,Philanthropist طلب عرضًا خاصًا لـ صندوق مخصص. هدية مؤسسية.
+SA_0318,2025-08-30,65,EN,long,Client (CEO) looking at Bespoke Trunk. Needs custom monogram.
+SA_0319,2025-07-07,73,RU,long,Клиент (VIP Client) ищет Сумка из экзотической кожи. Запрошен частный просмотр.
+SA_0320,2025-08-28,88,DE,long,Philanthropist interessiert an Haute Couture. Überweisung ausstehend.
+SA_0321,2026-01-06,77,ES,long,Art Collector solicitó una vista privata per Champaña vintage rara. Comparando con competidores.
+SA_0322,2025-04-04,79,IT,long,VIP Client ha richiesto una visione privata per Baule su misura. Confronto con la concorrenza.
+SA_0323,2025-12-09,39,AR,medium,Tech Founder طلب عرضًا خاصًا لـ ساعة إصدار محدود. طلب عرضًا خاصًا.
+SA_0324,2025-04-08,50,RU,medium,VIP Client запросил частный просмотр От кутюр. Нужна индивидуальная монограмма.
+SA_0325,2025-07-24,63,AR,long,Philanthropist طلب عرضًا خاصًا لـ مجوهرات فاخرة. متابعة بعد الحفل.
+SA_0326,2025-07-30,49,JA,medium,VIP Clientは高級ジュエリーのプライベートビューイングを依頼しました。カスタムモノグラムが必要.
+SA_0327,2025-09-09,61,DE,long,Kunde (Tech Founder) sucht Seltener Jahrgangschampagner. Überweisung ausstehend.
+SA_0328,2025-08-15,20,JA,short,VCは高級ジュエリーのプライベートビューイングを依頼しました。ガラ後のフォローアップ.
+SA_0329,2025-03-08,24,EN,short,Client (Tech Founder) looking at Rare Vintage Champagne. Follow-up after gala.
+SA_0330,2025-05-16,63,FR,long,Tech Founder interessé par Montre edizione limitata. A demandé une visite privée.
+SA_0331,2026-01-19,46,EN,medium,Client (VIP Client) looking at Limited Edition Watch. Corporate gifting.
+SA_0332,2025-11-22,78,PT,long,CEO solicitou uma visualização privata per Mala sob medida. Transferência pendente.
+SA_0333,2025-08-18,17,KO,short,Philanthropist님이 맞춤형 트렁크 프라이빗 뷰잉을 요청함. 맞춤형 이니셜 필요.
+SA_0334,2025-10-26,82,FR,long,Real Estate Mogul a demandé une presentazione privata per Montre edizione limitata. Besoin d'un monogramme personnalisé.
+SA_0335,2025-07-20,81,ZH,long,Philanthropist对高级珠宝感兴趣。要求私下查看.
+SA_0336,2025-09-16,51,AR,medium,Real Estate Mogul طلب عرضًا خاصًا لـ شامبانيا معتقة نادرة. جاهز للشراء.
+SA_0337,2025-10-10,51,EN,medium,VC interested in Exotic Skin Handbag. Wire transfer pending.
+SA_0338,2025-03-16,20,JA,short,クライアント（CEO）がオートクチュールを探しています。法人向けギフト.
+SA_0339,2025-05-29,51,KO,medium,고객(VIP Client)이 한정판 시계를 찾고 있음. 맞춤형 이니셜 필요.
+SA_0340,2025-09-19,30,AR,short,Tech Founder طلب عرضًا خاصًا لـ صندوق مخصص. يحتاج إلى مونوغرام مخصص.
+SA_0341,2025-11-14,75,AR,long,العميل (VIP Client) يبحث عن حقيبة جلد غريب. متابعة بعد الحفل.
+SA_0342,2025-12-14,81,AR,long,Real Estate Mogul طلب عرضًا خاصًا لـ هوت كوتور. جاهز للشراء.
+SA_0343,2025-09-25,58,IT,medium,Cliente (Tech Founder) cerca Champagne d'annata raro. Confronto con la concorrenza.
+SA_0344,2025-05-05,77,IT,long,VIP Client interessato a Baule su misura. Pronto all'acquisto.
+SA_0345,2025-07-20,14,IT,short,Cliente (Real Estate Mogul) cerca Borsa in pelle esotica. Pronto all'acquisto.
+SA_0346,2025-04-25,37,JA,medium,VIP Clientは高級ジュエリーのプライベートビューイングを依頼しました。購入の準備ができています.
+SA_0347,2025-03-18,25,IT,short,Cliente (VIP Client) cerca Alta Gioielleria. Regalo aziendale.
+SA_0348,2025-02-04,84,EN,long,Client (Tech Founder) looking at Limited Edition Watch. Corporate gifting.
+SA_0349,2025-04-03,75,PT,long,VC interessado em Mala sob medida. Presente corporativo.
+SA_0350,2025-06-13,87,KO,long,고객(Tech Founder)이 한정판 시계를 찾고 있음. 갈라 행사 후 후속 조치.
+SA_0351,2025-06-03,21,DE,short,Kunde (VC) sucht Seltener Jahrgangschampagner. Nachbereitung nach der Gala.
+SA_0352,2025-04-08,79,NL,long,Philanthropist geïnteresseerd in Fijne sieraden. Klaar om te kopen.
+SA_0353,2025-10-06,78,RU,long,Tech Founder интересуется Багаж на заказ. Последующее наблюдение после гала-концерта.
+SA_0354,2025-07-25,88,EN,long,VIP Client requested viewing for Fine Jewelry. Value approx $348k. Follow-up after gala.
+SA_0355,2025-09-11,89,JA,long,VCは希少なヴィンテージシャンパンに興味を持っています。購入の準備ができています.
+SA_0356,2025-01-24,15,AR,short,VC مهتم بـ هوت كوتور. جاهز للشراء.
+SA_0357,2025-05-17,27,RU,short,VC интересуется От кутюр. Сравнение с конкурентами.
+SA_0358,2025-01-20,74,DE,long,CEO bat um eine private Besichtigung for Maßgefertigter Koffer. Nachbereitung nach der Gala.
+SA_0359,2025-03-01,56,FR,medium,Étudiant intéressé par Champagne millésimé rare. Besoin d'un monogramme personnalisé.
+SA_0360,2025-11-29,13,AR,short,VIP Client طلب عرضًا خاصًا لـ ساعة إصدار محدود. هدية مؤسسية.
+SA_0361,2026-01-14,49,EN,medium,Client (Real Estate Mogul) looking at Bespoke Trunk. Wire transfer pending.
+SA_0362,2025-10-23,54,IT,medium,Real Estate Mogul ha richiesto una visione privata per Champagne d'annata raro. Necessita di monogramma personalizzato.
+SA_0363,2025-11-28,14,RU,short,Real Estate Mogul интересуется Сумка из экзотической кожи. Перевод в ожидании.
+SA_0364,2025-05-02,46,IT,medium,Cliente (Tech Founder) cerca Baule su misura. Necessita di monogramma personalizzato.
+SA_0365,2025-05-15,72,AR,long,VC مهتم بـ ساعة إصدار محدود. متابعة after gala.
+SA_0366,2025-10-26,38,ES,medium,Cliente (Philanthropist) busca Bolso de piel exótica. Comparando con competidores.
+SA_0367,2025-11-02,54,AR,medium,Tech Founder طلب عرضًا خاصًا لـ مجوهرات فاخرة. هدية مؤسسية.
+SA_0368,2025-05-28,69,FR,long,CEO a demandé une presentazione privata per Haute Joaillerie. Besoin d'un monogramme personnalisé.
+SA_0369,2025-11-02,19,IT,short,CEO interessato a Alta Gioielleria. Confronto con la concorrenza.
+SA_0370,2025-01-11,84,DE,long,Kunde (CEO) sucht Haute Couture. Vergleich mit Wettbewerbern.
+SA_0371,2025-03-02,65,DE,long,VC interessert an Exotische Handtasche. Vergleich mit Wettbewerbern.
+SA_0372,2025-12-25,26,KO,short,Real Estate Mogul님이 파인 주얼리 프라이빗 뷰잉을 요청함. 기업용 선물.
+SA_0373,2025-10-15,38,ZH,medium,Art Collector要求私下查看珍稀皮手袋。公司送礼.
+SA_0374,2025-09-03,68,FR,long,Le client (Art Collector) recherche Malle sur mesure. Virement en attente.
+SA_0375,2025-08-31,65,RU,long,CEO запросил частный просмотр Ювелирные изделия. Сравнение с конкурентами.
+SA_0376,2025-12-20,40,IT,medium,Philanthropist interessato a Champagne d'annata raro. Pronto all'acquisto.
+SA_0377,2025-03-29,21,PT,short,Cliente (CEO) procura Mala sob medida. Pronto para comprar.
+SA_0378,2025-10-26,68,ZH,long,Art Collector要求私下查看高级定制. 正在与竞争对手比较.
+SA_0379,2025-07-31,18,IT,short,Tech Founder interessato a Borsa in pelle esotica. Bonifico in sospeso.
+SA_0380,2025-07-18,86,KO,long,Real Estate Mogul님이 엑조틱 스킨 핸드백 프라이빗 뷰잉을 요청함. 프라이빗 뷰잉 요청.
+SA_0381,2025-01-02,34,KO,medium,VIP Client님이 엑조틱 스킨 핸드백에 관심을 보임. 구매 준비 완료.
+SA_0382,2025-04-25,14,DE,short,Art Collector bat um eine private Besichtigung for Exotische Handtasche. Kaufbereit.
+SA_0383,2026-01-19,83,PT,long,Cliente (Art Collector) procura Bolsa de pele exótica. Solicitou visualização privata.
+SA_0384,2025-06-13,56,IT,medium,CEO interessato a Champagne d'annata raro. Ha richiesto una visione privata.
+SA_0385,2025-11-01,61,IT,long,Cliente (Tech Founder) cerca Orologio in edizione limitada. Regalo aziendale.
+SA_0386,2025-07-12,85,NL,long,CEO geïnteresseerd in Gelimiteerd horloge. Overschrijving in behandeling.
+SA_0387,2025-05-27,51,KO,medium,고객(CEO)이 맞춤형 트렁크를 찾고 있음. 송금 대기 중.
+SA_0388,2025-11-06,21,EN,short,Art Collector interested in Exotic Skin Handbag. Follow-up after gala.
+SA_0389,2025-06-05,47,NL,medium,Art Collector heeft een privébezichtiging aangevraagd for Exotische handtas. Privébezichtiging aangevraagd.
+SA_0390,2025-05-04,83,ES,long,VC solicitó una vista privata per Baúl a medida. Regalo corporativo.
+SA_0391,2025-08-17,54,DE,medium,Art Collector interessert an Maßgefertigter Koffer. Überweisung ausstehend.
+SA_0392,2025-09-26,60,EN,medium,VC requested viewing for Rare Vintage Champagne. Value approx $371k. Corporate gifting.
+SA_0393,2025-05-06,34,RU,medium,VC интересуется Часы ограниченной серии. Сравнение с конкурентами.
+SA_0394,2025-12-22,20,KO,short,CEO님이 맞춤형 트렁크에 관심을 보임. 기업용 선물.
+SA_0395,2025-12-20,22,FR,short,VC a demandé une presentazione privata per Montre edizione limitata. Compare avec la concurrence.
+SA_0396,2025-10-04,80,ZH,long,Art Collector要求私下查看珍稀皮手袋。电汇待定.
+SA_0397,2025-02-25,78,NL,long,Philanthropist geïnteresseerd in Zeldzame vintage champagne. Klaar om te kopen.
+SA_0398,2025-05-18,32,ZH,medium,客户（Philanthropist）正在寻找定制行李箱。公司送礼.
+SA_0399,2025-09-16,44,ES,medium,VC interesado en Reloj de edizione limitata. Necesita monogramma personalizzato.
+SA_0400,2025-08-27,52,ZH,medium,VC要求私下查看珍稀皮手袋。准备购买.

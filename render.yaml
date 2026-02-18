@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: lvmh-api-server
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m server.api_server
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: PORT
+        value: 8000
+      - key: SENTENCE_TRANSFORMERS_HOME
+        value: /tmp/models/sentence_transformers
