@@ -7,11 +7,23 @@ All writes go through here so we have a single source of truth.
 Uses psycopg2.extras.execute_values for fast bulk inserts over Neon.
 """
 import json
+import math
 import logging
 from datetime import datetime
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+
+def _safe_float(v, default=0.0):
+    """Return v if it's a normal finite float, else default. Prevents JSON NaN errors."""
+    if v is None:
+        return default
+    try:
+        f = float(v)
+        return f if math.isfinite(f) else default
+    except (TypeError, ValueError):
+        return default
 
 
 # ===================================================================
@@ -484,7 +496,7 @@ async def async_get_all_clients(include_deleted: bool = False):
             clients.append({
                 "id": client_id,
                 "segment": row["segment_id"] or 0,
-                "confidence": row["confidence"] or 0.0,
+                "confidence": _safe_float(row["confidence"]),
                 "profileType": row["profile_type"] or "",
                 "topConcepts": top_concepts,
                 "fullText": row["full_text"] or "",
@@ -541,9 +553,9 @@ async def async_get_dashboard_data():
 
         scatter3d = [
             {
-                "x": row["x_3d"],
-                "y": row["y_3d"],
-                "z": row["z_3d"],
+                "x": _safe_float(row["x_3d"]),
+                "y": _safe_float(row["y_3d"]),
+                "z": _safe_float(row["z_3d"]),
                 "client": row["client_id"],
                 "id": row["client_id"],
                 "segment": row["segment_id"] or 0,
@@ -829,7 +841,7 @@ async def async_get_event_detail(event_id: int):
             {
                 "clientId": r["client_id"],
                 "matchReason": r["match_reason"],
-                "matchScore": r["match_score"],
+                "matchScore": _safe_float(r["match_score"]),
                 "actionStatus": r["action_status"],
                 "notifiedAt": str(r["notified_at"]) if r["notified_at"] else None,
                 "respondedAt": str(r["responded_at"]) if r["responded_at"] else None,
@@ -1629,7 +1641,7 @@ async def async_get_client_360(client_id: str):
             "segmentProfile": client.get("segment_profile") or "",
             "segmentFullProfile": client.get("segment_full_profile") or "",
             "segmentSize": client.get("segment_size") or 0,
-            "confidence": client["confidence"] or 0.0,
+            "confidence": _safe_float(client["confidence"]),
             "profileType": client["profile_type"] or "",
             "topConcepts": top_concepts,
             "fullText": client["full_text"] or "",
@@ -1673,7 +1685,7 @@ async def async_get_client_360(client_id: str):
                     "eventPriority": r["event_priority"],
                     "eventStatus": r["event_status"],
                     "matchReason": r["match_reason"],
-                    "matchScore": r["match_score"],
+                    "matchScore": _safe_float(r["match_score"]),
                     "actionStatus": r["action_status"],
                     "notifiedAt": str(r["notified_at"]) if r["notified_at"] else None,
                     "respondedAt": str(r["responded_at"]) if r["responded_at"] else None,
@@ -1700,9 +1712,9 @@ async def async_get_client_360(client_id: str):
                 for r in audit_rows
             ],
             "score": {
-                "engagementScore": score_row["engagement_score"],
-                "valueScore": score_row["value_score"],
-                "overallScore": score_row["overall_score"],
+                "engagementScore": _safe_float(score_row["engagement_score"]),
+                "valueScore": _safe_float(score_row["value_score"]),
+                "overallScore": _safe_float(score_row["overall_score"]),
                 "tier": score_row["tier"],
                 "details": json.loads(score_row["score_details"]) if isinstance(score_row["score_details"], str) else score_row["score_details"],
             } if score_row else None,

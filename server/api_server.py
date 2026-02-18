@@ -13,9 +13,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
 import json
+import asyncio
 import argparse
 import uvicorn
 import os
+import math
 from typing import Optional
 import logging
 import shutil
@@ -122,6 +124,17 @@ pipeline_status = {
 }
 
 
+def _sanitize_for_json(obj):
+    """Recursively replace NaN/Inf floats with None so json.dumps won't crash."""
+    if isinstance(obj, float):
+        return obj if math.isfinite(obj) else None
+    if isinstance(obj, dict):
+        return {k: _sanitize_for_json(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_sanitize_for_json(v) for v in obj]
+    return obj
+
+
 @app.get("/")
 async def root():
     """API health check and info."""
@@ -155,11 +168,13 @@ async def get_dashboard_data():
     if DB_AVAILABLE:
         try:
             from server.db.crud import async_get_dashboard_data
-            data = await async_get_dashboard_data()
+            data = await asyncio.wait_for(async_get_dashboard_data(), timeout=30.0)
             if data.get("clients"):
-                return data
+                return _sanitize_for_json(data)
             # If DB has no clients yet, fall through to file
             logger.info("DB has no clients — falling back to data.json")
+        except asyncio.TimeoutError:
+            logger.warning("DB dashboard data timed out after 30s, falling back to data.json")
         except Exception as e:
             logger.warning(f"DB read failed, falling back to file: {e}")
 
@@ -174,8 +189,8 @@ async def get_dashboard_data():
     
     try:
         with open(data_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return data
+            data = json.load(f, parse_constant=lambda c: None)
+        return _sanitize_for_json(data)
     except Exception as e:
         logger.error(f"Error reading dashboard data: {e}")
         raise HTTPException(status_code=500, detail=str(e))

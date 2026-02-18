@@ -66,9 +66,9 @@ async def get_async_pool():
         url = _asyncpg_safe_url(_require_url())
         _async_pool = await asyncpg.create_pool(
             url,
-            min_size=2,
-            max_size=10,
-            command_timeout=60,
+            min_size=1,
+            max_size=5,
+            command_timeout=30,
             ssl="require",
         )
         logger.info("Async connection pool created")
