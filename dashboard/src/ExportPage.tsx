@@ -83,7 +83,7 @@ export default function ExportPage() {
       {/* Header */}
       <div className="exp-header">
         <div className="exp-header-left">
-          <h2 className="exp-title">📊 Reports & Export</h2>
+          <h2 className="exp-title">Reports & Export</h2>
           <p className="exp-subtitle">Executive summary and data exports</p>
         </div>
       </div>
@@ -91,9 +91,9 @@ export default function ExportPage() {
       {/* Export Buttons */}
       <div className="exp-download-row">
         {[
-          { type: 'clients', label: 'Client Profiles', icon: '👥', desc: 'All clients with scores, segments, advisors' },
-          { type: 'scores', label: 'Client Scores', icon: '⭐', desc: 'Engagement, value, overall scores & tiers' },
-          { type: 'actions', label: 'Action Plans', icon: '🎯', desc: 'Recommended actions by client' },
+          { type: 'clients', label: 'Client Profiles', desc: 'All clients with scores, segments, advisors' },
+          { type: 'scores', label: 'Client Scores', desc: 'Engagement, value, overall scores & tiers' },
+          { type: 'actions', label: 'Action Plans', desc: 'Recommended actions by client' },
         ].map(item => (
           <button
             key={item.type}
@@ -101,13 +101,15 @@ export default function ExportPage() {
             onClick={() => handleDownload(item.type)}
             disabled={downloading === item.type}
           >
-            <span className="exp-dl-icon">{item.icon}</span>
+            <span className="exp-dl-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </span>
             <div className="exp-dl-text">
               <span className="exp-dl-label">{item.label}</span>
               <span className="exp-dl-desc">{item.desc}</span>
             </div>
             <span className="exp-dl-action">
-              {downloading === item.type ? '⏳' : '⬇️'} CSV
+              {downloading === item.type ? 'Exporting…' : 'Download CSV'}
             </span>
           </button>
         ))}

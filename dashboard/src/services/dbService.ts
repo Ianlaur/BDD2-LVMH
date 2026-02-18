@@ -185,11 +185,15 @@ export async function dbGetData() {
     sql`SELECT COUNT(*) as cnt FROM clients WHERE is_deleted = FALSE`,
     sql`SELECT COUNT(*) as cnt FROM segments`,
     sql`
-      SELECT cc.label as concept, COUNT(DISTINCT cc.client_id) as cnt,
+      SELECT COALESCE(NULLIF(cc.label,''), cc.matched_alias) as concept,
+             COUNT(DISTINCT cc.client_id) as cnt,
              ARRAY_AGG(DISTINCT cc.client_id) as clients
       FROM client_concepts cc
       JOIN clients c ON c.id = cc.client_id AND c.is_deleted = FALSE
-      GROUP BY cc.label ORDER BY cnt DESC LIMIT 20
+      WHERE COALESCE(NULLIF(cc.label,''), cc.matched_alias) IS NOT NULL
+        AND COALESCE(NULLIF(cc.label,''), cc.matched_alias) != ''
+      GROUP BY COALESCE(NULLIF(cc.label,''), cc.matched_alias)
+      ORDER BY cnt DESC LIMIT 20
     `,
     sql`
       SELECT c.segment_id,
@@ -412,6 +416,35 @@ export async function dbGetClient360(clientId: string) {
     })),
     score,
   }
+}
+
+// ─── Complete Action ──────────────────────────────────────────────
+export async function dbCompleteAction(clientId: string, actionId: string) {
+  await sql`
+    UPDATE client_actions
+    SET is_completed = TRUE, completed_at = NOW()
+    WHERE client_id = ${clientId} AND action_id = ${actionId}
+  `
+  return { status: 'success', clientId, actionId }
+}
+
+// ─── Match Count Preview ──────────────────────────────────────────
+export async function dbGetMatchCount(concepts: string[]) {
+  if (!concepts.length) return { count: 0 }
+  const pattern = concepts.map(c => c.toLowerCase()).join('|')
+  const rows = await sql`
+    SELECT COUNT(DISTINCT c.id) as cnt
+    FROM clients c
+    WHERE c.is_deleted = FALSE
+      AND EXISTS (
+        SELECT 1 FROM client_concepts cc
+        WHERE cc.client_id = c.id
+          AND LOWER(COALESCE(NULLIF(cc.label,''), cc.matched_alias)) = ANY(
+            string_to_array(${pattern}, '|')
+          )
+      )
+  `
+  return { count: Number(rows[0]?.cnt || 0) }
 }
 
 // ─── Playbooks ────────────────────────────────────────────────────

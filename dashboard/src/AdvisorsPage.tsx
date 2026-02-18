@@ -40,8 +40,8 @@ const TIER_COLORS: Record<string, string> = {
   bronze: '#d97706',
 }
 
-const roleIcons: Record<string, string> = {
-  sales: '💼', manager: '👔', admin: '🛡️', viewer: '👁️',
+const roleLabels: Record<string, string> = {
+  sales: 'Sales', manager: 'Manager', admin: 'Admin', viewer: 'Viewer',
 }
 
 const PIE_COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899']
@@ -129,7 +129,7 @@ export default function AdvisorsPage({ userId }: AdvisorsPageProps) {
       {/* Header */}
       <div className="adv-header">
         <div className="adv-header-left">
-          <h2 className="adv-title">👔 Advisor Assignment</h2>
+          <h2 className="adv-title">Advisor Assignment</h2>
           <p className="adv-subtitle">
             Manage client-advisor relationships and balance workloads.
           </p>
@@ -142,14 +142,14 @@ export default function AdvisorsPage({ userId }: AdvisorsPageProps) {
                 onClick={() => handleAutoAssign('round_robin')}
                 disabled={assigning}
               >
-                {assigning ? 'Assigning…' : '⚡ Round-Robin Assign'}
+                {assigning ? 'Assigning…' : 'Round-Robin Assign'}
               </button>
               <button
                 className="adv-btn adv-btn-secondary"
                 onClick={() => handleAutoAssign('segment')}
                 disabled={assigning}
               >
-                📊 By Segment
+                By Segment
               </button>
             </>
           )}
@@ -159,7 +159,7 @@ export default function AdvisorsPage({ userId }: AdvisorsPageProps) {
       {/* Assign result toast */}
       {assignResult && (
         <div className="adv-toast">
-          ✅ Assigned <strong>{assignResult.assigned}</strong> clients
+          Assigned <strong>{assignResult.assigned}</strong> clients
           using <strong>{assignResult.strategy}</strong> strategy
           <button onClick={() => setAssignResult(null)}>✕</button>
         </div>
@@ -245,7 +245,7 @@ export default function AdvisorsPage({ userId }: AdvisorsPageProps) {
                 <div className="adv-card-identity">
                   <h4 className="adv-card-name">{advisor.name}</h4>
                   <span className="adv-card-role">
-                    {roleIcons[advisor.role] || '👤'} {advisor.role}
+                    {roleLabels[advisor.role] || advisor.role}
                   </span>
                 </div>
                 <div className="adv-card-total">

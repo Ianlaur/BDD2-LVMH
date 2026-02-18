@@ -42,7 +42,7 @@ const KPIIcons = {
 }
 
 // ─── Component ────────────────────────────────────────
-export default function KPIDashboard() {
+export default function KPIDashboard({ onNavigate }: { onNavigate?: (page: string) => void }) {
   const [data, setData] = useState<KPIData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -98,21 +98,21 @@ export default function KPIDashboard() {
 
       {/* ─── Hero KPI Cards ─────────────────────────── */}
       <div className="kpi-hero-grid">
-        <div className="kpi-hero-card kpi-purple">
+        <div className="kpi-hero-card kpi-purple" style={{ cursor: onNavigate ? 'pointer' : 'default' }} onClick={() => onNavigate?.('clients')}>
           <div className="kpi-hero-icon">{KPIIcons.clients}</div>
           <div className="kpi-hero-body">
             <div className="kpi-hero-value">{data.totalClients.toLocaleString()}</div>
             <div className="kpi-hero-label">Total Clients</div>
           </div>
         </div>
-        <div className="kpi-hero-card kpi-blue">
+        <div className="kpi-hero-card kpi-blue" style={{ cursor: onNavigate ? 'pointer' : 'default' }} onClick={() => onNavigate?.('segments')}>
           <div className="kpi-hero-icon">{KPIIcons.segments}</div>
           <div className="kpi-hero-body">
             <div className="kpi-hero-value">{data.totalSegments}</div>
             <div className="kpi-hero-label">Segments</div>
           </div>
         </div>
-        <div className="kpi-hero-card kpi-amber">
+        <div className="kpi-hero-card kpi-amber" style={{ cursor: onNavigate ? 'pointer' : 'default' }} onClick={() => onNavigate?.('actions')}>
           <div className="kpi-hero-icon">{KPIIcons.actions}</div>
           <div className="kpi-hero-body">
             <div className="kpi-hero-value">{data.totalActions.toLocaleString()}</div>
@@ -120,7 +120,7 @@ export default function KPIDashboard() {
             <div className="kpi-hero-sub">{data.actionCompletionRate}% completed</div>
           </div>
         </div>
-        <div className="kpi-hero-card kpi-green">
+        <div className="kpi-hero-card kpi-green" style={{ cursor: onNavigate ? 'pointer' : 'default' }} onClick={() => onNavigate?.('calendar')}>
           <div className="kpi-hero-icon">{KPIIcons.calendar}</div>
           <div className="kpi-hero-body">
             <div className="kpi-hero-value">{data.totalEvents}</div>
@@ -139,18 +139,25 @@ export default function KPIDashboard() {
             <PieChart>
               <Pie
                 data={data.segmentDistribution.map(s => ({ ...s, name: s.profile || s.name }))}
-                cx="50%" cy="50%"
-                innerRadius={55} outerRadius={95}
+                cx="50%" cy="45%"
+                innerRadius={45} outerRadius={80}
                 paddingAngle={3}
                 dataKey="count"
-                label={({ name, percent }) => `${name?.slice(0, 15)} ${(percent * 100).toFixed(0)}%`}
-                labelLine={false}
+                label={false}
               >
                 {data.segmentDistribution.map((_, i) => (
                   <Cell key={i} fill={SEGMENT_COLORS[i % SEGMENT_COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip formatter={(value: number) => [`${value} clients`, 'Clients']} />
+              <Legend
+                verticalAlign="bottom"
+                height={36}
+                iconType="circle"
+                iconSize={8}
+                formatter={(value: string) => value.length > 20 ? value.slice(0, 18) + '…' : value}
+                wrapperStyle={{ fontSize: '0.7rem', lineHeight: '1.6' }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>

@@ -6,9 +6,9 @@ import {
 } from 'recharts'
 import Plot from 'react-plotly.js'
 import Graph from "react-graph-vis";
-import { HeatMapGrid } from "react-heatmap-grid";
+import HeatMapGrid from "react-heatmap-grid";
 import API_CONFIG from './config'
-import { getData, invalidateCache } from './services/apiService'
+import { getData, invalidateCache, completeAction } from './services/apiService'
 import FileUpload from './FileUpload'
 import VoiceRecorder from './VoiceRecorder'
 import { useAuth } from './auth/AuthContext'
@@ -216,7 +216,7 @@ const Navigation = ({ activePage, setActivePage, data, onClearClient }: {
           {data?.processingInfo?.pipelineTimings?.total && (
             <div className="topnav-metric accent">
               <span className="topnav-metric-value">{data.processingInfo.pipelineTimings.total}s</span>
-              <span className="topnav-metric-label">⏱️ Pipeline</span>
+              <span className="topnav-metric-label">Pipeline</span>
             </div>
           )}
         </div>
@@ -264,9 +264,11 @@ const Navigation = ({ activePage, setActivePage, data, onClearClient }: {
 }
 
 // Actions Page - Redesigned for clarity
-const ActionsPage = ({ data }: { data: DashboardData | null }) => {
+const ActionsPage = ({ data, onClientClick, onRefresh }: { data: DashboardData | null; onClientClick?: (id: string) => void; onRefresh?: () => void }) => {
   const [filter, setFilter] = useState('all')
   const [selectedAction, setSelectedAction] = useState<any>(null)
+  const [completing, setCompleting] = useState<string | null>(null)
+  const [completedIds, setCompletedIds] = useState<Set<string>>(new Set())
 
   // Channel → icon mapping
   const channelIcons: Record<string, React.ReactNode> = {
@@ -318,6 +320,21 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
 
   const handleActionClick = (action: any) => {
     setSelectedAction(action)
+  }
+
+  const handleComplete = async (action: any) => {
+    const key = `${action.client.id}-${action.actionId}`
+    setCompleting(key)
+    try {
+      await completeAction(action.client.id, action.actionId)
+      setCompletedIds(prev => new Set(prev).add(key))
+      setSelectedAction(null)
+      onRefresh?.()
+    } catch (err) {
+      console.error('Failed to complete action:', err)
+    } finally {
+      setCompleting(null)
+    }
   }
 
   return (
@@ -471,6 +488,28 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
                   <p>{selectedAction.client.originalNote}</p>
                 </div>
               )}
+
+              <div className="action-detail-buttons">
+                {!completedIds.has(`${selectedAction.client.id}-${selectedAction.actionId}`) ? (
+                  <button
+                    className="action-complete-btn"
+                    onClick={() => handleComplete(selectedAction)}
+                    disabled={completing === `${selectedAction.client.id}-${selectedAction.actionId}`}
+                  >
+                    {completing === `${selectedAction.client.id}-${selectedAction.actionId}` ? 'Completing…' : 'Mark as Done'}
+                  </button>
+                ) : (
+                  <span className="action-done-badge">Completed</span>
+                )}
+                {onClientClick && (
+                  <button
+                    className="action-view-client-btn"
+                    onClick={() => onClientClick(selectedAction.client.id)}
+                  >
+                    View Client 360 →
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         ) : (
@@ -488,7 +527,7 @@ const ActionsPage = ({ data }: { data: DashboardData | null }) => {
 }
 
 // Segments Page - Redesigned for clarity
-const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
+const SegmentsPage = ({ data, onClientClick }: { data: DashboardData | null; onClientClick?: (id: string) => void }) => {
   const [selectedSegment, setSelectedSegment] = useState<number | null>(0) // Select first segment by default
   const segmentData = data?.segments || []
   const radarData = data?.radar || []
@@ -559,7 +598,7 @@ const SegmentsPage = ({ data }: { data: DashboardData | null }) => {
               <h4>Representative Clients</h4>
               <div className="representative-clients">
                 {clientsInSegment.map(client => (
-                  <div key={client.id} className="client-chip">
+                  <div key={client.id} className="client-chip" style={{ cursor: onClientClick ? 'pointer' : 'default' }} onClick={() => onClientClick?.(client.id)}>
                     <div className="client-chip-avatar" style={{ backgroundColor: COLORS[client.segment % COLORS.length] }}>
                       {client.id.slice(-2)}
                     </div>
@@ -649,6 +688,8 @@ const ClientsPage = ({ data, onClientClick }: { data: DashboardData | null; onCl
   const [searchQuery, setSearchQuery] = useState("")
   const [filterSegment, setFilterSegment] = useState<string>("all")
   const [sortOrder, setSortOrder] = useState<string>("confidence_desc")
+  const [currentPage, setCurrentPage] = useState(1)
+  const PAGE_SIZE = 24
 
   const clients = data?.clients || []
   const segments = data?.segments || []
@@ -681,6 +722,15 @@ const ClientsPage = ({ data, onClientClick }: { data: DashboardData | null; onCl
       }
     })
   }, [clients, searchQuery, filterSegment, sortOrder])
+
+  // Reset to page 1 when filters change
+  useEffect(() => { setCurrentPage(1) }, [searchQuery, filterSegment, sortOrder])
+
+  const totalPages = Math.ceil(filteredAndSortedClients.length / PAGE_SIZE)
+  const paginatedClients = filteredAndSortedClients.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  )
 
   return (
     <div className="page">
@@ -724,7 +774,7 @@ const ClientsPage = ({ data, onClientClick }: { data: DashboardData | null; onCl
       </header>
 
       <div className="clients-grid">
-        {filteredAndSortedClients.map((client) => {
+        {paginatedClients.map((client) => {
           const similarity = Math.round((client as any).confidence ? (client as any).confidence * 100 : 0)
           const color = SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] ?? "#18181b"
 
@@ -788,12 +838,58 @@ const ClientsPage = ({ data, onClientClick }: { data: DashboardData | null; onCl
           )
         })}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="pagination-controls">
+          <button
+            className="pagination-btn"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(p => p - 1)}
+          >
+            ← Prev
+          </button>
+          <div className="pagination-pages">
+            {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+              let pageNum: number
+              if (totalPages <= 7) {
+                pageNum = i + 1
+              } else if (currentPage <= 4) {
+                pageNum = i + 1
+              } else if (currentPage >= totalPages - 3) {
+                pageNum = totalPages - 6 + i
+              } else {
+                pageNum = currentPage - 3 + i
+              }
+              return (
+                <button
+                  key={pageNum}
+                  className={`pagination-page ${currentPage === pageNum ? 'active' : ''}`}
+                  onClick={() => setCurrentPage(pageNum)}
+                >
+                  {pageNum}
+                </button>
+              )
+            })}
+          </div>
+          <button
+            className="pagination-btn"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(p => p + 1)}
+          >
+            Next →
+          </button>
+          <span className="pagination-info">
+            {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filteredAndSortedClients.length)} of {filteredAndSortedClients.length}
+          </span>
+        </div>
+      )}
     </div>
   )
 }
 
 // Data Page - Redesigned for clarity and better UX
-const DataPage = ({ data }: { data: DashboardData | null }) => {
+const DataPage = ({ data, onClientClick }: { data: DashboardData | null; onClientClick?: (id: string) => void }) => {
   const [view, setView] = useState('3d')
   const [selectedPoint, setSelectedPoint] = useState<any>(null)
   const [selectedConcept, setSelectedConcept] = useState<string | null>(null)
@@ -914,9 +1010,11 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
     }
   }
 
-  // Handle concept bar click
+  // Handle concept bar click — Recharts <Bar onClick> passes (barData, index)
   const handleConceptClick = (data: any) => {
-    if (data && data.activePayload && data.activePayload[0]) {
+    if (data?.concept) {
+      setSelectedConcept(data.concept)
+    } else if (data?.activePayload?.[0]?.payload?.concept) {
       setSelectedConcept(data.activePayload[0].payload.concept)
     }
   }
@@ -940,6 +1038,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                   setHighlightSegment={setHighlightSegment}
                   zoomLevel={zoomLevel}
                   setZoomLevel={setZoomLevel}
+                  onClientClick={onClientClick}
                 />
       case 'knowledge':
         return <KnowledgeGraphView 
@@ -949,6 +1048,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                   setSelectedKGClient={setSelectedKGClient}
                   kgDepth={kgDepth}
                   setKgDepth={setKgDepth}
+                  onClientClick={onClientClick}
                 />
       case 'concepts':
         return <ConceptsView 
@@ -957,6 +1057,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                   selectedConcept={selectedConcept}
                   setSelectedConcept={setSelectedConcept}
                   conceptClients={conceptClients}
+                  onClientClick={onClientClick}
                 />
       case 'heatmap':
         return <HeatmapView 
@@ -965,6 +1066,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
                   selectedHeatmapCell={selectedHeatmapCell}
                   setSelectedHeatmapCell={setSelectedHeatmapCell}
                   heatmapClients={heatmapClients}
+                  onClientClick={onClientClick}
                 />
       default:
         return null
@@ -1000,7 +1102,7 @@ const DataPage = ({ data }: { data: DashboardData | null }) => {
 
 // Individual View Components for DataPage
 
-const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint, highlightSegment, setHighlightSegment, zoomLevel, setZoomLevel }: any) => (
+const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint, highlightSegment, setHighlightSegment, zoomLevel, setZoomLevel, onClientClick }: any) => (
   <div className="data-view-layout">
     <div className="card main-chart-card">
       <div className="chart-controls">
@@ -1061,13 +1163,13 @@ const ThreeDView = ({ scatter3d, handle3DClick, selectedPoint, setSelectedPoint,
           <h3>Selected Client</h3>
           <button className="close-btn" onClick={() => setSelectedPoint(null)}>{Icons.close}</button>
         </div>
-        <ClientDetailCard client={selectedPoint} />
+        <ClientDetailCard client={selectedPoint} onClientClick={onClientClick} />
       </div>
     )}
   </div>
 )
 
-const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, setSelectedKGClient, kgDepth, setKgDepth }: any) => (
+const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, setSelectedKGClient, kgDepth, setKgDepth, onClientClick }: any) => (
   <div className="data-view-layout">
     <div className="card main-chart-card">
       <div className="chart-controls">
@@ -1123,18 +1225,29 @@ const KnowledgeGraphView = ({ knowledgeGraphData, clients, selectedKGClient, set
         <div className="sidebar-header">
           <h3>Central Client</h3>
         </div>
-        <ClientDetailCard client={knowledgeGraphData.client} />
+        <ClientDetailCard client={knowledgeGraphData.client} onClientClick={onClientClick} />
       </div>
     )}
   </div>
 )
 
-const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelectedConcept, conceptClients }: any) => (
+const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelectedConcept, conceptClients, onClientClick }: any) => {
+  if (!concepts || concepts.length === 0) {
+    return (
+      <div className="data-view-layout">
+        <div className="card main-chart-card">
+          <h3 className="card-title">Top 20 Client Concepts</h3>
+          <p style={{ padding: '2rem', opacity: 0.6 }}>No concept data available.</p>
+        </div>
+      </div>
+    )
+  }
+  return (
   <div className="data-view-layout">
     <div className="card main-chart-card">
       <h3 className="card-title">Top 20 Client Concepts</h3>
       <div className="chart-container">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={550}>
           <BarChart layout="vertical" data={concepts} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <XAxis type="number" hide />
             <YAxis type="category" dataKey="concept" width={150} tick={{ fontSize: 12 }} />
@@ -1155,37 +1268,47 @@ const ConceptsView = ({ concepts, handleConceptClick, selectedConcept, setSelect
           <button className="close-btn" onClick={() => setSelectedConcept(null)}>{Icons.close}</button>
         </div>
         <div className="sidebar-client-list">
-          {conceptClients.map((c: any) => <ClientChip key={c.id} client={c} />)}
+          {conceptClients.map((c: any) => <ClientChip key={c.id} client={c} onClientClick={onClientClick} />)}
         </div>
       </div>
     )}
   </div>
-)
+  )
+}
 
-const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSelectedHeatmapCell, heatmapClients }: any) => (
+const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSelectedHeatmapCell, heatmapClients, onClientClick }: any) => {
+  // Safety: if heatmap is not in the expected { data, xLabels, yLabels, max } shape, show a message
+  if (!heatmap?.data || !heatmap?.xLabels || !heatmap?.yLabels) {
+    return (
+      <div className="data-view-layout">
+        <div className="card main-chart-card">
+          <h3 className="card-title">Heatmap: Segment vs Concept</h3>
+          <p style={{ padding: '2rem', opacity: 0.6 }}>No heatmap data available.</p>
+        </div>
+      </div>
+    )
+  }
+  return (
   <div className="data-view-layout">
     <div className="card main-chart-card" style={{ overflowX: 'auto' }}>
       <h3 className="card-title">Heatmap: Segment vs Concept</h3>
-      <div className="chart-container" style={{ minWidth: '800px' }}>
-        <ResponsiveContainer width="100%" height={600}>
+      <div style={{ minWidth: '800px', padding: '1rem' }}>
           <HeatMapGrid
             data={heatmap.data}
             xLabels={heatmap.xLabels}
             yLabels={heatmap.yLabels}
-            cellRender={(x: number, y: number, value: number) => (
-              <div title={`Count: ${value}`} style={{ background: `rgba(99, 102, 241, ${value / heatmap.max})`, width: '100%', height: '100%' }} />
+            cellRender={(value: number, _xLabel: any, _yLabel: any) => (
+              <div style={{ fontSize: '11px' }}>{value > 0 ? value : ''}</div>
             )}
-            xLabelWidth={100}
-            yLabelWidth={150}
-            cellStyle={(_x: any, _y: any, value: any) => ({
-              background: `rgba(99, 102, 241, ${value / heatmap.max})`,
+            xLabelWidth={120}
+            yLabelWidth={80}
+            cellStyle={(_bg: any, value: any, _min: any, _max: any) => ({
+              background: `rgba(99, 102, 241, ${Math.min(value / (heatmap.max || 1), 1)})`,
               fontSize: "11px",
-              color: "#444"
+              color: value > (heatmap.max || 1) * 0.5 ? "#fff" : "#444",
             })}
-            cellHeight="2rem"
-            onClick={(x: number, y: number) => handleHeatmapClick(heatmap.yLabels[y], heatmap.xLabels[x], heatmap.data[y][x])}
+            onClick={(xi: number, yi: number) => handleHeatmapClick(heatmap.yLabels[yi], heatmap.xLabels[xi], heatmap.data[yi]?.[xi] ?? 0)}
           />
-        </ResponsiveContainer>
       </div>
     </div>
     {selectedHeatmapCell && (
@@ -1200,14 +1323,15 @@ const HeatmapView = ({ heatmap, handleHeatmapClick, selectedHeatmapCell, setSele
           <p><strong>Count:</strong> {selectedHeatmapCell.value}</p>
         </div>
         <div className="sidebar-client-list">
-          {heatmapClients.map((c: any) => <ClientChip key={c.id} client={c} />)}
+          {heatmapClients.map((c: any) => <ClientChip key={c.id} client={c} onClientClick={onClientClick} />)}
         </div>
       </div>
     )}
   </div>
-)
+  )
+}
 
-const ClientDetailCard = ({ client }: { client: any }) => (
+const ClientDetailCard = ({ client, onClientClick }: { client: any; onClientClick?: (id: string) => void }) => (
   <div className="client-detail-content">
     <div className="client-summary">
       <div className="client-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
@@ -1234,11 +1358,16 @@ const ClientDetailCard = ({ client }: { client: any }) => (
         <p>{client.fullText}</p>
       </div>
     )}
+    {onClientClick && (
+      <button className="sidebar-view-360-btn" onClick={() => onClientClick(client.id)}>
+        View Client 360 →
+      </button>
+    )}
   </div>
 )
 
-const ClientChip = ({ client }: { client: any }) => (
-  <div className="client-chip">
+const ClientChip = ({ client, onClientClick }: { client: any; onClientClick?: (id: string) => void }) => (
+  <div className="client-chip" style={{ cursor: onClientClick ? 'pointer' : 'default' }} onClick={() => onClientClick?.(client.id)}>
     <div className="client-chip-avatar" style={{ backgroundColor: SEGMENT_COLORS[client.segment as keyof typeof SEGMENT_COLORS] }}>
       {client.id.slice(-2)}
     </div>
@@ -1414,9 +1543,9 @@ function App() {
     import('./services/db').then(mod => {
       const sql = mod.default
       sql`SELECT COUNT(*) as cnt FROM clients WHERE is_deleted = FALSE`
-        .then((r: any) => setDbDebug(`✅ DB OK: ${r[0]?.cnt} clients`))
-        .catch((e: any) => setDbDebug(`❌ DB FAIL: ${e?.message || e}`))
-    }).catch((e: any) => setDbDebug(`❌ import fail: ${e?.message}`))
+        .then((r: any) => setDbDebug(`DB OK: ${r[0]?.cnt} clients`))
+        .catch((e: any) => setDbDebug(`DB error: ${e?.message || e}`))
+    }).catch((e: any) => setDbDebug(`Import error: ${e?.message}`))
   }, [])
 
   /** Clean raw data from any source */
@@ -1429,7 +1558,25 @@ function App() {
     const cleanedRadar = (result.radar || []).map((item: any) => ({
       subject: item.subject || item.dimension, ...item
     }))
-    return { ...result, clients: cleanedClients, radar: cleanedRadar }
+
+    // Transform heatmap from flat rows to { data, xLabels, yLabels, max } for HeatMapGrid
+    let cleanedHeatmap = result.heatmap || []
+    if (Array.isArray(cleanedHeatmap) && cleanedHeatmap.length > 0 && cleanedHeatmap[0]?.segment !== undefined) {
+      const heatmapConcepts: string[] = result.heatmapConcepts ||
+        Object.keys(cleanedHeatmap[0]).filter((k: string) => k !== 'segment')
+      const yLabels = cleanedHeatmap.map((row: any) => String(row.segment))
+      const xLabels = heatmapConcepts
+      let maxVal = 0
+      const data = cleanedHeatmap.map((row: any) =>
+        xLabels.map((concept: string) => {
+          const val = Number(row[concept] || 0)
+          if (val > maxVal) maxVal = val
+          return val
+        })
+      )
+      cleanedHeatmap = { data, xLabels, yLabels, max: maxVal || 1 }
+    }
+    return { ...result, clients: cleanedClients, radar: cleanedRadar, heatmap: cleanedHeatmap }
   }
 
   const fetchData = async () => {
@@ -1454,11 +1601,11 @@ function App() {
       console.error('[Dashboard] Live data fetch failed:', e)
       // Fall back to bundled local data.json only if live fetch fails
       try {
-        const localData = await import('./data.json')
-        const localRadar = localData.default.radar?.map((item: any) => ({
+        const localData = (await import('./data.json')).default as any
+        const localRadar = localData.radar?.map((item: any) => ({
           subject: item.subject || item.dimension, ...item
         })) || []
-        setData(cleanData({ ...localData.default, radar: localRadar }))
+        setData(cleanData({ ...localData, radar: localRadar }))
         setError(`Live data unavailable (${e.message}). Showing local fallback.`)
       } catch {
         setError(`Failed to load data: ${e.message}`)
@@ -1481,11 +1628,12 @@ function App() {
       console.error('[Dashboard] Safety timeout — forcing loading=false after 10s')
       setLoading(false)
       if (!data) {
-        import('./data.json').then(localData => {
-          const localRadar = localData.default.radar?.map((item: any) => ({
+        import('./data.json').then(mod => {
+          const localData = mod.default as any
+          const localRadar = localData.radar?.map((item: any) => ({
             subject: item.subject || item.dimension, ...item
           })) || []
-          setData(cleanData({ ...localData.default, radar: localRadar }))
+          setData(cleanData({ ...localData, radar: localRadar }))
           setError('Loading timed out. Showing local fallback data.')
         }).catch(() => {
           setError('Loading timed out and no fallback data available.')
@@ -1524,19 +1672,19 @@ function App() {
     let pageToRender;
     switch (activePage) {
       case 'dashboard':
-        pageToRender = <KPIDashboard />;
+        pageToRender = <KPIDashboard onNavigate={setActivePage} />;
         break;
       case 'actions':
-        pageToRender = <ActionsPage data={data} />;
+        pageToRender = <ActionsPage data={data} onClientClick={(id: string) => setSelectedClientId(id)} onRefresh={fetchData} />;
         break;
       case 'segments':
-        pageToRender = <SegmentsPage data={data} />;
+        pageToRender = <SegmentsPage data={data} onClientClick={(id: string) => setSelectedClientId(id)} />;
         break;
       case 'clients':
         pageToRender = <ClientsPage data={data} onClientClick={(id: string) => setSelectedClientId(id)} />;
         break;
       case 'data':
-        pageToRender = <DataPage data={data} />;
+        pageToRender = <DataPage data={data} onClientClick={(id: string) => setSelectedClientId(id)} />;
         break;
       case 'admin':
         pageToRender = <AdminPage data={data} />;
@@ -1575,7 +1723,7 @@ function App() {
         );
         break;
       default:
-        pageToRender = <KPIDashboard />;
+        pageToRender = <KPIDashboard onNavigate={setActivePage} />;
     }
 
     return pageToRender;

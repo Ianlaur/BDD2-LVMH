@@ -4,9 +4,11 @@ import {
   getConcepts as fetchConceptsService,
   getEventDetail as fetchEventDetailService,
   createEvent,
+  updateEvent,
   updateEventStatus,
   updateTarget,
   deleteEvent as deleteEventService,
+  getMatchCount,
 } from './services/apiService'
 
 // ─── Types ───────────────────────────────────────────────────────
@@ -61,7 +63,7 @@ const PRIORITIES = ['high', 'medium', 'low']
 const STATUSES = ['draft', 'scheduled', 'active', 'completed', 'cancelled']
 
 const channelIcons: Record<string, string> = {
-  email: '✉️', sms: '💬', whatsapp: '📱', phone: '📞', in_store: '🏬', multi: '🔄'
+  email: 'EM', sms: 'SM', whatsapp: 'WA', phone: 'PH', in_store: 'IS', multi: 'ML'
 }
 
 const priorityColors: Record<string, string> = {
@@ -223,6 +225,10 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
   })
   const [conceptSearch, setConceptSearch] = useState('')
   const [creating, setCreating] = useState(false)
+  const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null)
+  const [saving, setSaving] = useState(false)
+  const [previewCount, setPreviewCount] = useState<number | null>(null)
+  const [previewLoading, setPreviewLoading] = useState(false)
 
   // ─── Data Fetching ──────────────────────────────────────────
   const fetchEvents = useCallback(async () => {
@@ -248,6 +254,27 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
 
   useEffect(() => { fetchEvents() }, [fetchEvents])
   useEffect(() => { fetchConcepts() }, [fetchConcepts])
+
+  // Preview match count when concepts change
+  useEffect(() => {
+    if (form.concepts.length === 0) {
+      setPreviewCount(null)
+      return
+    }
+    let cancelled = false
+    setPreviewLoading(true)
+    const timer = setTimeout(async () => {
+      try {
+        const result = await getMatchCount(form.concepts)
+        if (!cancelled) setPreviewCount(result.count ?? 0)
+      } catch {
+        if (!cancelled) setPreviewCount(null)
+      } finally {
+        if (!cancelled) setPreviewLoading(false)
+      }
+    }, 300)
+    return () => { cancelled = true; clearTimeout(timer) }
+  }, [form.concepts])
 
   // ─── Event Creation ─────────────────────────────────────────
   const handleCreateEvent = async () => {
@@ -279,6 +306,48 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
       concepts: [], channel: 'email', priority: 'medium',
     })
     setConceptSearch('')
+  }
+
+  // ─── Edit Event ─────────────────────────────────────────────
+  const openEditModal = (event: CalendarEvent) => {
+    setEditingEvent(event)
+    setForm({
+      title: event.title,
+      description: event.description || '',
+      event_date: event.event_date,
+      event_end_date: event.event_end_date || '',
+      concepts: event.concepts ? event.concepts.split('|').filter(Boolean).map(c => c.trim()) : [],
+      channel: event.channel,
+      priority: event.priority,
+    })
+    setConceptSearch('')
+    setShowEventDetail(false)
+    setShowCreateModal(true)
+  }
+
+  const handleSaveEdit = async () => {
+    if (!editingEvent || !form.title.trim() || !form.event_date) return
+    setSaving(true)
+    try {
+      await updateEvent(editingEvent.id, {
+        ...form,
+        concepts: form.concepts.join('|'),
+      })
+      setShowCreateModal(false)
+      setEditingEvent(null)
+      resetForm()
+      fetchEvents()
+    } catch (err) {
+      console.error('Failed to update event:', err)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const closeCreateModal = () => {
+    setShowCreateModal(false)
+    setEditingEvent(null)
+    resetForm()
   }
 
   // ─── Event Detail ───────────────────────────────────────────
@@ -382,7 +451,7 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
           <span className="calendar-subtitle">Plan events and target matching clients</span>
         </div>
         <div className="calendar-header-right">
-          <button className="cal-btn cal-btn-primary" onClick={() => { resetForm(); setShowCreateModal(true) }}>
+          <button className="cal-btn cal-btn-primary" onClick={() => { resetForm(); setEditingEvent(null); setShowCreateModal(true) }}>
             + New Event
           </button>
         </div>
@@ -428,7 +497,7 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
                     style={{ borderLeft: `3px solid ${priorityColors[ev.priority] || '#94a3b8'}` }}
                     onClick={(e) => { e.stopPropagation(); handleOpenEvent(ev.id) }}
                   >
-                    <span className="event-pill-icon">{channelIcons[ev.channel] || '📋'}</span>
+                    <span className="event-pill-icon">{channelIcons[ev.channel] || '—'}</span>
                     <span className="event-pill-title">{ev.title}</span>
                     {ev.matched_count > 0 && (
                       <span className="event-pill-badge">{ev.matched_count}</span>
@@ -483,13 +552,13 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
 
       {loading && <div className="calendar-loading">Loading events...</div>}
 
-      {/* ─── CREATE EVENT MODAL ───────────────────────────────── */}
+      {/* ─── CREATE / EDIT EVENT MODAL ─────────────────────────── */}
       {showCreateModal && (
-        <div className="cal-modal-overlay" onClick={() => setShowCreateModal(false)}>
+        <div className="cal-modal-overlay" onClick={closeCreateModal}>
           <div className="cal-modal" onClick={e => e.stopPropagation()}>
             <div className="cal-modal-header">
-              <h3>New Activation Event</h3>
-              <button className="cal-modal-close" onClick={() => setShowCreateModal(false)}>✕</button>
+              <h3>{editingEvent ? 'Edit Event' : 'New Activation Event'}</h3>
+              <button className="cal-modal-close" onClick={closeCreateModal}>✕</button>
             </div>
 
             <div className="cal-modal-body">
@@ -603,18 +672,39 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
                     ))}
                   </div>
                 )}
+                {form.concepts.length > 0 && (
+                  <div className="cal-match-preview">
+                    {previewLoading ? (
+                      <span className="cal-match-preview-text">Estimating clients…</span>
+                    ) : previewCount !== null ? (
+                      <span className="cal-match-preview-text">
+                        ~<strong>{previewCount}</strong> clients match these concepts
+                      </span>
+                    ) : null}
+                  </div>
+                )}
               </div>
             </div>
 
             <div className="cal-modal-footer">
-              <button className="cal-btn cal-btn-ghost" onClick={() => setShowCreateModal(false)}>Cancel</button>
-              <button
-                className="cal-btn cal-btn-primary"
-                disabled={!form.title.trim() || !form.event_date || creating}
-                onClick={handleCreateEvent}
-              >
-                {creating ? 'Creating & Matching...' : 'Create Event & Match Clients'}
-              </button>
+              <button className="cal-btn cal-btn-ghost" onClick={closeCreateModal}>Cancel</button>
+              {editingEvent ? (
+                <button
+                  className="cal-btn cal-btn-primary"
+                  disabled={!form.title.trim() || !form.event_date || saving}
+                  onClick={handleSaveEdit}
+                >
+                  {saving ? 'Saving…' : 'Save Changes'}
+                </button>
+              ) : (
+                <button
+                  className="cal-btn cal-btn-primary"
+                  disabled={!form.title.trim() || !form.event_date || creating}
+                  onClick={handleCreateEvent}
+                >
+                  {creating ? 'Creating & Matching...' : 'Create Event & Match Clients'}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -684,6 +774,12 @@ export default function CalendarPage({ userId }: CalendarPageProps) {
                       {s}
                     </button>
                   ))}
+                  <button
+                    className="cal-btn cal-btn-sm cal-btn-primary"
+                    onClick={() => openEditModal(selectedEvent)}
+                  >
+                    Edit
+                  </button>
                   <button
                     className="cal-btn cal-btn-sm cal-btn-danger"
                     onClick={() => handleDeleteEvent(selectedEvent.id)}

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { getPlaybooks as fetchPlaybooksService, activatePlaybook, createPlaybook } from './services/apiService'
+import { getPlaybooks as fetchPlaybooksService, activatePlaybook, createPlaybook, updatePlaybook, deletePlaybook, getConcepts as fetchConceptsService, getMatchCount } from './services/apiService'
 
 // ─── Types ───────────────────────────────────────────────────────
 interface Playbook {
@@ -14,22 +14,23 @@ interface Playbook {
   createdAt: string
 }
 
+interface ConceptOption {
+  concept: string
+  clientCount: number
+}
+
 interface PlaybooksPageProps {
   userId?: number
   onNavigateToCalendar?: () => void
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────
-const channelIcons: Record<string, string> = {
-  email: '✉️', sms: '💬', whatsapp: '📱', phone: '📞', in_store: '🏬', multi: '🔄'
+const channelLabels: Record<string, string> = {
+  email: 'Email', sms: 'SMS', whatsapp: 'WhatsApp', phone: 'Phone', in_store: 'In-Store', multi: 'Multi'
 }
 
 const priorityColors: Record<string, string> = {
   high: '#ef4444', medium: '#f59e0b', low: '#22c55e'
-}
-
-const categoryIcons: Record<string, string> = {
-  launch: '🚀', reengagement: '🔁', birthday: '🎂', seasonal: '🎄', custom: '⚙️'
 }
 
 const categoryLabels: Record<string, string> = {
@@ -66,6 +67,12 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
     category: 'custom',
   })
   const [creating, setCreating] = useState(false)
+  const [editingPlaybook, setEditingPlaybook] = useState<Playbook | null>(null)
+  const [deleting, setDeleting] = useState<number | null>(null)
+  const [conceptOptions, setConceptOptions] = useState<ConceptOption[]>([])
+  const [conceptSearch, setConceptSearch] = useState('')
+  const [previewCount, setPreviewCount] = useState<number | null>(null)
+  const [previewLoading, setPreviewLoading] = useState(false)
 
   // ─── Data Fetching ──────────────────────────────────────────
   const fetchPlaybooks = useCallback(async () => {
@@ -81,6 +88,49 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
   }, [filterCategory])
 
   useEffect(() => { fetchPlaybooks() }, [fetchPlaybooks])
+
+  // Fetch available concepts for picker
+  useEffect(() => {
+    fetchConceptsService().then(({ data }) => setConceptOptions(data)).catch(() => {})
+  }, [])
+
+  // Concept picker helpers
+  const selectedConcepts = createForm.concepts
+    ? createForm.concepts.split('|').map(c => c.trim()).filter(Boolean)
+    : []
+
+  const toggleConcept = (concept: string) => {
+    const current = selectedConcepts
+    const next = current.includes(concept)
+      ? current.filter(c => c !== concept)
+      : [...current, concept]
+    setCreateForm(prev => ({ ...prev, concepts: next.join('|') }))
+  }
+
+  const filteredConceptOptions = conceptOptions.filter(c =>
+    c.concept.toLowerCase().includes(conceptSearch.toLowerCase())
+  )
+
+  // Preview match count when concepts change
+  useEffect(() => {
+    if (selectedConcepts.length === 0) {
+      setPreviewCount(null)
+      return
+    }
+    let cancelled = false
+    setPreviewLoading(true)
+    const timer = setTimeout(async () => {
+      try {
+        const result = await getMatchCount(selectedConcepts)
+        if (!cancelled) setPreviewCount(result.count ?? 0)
+      } catch {
+        if (!cancelled) setPreviewCount(null)
+      } finally {
+        if (!cancelled) setPreviewLoading(false)
+      }
+    }, 300)
+    return () => { cancelled = true; clearTimeout(timer) }
+  }, [createForm.concepts])
 
   // ─── Activate Playbook ─────────────────────────────────────
   const openActivateModal = (pb: Playbook) => {
@@ -129,6 +179,66 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
     }
   }
 
+  // ─── Edit Playbook ─────────────────────────────────────────
+  const openEditModal = (pb: Playbook) => {
+    setEditingPlaybook(pb)
+    setCreateForm({
+      name: pb.name,
+      description: pb.description,
+      concepts: pb.concepts,
+      channel: pb.channel,
+      priority: pb.priority,
+      messageTemplate: pb.messageTemplate || '',
+      category: pb.category,
+    })
+    setShowCreateModal(true)
+  }
+
+  const handleSaveEdit = async () => {
+    if (!editingPlaybook || !createForm.name.trim()) return
+    setCreating(true)
+    try {
+      await updatePlaybook(editingPlaybook.id, {
+        ...createForm,
+        createdBy: userId || null,
+      })
+      setShowCreateModal(false)
+      setEditingPlaybook(null)
+      setCreateForm({
+        name: '', description: '', concepts: '', channel: 'email',
+        priority: 'medium', messageTemplate: '', category: 'custom',
+      })
+      fetchPlaybooks()
+    } catch (err) {
+      console.error('Failed to update playbook:', err)
+    } finally {
+      setCreating(false)
+    }
+  }
+
+  // ─── Delete Playbook ───────────────────────────────────────
+  const handleDelete = async (pb: Playbook) => {
+    if (!confirm(`Delete playbook "${pb.name}"? This cannot be undone.`)) return
+    setDeleting(pb.id)
+    try {
+      await deletePlaybook(pb.id)
+      fetchPlaybooks()
+    } catch (err) {
+      console.error('Failed to delete playbook:', err)
+    } finally {
+      setDeleting(null)
+    }
+  }
+
+  const closeCreateModal = () => {
+    setShowCreateModal(false)
+    setEditingPlaybook(null)
+    setCreateForm({
+      name: '', description: '', concepts: '', channel: 'email',
+      priority: 'medium', messageTemplate: '', category: 'custom',
+    })
+  }
+
   // ─── Helpers ────────────────────────────────────────────────
   function getFutureDate(days: number) {
     const d = new Date()
@@ -149,7 +259,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
       {/* Header */}
       <div className="pb-header">
         <div className="pb-header-left">
-          <h2 className="pb-title">📋 Playbook Templates</h2>
+          <h2 className="pb-title">Playbook Templates</h2>
           <p className="pb-subtitle">
             Pre-configured activation strategies. Launch a campaign in one click.
           </p>
@@ -157,7 +267,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
         <div className="pb-header-actions">
           <button
             className="pb-btn pb-btn-secondary"
-            onClick={() => setShowCreateModal(true)}
+            onClick={() => { setEditingPlaybook(null); setCreateForm({ name: '', description: '', concepts: '', channel: 'email', priority: 'medium', messageTemplate: '', category: 'custom' }); setShowCreateModal(true) }}
           >
             + New Playbook
           </button>
@@ -178,7 +288,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
             className={`pb-filter-chip ${filterCategory === cat ? 'pb-filter-active' : ''}`}
             onClick={() => setFilterCategory(filterCategory === cat ? '' : cat)}
           >
-            {categoryIcons[cat]} {categoryLabels[cat]}
+            {categoryLabels[cat]}
           </button>
         ))}
       </div>
@@ -197,7 +307,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
         Object.entries(grouped).map(([cat, pbs]) => (
           <div key={cat} className="pb-category-section">
             <h3 className="pb-category-title">
-              {categoryIcons[cat] || '📌'} {categoryLabels[cat] || cat}
+              {categoryLabels[cat] || cat}
               <span className="pb-category-count">{pbs.length}</span>
             </h3>
             <div className="pb-grid">
@@ -218,7 +328,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
                   <div className="pb-card-body">
                     <div className="pb-card-meta">
                       <span className="pb-meta-item" title="Channel">
-                        {channelIcons[pb.channel] || '📤'} {pb.channel}
+                        {channelLabels[pb.channel] || pb.channel}
                       </span>
                       <span className="pb-meta-item" title="Priority">
                         <span className="pb-priority-label" style={{
@@ -246,10 +356,23 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
 
                   <div className="pb-card-footer">
                     <button
+                      className="pb-btn pb-btn-ghost"
+                      onClick={() => openEditModal(pb)}
+                    >
+                      Edit
+                    </button>
+                    <button
                       className="pb-btn pb-btn-activate"
                       onClick={() => openActivateModal(pb)}
                     >
-                      🚀 Activate
+                      Activate
+                    </button>
+                    <button
+                      className="pb-btn pb-btn-danger-sm"
+                      onClick={() => handleDelete(pb)}
+                      disabled={deleting === pb.id}
+                    >
+                      {deleting === pb.id ? '…' : 'Delete'}
                     </button>
                   </div>
                 </div>
@@ -264,14 +387,14 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
         <div className="pb-modal-overlay" onClick={() => { setShowActivateModal(false); setActivateResult(null) }}>
           <div className="pb-modal" onClick={e => e.stopPropagation()}>
             <div className="pb-modal-header">
-              <h3>🚀 Activate Playbook</h3>
+              <h3>Activate Playbook</h3>
               <button className="pb-modal-close" onClick={() => { setShowActivateModal(false); setActivateResult(null) }}>✕</button>
             </div>
 
             {activateResult ? (
               <div className="pb-modal-body">
                 <div className="pb-activate-success">
-                  <div className="pb-success-icon">✅</div>
+                  <div className="pb-success-icon">✓</div>
                   <h4>Event Created!</h4>
                   <div className="pb-success-stats">
                     <div className="pb-success-stat">
@@ -312,7 +435,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
                   <h4>{selectedPlaybook.name}</h4>
                   <p>{selectedPlaybook.description}</p>
                   <div className="pb-preview-meta">
-                    <span>{channelIcons[selectedPlaybook.channel]} {selectedPlaybook.channel}</span>
+                    <span>{channelLabels[selectedPlaybook.channel] || selectedPlaybook.channel}</span>
                     <span style={{ color: priorityColors[selectedPlaybook.priority] }}>
                       ● {selectedPlaybook.priority} priority
                     </span>
@@ -360,7 +483,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
                     onClick={handleActivate}
                     disabled={activating || !activateForm.eventName.trim()}
                   >
-                    {activating ? 'Creating Event…' : '🚀 Launch Activation'}
+                    {activating ? 'Creating Event…' : 'Launch Activation'}
                   </button>
                   <button
                     className="pb-btn pb-btn-secondary"
@@ -377,11 +500,11 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
 
       {/* ─── Create Playbook Modal ────────────────────────── */}
       {showCreateModal && (
-        <div className="pb-modal-overlay" onClick={() => setShowCreateModal(false)}>
+        <div className="pb-modal-overlay" onClick={closeCreateModal}>
           <div className="pb-modal pb-modal-wide" onClick={e => e.stopPropagation()}>
             <div className="pb-modal-header">
-              <h3>+ New Playbook Template</h3>
-              <button className="pb-modal-close" onClick={() => setShowCreateModal(false)}>✕</button>
+              <h3>{editingPlaybook ? 'Edit Playbook' : '+ New Playbook Template'}</h3>
+              <button className="pb-modal-close" onClick={closeCreateModal}>✕</button>
             </div>
 
             <div className="pb-modal-body">
@@ -419,16 +542,52 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
               </div>
 
               <div className="pb-form-group">
-                <label>Target Concepts (pipe-separated)</label>
+                <label>Target Concepts</label>
                 <input
                   type="text"
-                  value={createForm.concepts}
-                  onChange={e => setCreateForm(prev => ({ ...prev, concepts: e.target.value }))}
-                  placeholder="e.g. leather|gift seeking|VIP"
+                  placeholder="Search concepts..."
+                  className="pb-concept-search"
+                  value={conceptSearch}
+                  onChange={e => setConceptSearch(e.target.value)}
                 />
-                <span className="pb-form-hint">
-                  Clients will be matched based on these concepts from their profiles.
-                </span>
+                <div className="pb-concept-list">
+                  {filteredConceptOptions.slice(0, 30).map(c => (
+                    <button
+                      key={c.concept}
+                      type="button"
+                      className={`pb-concept-chip ${selectedConcepts.includes(c.concept) ? 'pb-concept-selected' : ''}`}
+                      onClick={() => toggleConcept(c.concept)}
+                    >
+                      {c.concept}
+                      <span className="pb-concept-count">{c.clientCount}</span>
+                    </button>
+                  ))}
+                  {filteredConceptOptions.length === 0 && conceptOptions.length > 0 && (
+                    <p className="pb-concept-empty">No concepts match "{conceptSearch}"</p>
+                  )}
+                  {conceptOptions.length === 0 && (
+                    <p className="pb-concept-empty">No concepts available. Run the pipeline first.</p>
+                  )}
+                </div>
+                {selectedConcepts.length > 0 && (
+                  <div className="pb-selected-concepts">
+                    <span className="pb-selected-label">Selected:</span>
+                    {selectedConcepts.map(c => (
+                      <span key={c} className="pb-concept-chip pb-concept-selected" onClick={() => toggleConcept(c)}>
+                        {c} ✕
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {selectedConcepts.length > 0 && (
+                  <div className="pb-match-preview">
+                    {previewLoading ? (
+                      <span>Estimating clients…</span>
+                    ) : previewCount !== null ? (
+                      <span>~<strong>{previewCount}</strong> clients match these concepts</span>
+                    ) : null}
+                  </div>
+                )}
               </div>
 
               <div className="pb-form-row">
@@ -439,7 +598,7 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
                     onChange={e => setCreateForm(prev => ({ ...prev, channel: e.target.value }))}
                   >
                     {['email', 'sms', 'whatsapp', 'phone', 'in_store', 'multi'].map(ch => (
-                      <option key={ch} value={ch}>{channelIcons[ch]} {ch}</option>
+                      <option key={ch} value={ch}>{channelLabels[ch]}</option>
                     ))}
                   </select>
                 </div>
@@ -469,14 +628,14 @@ export default function PlaybooksPage({ userId, onNavigateToCalendar }: Playbook
               <div className="pb-modal-actions">
                 <button
                   className="pb-btn pb-btn-primary"
-                  onClick={handleCreate}
+                  onClick={editingPlaybook ? handleSaveEdit : handleCreate}
                   disabled={creating || !createForm.name.trim()}
                 >
-                  {creating ? 'Creating…' : 'Create Playbook'}
+                  {creating ? (editingPlaybook ? 'Saving…' : 'Creating…') : (editingPlaybook ? 'Save Changes' : 'Create Playbook')}
                 </button>
                 <button
                   className="pb-btn pb-btn-secondary"
-                  onClick={() => setShowCreateModal(false)}
+                  onClick={closeCreateModal}
                 >
                   Cancel
                 </button>

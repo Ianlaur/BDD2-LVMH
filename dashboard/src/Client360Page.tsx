@@ -3,7 +3,7 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
   ResponsiveContainer, Tooltip, PieChart, Pie, Cell
 } from 'recharts'
-import { getClient360 } from './services/apiService'
+import { getClient360, completeAction } from './services/apiService'
 
 // ─── Types ────────────────────────────────────────────
 interface ConceptEvidence {
@@ -139,6 +139,7 @@ export default function Client360Page({
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'overview' | 'actions' | 'events' | 'notes'>('overview')
+  const [completing, setCompleting] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchClient = async () => {
@@ -157,6 +158,21 @@ export default function Client360Page({
   }, [clientId])
 
   const color = SEGMENT_COLORS[data?.segment ?? 0] || '#6366f1'
+
+  const handleCompleteAction = async (actionId: string) => {
+    if (!data) return
+    setCompleting(actionId)
+    try {
+      await completeAction(data.id, actionId)
+      // Refresh client data
+      const { data: refreshed } = await getClient360(clientId)
+      setData(refreshed)
+    } catch (err) {
+      console.error('Failed to complete action:', err)
+    } finally {
+      setCompleting(null)
+    }
+  }
 
   // Compute concept radar data
   const radarData = useMemo(() => {
@@ -483,7 +499,17 @@ export default function Client360Page({
                     <span className={`c360-prio-dot ${action.priority}`} />
                     <span className="c360-action-title">{action.title}</span>
                     <span className="c360-action-channel">{action.channel}</span>
-                    {action.isCompleted && <span className="c360-completed-badge">{Icons.check} Done</span>}
+                    {action.isCompleted ? (
+                      <span className="c360-completed-badge">{Icons.check} Done</span>
+                    ) : (
+                      <button
+                        className="c360-complete-btn"
+                        onClick={() => handleCompleteAction(action.actionId)}
+                        disabled={completing === action.actionId}
+                      >
+                        {completing === action.actionId ? 'Completing…' : 'Mark Done'}
+                      </button>
+                    )}
                   </div>
                   {action.rationale && <p className="c360-action-rationale">{action.rationale}</p>}
                   <div className="c360-action-meta">

@@ -22,6 +22,7 @@ import {
   dbGetEventDetail,
   dbGetConcepts,
   dbGetReportSummary,
+  dbCompleteAction,
 } from './dbService'
 
 // ─── Configuration ────────────────────────────────────────────────
@@ -458,6 +459,60 @@ export async function autoAssignAdvisors(data: any) {
   invalidateCache('advisors')
   invalidateCache('advisor-workload')
   return res.json()
+}
+
+export async function completeAction(clientId: string, actionId: string) {
+  try {
+    const res = await apiFetch(`${API_CONFIG.BASE_URL}/api/actions/${clientId}/${actionId}/complete`, {
+      method: 'PUT',
+    })
+    if (res.ok) {
+      invalidateCache('data')
+      invalidateCache('kpi')
+      invalidateCache(`client360:${clientId}`)
+      return res.json()
+    }
+  } catch { /* fall through to DB */ }
+  // DB fallback
+  const result = await dbCompleteAction(clientId, actionId)
+  invalidateCache('data')
+  invalidateCache('kpi')
+  invalidateCache(`client360:${clientId}`)
+  return result
+}
+
+export async function updatePlaybook(playbookId: number, data: any) {
+  const res = await apiFetch(`${API_CONFIG.BASE_URL}/api/playbooks/${playbookId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) throw new Error(`Failed to update playbook (${res.status})`)
+  invalidateCache('playbooks')
+  return res.json()
+}
+
+export async function deletePlaybook(playbookId: number) {
+  const res = await apiFetch(`${API_CONFIG.BASE_URL}/api/playbooks/${playbookId}`, {
+    method: 'DELETE',
+  })
+  if (!res.ok) throw new Error(`Failed to delete playbook (${res.status})`)
+  invalidateCache('playbooks')
+  return res.json()
+}
+
+export async function getMatchCount(concepts: string[]) {
+  try {
+    const res = await apiFetch(`${API_CONFIG.BASE_URL}/api/match-count`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ concepts }),
+    })
+    if (res.ok) return res.json()
+  } catch { /* fall through to DB */ }
+  // DB fallback: count clients matching any of the given concepts
+  const { dbGetMatchCount } = await import('./dbService')
+  return dbGetMatchCount(concepts)
 }
 
 export async function exportCSV(type: string): Promise<Blob> {
