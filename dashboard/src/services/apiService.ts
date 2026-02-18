@@ -27,9 +27,9 @@ import {
 
 // ─── Configuration ────────────────────────────────────────────────
 /** Max time for API before abort (background cleanup — race handles UX) */
-const API_TIMEOUT = 2000
+const API_TIMEOUT = 45_000
 /** Hard global timeout — page never hangs longer than this */
-const GLOBAL_TIMEOUT = 8000
+const GLOBAL_TIMEOUT = 50_000
 
 /** In-memory cache — survives tab switches (component unmount/remount) */
 const cache = new Map<string, { data: any; ts: number; promise?: Promise<any> }>()

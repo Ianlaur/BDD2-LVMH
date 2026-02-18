@@ -23,14 +23,47 @@ if [ ! -d ".venv" ]; then
     exit 1
 fi
 
+# Check if .env file exists
+if [ ! -f ".env" ]; then
+    echo "⚠️  No .env file found!"
+    if [ -f ".env.example" ]; then
+        echo "📋 Copying .env.example → .env"
+        cp .env.example .env
+        echo "✅ .env created from template"
+    else
+        echo "❌ No .env or .env.example found!"
+        echo "   The server needs DATABASE_URL to connect to Neon PostgreSQL."
+        echo "   Create a .env file with:"
+        echo "     DATABASE_URL=postgresql://user:pass@host/dbname?sslmode=require"
+        echo ""
+        read -p "Press Enter to exit..."
+        exit 1
+    fi
+fi
+
 # Activate virtual environment
 echo "🔧 Activating virtual environment..."
 source .venv/bin/activate
 
 # Check if required packages are installed
-if ! python -c "import fastapi" 2>/dev/null; then
-    echo "📦 Installing server dependencies..."
-    pip install fastapi uvicorn[standard]
+MISSING=0
+for pkg in fastapi uvicorn asyncpg psycopg2 dotenv; do
+    if ! python -c "import $pkg" 2>/dev/null; then
+        MISSING=1
+        break
+    fi
+done
+
+if [ $MISSING -eq 1 ]; then
+    echo "📦 Installing dependencies from requirements.txt..."
+    pip install -r requirements.txt
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to install dependencies."
+        echo "   Try running: pip install -r requirements.txt"
+        read -p "Press Enter to exit..."
+        exit 1
+    fi
+    echo "✅ Dependencies installed"
 fi
 
 # Get local IP address

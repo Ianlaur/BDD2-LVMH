@@ -65,6 +65,9 @@ async def lifespan(app: FastAPI):
             init_database()  # create tables if needed (sync)
             await get_async_pool()  # warm up async pool
             logger.info("✅ Database connected and schema initialized")
+            # Pre-load dashboard data into cache so first request is instant
+            logger.info("⏳ Warming dashboard cache (this takes ~25s)...")
+            await _warm_dashboard_cache()
         except Exception as e:
             logger.warning(f"⚠️  Database init failed: {e}. Falling back to file-based mode.")
     else:
@@ -123,6 +126,32 @@ pipeline_status = {
     "last_error": None
 }
 
+# ---------------------------------------------------------------------------
+# In-memory cache for /api/data  (avoids 27s DB query on every request)
+# ---------------------------------------------------------------------------
+_dashboard_cache: dict | None = None
+_dashboard_cache_ts: float = 0
+_CACHE_TTL = 300  # seconds — serve cached data for 5 min
+_cache_lock = asyncio.Lock()
+
+
+async def _warm_dashboard_cache():
+    """Fetch dashboard data from DB and store in memory cache."""
+    global _dashboard_cache, _dashboard_cache_ts
+    try:
+        from server.db.crud import async_get_dashboard_data
+        import time
+        t0 = time.time()
+        data = await async_get_dashboard_data()
+        if data and data.get("clients"):
+            _dashboard_cache = _sanitize_for_json(data)
+            _dashboard_cache_ts = time.time()
+            logger.info(f"✅ Dashboard cache warmed: {len(data['clients'])} clients in {time.time()-t0:.1f}s")
+        else:
+            logger.warning("Cache warm returned no clients")
+    except Exception as e:
+        logger.warning(f"Cache warm failed: {e}")
+
 
 def _sanitize_for_json(obj):
     """Recursively replace NaN/Inf floats with None so json.dumps won't crash."""
@@ -161,36 +190,50 @@ async def root():
 async def get_dashboard_data():
     """
     Get the main dashboard data.
-    If DB is available, reads from Neon PostgreSQL.
-    Otherwise falls back to data.json on disk.
+    Returns cached data instantly (<50ms).  Cache is warmed on startup
+    and refreshed in the background every 5 minutes.
     """
-    # --- DB path ---
+    import time
+    global _dashboard_cache, _dashboard_cache_ts
+
+    # --- Serve from cache if available ---
+    if _dashboard_cache is not None:
+        age = time.time() - _dashboard_cache_ts
+        # If cache is stale, trigger background refresh (don't block request)
+        if age > _CACHE_TTL and DB_AVAILABLE:
+            asyncio.create_task(_warm_dashboard_cache())
+        return _dashboard_cache
+
+    # --- No cache yet: try DB ---
     if DB_AVAILABLE:
         try:
             from server.db.crud import async_get_dashboard_data
-            data = await asyncio.wait_for(async_get_dashboard_data(), timeout=30.0)
-            if data.get("clients"):
-                return _sanitize_for_json(data)
-            # If DB has no clients yet, fall through to file
+            data = await asyncio.wait_for(async_get_dashboard_data(), timeout=55.0)
+            if data and data.get("clients"):
+                _dashboard_cache = _sanitize_for_json(data)
+                _dashboard_cache_ts = time.time()
+                return _dashboard_cache
             logger.info("DB has no clients — falling back to data.json")
         except asyncio.TimeoutError:
-            logger.warning("DB dashboard data timed out after 30s, falling back to data.json")
+            logger.warning("DB dashboard data timed out after 55s, falling back to data.json")
         except Exception as e:
             logger.warning(f"DB read failed, falling back to file: {e}")
 
     # --- File path (fallback) ---
     data_path = BASE_DIR / "dashboard" / "src" / "data.json"
-    
+
     if not data_path.exists():
         raise HTTPException(
-            status_code=404, 
+            status_code=404,
             detail="Dashboard data not found. Run the pipeline first."
         )
-    
+
     try:
         with open(data_path, 'r', encoding='utf-8') as f:
             data = json.load(f, parse_constant=lambda c: None)
-        return _sanitize_for_json(data)
+        _dashboard_cache = _sanitize_for_json(data)
+        _dashboard_cache_ts = time.time()
+        return _dashboard_cache
     except Exception as e:
         logger.error(f"Error reading dashboard data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -444,6 +487,9 @@ async def run_pipeline_endpoint(
             pipeline_status["running"] = False
             pipeline_status["last_run"] = "success"
             logger.info("Pipeline completed successfully")
+            # Invalidate dashboard cache so next request gets fresh data
+            global _dashboard_cache
+            _dashboard_cache = None
         except Exception as e:
             logger.error(f"Pipeline failed: {e}")
             pipeline_status["running"] = False

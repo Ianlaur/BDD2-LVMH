@@ -13,6 +13,7 @@ venv/
 env/
 .env
 *.env
+!.env.example
 
 # -----------------------
 # Data (do not commit raw client data)

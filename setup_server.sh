@@ -46,6 +46,20 @@ mkdir -p taxonomy
 mkdir -p models/sentence_transformers
 
 echo ""
+echo "Setting up environment file..."
+if [ ! -f ".env" ]; then
+    if [ -f ".env.example" ]; then
+        cp .env.example .env
+        echo "✓ .env created from .env.example"
+        echo "  → DATABASE_URL is pre-configured for Neon PostgreSQL"
+    else
+        echo "⚠  No .env.example found — create .env manually with DATABASE_URL"
+    fi
+else
+    echo "✓ .env already exists"
+fi
+
+echo ""
 echo "Downloading sentence transformer model..."
 echo "This may take a few minutes (400MB download)..."
 python3 << 'PYTHON_SCRIPT'
