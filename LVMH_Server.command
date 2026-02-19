@@ -7,7 +7,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 
 echo "========================================="
-echo "LVMH Voice-to-Tag API Server"
+echo "LVMH Client Intelligence API Server"
 echo "========================================="
 echo ""
 

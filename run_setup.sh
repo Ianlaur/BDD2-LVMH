@@ -1,11 +1,11 @@
 #!/bin/bash
-# LVMH Voice-to-Tag Pipeline - Setup and Run Script
+# LVMH Client Intelligence Pipeline - Setup and Run Script
 # Works on macOS, Linux, and Windows (Git Bash/WSL)
 
 set -e  # Exit on error
 
 echo "============================================================"
-echo "LVMH Voice-to-Tag Pipeline - Setup"
+echo "LVMH Client Intelligence Pipeline - Setup"
 echo "============================================================"
 echo
 

@@ -1,5 +1,5 @@
 """
-Kafka event streaming for the LVMH Voice-to-Tag pipeline.
+Kafka event streaming for the LVMH Client Intelligence pipeline.
 
 Topics:
     lvmh.uploads          — CSV / voice memo upload events (consumed by pipeline worker)

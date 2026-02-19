@@ -1,8 +1,8 @@
 # Makefile
 # Docker-first reproducible workflow + optional local venv dev workflow
 
-IMAGE_NAME ?= lvmh-voice-to-tag
-CONTAINER_NAME ?= lvmh-voice-to-tag
+IMAGE_NAME ?= lvmh-client-intelligence
+CONTAINER_NAME ?= lvmh-client-intelligence
 
 # System python (for local runs if you want)
 PYTHON ?= python3

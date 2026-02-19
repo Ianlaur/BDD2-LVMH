@@ -1,5 +1,5 @@
 """
-Global configuration for the LVMH Voice-to-Tag pipeline.
+Global configuration for the LVMH Client Intelligence pipeline.
 All random seeds and constants are centralized here for reproducibility.
 """
 import os

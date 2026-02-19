@@ -140,7 +140,7 @@ def create_3d_visualization(
     # Update layout
     fig.update_layout(
         title=dict(
-            text='LVMH Voice-to-Tag: Embedding Space (3D)',
+            text='LVMH Client Intelligence: Embedding Space (3D)',
             x=0.5,
             font=dict(size=18)
         ),

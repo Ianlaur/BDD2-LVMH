@@ -1,5 +1,5 @@
 @echo off
-REM LVMH Voice-to-Tag Pipeline - Windows Double-Click Launcher
+REM LVMH Client Intelligence Pipeline - Windows Double-Click Launcher
 REM Double-click this file to run the full pipeline and open dashboard
 
 cd /d "%~dp0"

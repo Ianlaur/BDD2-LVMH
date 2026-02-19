@@ -20,8 +20,8 @@ def run_pipeline():
     start_time = time.time()
     
     print("=" * 60)
-    print("LVMH Voice-to-Tag Pipeline")
-    print("Deterministic (Non-LLM) Multilingual Processing")
+    print("LVMH Client Intelligence Pipeline")
+    print("Hybrid (Rule-Based + LLM) Multilingual Processing")
     print("=" * 60)
     print()
     

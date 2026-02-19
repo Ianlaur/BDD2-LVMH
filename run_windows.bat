@@ -1,9 +1,9 @@
 @echo off
-REM LVMH Voice-to-Tag Pipeline - Windows Setup and Run Script
+REM LVMH Client Intelligence Pipeline - Windows Setup and Run Script
 REM Run this in Command Prompt or PowerShell
 
 echo ============================================================
-echo LVMH Voice-to-Tag Pipeline - Windows Setup
+echo LVMH Client Intelligence Pipeline - Windows Setup
 echo ============================================================
 echo.
 

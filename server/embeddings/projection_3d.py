@@ -186,7 +186,7 @@ def create_3d_visualization(
     # UMAP preserves local structure: nearby points = similar client profiles
     fig.update_layout(
         title=dict(
-            text='<b>LVMH Voice-to-Tag</b><br><span style="font-size:14px">Carte de Similarité des Profils Clients</span>',
+            text='<b>LVMH Client Intelligence Platform</b><br><span style="font-size:14px">Carte de Similarité des Profils Clients</span>',
             x=0.5,
             font=dict(size=18)
         ),

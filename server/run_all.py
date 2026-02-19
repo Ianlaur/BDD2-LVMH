@@ -36,8 +36,8 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
     start_time = time.time()
     
     print("=" * 60)
-    print("LVMH Voice-to-Tag Pipeline")
-    print("Deterministic (Non-LLM) Multilingual Processing")
+    print("LVMH Client Intelligence Pipeline")
+    print("Hybrid (Rule-Based + LLM) Multilingual Processing")
     print("=" * 60)
     print()
     
@@ -253,7 +253,7 @@ def run_pipeline(csv_path: str = None, text_column: str = None,
 def main():
     """CLI entry point with argument parsing."""
     parser = argparse.ArgumentParser(
-        description='LVMH Voice-to-Tag Pipeline',
+        description='LVMH Client Intelligence Pipeline',
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     

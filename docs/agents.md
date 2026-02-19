@@ -1,6 +1,6 @@
 # agents.md
 
-## Project: LVMH Voice-to-Tag — Non-LLM Lexicon, Vector Profiling & Action Playbooks
+## Project: LVMH Client Intelligence Platform — Lexicon, Vector Profiling & Action Playbooks
 
 This repository builds a deterministic (non-LLM) pipeline that:
 1) extracts a **lexicon/taxonomy** from multilingual Client Advisor transcriptions (CSV),

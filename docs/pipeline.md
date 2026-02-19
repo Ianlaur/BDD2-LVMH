@@ -1,4 +1,4 @@
-# LVMH Voice-to-Tag Pipeline
+# LVMH Client Intelligence Pipeline
 
 ## Overview
 
