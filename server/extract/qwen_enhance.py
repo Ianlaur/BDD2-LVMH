@@ -422,7 +422,7 @@ def run_enhancement(
     logger.info("Running fresh rule-based detection...")
     from server.extract.detect_concepts import (
         load_lexicon, build_alias_to_concept_map, find_matches_in_text,
-        build_aho_automaton
+        build_aho_automaton, extract_budgets
     )
     from server.shared.config import MAX_ALIAS_MATCHES_PER_NOTE
 
@@ -436,6 +436,12 @@ def run_enhancement(
             row['text'], alias_map, MAX_ALIAS_MATCHES_PER_NOTE,
             automaton=automaton, patterns=patterns
         )
+        # Also extract budget amounts via regex
+        budget_matches = extract_budgets(row['text'])
+        existing_spans = {(m["start"], m["end"]) for m in matches}
+        for bm in budget_matches:
+            if (bm["start"], bm["end"]) not in existing_spans:
+                matches.append(bm)
         for m in matches:
             m['note_id'] = row['note_id']
             m['detection_method'] = 'rule-based'

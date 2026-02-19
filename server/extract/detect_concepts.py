@@ -164,6 +164,50 @@ def find_matches_in_text(
     return matches
 
 
+# ── Regex-based budget extraction ────────────────────────────────────────
+
+# Matches patterns like: "Budget 3-4K", "Budget environ 4000€", "Budget around 5K",
+# "Presupuesto 12K", "Budget 25K+", "Budget 1500€", "Budget um 5K flexibel"
+_BUDGET_RE = re.compile(
+    r'(?i)\b(?:budget|presupuesto|prix|price)\b'       # keyword
+    r'[^.;\n]{0,50}?'                                    # filler (qualifiers like "around", "very flexible, discussed")
+    r'(\d[\d.,]*\s*[-–]\s*\d[\d.,]*\s*[kK€$£]?'        # range: 3-4K, 8-10K
+    r'|\d[\d.,]*\s*[kK€$£]+(?:\+)?'                     # amount+unit: 5K, 4000€, 25K+
+    r'|\d[\d.,]*\s*(?:EUR|euros?|GBP|pounds?|USD|CHF)'  # amount+word-unit: 5000 euros
+    r')',
+    re.UNICODE
+)
+
+BUDGET_CONCEPT_ID = "BUDGET_AMOUNT"
+
+
+def extract_budgets(text: str) -> List[Dict]:
+    """
+    Extract budget amounts from text using regex.
+
+    Returns list of match dicts compatible with concept detection output.
+    """
+    matches = []
+    seen = set()
+    for m in _BUDGET_RE.finditer(text):
+        amount = m.group(1).strip()
+        if not amount or amount in seen:
+            continue
+        seen.add(amount)
+        # Build a clean label: "budget 3-4K" / "budget 4000€"
+        label = f"budget {amount}".lower()
+        # Find the span of the amount within the full match
+        full_start = m.start()
+        full_end = m.end()
+        matches.append({
+            "concept_id": BUDGET_CONCEPT_ID,
+            "matched_alias": label,
+            "start": full_start,
+            "end": full_end,
+        })
+    return matches
+
+
 def detect_concepts() -> pd.DataFrame:
     """
     Main concept detection function.
@@ -221,6 +265,14 @@ def detect_concepts() -> pd.DataFrame:
             text, alias_map,
             automaton=automaton, patterns=patterns,
         )
+        
+        # Also extract budget amounts via regex
+        budget_matches = extract_budgets(text)
+        # Avoid duplicating if Aho-Corasick already matched at same span
+        existing_spans = {(m["start"], m["end"]) for m in matches}
+        for bm in budget_matches:
+            if (bm["start"], bm["end"]) not in existing_spans:
+                matches.append(bm)
         
         if matches:
             notes_with_concepts += 1
