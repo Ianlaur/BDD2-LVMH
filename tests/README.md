@@ -2,7 +2,7 @@
 
 ## Overview
 
-This test suite empirically measures the **time complexity (Big O)** of critical functions in the LVMH Voice-to-Tag pipeline. Instead of theoretical analysis alone, we *run* each function at several input sizes, fit a power-law model $T = a \cdot N^b$, and assert the exponent $b$ stays within the expected complexity class.
+This test suite empirically measures the **time complexity (Big O)** of critical functions in the LVMH Client Intelligence pipeline. Instead of theoretical analysis alone, we *run* each function at several input sizes, fit a power-law model $T = a \cdot N^b$, and assert the exponent $b$ stays within the expected complexity class.
 
 **After every successful test run, a timestamped PNG graph is automatically generated.** Old graphs are archived into `tests/archive/` so you always have a history.
 

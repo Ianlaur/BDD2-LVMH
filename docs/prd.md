@@ -1,4 +1,4 @@
-# PRD — Voice-to-Tag (Hybrid: Rule-Based + LLM) Lexicon + 3D Vector Profiling + Action Plans
+# PRD — Client Intelligence Platform (Hybrid: Rule-Based + LLM) Lexicon + 3D Vector Profiling + Action Plans
 
 ## 1. Overview
 This project converts multilingual Client Advisor transcriptions (CSV) into:

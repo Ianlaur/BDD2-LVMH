@@ -1,5 +1,5 @@
 #!/bin/bash
-# LVMH Voice-to-Tag Pipeline - macOS Double-Click Launcher
+# LVMH Client Intelligence Pipeline - macOS Double-Click Launcher
 # Double-click this file in Finder to run the full pipeline and open dashboard
 
 # Change to the script's directory

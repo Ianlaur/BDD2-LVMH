@@ -103,7 +103,7 @@ http://localhost:8000
 You should see:
 ```json
 {
-  "service": "LVMH Voice-to-Tag API",
+  "service": "LVMH Client Intelligence API",
   "status": "running",
   "version": "1.0.0"
 }

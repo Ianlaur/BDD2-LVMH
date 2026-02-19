@@ -1,4 +1,4 @@
-# LVMH Voice-to-Tag — Vector Profiles
+# LVMH Client Intelligence Platform — Vector Profiles
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.14+-blue.svg" alt="Python">
@@ -198,7 +198,7 @@ python -m server.server.train_vocabulary list --bucket preferences
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    LVMH Voice-to-Tag Pipeline (Hybrid v1.0)                  │
+│               LVMH Client Intelligence Pipeline (Hybrid v1.0)                │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐              │

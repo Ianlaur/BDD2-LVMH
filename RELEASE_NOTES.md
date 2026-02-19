@@ -1,4 +1,4 @@
-# 🚀 LVMH Voice-to-Tag — Production Release
+# 🚀 LVMH Client Intelligence Platform — Production Release
 
 **Release Date**: February 19, 2026  
 **Version**: Production v1.0  
@@ -261,7 +261,7 @@ Added patterns to exclude:
 ## 👥 Credits
 
 **Development**: Ian Laur  
-**Project**: LVMH Voice-to-Tag Vector Profiles  
+**Project**: LVMH Client Intelligence Platform — Vector Profiles  
 **Tech Stack**: Python, FastAPI, Ollama, Qwen2.5, PostgreSQL, React
 
 ---

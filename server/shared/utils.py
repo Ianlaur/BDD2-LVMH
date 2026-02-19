@@ -1,5 +1,5 @@
 """
-Utility functions for the LVMH Voice-to-Tag pipeline.
+Utility functions for the LVMH Client Intelligence pipeline.
 """
 import random
 import numpy as np
