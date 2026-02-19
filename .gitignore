@@ -81,6 +81,9 @@ tmp/
 temp/
 *.tmp
 
+# Qwen enhancement checkpoints
+data/qwen_checkpoints/
+
 # -----------------------
 # Jupyter
 # -----------------------

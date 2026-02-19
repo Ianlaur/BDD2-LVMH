@@ -106,6 +106,54 @@ def get_top_concepts_for_cluster(
     return top_labels
 
 
+def get_per_client_tags(
+    client_id: str,
+    note_concepts_df: pd.DataFrame,
+    lexicon_df: pd.DataFrame,
+    max_tags: int = 12
+) -> List[str]:
+    """
+    Build a per-client tag list from their concept matches.
+    Uses matched_alias (human-readable) and deduplicates.
+    Budget tags are always included first, then most specific concepts.
+    """
+    if note_concepts_df is None or len(note_concepts_df) == 0:
+        return []
+
+    client_df = note_concepts_df[note_concepts_df["client_id"] == client_id]
+    if len(client_df) == 0:
+        return []
+
+    concept_id_to_label = dict(zip(lexicon_df["concept_id"], lexicon_df["label"]))
+
+    # Separate budget from other concepts
+    budget_tags = []
+    other_tags = []
+    seen = set()
+
+    for _, row in client_df.iterrows():
+        alias = str(row.get("matched_alias", "")).strip()
+        cid = str(row.get("concept_id", ""))
+
+        # Use matched_alias if available, else lexicon label, else concept_id
+        tag = alias if alias and alias != "nan" else concept_id_to_label.get(cid, cid)
+        tag_lower = tag.lower().strip()
+
+        if not tag_lower or tag_lower == "nan" or len(tag_lower) < 2:
+            continue
+        if tag_lower in seen:
+            continue
+        seen.add(tag_lower)
+
+        if cid == "BUDGET_AMOUNT":
+            budget_tags.append(tag)
+        else:
+            other_tags.append(tag)
+
+    # Budget first, then other concepts (up to max_tags)
+    return (budget_tags + other_tags)[:max_tags]
+
+
 def format_profile_type(concepts: List[str]) -> str:
     """Format top concepts into a profile_type string."""
     if not concepts:
@@ -259,11 +307,17 @@ def segment_clients() -> pd.DataFrame:
     # Build output DataFrame
     profiles_data = []
     for i, (client_id, cluster_id) in enumerate(zip(client_ids, labels)):
+        # Per-client tags (budget + all matched concepts)
+        if note_concepts_df is not None and lexicon_df is not None:
+            client_tags = get_per_client_tags(client_id, note_concepts_df, lexicon_df)
+        else:
+            client_tags = cluster_top_concepts.get(int(cluster_id), [])
+
         profiles_data.append({
             "client_id": client_id,
             "cluster_id": int(cluster_id),
             "profile_type": cluster_profiles[cluster_id],
-            "top_concepts": "|".join(cluster_top_concepts[cluster_id]),
+            "top_concepts": "|".join(client_tags),
             "confidence": round(float(confidences[i]), 4)
         })
     
