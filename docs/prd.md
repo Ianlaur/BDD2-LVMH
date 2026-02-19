@@ -1,38 +1,54 @@
-# PRD — Voice-to-Tag (Non-LLM) Lexicon + 3D Vector Profiling + Action Plans
+# PRD — Voice-to-Tag (Hybrid: Rule-Based + LLM) Lexicon + 3D Vector Profiling + Action Plans
 
 ## 1. Overview
 This project converts multilingual Client Advisor transcriptions (CSV) into:
-1) a **lexicon/taxonomy** automatically derived from the dataset,
+1) a **lexicon/taxonomy** with 575 concepts and 9,003 multilingual aliases,
 2) a **vector space** where notes/clients and concepts have coordinates,
-3) an interpretable **client type** segmentation,
-4) deterministic **action plans** via playbook rules.
+3) interpretable **client profiles** with 12 personalized tags (budget first),
+4) deterministic **action plans** via playbook rules,
+5) **ML predictions** for purchase probability, churn risk, and CLV.
 
-Key constraint: **No generative LLM usage** (no GPT/Claude prompt extraction).  
-All workflows must be reproducible via **Docker**.
+Key approach: **Hybrid extraction** combining rule-based (Aho-Corasick + Regex) with LLM semantic enhancement (Qwen2.5:3b).  
+All workflows are **reproducible** via Docker and fixed seeds (except LLM).
 
-### Key Features (v2.0)
-- **Trainable Vocabulary**: 384+ multilingual concepts (12+ languages)
+### Key Features (Production v1.0)
+- **Trainable Vocabulary**: 575 multilingual concepts (12+ languages), 9,003 aliases
+- **Hybrid Extraction**: Rule-based (1,454) + Regex budgets (100) + LLM semantic (342) = **1,796 total concepts**
+- **Per-Client Tags**: 12 personalized tags per client (budget always first)
+- **Budget Detection**: Regex-based extraction (ranges, amounts, currencies) — 100% coverage
+- **LLM Enhancement**: Qwen2.5:3b via Ollama (~10s/note, 99% success, 0.91 confidence)
 - **Adaptive Pipeline**: Works with any CSV file structure
-- **Server/Client Architecture**: Separation of training and processing
-- **CLI Training Interface**: Easy vocabulary management
+- **FastAPI Server**: REST API for frontend integration
+- **PostgreSQL Database**: Neon cloud-hosted, 100 clients synced
+- **React Dashboard**: TypeScript frontend with Client360 view
+- **Big O Performance**: 11 complexity tests validating scalability
 
 ---
 
 ## 2. Goals & Success Metrics
 
 ### Goals
-- Build a lexicon/taxonomy **from the provided CSV notes only**
-- Support multilingual content: FR/EN/IT/ES/DE
-- Produce 2D/3D visualization for interpretability (3D optional but recommended)
-- Assign each client/note a **profile type**
-- Generate a **ranked action plan** (clienteling-ready) from deterministic rules
+- Build a lexicon/taxonomy with **575 concepts** and **9,003 multilingual aliases**
+- Support multilingual content: FR/EN/IT/ES/DE/PT/RU/AR/ZH/JA/KO/NL
+- Combine rule-based precision with LLM semantic coverage
+- Extract **100% of budget amounts** from client notes
+- Assign each client **12 personalized tags** (budget first)
+- Produce ML predictions (purchase probability, churn risk, CLV)
+- Generate **ranked action plans** from deterministic playbooks
+- Provide REST API for frontend integration
 
-### Success Metrics (MVP)
-- **Pipeline reproducibility:** same input → same outputs (bitwise close where applicable)
-- **Lexicon coverage:** ≥ 80% of notes have ≥ 1 extracted concept
-- **Concept stability:** top concepts remain consistent across reruns (seeded)
-- **Profile interpretability:** each profile type has a human-readable label and top concepts
-- **Action traceability:** every recommended action lists triggers (concepts/rules)
+### Success Metrics (Production v1.0)
+- ✅ **Pipeline reproducibility:** Fixed seeds ensure deterministic outputs (except LLM)
+- ✅ **Concept coverage:** 1,796 concepts detected (1,454 rule + 342 LLM) = **100% of notes**
+- ✅ **Budget extraction:** 100/100 notes with budgets captured (100% coverage)
+- ✅ **LLM success rate:** 99% (99/100 notes enhanced successfully)
+- ✅ **LLM confidence:** 0.91 average across all LLM-extracted concepts
+- ✅ **Per-client tags:** 12 personalized tags per client (vs 3 cluster-level before)
+- ✅ **Performance:** ~65s total pipeline (10s/note LLM, <1ms/note rule-based)
+- ✅ **Big O validation:** All 11 complexity tests passing (5.15s)
+- ✅ **Database sync:** 100 clients synced to PostgreSQL with full concept evidence
+- ✅ **Profile interpretability:** Each profile has budget + top concepts + cluster label
+- ✅ **Action traceability:** Every recommended action lists triggers (concepts/rules)
 
 ---
 
@@ -51,20 +67,31 @@ All workflows must be reproducible via **Docker**.
 
 ## 4. In Scope vs Out of Scope
 
-### In Scope
-- CSV ingestion and cleaning
-- Lexicon creation from text using deterministic NLP/statistics
-- Vectorization (TF-IDF and/or fastText)
-- Segmentation (k-means/HDBSCAN) + labeling
-- Playbook-based action recommendation
-- Dockerized, reproducible pipeline
-- Outputs: tables + optional 3D HTML visualization
+### In Scope (✅ Implemented)
+- ✅ CSV ingestion and cleaning
+- ✅ Lexicon creation with 575 concepts, 9,003 aliases
+- ✅ Hybrid extraction: Rule-based + Regex + LLM
+  - Aho-Corasick multi-pattern matching
+  - Regex budget extraction (amounts, ranges, currencies)
+  - Qwen2.5:3b semantic enhancement via Ollama
+- ✅ Vectorization (SentenceTransformers 384d)
+- ✅ Segmentation (KMeans 7 clusters) + per-client tagging (12 tags)
+- ✅ Playbook-based action recommendation
+- ✅ ML predictions (purchase, churn, CLV)
+- ✅ FastAPI REST API server (port 8000)
+- ✅ PostgreSQL database (Neon cloud)
+- ✅ React/TypeScript dashboard frontend
+- ✅ Big O complexity testing (11 tests)
+- ✅ GDPR/RGPD anonymization
+- ✅ Dockerized, reproducible pipeline
+- ✅ Outputs: tables + 3D HTML visualization
 
 ### Out of Scope
-- Any generative LLM prompting/extraction
-- Production CRM integration (we only output files)
-- Real-time services / APIs (unless explicitly requested later)
-- Personalized copy generation for emails/messages (no LLM)
+- ❌ Real-time streaming/websocket processing
+- ❌ Production CRM integration (we output data via API)
+- ❌ Personalized copy generation for emails (no generative LLM for content)
+- ❌ Multi-tenant architecture (single workspace)
+- ❌ Model retraining on new 1,796-feature set (future enhancement)
 
 ---
 
