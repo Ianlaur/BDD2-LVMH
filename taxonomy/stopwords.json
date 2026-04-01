@@ -1,0 +1,70 @@
+{
+  "fr": [
+    "enfin", "voilà", "tu sais", "ben", "euh", "bref", "alors", "donc",
+    "quoi", "tipo", "genre", "en fait", "du coup", "bon", "hein",
+    "ouais", "ah", "oh", "bah", "nan", "mouais", "tiens",
+    "quand même", "franchement", "carrément", "grave", "trop",
+    "un peu", "peut-être", "je crois", "je pense", "on va dire",
+    "c'est-à-dire", "disons", "comment dire", "en gros",
+    "le", "la", "les", "un", "une", "des", "de", "du",
+    "et", "ou", "mais", "donc", "car", "ni", "que", "qui",
+    "ce", "cette", "ces", "mon", "ton", "son", "notre", "votre",
+    "je", "tu", "il", "elle", "nous", "vous", "ils", "elles",
+    "être", "avoir", "faire", "dire", "aller", "voir", "pouvoir",
+    "avec", "pour", "dans", "sur", "par", "très", "plus", "moins",
+    "aussi", "bien", "tout", "rien", "chose", "truc", "machin"
+  ],
+  "en": [
+    "okay", "right", "well", "like", "you know", "guess", "suppose",
+    "basically", "actually", "stuff", "thing", "things", "kind of",
+    "sort of", "I mean", "literally", "honestly", "obviously",
+    "anyway", "whatever", "yeah", "yep", "nope", "hmm", "uh", "um",
+    "the", "a", "an", "is", "are", "was", "were", "be", "been",
+    "have", "has", "had", "do", "does", "did", "will", "would",
+    "could", "should", "may", "might", "shall", "can",
+    "and", "or", "but", "so", "if", "then", "because",
+    "this", "that", "these", "those", "it", "its",
+    "very", "really", "just", "also", "too", "quite", "rather",
+    "some", "any", "every", "each", "all", "both", "few", "many"
+  ],
+  "es": [
+    "tipo", "bueno", "pues", "vale", "menos", "como", "aproximadamente",
+    "o sea", "digamos", "la verdad", "es que", "mira", "oye",
+    "el", "la", "los", "las", "un", "una", "unos", "unas",
+    "y", "o", "pero", "porque", "que", "de", "del", "al",
+    "este", "esta", "estos", "estas", "ese", "esa",
+    "yo", "tú", "él", "ella", "nosotros", "ellos", "ellas",
+    "ser", "estar", "haber", "tener", "hacer", "ir", "poder",
+    "muy", "más", "menos", "también", "algo", "nada", "cosa"
+  ],
+  "it": [
+    "pratica", "tipo", "allora", "insomma", "comunque", "praticamente",
+    "cioè", "diciamo", "magari", "ecco", "boh", "mah",
+    "il", "lo", "la", "i", "gli", "le", "un", "uno", "una",
+    "e", "o", "ma", "perché", "che", "di", "del", "della",
+    "questo", "questa", "questi", "queste", "quello", "quella",
+    "io", "tu", "lui", "lei", "noi", "voi", "loro",
+    "essere", "avere", "fare", "dire", "andare", "potere",
+    "molto", "più", "meno", "anche", "qualcosa", "niente", "cosa"
+  ],
+  "de": [
+    "sozusagen", "ungefähr", "eigentlich", "halt", "also", "quasi",
+    "kunden", "sozusagen", "naja", "eben", "schon", "mal",
+    "der", "die", "das", "ein", "eine", "eines",
+    "und", "oder", "aber", "weil", "dass", "von", "zu", "mit",
+    "dieser", "diese", "dieses", "jener", "jene",
+    "ich", "du", "er", "sie", "es", "wir", "ihr",
+    "sein", "haben", "werden", "können", "müssen", "sollen",
+    "sehr", "mehr", "weniger", "auch", "etwas", "nichts"
+  ],
+  "pt": [
+    "tipo", "então", "basicamente", "né", "tá", "bom",
+    "olha", "veja", "pois", "enfim", "aliás",
+    "o", "a", "os", "as", "um", "uma", "uns", "umas",
+    "e", "ou", "mas", "porque", "que", "de", "do", "da",
+    "este", "esta", "estes", "estas", "esse", "essa",
+    "eu", "tu", "ele", "ela", "nós", "vós", "eles", "elas",
+    "ser", "estar", "ter", "fazer", "ir", "poder",
+    "muito", "mais", "menos", "também", "algo", "nada", "coisa"
+  ]
+}
