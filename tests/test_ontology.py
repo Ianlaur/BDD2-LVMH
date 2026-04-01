@@ -1,9 +1,13 @@
 # tests/test_ontology.py
 """Tests for the hierarchical ontology data model."""
+import json
+import tempfile
+from pathlib import Path
 import pytest
 from server.ontology.schema import (
     Concept, Category, Dimension, Ontology, RelationshipType
 )
+from server.ontology.loader import load_ontology, save_ontology
 
 
 def test_concept_creation():
@@ -75,3 +79,70 @@ def test_relationship_types():
     assert RelationshipType.IMPLIES.value == "implies"
     assert RelationshipType.CONFLICTS.value == "conflicts"
     assert RelationshipType.AMPLIFIES.value == "amplifies"
+
+
+def _make_minimal_ontology_json():
+    return {
+        "dimensions": [
+            {
+                "id": "product_affinity",
+                "label": "Product Affinity",
+                "categories": [
+                    {
+                        "id": "product_affinity.watches",
+                        "label": "Watches",
+                        "concepts": [
+                            {
+                                "id": "product_affinity.watches.tourbillon_interest",
+                                "label": "Tourbillon Interest",
+                                "aliases": {"en": ["tourbillon"], "fr": ["tourbillon"]},
+                                "weight": 0.8,
+                                "relationships": [
+                                    {"type": "implies", "target_id": "lifestyle.hobbies.watch_collector", "weight": 0.7}
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+
+def test_load_ontology_from_json():
+    data = _make_minimal_ontology_json()
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump(data, f)
+        f.flush()
+        ont = load_ontology(Path(f.name))
+    assert len(ont.dimensions) == 1
+    assert len(ont.all_concepts()) == 1
+    c = ont.get_concept("product_affinity.watches.tourbillon_interest")
+    assert c is not None
+    assert c.weight == 0.8
+    assert len(c.relationships) == 1
+    assert c.relationships[0].type == RelationshipType.IMPLIES
+
+
+def test_save_and_reload_ontology():
+    data = _make_minimal_ontology_json()
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump(data, f)
+        f.flush()
+        ont = load_ontology(Path(f.name))
+
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f2:
+        save_ontology(ont, Path(f2.name))
+        ont2 = load_ontology(Path(f2.name))
+
+    assert len(ont2.all_concepts()) == len(ont.all_concepts())
+
+
+def test_load_ontology_validates_ids():
+    data = _make_minimal_ontology_json()
+    data["dimensions"][0]["categories"][0]["concepts"][0]["id"] = ""
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump(data, f)
+        f.flush()
+        with pytest.raises(ValueError):
+            load_ontology(Path(f.name))
