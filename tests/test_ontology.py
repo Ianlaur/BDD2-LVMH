@@ -177,3 +177,34 @@ def test_relationship_graph_conflicts():
 
     conflicts = graph.get_conflicts("a.b.c1")
     assert "a.b.c2" in conflicts
+
+
+from server.shared.config import TAXONOMY_DIR
+
+
+def test_seed_ontology_loads_and_has_14_dimensions():
+    path = TAXONOMY_DIR / "ontology_v2.json"
+    if not path.exists():
+        pytest.skip("ontology_v2.json not yet generated")
+    ont = load_ontology(path)
+    assert len(ont.dimensions) == 14
+    concepts = ont.all_concepts()
+    assert len(concepts) >= 200  # minimum viable ontology
+
+
+def test_seed_ontology_no_empty_aliases():
+    path = TAXONOMY_DIR / "ontology_v2.json"
+    if not path.exists():
+        pytest.skip("ontology_v2.json not yet generated")
+    ont = load_ontology(path)
+    for c in ont.all_concepts():
+        assert len(c.all_aliases()) > 0, f"Concept {c.id} has no aliases"
+
+
+def test_seed_ontology_no_duplicate_ids():
+    path = TAXONOMY_DIR / "ontology_v2.json"
+    if not path.exists():
+        pytest.skip("ontology_v2.json not yet generated")
+    ont = load_ontology(path)
+    ids = [c.id for c in ont.all_concepts()]
+    assert len(ids) == len(set(ids)), "Duplicate concept IDs found"
