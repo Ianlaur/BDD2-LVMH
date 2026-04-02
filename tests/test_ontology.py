@@ -5,8 +5,9 @@ import tempfile
 from pathlib import Path
 import pytest
 from server.ontology.schema import (
-    Concept, Category, Dimension, Ontology, RelationshipType
+    Concept, Category, Dimension, Ontology, Relationship, RelationshipType
 )
+from server.ontology.relationships import RelationshipGraph
 from server.ontology.loader import load_ontology, save_ontology
 
 
@@ -146,3 +147,33 @@ def test_load_ontology_validates_ids():
         f.flush()
         with pytest.raises(ValueError):
             load_ontology(Path(f.name))
+
+
+def test_relationship_graph_implies():
+    c1 = Concept(
+        id="a.b.c1", label="C1", aliases={"en": ["x"]}, weight=1.0,
+        relationships=[Relationship(type=RelationshipType.IMPLIES, target_id="a.b.c2", weight=0.8)],
+    )
+    c2 = Concept(id="a.b.c2", label="C2", aliases={"en": ["y"]}, weight=1.0)
+    cat = Category(id="a.b", label="B", concepts=[c1, c2])
+    dim = Dimension(id="a", label="A", categories=[cat])
+    ont = Ontology(dimensions=[dim])
+    graph = RelationshipGraph(ont)
+
+    implied = graph.get_implied("a.b.c1")
+    assert "a.b.c2" in [r["target_id"] for r in implied]
+
+
+def test_relationship_graph_conflicts():
+    c1 = Concept(
+        id="a.b.c1", label="C1", aliases={"en": ["x"]}, weight=1.0,
+        relationships=[Relationship(type=RelationshipType.CONFLICTS, target_id="a.b.c2")],
+    )
+    c2 = Concept(id="a.b.c2", label="C2", aliases={"en": ["y"]}, weight=1.0)
+    cat = Category(id="a.b", label="B", concepts=[c1, c2])
+    dim = Dimension(id="a", label="A", categories=[cat])
+    ont = Ontology(dimensions=[dim])
+    graph = RelationshipGraph(ont)
+
+    conflicts = graph.get_conflicts("a.b.c1")
+    assert "a.b.c2" in conflicts
