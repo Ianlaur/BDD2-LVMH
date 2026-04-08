@@ -189,6 +189,14 @@ TAXONOMY_RULES = {
 }
 
 # ============================================================
+# ONTOLOGY (v2)
+# ============================================================
+ONTOLOGY_FILE = TAXONOMY_DIR / "ontology_v2.json"
+STOPWORDS_FILE = TAXONOMY_DIR / "stopwords.json"
+MIN_ALIAS_LENGTH = 3          # minimum characters for an alias to be included in automaton
+NEGATION_SCOPE_TOKENS = 5     # how many tokens after negation trigger to include
+
+# ============================================================
 # PLAYBOOKS FILE
 # ============================================================
 PLAYBOOKS_FILE = ACTIVATIONS_DIR / "playbooks.yml"

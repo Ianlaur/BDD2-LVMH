@@ -104,7 +104,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="LVMH Client Intelligence API",
+    title="LVMH Voice-to-Tag API",
     description="API for accessing LVMH client intelligence data and running the pipeline",
     version="2.0.0",
     lifespan=lifespan,
@@ -168,7 +168,7 @@ def _sanitize_for_json(obj):
 async def root():
     """API health check and info."""
     return {
-        "service": "LVMH Client Intelligence API",
+        "service": "LVMH Voice-to-Tag API",
         "status": "running",
         "version": "2.0.0",
         "database": "connected" if DB_AVAILABLE else "file-only",
